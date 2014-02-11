@@ -1,0 +1,7 @@
+<?php
+if (!defined('ERPKING')) die('not in erpking.cn');
+$database = require ('./config.db.php');
+$config = array();
+return array_merge($database, $config);
+
+?>

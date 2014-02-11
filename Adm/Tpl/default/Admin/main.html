@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+<meta name="author" content="" />
+
+<meta name="copyright" content="jobmedia.cn" />
+
+<title> </title>
+
+<link href="__PUBLIC__/skin/style/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/skin/js/init.js"></script>
+
+
+</head>
+
+<body style="background-color:#E0F0FE">
+
+<div class="admin_main_nr_dbox">
+
+<div class="toptip">
+
+<h2>提示：</h2>
+
+<p>
+
+通过管理员设置，您可以进行编辑管理员资料、权限、密码以及删除管理员等操作；
+
+</p>
+
+</div> 
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" id="list" class="link_lan">
+
+    <tr>
+
+      <td class="admin_list_tit admin_list_first">用户名</td>
+
+
+      <td  class="admin_list_tit">创建时间</td>
+
+      <td  class="admin_list_tit">最后登录时间</td>
+
+      <td  class="admin_list_tit">最后登录ip</td>
+
+      <td width="230" align="center"  class="admin_list_tit">操作</td>
+
+    </tr>
+
+
+    <volist name="list" id="vo">
+
+
+
+
+
+
+	   <tr>
+
+      <td  class="admin_list admin_list_first">{$vo.admin_name}</td>
+
+
+      <td   class="admin_list">{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+
+      <td   class="admin_list">
+
+        {$vo.last_login_time}
+
+	  </td>
+
+      <td   class="admin_list">{$vo.last_login_ip}</td>
+
+      <td   class="admin_list">
+
+	  <a href="?act=loglist&adminname={#$li.admin_name#}" >登录日志</a>
+
+		&nbsp;&nbsp;
+
+		<a href="?act=users_set&id={#$li.admin_id#}">权限</a>
+
+		&nbsp;&nbsp;
+
+		<a href="?act=edit_users&id={#$li.admin_id#}" >详情</a>
+
+		&nbsp;&nbsp;
+
+		<a href="?act=edit_users_pwd&id={#$li.admin_id#}" >密码</a>
+
+
+		&nbsp;&nbsp;
+
+		<a href="?act=del_users&id={#$li.admin_id#}" onclick="return confirm('确定要删除吗？')">删除</a>
+
+
+	  </td>
+
+    </tr>
+
+	</volist>
+
+  </table>
+
+
+   <table width="100%" border="0" cellspacing="10" cellpadding="0" class="admin_list_btm">
+
+      <tr>
+
+        <td>
+
+
+
+          <input type="button" name="add" value="添加管理员" class="admin_submit"   onclick="window.location.href='__APP__/Admin/add_users'" />
+
+        	
+
+		</td>
+
+        <td width="305" align="right">
+
+		 
+
+		
+
+	    </td>
+
+      </tr>
+
+  </table>
+
+
+<div class="page link_bk">{#$page#}</div>
+
+	 
+
+</div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,275 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8">
+
+<title>重置密码</title>
+
+
+
+
+
+
+
+<style>
+
+
+
+body{ background:#f8f8f8;}
+
+div.logo_u{
+
+	height: 36px;
+
+	margin-top: 100px;
+
+	text-align: left;
+
+	padding-left: 20px;
+
+}
+
+div.login_box{ width:300px; margin: 0 auto; overflow:hidden; position:relative}
+
+
+
+div.lbox1,div.lbox2{ width:300px;}
+
+div.login_form{ width:300px; height:280px; border:0px solid #DDD; border-bottom:1px solid #DDD }
+
+div.login_form input{ display:block; clear:both; border-bottom:1px solid #ddd;border-right:1px solid #ddd; border-left:1px solid #999; border-top:1px solid #999;}
+
+div.login_form h2{ font-family:"微软雅黑"; font-size:25px; line-height:40px; font-weight:100; color:#999; padding-left:20px; margin-top:10px;}
+
+div.login_form form{ margin:10px 24px;}
+
+div.login_form form input{ width:240px; height:36px; line-height:32px; margin-top:16px; color:#999; padding-left:10px; background:#FDFDFD}
+
+div.login_form form input.lbt{ width:100px; height:32px; background:#666; border:0px; cursor:pointer; color:#FFF; font-size:14px;}
+
+div.login_form form input.regbt{width:100px; height:36px;background:#666; color:#FFF; font-size:14px; border:0px; cursor:pointer}
+
+div.login_form form a.reg,div.login_form form a.denglu{ color:#666; display:block; margin-top:-30px; margin-left:120px; font-size:14px;}
+
+.l_footer{ line-height:20px; padding-left:10px; color:#B0B0B0; font-size:12px;}
+
+#msg{
+
+	color: #333;
+
+	font-size: 12px;
+
+	height: 23px;
+
+}
+
+#ok{ padding:15px; border:1px solid #ddd; background:#fff; display:none; font-size:14px; text-align:center; margin:10px;}
+
+</style>
+
+ <script src="/Public/js/jquery.js"></script>
+
+
+
+
+<script type="text/javascript">
+
+
+
+$(function(){  
+
+    
+
+	$('#repass').click(function(e) {
+
+    var pass=$('#pass').val();
+
+	var pass1=$('#pass1').val();
+
+	
+
+	var rand=$('#rand').val();
+
+       if(pass==""){
+
+		$('#msg').html('请输入新密码');
+
+		 return false;
+
+		}
+
+		 if(pass1==""){
+
+		$('#msg').html('请输入确认密码');
+
+		return false;
+
+		}
+
+		
+
+		if(pass1 != pass){
+
+		$('#msg').html('两次输入的不一致');
+
+		return false;
+
+		}
+
+     
+
+	 //alert(mail);
+
+		
+
+		$.ajax({
+
+			type:"POST",
+
+			 url:"{:U('Login/urepass',array('act'=>'uppass'))}",
+
+			 data:{pass:pass,pass1:pass1,rand:rand},
+
+			 beforeSend: function(){
+
+				  
+
+				  $('#msg').html('提交中....');
+
+				 
+
+				 },
+
+				 success: function(data){
+
+					 
+
+					   if(data =="ok")
+
+					   
+
+					   {  
+
+						$('#msg').html("修改成功");  
+
+						 
+
+						 setTimeout(function(){
+
+							 
+
+							 window.location='{:U("Login/index")}';
+
+							 
+
+							 },2000)
+
+						
+
+					   }
+
+					   else{
+
+						   
+
+						  $('#msg').html(data);
+
+						  
+
+						   }
+
+					 
+
+					 }
+
+				 
+
+				
+
+			
+
+			
+
+			});
+
+		
+
+		return false;
+
+    });
+
+	 
+
+});
+
+
+
+</script>
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+<div class="lbox1" style="margin:0 auto; margin-top:140px; position:relative ">
+
+
+
+  <div id="msg" style="position: absolute; left: 29px; top: 191px; width: 133px;"></div>
+
+  <div class="login_form" style="border:0;">
+
+    <h2 align="left">jobme.cn</h2>
+
+    <div id="ok"></div>
+
+    <form>
+
+    
+
+    <!--[if !IE]><!-->
+
+      <input  value="" type="password"   placeholder="密码"  name="pass" id="pass" />
+
+       <input  value="" type="password"   placeholder="确认密码"  name="pass1" id="pass1" />
+
+       <input type="hidden" name="rand" id="rand" value="{$rand}" />
+
+
+
+      <!--<![endif]-->
+
+    
+
+     <!--[if IE]>
+
+      <input  value="邮箱" type="text"   name="umail" id="umail" />
+
+       
+
+    <![endif]-->
+
+      <input type="submit" value="重置密码" id="repass" class="lbt"  style=" float:right;"/>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+
+
+
+</body>
+
+</html>
+

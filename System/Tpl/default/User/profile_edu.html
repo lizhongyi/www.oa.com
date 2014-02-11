@@ -1,0 +1,342 @@
+<include file="header" />
+        <style>
+		/*行业baox*/
+*{ list-style:none}
+.hangye-box{  position:absolute; border:1px solid #ddd; box-shadow:1px 1px 1px #ccc; background:#FFF; width:600px; z-index:9999; display:none; padding-bottom:30px;}
+
+div.h-title{ line-height:30px; height:30px; background:#F1F1F1; border-bottom:1px solid #ddd; padding-left:20px}
+div.h-title a.close{ font-size:12px; line-height:30px; padding-right:10px; font-size:12px;}
+.hangye-box ul{ margin:10px;padding-left:30px; margin-left:20px;}
+.hangye-box ul li{ float:left;_display:inline;  line-height:28px; color:#06C; width:170px; padding-right:16px;  font-size:13px !important; position:relative;}
+.hangye-box ul li:hover{  }
+.hangye-box  ul li dl{display:block; display: none; clear:both; padding:5px; margin:0px; margin-left:10px; margin-top:-4px; position:absolute; background:#F8F8F8; left:10px; top:28px; border:1px solid #ddd; z-index:100; padding-right:10px; width:400px; box-shadow:1px 1px 2px #ddd}
+.hangye-box  ul li dl.hover{ display:block;}
+.hangye-box  ul li dd{ line-height:24px; color:#999; display:block; word-wrap:normal; float:left; _display:inline; margin-left:9px; width:130px; overflow:hidden;}
+.hangye-box  ul li img,.hangye-box  ul li span.big-cate,.hangye-box  ul li input{  margin-right:5px;}
+ul li span.big-cate{ cursor:pointer}
+ul li span.big-cate:hover{ color:#039}
+ul li span.small-cate{ cursor:pointer; font:12px;}
+ul li span.small-cate:hover{ color:#06C}
+
+/*弹窗样式*/
+
+
+.area-box{ position:absolute; border:1px solid #ddd; box-shadow:1px 1px 1px #ccc; background:#FFF; width:600px; display:none; padding-bottom:30px;}
+
+div.h-title{ line-height:30px; height:30px; background:#F1F1F1; border-bottom:1px solid #ddd; padding-left:20px}
+div.h-title a.close{ font-size:12px; line-height:30px; padding-right:10px; font-size:12px;}
+.area-box ul{ margin:10px; padding-left:10px; padding-bottom:30px;}
+.area-box ul li{ float:left;_display:inline; line-height:28px; color:#06C; width:170px; padding-right:16px;  font-size:13px !important; position:relative;}
+.area-box ul li:hover{  }
+.area-box  ul li dl{display:block; display: none; clear:both; padding:5px; margin:0px; margin-left:10px; margin-top:-4px; position:absolute; background:#F8F8F8; left:10px; top:28px; border:1px solid #ddd; z-index:100; padding-right:10px; box-shadow:1px 1px 2px #ddd}
+.area-box  ul li dd{ line-height:24px; color:#999; float:left;_display:inline;}
+.area-box  ul li img,.area-box  ul li span.big-cate,..area-box  ul li input{  margin-right:5px;}
+		</style>
+        <!-- section content -->
+        <section class="section">
+            <div class="container">
+                <div class="signin-form row-fluid">
+                    <!--Sign In-->
+                    <div class="span10 offset1">
+                        <div class="box corner-all">
+                            <div class="box-header grd-teal color-white corner-top">
+                                <span>编辑资料</span>
+                            </div>
+                             <div class="box-body">
+                             <div class="box-header corner-top" style="margin:20px;" >
+                                   
+                                    <ul class="nav nav-tabs">
+                                       
+                                        <li class="active"><a  href="#">基本资料</a></li>      <li><a  href="#" >教育经历</a></li>
+                                        <li><a  href="#">职业概况</a></li> <li><a class=""  href="#">企业信息</a></li>
+                                        
+                                  
+                                        
+                                        
+                                    </ul>
+                                </div>
+                                                    <!--element-->
+                                                    <form method="post"  action="{:U('User/do_profile')}" class="form-horizontal" />
+                                                    
+                                                    <div class="control-group"></div>
+                                                    
+                               <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">用户名</label>
+                                                            <div class="controls">
+                                                            <input id="uname" name="uname"  type="text" class="" value="{$uname}" disabled />
+                                 </div>
+                                                        </div>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">真实姓名</label>
+                                                            <div class="controls">
+                                                            <input id="uname" name="realname"  type="text" class="grd-white" value="{$pr['realname']}"  />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                      <div class="control-group">
+                                                            <label class="control-label">性别</label>
+                                                            <div class="controls">
+                                                                <label class="radio">
+                                                                    <input type="radio" data-form="uniform" name="sex" id="optionsRadios1" value="1" <if condition="$pr['sex'] eq 1"> checked </if> />
+                                                                   男
+                                                                </label>
+                                                              
+                                                              <label class="radio" style="padding-top:6px;">
+                                                                    <input type="radio" data-form="uniform"  name="sex" id="optionsRadios2"  <if condition="$pr['sex'] eq 2"> checked </if>  value="2" />
+                                                                   女
+                                                                </label>
+                                                            </div>
+                               </div>
+                                                        
+                                                        
+                                                        
+                                                         <div class="control-group">
+                                                            <label class="control-label">婚姻状况</label>
+                                                            <div class="controls">
+                                                                <label class="radio">
+                                                                    <input type="radio" data-form="uniform" name="marriage" id="optionsRadios1" value="1"  <if condition="$pr['marriage'] eq 1"> checked </if> />
+                                                                   未婚
+                                                                </label>
+                                                              
+                                                                <label class="radio" style="padding-top:6px;">
+                                                                    <input type="radio" data-form="uniform" name="marriage" id="optionsRadios2"  <if condition="$pr['marriage'] eq 2"> checked </if> value="2" />
+                                                                   已婚
+                                                                </label>
+                                                                
+                                                               
+                                                              
+                                                                <label class="radio" style="padding-top:6px;">
+                                                                    <input type="radio" data-form="uniform" name="marriage" id="optionsRadios3"  <if condition="$pr['marriage'] eq 3"> checked </if> value="3" />
+                                                                   保密
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                   
+                                                    <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">年龄</label>
+                                                            <div class="controls">
+                                                            <input id="age" name="age"  type="text" class="grd-white span2" value="{$pr['age']}"  />
+                                                            </div>
+                               </div>
+                                                        
+                                                        
+                                                        
+                                                            <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">Email</label>
+                                                            <div class="controls">
+                                                            <input id="email" name="email"  type="text" class="grd-white" value="{$pr['email']}"  disabled />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                        
+                                                             
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">手机</label>
+                                                            <div class="controls">
+                                                            <input id="uname" name="phone"  type="text" class="grd-white" value="{$pr['phone']}"  />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                             
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">电话</label>
+                                                            <div class="controls">
+                                                            <input id="uname" name="tel"  type="text" class="grd-white" value="{$pr['tel']}"  />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                                  
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">通讯地址</label>
+                                                            <div class="controls">
+                                                            <input id="addr" name="addr"  type="text" class="grd-white span7" value="{$pr['addr']}"  />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                        
+                                                         <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">最近工作单位</label>
+                                                            <div class="controls">
+                                                            <input id="last_company" name="last_company"  type="text" class="grd-white span3" value="{$pr['last_company']}"  />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                      
+                               
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="inputSelect">学历</label>
+                                                            <div class="controls">
+                                                                <select id="inputSelect" name="education" data-form="select2" style="width:200px" data-placeholder="Your Favorite Type of Bear">
+                                                                    <option  <if condition="$pr['education'] eq 1"> selected="" </if> value="1" />大专
+                                                                    <option <if condition="$pr['education'] eq 2"> selected="" </if> value="2" />本科
+                                                                    <option value="3" <if condition="$pr['education'] eq 3"> selected="" </if> />硕士
+                                                                    <option <if condition="$pr['education'] eq 4"> selected="" </if> value="4" />博士
+                                                                    <option <if condition="$pr['education'] eq 5"> selected="" </if>  value="5" />博士后                                                                 
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                          <div class="control-group">
+                                                            <label class="control-label" for="inputSelectGroup">所在地区</label>
+                                                            <div class="controls">
+                                                             <input class="area span4 grd-white" size="16" type="text" value="{$pr['area_cn']}" name="area_cn"><input type="hidden" name="area" value="{$Think.get.area}" id="area-val"/>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                      
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    
+                                                      
+                                                        <div class="control-group">
+                                                          <label class="control-label" for="inputEditorSimple">个人介绍</label>
+                                                            <div class="controls">
+                                                                <textarea id="inputEditorSimple" class="span10" rows="8" name="about" data-form="wysihtml5" placeholder="Enter text ...">{$pr['about']}</textarea>
+                                                            </div>
+                               </div>
+                               <div class="form-actions">
+                                                            <button type="submit" class="btn btn-primary">保存资料</button>
+                                                            <button type="button" class="btn">取消</button>
+                                                        </div>
+                                                    </form>
+                                                    <!--/element-->
+                                                </div>
+                        </div>
+                    </div><!--/Sign In-->
+                    <!--Sign Up-->
+                    <!--/Sign Up-->
+                </div><!-- /row -->
+            </div><!-- /container -->
+            
+            <!-- modal recover -->
+            <div id="modal-recover" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-recoverLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 id="modal-recoverLabel">Reset password <small>用户名 Or Email Address</small></h3>
+                </div>
+                <div class="modal-body">
+                    <form id="form-recover" method="post" />
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="text" data-validate="{required: true, email:true, messages:{required:'Please enter field email', email:'Please enter a valid email address'}}" name="recover" />
+                                <p class="help-block helper-font-small">Enter your 用户名 or email address and we will send you a link to reset your password.</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <input type="submit" form="form-recover" class="btn btn-primary" value="Send reset link" />
+                </div>
+            </div><!-- /modal recover-->
+        </section>
+
+   <include file="Public:footer"/>
+   
+   
+   <script>
+   
+   
+    $(document).ready(function() {
+                // try your js
+                
+                // auto complete
+                $('#inputAuto').typeahead({
+                    source : ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
+                });
+                
+                // select2
+                $('#inputTags').select2({tags:["red", "green", "blue"]});
+                $('[data-form=select2]').select2();
+                $('[data-form=select2-group]').select2();
+                
+                // this select2 on side right
+                $('#tagsSelect').select2({
+                    tags:["red", "green", "blue"],
+                    tokenSeparators: [",", " "]
+                });
+                
+                
+                // datepicker
+                $('[data-form=datepicker]').datepicker();
+
+             
+                
+                // uniform
+                $('[data-form=uniform]').uniform()
+
+                // wysihtml5
+                $('[data-form=wysihtml5]').wysihtml5();
+                
+           
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		       
+		   
+		   
+		        
+       
+                
+            
+                
+            });
+      
+	  
+	       
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		
+		
+	  
+	   
+        </script>
+
+
+   <include file="Public:js-tpl/area.inc"/>  
+   </body>
+   
+   </html>
+

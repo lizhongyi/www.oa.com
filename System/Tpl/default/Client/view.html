@@ -1,0 +1,408 @@
+<include file="Public:header"/>
+<div id="contentcolumn">
+  <!-- ** blue top navbar ** -->
+  <!-- ** ./ blue top navbar ** -->
+  <div class="container-fluid">
+    <include file="Public:sea.inc" />
+    <div class="row-fluid wrapper">
+      <!-- 这里是搜索---->
+      <!---/这里是搜索--->
+      <!-- ** left sidebar ** -->
+      <include file="Public:works-left.inc" />
+      <!-- ** ./ left sidebar ** -->
+      <!-- ** main content ** -->
+      <div class="contentcolumn">
+        <div class="row-fluid">
+          <div class="span12">
+            <!-- ** widget ** -->
+            <div class="well bg-FFF navbar navbar-heading">
+              <div class="btl">
+                <div class="container" style="width: auto;"> <a class="brand" href="javascript:;">客户详细</a></div>
+              </div>
+              <div class="cbox " style=" margin-top:0px; ">
+              
+              
+              
+              <div class="box">
+             
+               <div class="tab"> <a  class="tab-bar hover"  link='{:U("Candidate/search",array("ajax"=>1,"loadbox"=>"h_box_1"))}'>客户详细</a> <a link="{:U('Yeji/search',array('ajax'=>1,'loadbox'=>'h_box_2'))}"  class="tab-bar">HR联系人</a> </div>
+              
+              <div class="tab-box kehu" >
+              
+              
+              
+              
+                <div class="tab_con_box">
+              
+              <div  style="padding:15px;">
+                  <div class="cl"></div>
+<span class="left"><strong>HR联系人列表</strong>
+ 
+</span>  <div class="btn-group right">
+   <button class="btn add_hr"  type="button" com_id="{$detail['id']}"  data-toggle="modal" href="#add_hr_contact">增加联系人</button>
+   <button class="btn add_hr" id="add_hr" type="button" com_id="{$detail['id']}"  data-toggle="modal" href="#add_hr_contact"><i class="icon-plus kehu-list"></i></button>
+ </div>
+<form method="post" action="{:U("Works/doCommand")}">
+  <table width="768" class="table table-bordered  tb-auto">
+  <tr>
+  <th width="40">序号</th>
+    <th width="99"> 姓名 </th>
+    <th width="90">联系电话</th>
+    <th width="114">手机</th>
+    <th width="80">QQ</th>
+    <th width="85">email</th>
+    <th width="110">传真</th>
+    <th width="72">操作</th>
+  </tr>
+  <volist name="hr_list" id="vo">
+    <tr>
+      <td><input  style="width:20px;" type="checkbox" name="id[]" id="all3" class="piliang_box" value="{$vo.id}" />
+                      {$vo['id']}</td>
+      <td>{$vo['hname']}</td>
+      <td>{$vo['tel']}</td>
+      <td>{$vo['phone']}</td>
+      <td>{$vo['qq']}</td>
+      <td>{$vo['email']}</td>
+      <td>{$vo['fax']}</td>
+      <td>
+      <a data-toggle="modal" href="#add_hr_contact" class="hr_modfy" hid="{$vo['id']}">修改</a>
+      <a href="{:U('Custom/delete',array('act'=>'hr_del','did'=>$vo['id']))}">删除</a></td>
+    </tr>
+  </volist>
+ 
+</table>
+
+
+ <div class="tb_footer_l"><div class="btn-group"> <span class="btn" style="height:18px;"><input  type="checkbox" name="all2" id="chkall" onclick="checkAll(this.form, 'id')" /></span><button class="btn" ><i class="icon-trash"></i></button></div></div>
+        </form>     
+        
+      
+        
+        
+        
+        
+        
+        
+               <div class="tb_footer_r">
+              <div class="row-fluid">
+                      <div class="span8">
+                        <div class="dataTables_paginate paging_bootstrap pagination"><ul style="float:right;">
+                         {$pageBar}
+                          </ul>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="cl"></div>
+                </div>
+              
+              </div>
+              </div>
+              
+              
+              
+              </div> <a href="{:U('Client/modfy',array('id'=>$detail['id']))}" class="btn btn-primary">编辑</a>
+              </div>
+              
+              
+              
+             
+              
+                <div class="btl" style="border-top:1px solid #ddd;">
+                <div class="container" style="width: auto;"> <a class="brand" href="javascript:;">客户订单</a></div>
+              </div>
+          
+          
+            <div class="cbox">
+            
+          <form method="post" action="{:U("Works/doCommand")}">
+              
+              
+              
+              
+              <div class="cbox  form-table" style=" margin:15px; margin-top:0px;">
+                
+               <present name="getList">
+           
+                <table width="90%" class="table">
+                
+               
+                  <tr>
+                    <th width="65" height="23">工单号</th>
+                    <th width="156">寻访职位</th>
+                    <th width="94">进展阶段</th>
+                    <th width="120">状态</th>
+                    <th width="120" height="23">执行部门</th>
+                    <th width="90">候选人数量</th>
+                    <th width="50">负责人</th>
+                    <th width="78">更新时间</th>
+                    </tr>
+                  
+                  <volist name="getList" id="vo">
+                  <tr>
+                    <td width="65" height="24"><input  style="width:20px;" type="checkbox" name="id[]" id="all3" class="piliang_box" value="{$vo.id}" />{$vo['id']}</td>
+                    <td><a href="{:U('Works/detail',array('id'=>$vo['id']))}#{$select['stage1'][0]}">{$vo['Search_posts']|msubstr=0,8}</a></td>
+                    <td></td>
+                  <td></td>
+                    <td>{$select['executive_arm'][$vo['executive_arm']]}</td>
+                    <td>{$vo['hnums']}</td>
+                    <td>{$vo['principal_cn']}</td>
+                    <td>{$vo['create_time']|date='Y-m-d',###}</td>
+                    </tr>
+                  </volist>
+               
+                </table>
+                 <else/>
+            <div class="nodata">暂时没有数据</div>
+            </present>
+                <div class="tb_footer_l"><div class="btn-group"></div></div>
+               
+               <div class="tb_footer_r">
+              <div class="row-fluid">
+                      <div class="span8">
+                        <div class="dataTables_paginate paging_bootstrap pagination"><ul style="float:right;">
+                         {$pageBar}
+                          </ul>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="cl"></div>
+              </div>
+              
+              
+              
+                 </form>
+           
+            </div>
+              
+              
+              
+               </div>
+            </div>
+            <!-- ** ./ widget ** -->
+          </div>
+        </div>
+      </div>
+      <!-- ** ./ main content ** -->
+    </div>
+  </div>
+</div>
+
+</div>
+
+			<include file="Public:left.inc"/>
+		</div>
+
+	<div class="rili"></div>
+    
+ <div class="tbox">
+ 
+ <div class="modal form" id="add_hr_contact">
+ 
+</div>
+ 
+
+ </div>
+ 
+ <script>
+   
+ 
+
+
+
+$(".form input").live("blur",function(e) {
+        $this=$(this); 
+		var attr=$(this).attr("id"); 
+		var s=$this.val(); 
+		var pattern =/^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+                    //var pattern =/(^[0-9]{3,4}\-[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/; 
+		       switch(attr){
+			  
+			   case 'hname':
+			       if(s.length < 2){
+			           yan_fn($this,"请正确填写联系人");
+				       }else{
+					     yan_fn($this);
+					   }
+			   break;
+			   
+			   case 'title':
+			       if(s.length < 2){
+			           yan_fn($this,"请正确填写");
+				       }else{
+					     yan_fn($this);
+					   }
+			   break;
+			   
+			   case 'tel':
+			        
+			       
+                
+                     if(!pattern.exec(s))
+                     {
+                      yan_fn($this,"请正确填写电话号码");	
+                     }else{
+						  yan_fn($this);
+						 }
+					 
+					 
+                
+            
+			      
+			   break;
+			   case 'fax':
+			   if(s!=""){
+			   if(!pattern.exec(s))
+                     {
+                      yan_fn($this,"请正确填写传真");	
+                     }else{
+						  yan_fn($this);
+						 }
+			   }
+			   break;
+			   
+			   case 'phone':
+			        if(s!=""){
+			           if(!(/^1[3|5][0-9]\d{4,8}$/.test(s))){ 
+                       yan_fn($this,"不是完整的11位手机号或者正确的手机号前七位"); 
+				}else{
+					yan_fn($this);
+					}
+    }   
+		        break; 
+				
+				
+				 
+                    case 'email':
+			        if(s!=""){
+			           
+					   var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    
+                       if(!reg.test(s)){
+                            yan_fn($this,"email格式不正确，请重新输入！");
+                        }else{
+						     
+							 yan_fn($this);	
+							
+					  }
+					}
+                   break;
+				   
+				   
+				   case 'msn':
+			        if(s!=""){
+			           
+					   var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    
+                       if(!reg.test(s)){
+                            yan_fn($this,"msn格式不正确，请重新输入！");
+                        }else{
+						     
+							 yan_fn($this);	
+							
+					}
+					
+                   break;  
+					
+					}
+				
+				case 'qq':
+			        if(s!=""){
+			           
+					  
+						if(!(/^[0-9]\d{4,8}$/.test(s))){ 
+                       yan_fn($this,"qq不对"); 
+				}else{
+					yan_fn($this);
+					}	
+					
+					
+                   break;  
+					
+				
+        		
+			}
+			
+			
+			
+			   }
+		 
+		 
+		
+    });
+	
+
+
+
+function yan_fn(obj,msg){
+	
+	     
+		 
+		         if(msg!=undefined){
+				               obj.addClass('bred');
+				               if(obj.next().length==0){
+					           obj.parent().append("<span class='ms'>"+msg+"</span>")
+					        }  //obj.val("");
+				               obj.focus();
+							   return false;
+				 }else{
+					   obj.removeClass('bred'); 
+					   obj.next(".ms").remove();
+					 }
+	    
+	}
+
+//ajax调用添加联系人表单
+
+     $(".add_hr").click(function(e) {
+         
+		 $("#add_hr_contact").load('/Client/hr_contact_add/com_id/{$detail["id"]}');
+		
+    });
+
+
+
+
+//ajax 调取修改HR联系人信息
+
+       $('.hr_modfy').click(function(e) {
+        $("#add_hr_contact").empty();
+	     geta($("#add_hr_contact"),'/Client/hr_modfy/id/'+$(this).attr('hid'),loadGif);	
+		
+    });
+	   	
+	
+//修改联系人提交
+
+      
+	 
+	
+	
+	
+	
+	var loadGif="<img src='/Static/skin/images/load.gif' class='loadbig' align='center' />";
+	
+function geta(obj,url,bef){
+	   
+	   $.ajax({
+		   url:url,
+		   beforeSend: function(){
+			   
+			     obj.html(bef)
+			   },success: function(data){
+				   
+				   obj.html(data);
+				   
+				   }
+			   
+		   
+		   })
+		   }
+	
+	
+
+	
+  </script>
+	<include file="Public:footer" /></body>
+</html>

@@ -1,0 +1,338 @@
+<include file="header" />
+        <style>
+		/*行业baox*/
+*{ list-style:none}
+.hangye-box{  position:absolute; border:1px solid #ddd; box-shadow:1px 1px 1px #ccc; background:#FFF; width:600px; z-index:9999; display:none; padding-bottom:30px;}
+
+div.h-title{ line-height:30px; height:30px; background:#F1F1F1; border-bottom:1px solid #ddd; padding-left:20px}
+div.h-title a.close{ font-size:12px; line-height:30px; padding-right:10px; font-size:12px;}
+.hangye-box ul{ margin:10px;padding-left:30px; margin-left:20px;}
+.hangye-box ul li{ float:left;_display:inline;  line-height:28px; color:#06C; width:170px; padding-right:16px;  font-size:13px !important; position:relative;}
+.hangye-box ul li:hover{  }
+.hangye-box  ul li dl{display:block; display: none; clear:both; padding:5px; margin:0px; margin-left:10px; margin-top:-4px; position:absolute; background:#F8F8F8; left:10px; top:28px; border:1px solid #ddd; z-index:100; padding-right:10px; width:400px; box-shadow:1px 1px 2px #ddd}
+.hangye-box  ul li dl.hover{ display:block;}
+.hangye-box  ul li dd{ line-height:24px; color:#999; display:block; word-wrap:normal; float:left; _display:inline; margin-left:9px; width:130px; overflow:hidden;}
+.hangye-box  ul li img,.hangye-box  ul li span.big-cate,.hangye-box  ul li input{  margin-right:5px;}
+ul li span.big-cate{ cursor:pointer}
+ul li span.big-cate:hover{ color:#039}
+ul li span.small-cate{ cursor:pointer; font:12px;}
+ul li span.small-cate:hover{ color:#06C}
+
+/*弹窗样式*/
+
+
+.area-box{ position:absolute; border:1px solid #ddd; box-shadow:1px 1px 1px #ccc; background:#FFF; width:600px; display:none; padding-bottom:30px;}
+
+div.h-title{ line-height:30px; height:30px; background:#F1F1F1; border-bottom:1px solid #ddd; padding-left:20px}
+div.h-title a.close{ font-size:12px; line-height:30px; padding-right:10px; font-size:12px;}
+.area-box ul{ margin:10px; padding-left:10px; padding-bottom:30px;}
+.area-box ul li{ float:left;_display:inline; line-height:28px; color:#06C; width:170px; padding-right:16px;  font-size:13px !important; position:relative;}
+.area-box ul li:hover{  }
+.area-box  ul li dl{display:block; display: none; clear:both; padding:5px; margin:0px; margin-left:10px; margin-top:-4px; position:absolute; background:#F8F8F8; left:10px; top:28px; border:1px solid #ddd; z-index:100; padding-right:10px; box-shadow:1px 1px 2px #ddd}
+.area-box  ul li dd{ line-height:24px; color:#999; float:left;_display:inline;}
+.area-box  ul li img,.area-box  ul li span.big-cate,..area-box  ul li input{  margin-right:5px;}
+		</style>
+        <!-- section content -->
+        <section class="section">
+            <div class="container">
+                <div class="signin-form row-fluid">
+                    <!--Sign In-->
+                    <div class="span10 offset1">
+                        <div class="box corner-all">
+                            <div class="box-header grd-teal color-white corner-top">
+                                <span>编辑资料</span>
+                            </div>
+                             <div class="box-body">
+                             <div class="box-header corner-top" style="margin:20px;" >
+                                   
+                                    <ul class="nav nav-tabs">
+                                       
+                                        <li><a  href="/User/profile_edit">基本资料</a></li>
+                                        <li><a class=""  href="{:U('User/profile_company')}">企业信息</a></li>
+                                        
+                                         <li class="active"><a class=""  href="{:U('User/profile_group')}"> <i class="icofont-sitemap"></i>组织架构</a></li>
+                                    
+                                       
+                                        
+                                  
+                                        
+                                        
+                                    </ul>
+                                </div>
+                                                    <!--element-->
+
+                                                    <div class="control-group"></div>
+                                                    
+                               
+                                                        
+                                                        
+                                                        
+                                                        
+                               <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">企业名称</label>
+                                                            <div class="controls">
+                                                            <input id="uname" name="companyname"  type="text" class="" value="{$pr['companyname']}"  />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                      
+                                                        
+                                                        
+                                                        
+                               <div class="control-group">
+                                                            <label class="control-label" for="inputSelect">企业性质</label>
+                                                            <div class="controls">
+                                                              <select  id="xingzhi" name="nature"  class="span3">
+              {:get_select($select['nature'])}
+              </select>
+                                                            </div>
+                               </div>         
+                                                        
+                                                   
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           <div class="control-group">
+                                                            <label class="control-label" for="inputSelect">企业性质</label>
+                                                            <div class="controls">
+                                                              
+                                           <select id="scale" name="scale" class="span3">
+			 {:get_select($select['scale'])}</select>     
+                                                       
+                                                            </div>
+                               </div> 
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                           
+                                          
+                               <div class="control-group">
+                                                            <label class="control-label" for="inputSelectGroup">所在地区</label>
+                                                            <div class="controls">
+                                                             <input class="area span4" size="16" type="text" value="{$pr['area_cn']}" name="area_cn"><input type="hidden" name="area" value="{$Think.get.area}" id="area-val"/>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                            <div class="control-group">
+                                                            <label class="control-label" for="inputSelectGroup">所属行业</label>
+                                                            <div class="controls">
+                                                           <input class="span4 industry" size="16" type="text" value="{$pr['trade_cn']}" autocomplete="off"  name="trade_cn" id="industry_input" /><input type="hidden" name="trade" value="{$pr['trade']}"   id="industry-val"/>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                        
+                   
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                             
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">注册资金</label>
+                                                            <div class="controls">
+                                                            <input id="registered" name="registered"  type="text" class="span2 " value="{$pr['registered']}"  />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                   
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">联系人</label>
+                                                            <div class="controls">
+                                                            <input id="linkman
+" name="linkman"  type="text" class="span3 " value="{$pr['linkman']}"  />
+                                                            </div>
+                                                        </div>                                               
+                                                        
+                                                             
+                               <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">联系电话</label>
+                                                            <div class="controls">
+                                                            <input id="uname" name="tel"  type="text" class="" value="{$pr['tel']}"  />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                                  
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">通讯地址</label>
+                                                            <div class="controls">
+                                                            <input id="addr" name="addr"  type="text" class=" span7" value="{$pr['addr']}"  />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        
+                                                        <div class="control-group">
+                                                            <label class="control-label" for="inputAuto">公司网站</label>
+                                                            <div class="controls">
+                                                            <input id="website" name="website"  type="text" class=" span7" value="{$pr['website']}"  />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                          <div class="control-group">
+                                                            <label class="control-label" for="inputUpload">营业执照</label>
+                                                            <div class="controls">
+                                                                <input type="file"  id="attach_file" name="attach_file" />
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    
+                                                 
+                                                        
+                                            
+                                                        
+                                                        
+                                                        
+                                                        
+                                                      
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                        
+                                                    
+                                                      
+                                                        <div class="control-group">
+                                                          <label class="control-label" for="inputEditorSimple">企业简介</label>
+                                                            <div class="controls">
+                                                                <textarea id="inputEditorSimple" class="span10" rows="8" name="about" data-form="wysihtml5" placeholder="Enter text ...">{$pr['about']}</textarea>
+                                                                <input type="hidden" value="{$pr['step']}" name="step"/>
+                                                            </div>
+                               </div>
+                               <div class="form-actions">
+                                                            <button type="submit" class="btn btn-primary">保存资料</button>
+                                                            <button type="button" class="btn">取消</button>
+                                                        </div>
+                                                    </form>
+                                                    <!--/element-->
+                                                </div>
+                        </div>
+                    </div><!--/Sign In-->
+                    <!--Sign Up-->
+                    <!--/Sign Up-->
+                </div><!-- /row -->
+            </div><!-- /container -->
+            
+            <!-- modal recover -->
+            <div id="modal-recover" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-recoverLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 id="modal-recoverLabel">Reset password <small>用户名 Or Email Address</small></h3>
+                </div>
+                <div class="modal-body">
+                    <form id="form-recover" method="post" />
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="text" data-validate="{required: true, email:true, messages:{required:'Please enter field email', email:'Please enter a valid email address'}}" name="recover" />
+                                <p class="help-block helper-font-small">Enter your 用户名 or email address and we will send you a link to reset your password.</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <input type="submit" form="form-recover" class="btn btn-primary" value="Send reset link" />
+                </div>
+            </div><!-- /modal recover-->
+        </section>
+
+   <include file="Public:footer"/>
+   
+   
+   <script>
+   
+   
+    $(document).ready(function() {
+                // try your js
+                
+                // auto complete
+                $('#inputAuto').typeahead({
+                    source : ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
+                });
+                
+                // select2
+                $('#inputTags').select2({tags:["red", "green", "blue"]});
+                $('[data-form=select2]').select2();
+                $('[data-form=select2-group]').select2();
+                
+                // this select2 on side right
+                $('#tagsSelect').select2({
+                    tags:["red", "green", "blue"],
+                    tokenSeparators: [",", " "]
+                });
+                
+                
+                // datepicker
+                $('[data-form=datepicker]').datepicker();
+
+             
+                
+                // uniform
+                $('[data-form=uniform]').uniform()
+
+                // wysihtml5
+                $('[data-form=wysihtml5]').wysihtml5();
+                
+           
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		       
+		   
+		   
+		        
+       
+                
+            
+                
+            });
+      
+	  
+	       
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		
+		
+	  
+	   
+        </script>
+
+
+   <include file="Public:js-tpl/area.inc"/>  
+   <include file="Public:js-tpl/hangye.inc"/>  
+   </body>
+   
+   </html>
+

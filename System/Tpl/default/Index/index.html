@@ -1,0 +1,514 @@
+<include file="Public:header"/>                    
+               <section class="section">
+            <div class="row-fluid">
+                <!-- span side-left -->
+                <div class="span1">
+                    <!--side bar-->
+                    <include file="Public:side-bar"/>
+                    <!--/side bar -->
+                </div><!-- span side-left -->
+                
+                <!-- span content -->
+                <div class="span9">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content-header -->
+                        <div class="content-header">
+                            
+                              <include file="Public:breadcrumb"/>
+                        </div><!-- /content-header -->
+                        
+                        <!-- content-breadcrumb -->
+                        <div class="content-breadcrumb">
+                           
+                            
+                         
+                        </div><!-- /content-breadcrumb -->
+                        
+                        <!-- content-body -->
+                        <div class="content-body">
+                            <!-- dashboar -->
+                            <!-- shortcut button -->
+                            <div class="shortcut-group">
+                                <ul class="a-btn-group">
+                                
+                              
+                                    <li> 
+                                        <a   href="#notice_box" link='/Notice/add/ajax/1' id="add_notice" data-toggle="modal" class="a-btn grd-white" rel="tooltip" title="新增公告">
+                                            <span></span>
+                                            <span><i class="icofont-edit color-silver-dark"></i></span>
+                                            <span class="color-silver-dark"><i class="icofont-file color-silver-dark"></i></span>
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                     <li>
+                                        <a href="/Inform" class="a-btn grd-white" rel="tooltip" title="职位通知">
+                                            <span></span>
+                                            <span><i class="icofont-bullhorn color-silver-dark"></i></span>
+                                            <span class="color-silver-dark"><i class="icofont-bullhorn color-teal"></i></span>
+                                            
+                                            
+                                            
+                                    <if condition="$tongzhi neq 0">        
+                                            
+                                            <div class="badge badge-info">{$tongzhi}</div>
+                                            </if>
+                                            
+                                            
+                                             <!--don't use span here!-->
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                           
+                                    <li>
+                                        <a href="/Usermsg" class="a-btn grd-white" rel="tooltip" title="私信">
+                                            <span></span>
+                                            <span><i class="icofont-envelope color-silver-dark"></i></span>
+                                            <span class="color-silver-dark"><i class="icofont-envelope-alt color-teal"></i></span>
+                                            
+                                            
+                                            
+                                 <if condition="$sixin neq 0">           
+                                            
+                                            <div class="badge badge-info">{$sixin}</div>
+                                            </if>
+                                            
+                                            
+                                            
+                                             <!--don't use span here!-->
+                                        </a>
+                                    </li>
+                                  
+                                    <li>
+                                        <a href="/Staff" class="a-btn grd-white" rel="tooltip" title="设置">
+                                            <span></span>
+                                            <span><i class="icofont-cog color-silver-dark"></i></span>
+                                            <span class="color-teal"><i class="icofont-cog color-teal"></i></span>
+                                        </a>
+                                    </li>
+                                    <li class="clearfix"></li>
+                                </ul>
+                            </div><!-- /shortcut button -->
+                            
+                            <div class="divider-content"><span></span></div>
+                            
+                            <!-- tab stat -->
+                            <div class="box-tab corner-all">
+                                <div class="box-header corner-top">
+                                    <div class="header-control pull-right">
+                                        <a data-box="collapse"><i class="icofont-caret-up"></i></a>
+                                    </div>
+                                    <ul class="nav nav-tabs" id="tab-stat">
+                                        <li class="active"><a data-toggle="tab" href="#system-stat">业绩统计</a></li>
+                                        
+                                    </ul>
+                                </div>
+                                <div class="box-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade in active" id="system-stat">
+                                            <div class="row-fluid">
+                                                <div class="span4">
+                                                    <div class="dashboard-stat">
+                                                        <div id="visitor-stat" class="chart" style="height: 120px;"></div>
+                                                        <div class="stat-label grd-green color-white">个人业绩</div>
+                                                    </div>
+                                                </div>
+                                                <div class="span4">
+                                                    <div class="dashboard-stat">
+                                                        <div id="order-stat" class="chart" style="height: 120px;"></div>
+                                                        <div class="stat-label grd-teal color-white">部门业绩</div>
+                                                    </div>
+                                                </div>
+                                                <div class="span4">
+                                                    <div class="dashboard-stat">
+                                                        <div id="user-stat" class="chart" style="height: 120px;"></div>
+                                                        <div class="stat-label grd-red color-white">公司业绩</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="server-stat">
+                                            <div class="row-fluid">
+                                                <div class="span4">
+                                                    <div class="dashboard-stat" rel="tooltip" title="usage 2465kb of 5000kb">
+                                                        <input data-chart="knob" type="text" data-readonly="true" data-width="120" data-height="120" data-fgcolor="#00A600" value="2465" data-min="0" data-max="5000" />
+                                                        <div class="stat-label grd-green color-white">个人收款</div>
+                                                    </div>
+                                                </div>
+                                                <div class="span4">
+                                                    <div class="dashboard-stat" rel="tooltip" title="usage 8795kb of 10000kb">
+                                                        <input data-chart="knob" type="text" data-readonly="true" data-width="120" data-height="120" data-fgcolor="#00A0B1" value="8795" data-min="0" data-max="10000" />
+                                                        <div class="stat-label grd-teal color-white">部门收款</div>
+                                                    </div>
+                                                </div>
+                                                <div class="span4">
+                                                    <div class="dashboard-stat" rel="tooltip" title="server condition 70%, it's good!">
+                                                        <input data-chart="knob" type="text" data-readonly="true" data-width="120" data-height="120" data-fgcolor="#AC193D" value="70" data-min="0" data-max="100" />
+                                                        <div class="stat-label grd-red color-white">公司收款</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!-- /tab stat -->
+
+                            <!-- tab resume content -->
+                            <div class="row-fluid">
+                                <!-- tab resume update -->
+                                <div class="span6">
+                                    <div class="box-tab corner-all">
+                                        <div class="box-header corner-top">
+                                            <!--tab action-->
+                                            <div class="header-control pull-right">
+                                                <a data-box="collapse"><i class="icofont-caret-up"></i></a>
+                                                <a data-box="close" data-hide="rotateOutDownLeft">&times;</a>
+                                            </div>
+                                            <ul class="nav nav-pills">
+                                                <!--tab menus-->
+                                                <li class="active"><a data-toggle="tab" href="#recent-orders">最新职位</a></li>
+                                                <li><a data-toggle="tab" href="#recent-posts">最新简历</a></li>
+                                              <!--/tab menus-->
+                                            </ul>
+                                        </div>
+                                        <div class="box-body">
+                                            <!-- widgets-tab-body -->
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade in active" id="recent-orders">
+                                                    
+                                                   
+                                                    <table width="45%" class="table  small-font" style="border:1px solid #ddd;">
+											    <tr>
+											      <th width="22%">职位号</th>
+											      <th width="20%">客户名称</th>
+											      <th width="17%">寻访职位</th>
+											      <th width="17%">进展阶段</th>
+											      <th width="17%">负责人</th>
+										        </tr>
+											    <volist name="wkList" id="vo" >
+											      <tr>
+											        <td><a href="/Works/detail/id/{$vo.id}#初选">WO-{$vo.id}</a></td>
+											        <td><a href="/Client/detail/id/{$vo.cid}">{$vo.cid|get_clientname}</a></td>
+											        <td>{$vo.Search_posts}</td>
+											        <td >{$select['stage'][$vo['stage']]}</td>
+											        <td>{$vo.principal_cn}</td>
+										          </tr>
+										        </volist>
+										      </table>
+                                                    <a href="/Works" class="btn btn-small btn-link pull-right">查看全部 &rarr;</a>
+                                                </div>
+                                                <div class="tab-pane fade" id="recent-posts">
+                                                    
+                                                    
+                                                    <table width="51%" class="table  small-font" style="border:1px solid #ddd;">
+	      
+          <tr>
+          
+            <th>姓名</th>
+          
+            <th>最近工作单位</th>
+            <th>职务</th>
+            <th>录入时间</th>
+            </tr>
+        <volist name="rm" id="vo">
+              <tr>
+                <td><a href="/Talent/detail/id/{$vo['id']}">{$vo['realname']}</a></td>
+                <td>{$vo['last_company']|msubstr=0,8}</td>
+                <td>{$vo.last_post}</td>
+                <td>{$vo.create_time|date='m-d',###}</td>
+              </tr>
+        </volist>
+      </table>
+       <a href="/Talent" class="btn btn-small btn-link pull-right">查看全部 &rarr;</a>
+      </div>
+                                                
+                                                </div>
+                                                <!--/widgets-tab-body-->
+                                        </div><!--/box-body-->
+                                    </div><!--/box-tab-->
+                                </div><!-- tab resume update -->
+                                <div class="span6">
+                                      <div class="box-tab corner-all">
+										<div class="box-header corner-top" style="padding-bottom:20px;">
+                                            <!--tab action-->
+                                            <div class="header-control pull-right">
+                                                <a data-box="collapse"><i class="icofont-caret-up"></i></a>
+                                                <a data-box="close" data-hide="rotateOutDownLeft">&times;</a>
+                                            </div>
+                                          <ul class="nav nav-pills">
+                                              <!--tab menus-->
+                                              <li><a data-toggle="tab" href="javascript:;">系统通知</a></li>
+                                            <!--/tab menus-->
+                                          </ul>
+                                        </div>	
+	 <div class="cbox" id="load_notice" style="margin-top:-30px;"></div>
+     
+
+               </div>                 </div>
+                            </div><!-- tab stat -->
+                            
+                           
+                            
+                            <!--/dashboar-->
+                        </div><!--/content-body -->
+                    </div><!-- /content -->
+                </div><!-- /span content -->
+                
+                <!-- span side-right -->
+                <div class="span2">
+                    <!-- side-right -->
+                    <aside class="side-right">
+                        <!-- sidebar-right -->
+                        <div class="sidebar-right">
+                            <!--sidebar-right-header-->
+                            <div class="sidebar-right-header">
+                                <div class="sr-header-right">
+                                   
+                                </div>
+                                <div class="sr-header-left">
+                                   <span id="localtime" style="font-size:12px; font-family:'微软雅黑'"></span>
+
+<script type="text/javascript">
+function showLocale(objD)
+{
+	var str,colorhead,colorfoot;
+	var yy = objD.getYear();
+	if(yy<1900) yy = yy+1900;
+	var MM = objD.getMonth()+1;
+	if(MM<10) MM = '0' + MM;
+	var dd = objD.getDate();
+	if(dd<10) dd = '0' + dd;
+	var hh = objD.getHours();
+	if(hh<10) hh = '0' + hh;
+	var mm = objD.getMinutes();
+	if(mm<10) mm = '0' + mm;
+	var ss = objD.getSeconds();
+	if(ss<10) ss = '0' + ss;
+	var ww = objD.getDay();
+	if  ( ww==0 )  colorhead="";
+	if  ( ww > 0 && ww < 6 )  colorhead="";
+	if  ( ww==6 )  colorhead="";
+	if  (ww==0)  ww="星期日";
+	if  (ww==1)  ww="星期一";
+	if  (ww==2)  ww="星期二";
+	if  (ww==3)  ww="星期三";
+	if  (ww==4)  ww="星期四";
+	if  (ww==5)  ww="星期五";
+	if  (ww==6)  ww="星期六";
+	colorfoot=""
+	str = colorhead + yy + "年" + MM + "月" + dd + "日  <br/>" + ww +""+ colorfoot + " " + hh + ":" + mm + ":" + ss ;
+	return(str);
+}
+function tick()
+{
+	var today;
+	today = new Date();
+	document.getElementById("localtime").innerHTML = showLocale(today);
+	window.setTimeout("tick()", 1000);
+}
+tick();
+</script>
+                                </div>
+                            </div><!--/sidebar-right-header-->
+                            <!--sidebar-right-control-->
+                            <div class="sidebar-right-control">
+                                <ul class="sr-control-item">
+                                    <li class="active"><a href="#contact" data-toggle="tab" title="contacts"><i class="icofont-group"></i></a></li>
+                                   
+                                    <li rel="tooltip-bottom" title="view site"><a href="/" target="_BLANK"><i class="icofont-external-link"></i></a></li>
+                                </ul>
+                            </div><!-- /sidebar-right-control-->
+                            <!-- sidebar-right-content -->
+                            
+                            
+                            
+                            {:W('rightInc')}
+                            
+                            
+                            
+                            <!-- /sidebar-right-content -->
+                        </div><!-- /sidebar-right -->
+                    </aside><!-- /side-right -->
+                </div><!-- /span side-right -->
+            </div>
+        </section>
+	<include file="Public:footer" />
+       <script type="text/javascript">
+            $(document).ready(function() {
+                // try your js
+                
+                // normalize event tab-stat, we hack something here couse the flot re-draw event is any some bugs for this case
+                $('#tab-stat > a[data-toggle="tab"]').on('shown', function(){
+                    if(sessionStorage.mode == 4){ // this hack only for mode side-only
+                        $('body,html').animate({
+                            scrollTop: 0
+                        }, 'slow');
+                    }
+                });
+                
+                // peity chart
+                $("span[data-chart=peity-bar]").peity("bar");
+                
+                // Input tags with select2
+                $('input[name=reseiver]').select2({
+                    tags:[]
+                });
+                
+                // uniform
+                $('[data-form=uniform]').uniform();
+                
+                // wysihtml5
+                $('[data-form=wysihtml5]').wysihtml5()
+                toolbar = $('[data-form=wysihtml5]').prev();
+                btn = toolbar.find('.btn');
+                
+                $.each(btn, function(k, v){
+                    $(v).addClass('btn-mini')
+                });
+                
+                // Server stat circular by knob
+                $("input[data-chart=knob]").knob();
+                
+                // system stat flot
+                d1 = [ {$geren}];
+                d2 = [ {$bumen}];
+                d3 = [ {$com}]];
+                
+                var visitor = $("#visitor-stat"),
+                order = $("#order-stat"),
+                user = $("#user-stat"),
+                
+                data_visitor = [{
+                        data: d1,
+                        color: '#00A600'
+                    }],
+                data_order = [{
+                        data: d2,
+                        color: '#2E8DEF'
+                    }],
+                data_user = [{
+                        data: d3,
+                        color: '#DC572E'
+                    }],
+                 
+                
+                options_lines = {
+                    series: {
+                        lines: {
+                            show: true,
+                            fill: true
+                        },
+                        points: {
+                            show: true
+                        },
+                        hoverable: true
+                    },
+                    grid: {
+                        backgroundColor: '#FFFFFF',
+                        borderWidth: 1,
+                        borderColor: '#CDCDCD',
+                        hoverable: true
+                    },
+                    legend: {
+                        show: true
+                    },
+                    xaxis: {
+                        mode: "categories",
+                        tickLength: 0
+                    },
+                    yaxis: {
+                        autoscaleMargin: 1
+                    }
+        
+                };
+                
+                // render stat flot
+                $.plot(visitor, data_visitor, options_lines);
+                $.plot(order, data_order, options_lines);
+                $.plot(user, data_user, options_lines);
+                
+                // tootips chart
+                function showTooltip(x, y, contents) {
+                    $('<div id="tooltip" class="bg-black corner-all color-white">' + contents + '</div>').css( {
+                        position: 'absolute',
+                        display: 'none',
+                        top: y + 5,
+                        left: x + 5,
+                        border: '0px',
+
+                        padding: '2px 10px 2px 10px',
+                        opacity: 0.9,
+                        'font-size' : '11px'
+                    }).appendTo("body").fadeIn(200);
+                }
+
+                var previousPoint = null;
+                $('#visitor-stat, #order-stat, #user-stat').bind("plothover", function (event, pos, item) {
+                    
+                    if (item) {
+                        if (previousPoint != item.dataIndex) {
+                            previousPoint = item.dataIndex;
+
+                            $("#tooltip").remove();
+                            var x = item.datapoint[0].toFixed(2),
+                            y = item.datapoint[1].toFixed(2);
+                            label = item.series.xaxis.ticks[item.datapoint[0]].label;
+                            
+                            showTooltip(item.pageX, item.pageY,
+                            label + " = " + y);
+                        }
+                    }
+                    else {
+                        $("#tooltip").remove();
+                        previousPoint = null;            
+                    }
+                    
+                });
+                // end tootips chart
+                
+                
+                // Schedule Calendar
+               
+                // end Schedule Calendar
+            });
+      
+        </script>
+    </body>
+</html>
+
+
+		<div id="notice_box"  class="modal">
+        
+        </div>
+        
+        <div id="sms_box" class="modal" style="width:600px; margin-left:-300px;"></div>
+ <script src="/Static/skin/js/plus_tan.js"></script>
+
+<script>
+$("#add_notice").click(function(e) {
+   
+	 geta($("#notice_box"),$(this).attr('link'),loadGif);
+	
+})
+
+$(".send_sms").click(function(e) {
+        
+	
+	geta($("#sms_box"),$(this).attr('link'),loadGif);	
+	 
+});
+	
+	$("#load_notice").load('/Notice/index/ajax/1');
+
+
+</script>

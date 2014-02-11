@@ -1,0 +1,22 @@
+
+<ul class="inform_ul">
+<li><h4>候选选人通知</h4></li>
+<volist name="infoList" id="vo">
+
+<li <if condition="$vo['rd'] eq 0"> style=" background:rgb(231,241,249)"  </if>>
+
+<a href="#">{$vo['uid']|getTruename}</a> 在 <a href="/Inform/detail/id/{$vo['id']}">职位WO-{$vo['gid']}</a>增加了候选人<if condition="$vo['rd'] eq 0"><a href="/Inform/detail/id/{$vo['id']}/rd/1" style="color:#666; float:right;">标记为已读</a></if></li>
+<div class="cl"></div>
+</volist>
+<if condition ="$key gt 8">
+<li><a href="/Inform/candidate" class="" style=" margin-top:8px;">查看全部</a></li>
+</if>
+<li><h4>私信</h4></li>
+<div id="sm-box">
+
+</div>
+</ul>
+
+<script>
+$('#sm-box').load('/Usermsg/index/ajax/1');
+</script>

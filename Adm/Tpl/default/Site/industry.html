@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+<meta name="author" content="" />
+
+<meta name="copyright" content="jobmedia.cn" />
+
+<title> </title>
+
+<link href="__PUBLIC__/skin/style/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/skin/js/init.js"></script>
+
+
+<script type="text/javascript">
+
+$(document).ready(function()
+
+{
+
+	$(".leftimg").click(function()
+
+	{
+
+		$(".Sclass_"+$(this).attr("id")).toggle();
+
+		if ($(".Sclass_"+$(this).attr("id")).css("display")=="none")
+
+		{
+
+		$(this).attr("src","__PUBLIC__/skin/images/left_e.gif");
+
+		}
+
+		else
+
+		{
+
+		$(this).attr("src","__PUBLIC__/skin/images/left_d.gif");
+
+		}
+
+	});
+
+	//全选
+
+	$('#categorychkAll').click(function(){ $("#form1 :checkbox").attr('checked',$("#chk").attr('checked')) });
+
+	//设置可写权限
+
+	$(".Bcheck").click(function(){
+
+		if ($(this).attr("checked"))
+
+			{
+
+			$(".Scheck_"+$(this).attr("id")).attr("checked","true");
+
+			}
+
+			else
+
+			{
+
+			$(".Scheck_"+$(this).attr("id")).attr("checked","");
+
+			}
+
+	});
+
+	//点击子类 释放父级的勾选
+
+	$(":checkbox[class^='Scheck_']").click(function(){
+
+		if ($(this).attr("checked")==false)
+
+		{
+
+			var pid=$(this).attr("id");
+
+			$(".Bcheck[id="+pid+"]").attr("checked","");
+
+		}
+
+	});
+
+	//添加子分类
+
+	$(".AddCat").click(function()
+
+	{
+
+		var pid=$(this).attr("id");
+
+		 var html="<tr class=\"Sclass_"+pid+"\"  >";
+
+		html+="<td  class=\"admin_list\"  style=\"padding-left:53px; color:#FF6600\">";
+
+		html+="<img src=\"__PUBLIC__/skin/images/cat_left1.gif\" border=\"0\" align=\"absmiddle\" />";
+
+		html+=" <input type=\"checkbox\" name=\"add_id[]\" value=\"\" class=\"Scheck_"+pid+"\"/>";
+
+		html+="<input name=\"add_pid[]\" type=\"hidden\" value="+pid+" />";
+
+		html+=" <input name=\"add_categoryname[]\" type=\"text\"  value=\"\" class=\"input_text_150\"/>";
+
+		html+="</td>";
+
+		html+="<td align=\"center\"  class=\"admin_list\">";
+
+		html+="";
+
+		html+="</td>";		html+="<td align=\"center\"  class=\"admin_list\">";
+
+		html+="<input name=\"add_category_order[]\" type=\"text\"  value=\"0\" class=\"input_text_50\"/>";
+
+		html+="</td>";
+
+		html+="<td class=\"admin_list\"  >";
+
+		html+="&nbsp;";
+
+		html+="</td>";				
+
+		html+="</tr>";
+
+		$(this).parent().parent().before(html);
+
+		//$(this).parent("tr").before(html);		
+
+	});	
+
+		//添加顶层分类
+
+	$(".AddCatPid").click(function()
+
+	{
+
+		 var html="<tr>";
+
+		html+="<td  class=\"admin_list admin_list_first\">";
+
+		html+=" <input type=\"checkbox\" name=\"add_id[]\" value=\"\" class=\"Bcheck\"/>  ";
+
+		html+=" <img src=\"__PUBLIC__/skin/images/left_d.gif\" border=\"0\" align=\"absmiddle\"  /> ";
+
+		html+=" <input name=\"add_pid[]\" type=\"hidden\" value\"0\" />";
+
+		html+=" <input name=\"add_categoryname[]\" type=\"text\"  value=\"\" class=\"input_text_150\"/> ";
+
+		html+="</td>";
+
+		html+="<td align=\"center\"  class=\"admin_list\">";
+
+		html+="";
+
+		html+="</td>";	
+		html+="<td align=\"center\"  class=\"admin_list\">";
+
+		html+="<input name=\"add_category_order[]\" type=\"text\"  value=\"0\" class=\"input_text_50\"/>";
+
+		html+="</td>";
+
+		html+="<td class=\"admin_list\"  >";
+
+		html+="&nbsp;";
+
+		html+="</td>";				
+
+		html+="</tr>";
+
+		$(this).parent().parent().before(html);		
+
+	});	
+
+	//展开全部子类
+
+	$("#CatExpand").click(function()
+
+	{
+
+		$(".leftimg").attr("src","__PUBLIC__/skin/images/left_d.gif");
+
+		$("tr[class^='Sclass_']").show();
+
+	});
+
+	//收起全部子类
+
+	$("#CatClose").click(function()
+
+	{
+
+		$(".leftimg").attr("src","__PUBLIC__/skin/images/left_e.gif");
+
+		$("tr[class^='Sclass_']").hide();
+
+	});		
+
+	//删除
+
+	$("#ButDel").click(function(){
+
+		var num=$(":checkbox[checked]").length;
+
+		if (num==0)
+
+		{
+
+			alert("您没有选择项目");
+
+			return false;
+
+		}
+
+		if (confirm("你选择了"+num+"个分类，确定都要删除吗？"))
+
+		{
+
+			$("form[name=form1]").attr("action","?act=del_jobs_category");
+
+			$("form[name=form1]").submit()
+
+		}
+
+	});
+
+});
+
+</script>
+
+
+
+</head>
+
+<body style="background-color:#E0F0FE">
+
+
+<div class="admin_nav_bg">
+
+
+
+
+<if condition="ACTION_NAME eq cateclass ">
+<div class="admin_nav_li"><a href="__APP__/Site/cateclass">职位列表</a></div>
+<else /> 
+<div class="admin_nav_li_hover"><a href="__APP__/Site/cateclass">职位列表</a></div>
+
+</if>
+
+
+
+
+<!--
+<if condition="ACTION_NAME eq agreement ">
+<div class="admin_nav_li"><a href="__APP__/Site/agreement">使用协议</a></div>
+<else /> 
+<div class="admin_nav_li_hover"><a href="__APP__/Site/agreement">使用协议</a></div>
+
+</if>
+
+
+<if condition="ACTION_NAME eq filter ">
+<div class="admin_nav_li"><a href="__APP__/Site/filter">词语过滤</a></div>
+<else /> 
+<div class="admin_nav_li_hover"><a href="__APP__/Site/filter">词语过滤</a></div>
+
+</if>
+
+
+-->
+
+
+
+
+
+
+
+<div class="clear"></div>
+
+</div>
+
+<div class="admin_main_nr_box">
+
+<div class="toptip">
+
+	<h2>提示：</h2>
+
+	<p>
+
+正式使用后删除分类会导致与此分类关联的信息类别丢失，修改不会受影响。<br />
+
+删除顶级级分类将会自动删除此分类下的子分类。<br />
+
+</p>
+
+</div>
+
+  <form id="form1" name="form1" method="post" action="__APP__/Site/industry_all_save">
+
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" id="list" class="link_lan"  >
+
+    <tr>
+
+      <td height="26" class="admin_list_tit admin_list_first" >
+
+      <label id="categorychkAll"><input type="checkbox" name=" " title="全选/反选" id="chk" />
+
+      职位分类</label>
+
+	  &nbsp;&nbsp;
+
+	  <span style="color:#0066CC; font-weight:100; cursor: pointer" id="CatExpand">[全部展开]</span>
+
+	  &nbsp;&nbsp;
+
+	  <span style="color:#0066CC;font-weight:100;cursor: pointer" id="CatClose">[全部收起]</span>
+
+	  
+
+	  </td>
+
+      <td width="220"   align="center"  class="admin_list_tit"></td>
+
+	  <td width="160"   align="center"  class="admin_list_tit">排序</td>
+
+      <td width="260"   align="center" class="admin_list_tit">操作</td>
+
+    </tr>
+
+	  <volist name="district" id="list">
+
+
+
+     <tr>
+
+      <td   class="admin_list admin_list_first" >
+
+      <input type="checkbox" name="id[]" value="{$list.id}" id="{$list.id}"  class="Bcheck"/>
+
+	  <input name="save_id[]" type="hidden" value="{$list.id}" />
+
+      <img src="__PUBLIC__/skin/images/left_e.gif" border="0" align="absmiddle"  id="{$list.id}" class="leftimg pointer"/>
+
+	  <input name="categoryname[]" type="text"  value="{$list.categoryname}" class="input_text_150" style="color:#0066CC; font-weight:bold;  "/>
+
+	  <span style="color:#CCCCCC">(id:{$list.id})</span>	  </td>
+
+      <td align="center"  class="admin_list admin_list_first">
+
+     
+    
+
+      </td>
+
+	   <td align="center"  class="admin_list">
+
+	   <input name="category_order[]" type="text"  value="{$list.category_order}" class="input_text_50"/>
+
+	  </td>
+
+      <td class="admin_list" style="text-align:center;">
+
+	 
+			
+
+			  <a onClick="return confirm('你确定要删除吗？')" href="__APP__/Site/industry_del?id={$list.id}">删除</a>
+
+			  </td>
+
+    </tr>
+
+			<!--小类 -->
+
+			 <volist name="list['sub']" id="subs">
+
+			 <tr class="Sclass_{$list.id}"  style="display:none" >
+
+			  <td  class="admin_list"  style="padding-left:53px;">
+
+			 <img src="__PUBLIC__/skin/images/cat_left1.gif" border="0" align="absmiddle" />
+
+			  <input type="checkbox" name="id[]" value="{$subs.id}" class="Scheck_{$subs.id}" id="{$subs.id}"/>
+
+			  <input name="save_id[]" type="hidden" value="{$subs.id}" />
+
+			   <input name="categoryname[]" type="text"  value="{$subs.categoryname}" class="input_text_150"/>
+
+			  <span style="color: #CCCCCC">(id:{$subs.id})</span>			  </td>
+
+			  <td align="center"  class="admin_list">&nbsp;
+
+              
+
+              </td>
+
+			   <td align="center"  class="admin_list">
+
+			  <input name="category_order[]" type="text"  value="{$subs.category_order}" class="input_text_50"/>
+
+			  </td>
+
+			  <td class="admin_list" style="text-align:center;">
+
+			  
+
+			
+
+					 
+
+			  <a onClick="return confirm('你确定要删除吗？')" href="__APP__/Site/industry_del?id={$subs.id}">删除</a>
+
+					 </td>
+
+			</tr>
+
+			</volist>
+
+			<tr class="Sclass_{$list.id}" style="display:none" >
+
+			  <td  class="admin_list"  style="padding-left:53px; color:#FF6600">
+
+			  <img src="__PUBLIC__/skin/images/cat_left2.gif" border="0" align="absmiddle" />
+
+			  <img src="__PUBLIC__/skin/images/act_add.gif" border="0" align="absmiddle"  style=" margin:5px;" />
+
+			  <span class="AddCat" id="{$list.id}" style=" text-decoration:underline; cursor:pointer">增加分类</span>
+
+			  </td>
+
+			  <td align="center"  class="admin_list">&nbsp;</td>
+
+			   <td align="center"  class="admin_list">&nbsp;
+
+			   
+
+			  </td>
+
+			  <td class="admin_list"  >&nbsp;
+
+			  
+
+			    </td>
+
+				
+
+			</tr>
+
+
+
+      </volist>
+
+		  <tr >
+
+			  <td  class="admin_list"  style="padding-left:10px; color:#FF6600">
+
+			  <img src="__PUBLIC__/skin/images/act_add.gif" border="0" align="absmiddle"  style=" margin:5px;" />
+
+			  <span class="AddCatPid"   style=" text-decoration:underline; cursor:pointer">增加顶级分类</span>
+
+			  </td>
+
+			  <td align="center"  class="admin_list">&nbsp;</td>
+
+			   <td align="center"  class="admin_list">&nbsp;
+
+			   
+
+			  </td>
+
+			  <td class="admin_list"  >&nbsp;
+
+			  
+
+			    </td>
+
+				
+
+			</tr>
+
+    </table>
+
+	<table width="100%" border="0" cellspacing="10"  class="admin_list_btm">
+
+<tr>
+
+        <td>
+
+		<input name="ButSave" type="submit" class="admin_submit" id="ButSave" value="保存分类"/>
+
+
+		</td>
+
+        <td width="305" align="right">
+
+	  
+
+	    </td>
+
+      </tr>
+
+  </table>
+
+  </form>
+
+</div>
+
+
+</body>
+
+</html>

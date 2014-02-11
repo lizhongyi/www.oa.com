@@ -1,0 +1,194 @@
+
+     <div class="modal-header" style="border-top:1px solid #eee">
+   <a class="close" data-dismiss="modal">×</a>
+    <h4>新增团队成员</h4>
+  </div>
+  <div class="msg"></div>
+      
+      
+      <if condition="$msg eq ''">
+      <table class="m16"id="add_co" width="90%">
+ <tr>
+ <td width="125" align="right" valign="top">参与人姓名：</td>
+ <td width="352"> 
+   <input class="span2 teamer" id="nteamer" size="16" type="text" name="nteamer" value=""/><input type="hidden" name="nteamer_id" id="nteamer_id" /></td>
+ </tr>
+ <tr>
+   <td align="right" valign="top">工作内容：</td>
+   <td  height="30">
+   {$checkbox}
+   </td>
+ </tr>
+ 
+ <tr>
+   <td align="right">备注：</td>
+   <td><textarea name="mark" class="span4" id="mark"></textarea></td>
+ </tr>
+<tr>
+<td></td><td><button class="btn btn-primary" id="save_nteamer" type="submit">保存</button></td>
+</tr>
+ 
+ 
+ 
+ </table>
+  
+  <else/>
+  <div id="msg" style="display:block;">{$msg}</div>
+  </if>
+  
+  <div class="teamer_list" id="team_list" style="display:none1">
+   <div class="modal-header" style="border-top:1px solid #eee">
+  
+    <h4>请选择团队成员</h4>
+  </div>
+  
+ <div class="fuze_list">
+ <ul class="modal_list" id="teamul">
+ 
+ <present name='Team_list'>
+ <volist name="Team_list" id="vo">
+ <li><a href="javascript:;" fid="{$vo['uid']}" persona='{$vo["persona"]}' class="team_a">{$vo['uname']}</a></li>
+ </volist>
+ <else/>
+ <li>已经没有可选成员</li>
+ </present>
+ </ul>
+   <div class="cl"></div>
+ </div>
+  <div class="cl"></div>
+
+  </div>
+  
+  
+  
+  
+  
+  <script>
+  
+
+   $("#save_nteamer").click(function(e) {
+     //start 
+	 
+	  
+	   if($("#nteamer").val()==''){ $(".msg").html("请选择团队成员"); return false;
+	        }else{
+		         $(".msg").html("").hide();
+		    }
+	  
+	  
+	  $persona='';
+           $(".persona_cbox1").each(function(index, element) {
+    
+	         if($(this).attr('checked')=='checked'){
+		    $persona+=$(this).val()+',';
+		   }
+	
+         });
+
+           $persona=$persona.substr(0,$persona.length-1);
+	  
+	       if($persona==""){
+				$(".msg").html("请选择工作角色").show();
+	                    return false;
+				}
+				
+			  if($("#cid").val()==""){
+				$(".msg").html("候选人ID不能为空").show();
+	                    return false;
+				}	
+			
+			
+			//start save
+			
+			url="/Nteam/do_add";
+		    tdata={
+					      uid      : $("#nteamer_id").val(),
+					      cid       : $("#cid").val(),
+					      gid         : $("#gid").val(),
+						  mark       : $("#mark").val(),
+						  persona : $persona,
+                          ajax       : 1
+					 
+                       };
+					      
+						  
+						  cb={bf:function(){
+							  
+							   $(".msg").html("正在提交")
+							   //加一个注释							   
+							 },su:function(data){
+								 
+									 
+								if(data.status==1){
+							    $(".msg").html(data.info).fadeOut(1000,function(){
+								
+							     geta($("#nteam_list"),'/index.php/Nteam/index/cid/{$_GET["cid"]}/gid/{$_GET["gid"]}/ajax/1/cname/{$_GET["cname"]}/',loadGif);     
+								                  
+								//alert();
+								
+								});
+								}else{
+									alert(data.info);
+									  return false;
+									}
+								
+								
+						    }
+							}  
+						
+		                ajaxForm(url,tdata,cb);
+						   
+                return false;
+	  
+   }); 
+  
+  
+  
+  
+  $("#nteamer").focus(function(e) {
+	  
+	/* 
+     if($("#team_list").html()==""){
+		 
+		 
+	  geta($("#team_list"),'/Team/nteam/ajax/1/gid/{$_GET["gid"]}',loadGif);
+	  $("#team_list").show();
+	 }*/
+	 $("#team_list").show();
+});
+
+$("#nteamer").keyup(function(e) {
+    
+	$(this).val("");
+ //这边在来一个注释看看如何能搞好，看来真的要好好的搞一下了哎
+	
+});
+
+
+
+
+
+$("#teamul li a").live("click",function(e) {
+    //写入名字
+	$("#nteamer").val($(this).text());
+	$("#nteamer_id").val($(this).attr('fid'));
+	//自动增加工作角色
+	$persona=$(this).attr("persona").split(',');
+	 
+	 $(".persona_cbox1").attr("checked",false);
+	 for($i=0;$i<$persona.length;$i++){
+		   
+		   $(".persona_cbox1").each(function(index, element) {
+              
+			   if($(this).val()==$persona[$i]){
+				   $(this).attr('checked',true);
+				}
+			 
+        });
+		 
+		 }
+	 
+	
+});
+  
+  </script>

@@ -1,0 +1,107 @@
+ <footer>
+            <a rel="to-top" href="#top"><i class="icofont-circle-arrow-up"></i></a>
+          <div class="modal ui-draggable" tabindex="-1" id="set_persona"></div>
+       
+      
+       
+        </footer>
+ <div class="" style="height:40px; padding-top:70px; font-size:14PX;" align="center">jobme.V1.0　<a href="/About/feedback">建议反馈</a>  <a href="/About">关于我们</a>
+ <span style=" color:#FFF; display:none">
+ <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000238885'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000238885' type='text/javascript'%3E%3C/script%3E"));</script></span></div>
+        <!-- javascript
+        ================================================== -->
+        
+        <script src="/Public/js/jquery.js"></script>
+        <script src="/Public/js/jquery-ui.min.js"></script>
+        <script src="/Public/js/bootstrap.js"></script>
+        <script src="/Public/js/uniform/jquery.uniform.js"></script>
+        <script src="/Public/js/peity/jquery.peity.js"></script>
+          <script src="/Static/skin/js/artTemplate.js"></script>
+
+
+     
+        <script src="/Public/js/knob/jquery.knob.js"></script>
+        <script src="/Public/js/flot/jquery.flot.js"></script>
+        <script src="/Public/js/flot/jquery.flot.resize.js"></script>
+        <script src="/Public/js/flot/jquery.flot.categories.js"></script>
+        <script src="/Public/js/wysihtml5/wysihtml5-0.3.0.js"></script>
+        <script src="/Public/js/wysihtml5/bootstrap-wysihtml5.js"></script>
+        <script src="/Public/js/calendar/fullcalendar.js"></script> <!-- this plugin required jquery ui-->
+         <script src="/Public/js/datepicker/bootstrap-datepicker.js"></script>
+        <!-- required stilearn template js, for full feature-->
+        <script src="/Public/js/holder.js"></script>
+        <script src="/Public/js/stilearn-base.js"></script>
+  <script src="/Static/skin/js/custom.js"></script>
+    
+       <script src="/Public/js/pnotify/jquery.pnotify.js"></script>
+        <script src="/Public/js/pnotify/jquery.pnotify.demo.js"></script>
+     
+    <script src="/Public/js/select2/select2.js"></script>
+    <script>
+    
+     $('[data-form=datepicker]').datepicker();
+    </script>
+        
+        
+        
+       <script>
+$("#add_notice").click(function(e) {
+   
+	 geta($("#notice_box"),$(this).attr('link'),loadGif);
+	
+})
+
+$(".send_sms").click(function(e) {
+        
+	
+	geta($("#sms_box"),$(this).attr('link'),loadGif);	
+	 
+});
+	
+	$("#load_notice").load('/Notice/index/ajax/1');
+
+
+</script> 
+        
+       
+       
+       <script>
+	    
+		setInterval(function(){
+			  
+			  $.get('/Index/get_role');
+			    
+			},100000)
+	   
+	   
+	   </script>
+     
+     
+     
+     
+     <script>
+$(function(){
+
+	$('#lrkfwarp').lrkf({
+		kftop:'140',
+		defshow:false,
+		Event:'hover',
+		qqs:[
+			{'name':'　客服1','qq':'1051898665'},	
+			{'name':'　客服3','qq':'2302238407'},
+			{'name':'　客服2','qq':'1051898665'},
+			
+			{'name':'　客服4','qq':'2302238407'}	//注意逗号是英文的逗号
+			
+			
+					//注意最后一个{}不要英文逗号
+		],
+		
+
+		
+					//>>更多方式		
+	});
+		
+});
+</script>
+<script src="/Public/js/lrkf.js"></script>

@@ -1,0 +1,147 @@
+<div class="modal-header">
+
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>将#<span style="color:#090">{$_GET['realname']}</span>#添加到以下职位   {$_GET['json']}</h3>
+  </div>
+  <div class="modal-body">
+  <div>
+       
+                <form action="/Works/index" name="" method="get" id="" >
+                  <div class="span4 input-append input-line">
+      
+      
+        <label class="control-label span1" >关键字</label>  
+              <input class="span2" id="keyword1" name="Search_posts" size="16" type="text" value="{$Think.get.Search_posts}"><button type="button" class="btn btn-primary" name="se-work" id="se-work" ><i class="icon-search"></i></button> <span id="ms" style="color:#090; border:1px solid #090"></span>
+     </div> 
+    </form>
+  <div class="cl"></div>
+  </div>
+  
+  <present name="getList">
+    <table width="90%" class="table table_list">
+      <tr>
+        <th width="160" height="23" style="min-width:120px !important">工单号</th>
+        <th>寻访职位</th>
+        <th >客户名称</th>
+        <th >地区</th>
+        <th >进展阶段</th>
+        <th >状态</th>
+        <th>负责人</th>
+        <th>创建时间</th>
+      </tr>
+      <volist name="getList" id="vo">
+        <tr>
+          <td width="65" height="24" >
+          
+          
+          
+         <if condition="$vo['cz'] eq 0">
+          
+          <input  style="width:20px;" type="checkbox" name="id[]" id="all3" class="piliang_box" value="{$vo.id}"  />      <else/>
+          
+         <input  style="width:20px;" type="checkbox" checked disabled class="piliang_box2" value="{$vo.id}"  />     
+          
+          </if>
+          
+          
+          
+          
+            <a <if condition="$vo['cz'] eq 1"> class="linked" title="该职位已经推荐过此候选人" </if> href="{:U('Works/detail',array('id'=>$vo['id']))}#{$select['stage1'][1]}">WO-{$vo['id']}</a></td>
+          <td><a <if condition="$vo['cz'] eq 1"> title="该职位已经推荐过此候选人" class="linked" </if> href="{:U('Works/detail',array('id'=>$vo['id']))}#{$select['stage1'][1]}">{$vo['Search_posts']|msubstr=0,20}</a></td>
+          <td><a <if condition="$vo['cz'] eq 1"> title="该职位已经推荐过此候选人" class="linked" </if> href="/Works/index/cid/{$vo['cid']}">{$vo['custom']}</a></td>
+          <td>{$vo['area_cn']}</td>
+          <td> {$select['stage'][$vo['stage']]}</td>
+          <td> {$select['status'][$vo['status']]}</td>
+          <td>{$vo['principal_cn']}</td>
+          <td style="font-size:12px;">{$vo['create_time']|date='Y-m-d',###}</td>
+        </tr>
+      </volist>
+    </table>
+    <else/>
+       <div class="nodata">
+        :( 没有符合条件的数据,原因可能是该候选人已经被添加到过了。
+       </div>
+    </present>
+  </div>
+  
+  
+  <div class="modal-footer">
+     <div class="page_left">
+  <div class="pag custom_list">
+ 
+ <ul>
+{$pageBar}
+</ul>
+</div> 
+</div>
+<div class="#"><button  id="insert_candidate" type="submit" class="btn  btn-primary">　确定添加　</button></div>
+  </div>
+
+<script> 
+   
+  $("#insert_candidate").click(function(e) {
+	  
+	  
+	  
+	  
+	       var $pi= "";
+        $(".piliang_box").each(function(index, element) {
+      
+	    if($(this).attr('checked')=='checked'){
+		  $pi+=$(this).val()+","; 
+		 }
+	   
+});
+  
+  var $pi=$pi.substr(0,$pi.length-1);
+  
+	  
+           $this=$(this);
+	    
+		  $.ajax({
+			    url:'/Talent/add_c/ajax/1',
+				type:"POST",
+				data:{
+					 resume_id:"{$_GET['resume_id']}",
+					 gid        :$pi,
+					 source:"{$_GET['source']}",
+					 realname:"{$_GET['realname']}",
+					 last_company:"{$_GET['last_company']}"
+					 
+					},
+				beforeSend: function()
+				  { 
+				     $this.text('提交中....');
+					},success: function(data){
+						
+						$this.text(data.info);
+						
+						 $("#ms").html(data.info).show();
+					   
+					   setTimeout(function(){
+						    
+							$("#ms").html(data).hide()
+						   
+						   },1000);
+						}
+			  
+			  
+			  
+			  })
+		
+		
+	   
+});
+
+     
+	 $("#se-work").click(function(e) {
+            
+			//alert(1);
+			geta($("#work_box"),'/Works/index/ajax/1/Search_posts/'+$("#keyword1").val(),loadGif);
+		   
+    });
+	 
+	 
+	 
+
+</script>

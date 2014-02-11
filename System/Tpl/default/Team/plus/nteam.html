@@ -1,0 +1,14 @@
+
+     <div class="modal-header" style="border-top:1px solid #eee">
+  
+    <h4>请选择团队成员</h4>
+  </div>
+ <div class="fuze_list">
+ <ul class="modal_list" id="teamul">
+ <volist name="getList" id="vo">
+ <li><a href="javascript:;" fid="{$vo['uid']}" class="fuze_a">{$vo['uid']|getTruename}</a></li>
+ </volist>
+ </ul>
+   <div class="cl"></div>
+ </div>
+  <div class="cl"></div>

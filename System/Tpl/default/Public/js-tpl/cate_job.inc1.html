@@ -1,0 +1,132 @@
+<script src="/Static/skin/js/cate_job.js"></script>
+<div class="cate-box tan-box">
+
+ <script id="cate_job" type="text/html">
+    <div class='h-title'>请选择职位类别<a href='javascript:void(0)' class='close'>关闭</a></div>
+	<form id='hang-f'>
+     <ul>
+    <% for (var i = 0; i < list.length; i ++) { %>
+<%  if (list[i].parentid ==0) { %><li data-id='<%= list[i].id%>' ><img src="/Static/skin/images/left_e.gif" border="0" align="absmiddle" id="5" class="c-leftimg pointer"><span class='big-cate' data-text='<%=list[i].categoryname%>' hid='<%=list[i].id%>'><%=list[i].categoryname%></span> <dl> <% for (var j = 0; j < list.length; j ++) { %><% if(list[j].parentid ==list[i].id ) {%><dd> 
+<span class="small-cate"  data-text='<%=list[i].categoryname%> / <%=list[j].categoryname%>' hid='<%=list[j].id%>'><%= list[j].categoryname %></span> </dd><%}else {%><% } %><%  }%>
+</dl></li><% } %> <% } %>
+</ul>
+<button type="reset" class='reset' style="display:none">重置</button> 
+</form>
+</script>
+
+                    
+                    
+<script>
+ 
+  
+ html = template.render('cate_job', {
+	list:cate_job
+});
+$('.cate_job').click(function(e) {
+      // alert(e.pageX);
+	  $(".tan-box").hide();
+	$(".cate-box").show().css({'top':'84px','left':'100px','z-index':'999993'});
+	
+});
+
+
+
+$(".cate-box").html(html);
+           $(".cate-box ul li img").click(function(e) {
+			    $(".cate-box ul li dl").hide();
+				 
+				$t=$(this);
+				 
+				$(".c-leftimg").each(function(index){
+					  
+					  
+					  if($(this)!=$t){
+					      if($(this).attr('src')=='/Static/skin/images/left_d.gif'){
+						     
+							 $(this).attr('src','/Static/skin/images/left_e.gif');
+							 $(this).parent().find("dl").show();
+						    }
+					     }
+					 
+					})
+				
+                if($(this).attr('src')=='/Static/skin/images/left_e.gif'){
+					 $(this).parent().find("dl").show();
+					 $(this).attr('src','/Static/skin/images/left_d.gif');
+					}else{
+						$(this).parent().find("dl").hide();
+						$(this).attr('src','/Static/skin/images/left_e.gif');
+						}
+				
+	    
+});
+
+
+$(".cate-box ul li span.big-cate").click(function(e) {
+	
+    $(".cate-box ul li dl").hide(); 
+	 
+	$(".cate-queding").attr('text',$(this).attr('data-text'));
+	$(".cate-queding").attr('hid',$(this).attr('hid'));
+	$(".cate-queding").click();
+	
+	
+});
+
+
+$(".cate-box ul li span.small-cate").click(function(e) {
+    //$(".cate-box ul li dl").hide(); 
+	
+	$(".c-queding").attr('text',$(this).attr('data-text'));
+	$(".c-queding").attr('hid',$(this).attr('hid'));
+	$(".c-queding").click();
+	
+});
+
+
+
+$(".h-s").click(function(e) {
+      
+	  
+	$(".cate-box ul li dl").hide(); 
+	  
+});
+$(".cate-box a.close").click(function(e) {
+    
+	$(".cate-box").hide();
+	$(".reset").click();
+	$(".cate-box ul li dl").hide();
+	
+});
+
+
+
+$(document).click(function(e) {
+    
+	if(e.target.className.indexOf('cate_job') != -1 || e.target.className.indexOf('c-leftimg') != -1 || e.target.className.indexOf('cate-box') != -1){
+		$(".cate-box").show(); 
+		}else{
+			$(".cate-box").hide();
+			$(".cate-box ul li dl").hide();
+			$(".c-leftimg").attr('src','/Static/skin/images/left_e.gif')
+			}
+	
+});
+
+
+$(".cate-box .small-cate,.cate-box .big-cate").click(function(e){
+	//alert('nima');
+	 $(".cate_job").attr('value',$(this).text());
+	 $("input#cate_job-val").val($(this).attr('hid'));
+	 $(".cate-box").hide();
+	$(".reset").click();
+	//$("#cate_job_input").focus();
+	$(".cate-box ul li dl").hide();
+	})
+
+</script>
+<div align="right" style="padding:15px; padding-right:50px;">
+<div class="cl"></div>
+
+</div>
+</div>

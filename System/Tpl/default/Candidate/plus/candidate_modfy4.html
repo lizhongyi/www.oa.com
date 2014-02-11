@@ -1,0 +1,212 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+<h3>编辑<span id="stage_{$detail['id']}"><script>get_sinfo("stage_{$detail['id']}",selecter.stage,"{$detail['stage']}")</script></span></h3>
+  </div> 
+  
+ 
+  <div class="modal-body"> 
+  
+  
+  <div class=" modal_box">
+<div id="msg"></div>
+ <table>
+ <tr>
+ <td width="95"  align="right" class="th">候选人姓名</td>
+ <td width="557">{$detail['realname']}<input type="hidden" name="gid" id="gid" value="{$detail['gid']}"/></td>
+ </tr>
+ <tr>
+   <td align="right" class="th">最近工作单位</td>
+   <td>{$detail['before_job']}</td>
+ </tr>
+ <tr class="modfy_tb">
+   <th align="right" class="th">手机：</th>
+   <td> {$detail['phone']}</td>
+ </tr>
+ 
+ <tr>
+   <td align="right" valign="top" class="th">阶段状态</td>
+   <td>  <div  class="erji-s">
+     <select name="stage" id="stage" class="big-s span2" style="display:none">
+      {:get_select($select['stage'],$detail['stage'])}
+       </select>
+     <select id="stages" name="stages" class="small-s span2" >
+       {:get_select($select['stages'][$detail['stage']],$detail['stages'])}       
+       </select>
+     </div></td>
+ </tr>
+ 
+ 
+ <tr class="mian_tr" <if condition="$detail['stages'] lt 2"> style="display:none;" </if>>
+   <td align="right" valign="top" class="th">面试日期</td>
+   <td>
+             
+                 
+                  <input type="text" name="mianshi_time" id="mianshi_time"  class=" span2"   data-form='datepicker' value="<if condition='$detail["mianshi_time"] gt 10000'>{$detail['mianshi_time']|date='Y-m-d',###}<else/><php> echo date('Y-m-d',time()) ;</php></if>" />
+                 
+               
+                 
+                 
+                 
+                 <span class="add-on"><i class=" icon-calendar"></i></span> 
+                 <input  style="width:50px" type="text" name="shi" id="shi" value="<if condition="$detail['shi'] neq 0">{$detail['shi']}</if>"/>
+                 时  
+                 <input style="width:50px" type="text" name="fen" id="fen" value="<if condition="$detail['fen'] neq 0">{$detail['fen']}</if>"/>
+                 分
+  
+                
+              
+                
+                 </td>
+ </tr>
+ <tr>
+   <td align="right" valign="top" class="th">面试反馈</td>
+   <td><textarea name="ms_mark" cols="40" id="ms_mark" style="margin-left:-2px; height:200px;">{$detail['ms_mark']}</textarea></td>
+ </tr>
+ 
+  
+
+  
+  
+  
+  
+  
+ </table>
+ 
+
+ </div>
+ 
+  </div>
+  
+  <div class="modal-footer">
+     <button class="btn btn-primary" type="submit" id="candidate_bt_md" >保存</button></div>
+
+ </div>
+ 
+ 
+ 
+ 
+ 
+  <!----================公共验证js================---->
+ 
+   <include file="Public:candidate_modfy_js" />
+ 
+ <!----================公共验证js================---->
+ 
+ 
+ 
+ 
+ <script>
+ 
+// ajax 提交联系人
+      
+	  
+	 //验证时分
+	 $("#shi").blur(function(e) {
+        
+		if($(this).val() > 23){
+			 alert("时填写有误");
+			 $(this).focus();
+			 return false;
+			}
+			
+			
+		
+    });
+	  
+	 $("#fen").click(function(e) {
+        
+		if($(this).val() > 59){
+			 alert("分填写有误");
+			 $(this).focus();
+			 return false;
+			}
+		
+    }); 
+	  
+	
+    $("#candidate_bt_md").click(function(e) {
+      
+	  if($("#realname").val()=="" || $("#phone")=="" || $("#area-val").val() ==""){
+	                   	msg("请仔细检查必填项");
+	                    return false;
+	  }else{
+		   
+		   $.ajax({
+			     
+				 url:"/Works/do_candidate_modfy/id/{$detail['id']}",
+				 type:"POST",
+				 data:{
+					     
+						  stage         : $("#stage").val(),
+						  stages         : $("#stages").val(),
+						  
+						  mark  : $("#mark").val(),
+						  shi   : $("#shi").val(),
+						  fen   : $("#fen").val(),
+						  feedback   : $("#feedback").val(),
+						  mianshi_time:$("#mianshi_time").val(),
+						 ms_mark:$("#ms_mark").val(),
+						  ajax       : 1
+					 
+                       },
+					   beforeSend: function(){
+						    
+							msg("正在提交");
+						   
+						   },
+						   success: function(data){
+							   
+							   if(data=="ok"){
+								
+								          msg("保存成功");
+										  
+										  $(".close").click();
+										   $("#tab_"+$("#stage").val()).click();
+								    
+										  						  
+																		   }
+								   else{
+									     
+										 if(data==""){
+										 msg("没有任何编辑")
+										 }else{
+											  msg('出错误了')
+											 }
+									   
+									   }
+									   
+									   
+							    
+							  }		
+							  
+							
+			   
+			   });
+		  
+		  }
+		
+   
+   return false;
+	 
+}); 
+
+       // $("#time").datepicker(defaultOptions);
+      
+  
+   $('[data-form=datepicker]').datepicker();
+  
+  
+  $("#stages").change(function(e) {
+        
+		if($(this).val() > 1){
+			 
+			 $(".mian_tr").show();
+			
+			}else{
+				$(".mian_tr").hide();
+				}
+	
+});
+  
+ </script>
+ 

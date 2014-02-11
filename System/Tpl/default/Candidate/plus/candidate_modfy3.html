@@ -1,0 +1,166 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>编辑<span id="stage_{$detail['id']}"><script>get_sinfo("stage_{$detail['id']}",selecter.stage,"{$detail['stage']}")</script></span></h3>
+  </div> 
+  
+ 
+  <div class="modal-body"> 
+  
+  
+  <div class=" modal_box">
+<div id="msg"></div>
+ <table>
+ <tr>
+ <td align="right" class="th">候选人姓名：</td>
+ <td width="464">{$detail['realname']}<input type="hidden" name="gid" id="gid" value="{$detail['gid']}"/></td>
+ </tr>
+ <tr>
+   <td align="right" class="th">最近工作单位：</td>
+   <td>{$detail['before_job']}</td>
+ </tr>
+ <tr class="modfy_tb">
+   <th align="right" class="th">手机：</th>
+   <td> {$detail['phone']}</td>
+ </tr>
+ 
+ <tr>
+   <td align="right" valign="top" class="th"><span class="erji-s">阶段状态</span>：</td>
+   <td>  <div  class="erji-s">
+     <select name="stage" id="stage" class="big-s span2">
+      {:get_select($select['stage'],$detail['stage'])}
+       </select>
+     <select id="stages" name="stages" class="small-s span2" >
+       {:get_select($select['stages'][$detail['stage']],$detail['stages'])}       
+       </select>
+     
+     </div></td>
+ </tr>
+
+  
+
+
+ <tr>
+   <td align="right" width="160" class="th">推荐反馈：</td>
+   <td><textarea name="tj_mark" id="tj_mark" style="margin-left:-2px;">{$detail['tj_mark']}</textarea></td>
+ </tr>
+
+  
+  
+  <tr>
+    <td align="right" valign="top" class="th">顾问评语：</td>
+    <td>{$detail['gw_mark']}</td>
+  </tr>
+  
+  
+ </table>
+ 
+
+ </div>
+ 
+  </div>
+  
+  <div class="modal-footer">
+     <button class="btn btn-primary" type="submit" id="candidate_bt_md" >保存</button></div>
+
+ </div>
+ 
+ 
+ 
+  <!----================公共验证js================---->
+ 
+   <include file="Public:candidate_modfy_js" />
+ 
+ <!----================公共验证js================---->
+ 
+ 
+ 
+ 
+ <script>
+ 
+// ajax 提交联系人
+    
+	
+    $("#candidate_bt_md").click(function(e) {
+      
+	  if(1==0){
+	                   	msg("请仔细检查必填项");
+	                    return false;
+	  }else{
+		   
+		   $.ajax({
+			     
+				 url:"/Works/do_candidate_modfy/id/{$detail['id']}",
+				 type:"POST",
+				 data:{
+					      
+						  zhiwei        : $("#zhiwei").val(),
+						  stage         : $("#stage").val(),
+						  stages        : $("#stages").val(),
+						 
+						  before_job    : $("#before_job").val(),
+						  tj_mark         : $("#tj_mark").val(),
+						  ajax       : 1
+					 
+                       },
+					   beforeSend: function(){
+						    
+							msg("正在提交");
+						   
+						   },
+						   success: function(data){
+							   
+							   if(data=="ok"){
+								
+								          msg("保存成功");
+										  
+										  $(".close").click();
+										   $("#tab_"+$("#stage").val()).click();
+								    
+									//geta($("#clist_"+$("#stage").val()),"/Works/candidate/ajax/1/loadbox/clist_"+$("#stage").val()+"/stage/"+$("#stage").val()+"/gid/"+$("#gid").val());
+										 
+										  						  
+																		   }
+								   else{
+									     
+										 if(data==""){
+										 msg("没有任何编辑")
+										 }else{
+											  msg(data)
+											 }
+									   
+									   }
+									   
+									   
+							    
+							  }		
+							  
+							
+			   
+			   });
+		  
+		  }
+		
+   
+   return false;
+	 
+}); 
+var defaultOptions = {
+            dateFormat: "yy-mm-dd",
+            showMonthAfterYear: true,
+            dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+			monthNames:['1','2','3','4','5','6','7','8','9','10','11','12'],
+            nextText: '>',
+            prevText: '<',
+			changeMonth: true,
+            changeYear: true
+			
+		
+
+        };
+       // $("#time").datepicker(defaultOptions);
+      
+  
+  $('.datepicker').datepicker(defaultOptions);
+  
+ </script>
+ 

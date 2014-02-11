@@ -1,0 +1,128 @@
+  <form style="padding:0px; margin:0px;">
+  
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>修改HR联系人</h3>
+  </div> 
+  
+
+  <div class="modal-body"> 
+  
+  
+  <div class=" modal_box">
+
+ <div class="span3">
+              <label class="control-label">联系人</label>  <input class="" id="hname" name="hname" placeholder="必先*" size="16" type="text" value="{$hr_modfy['hname']}">
+              <input type="hidden" name="hid" id="hid" value="{$hr_modfy['id']}"/>
+    </div>
+  <div class="span3"><label class="control-label">电话</label>
+ 
+  
+<input type="text" name="tel" placeholder="电话 *必填" id="tel"  value="{$hr_modfy['tel']}"/>
+   </div>
+   <div class="span3">
+   <label class="control-label">传真</label>
+  <input type="text" name="fax" id="fax" value="{$hr_modfy['fax']}"/>
+  
+</div>
+<div class="span3">
+
+  <label class="control-label">手机</label>
+  <input type="text" name="phone"  id="phone" value="{$hr_modfy['phone']}"/>
+  
+  </div>
+  <div class="span3">
+  <label class="control-label">QQ</label>
+  <input type="text" name="qq"  id="qq" value="{$hr_modfy['qq']}"/>
+  
+  </div>
+  <div class="span3">
+  <label class="control-label">msn</label>
+   <input type="text" name="msn" id="msn" value="{$hr_modfy['msn']}" />
+   </div>
+   <div class="span3">
+    <label class="control-label">Email</label>
+  <input type="text" name="email"  id="email" value="{$hr_modfy['email']}" />
+  </div>
+  <div class="span3">
+  <label class="control-label">联系地址</label>
+  <input type="text" name="addr" id="addr" value="{$hr_modfy['addr']}" />
+  
+  </div>
+  <div class="span3">
+  <span id="msg">　</span>
+  </div>
+  <div class="span2">
+ 
+  </div>
+ 
+  <div class="cl"></div>
+ </div>
+ 
+  </div>
+  
+  <div class="modal-footer">
+     <button class="btn btn-primary" type="submit" id="hr_modfy_bt" >保存</button></div>    
+     </form>
+     <script>
+	  $("#hr_modfy_bt").click(function(e) {
+      
+	  if($("#hname").val()=="" || $("#tel")=="" ){
+	                   $("#addhr input").blur();
+	                    return false;
+	  }else{
+		   
+		   $.ajax({
+			     
+				 url:"/Client/doHr_modfy_contact",
+				 type:"POST",
+				 data:{
+					      hname      : $("#hname").val(),
+					      tel        : $("#tel").val(),
+					      fax        : $("#fax").val(),
+					      phone      : $("#phone").val(),
+						  email      : $("#email").val(),
+						  msn        : $("#msn").val(),
+						  qq         : $("#qq").val(),
+						  addr       : $("#addr").val(),
+						  company_id : $("#company1").val(),
+						  ajax       : 1,
+						  id         : $("#hid").val()
+					 
+                       },
+					   beforeSend: function(){
+						    
+							msg("正在提交");
+						   
+						   },
+						   success: function(data){
+							   
+							   if(data=="ok"){
+								          msg("保存成功")
+								          window.history.go(0)
+;								   
+								   }
+								   else{
+									     
+										 
+										 msg(data)
+									   
+									   
+									   }
+									   
+									   
+							    
+							  }		
+							  
+							
+			   
+			   });
+		  
+		  }
+		
+   
+   return false;
+	 
+}); 
+
+	 </script>

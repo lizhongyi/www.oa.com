@@ -1,0 +1,30 @@
+<style>
+
+.pa ul{ list-style:none}
+.pa  a{text-decoration:none; color:#000;}
+.select{ background:#FFF;}
+.xx-box{ padding:15px;}
+</style>
+<div class="xx-box">
+<volist name="msg" id="vo">
+
+<if condition="$vo['riqi'] neq ''">
+<div style="background:#EEE">{$vo['riqi']}</div>
+</if>
+
+<div class="realname  <if condition="$vo['fauid'] neq $vo['uid']"> dui </if>">{$vo['realname']}  {$vo['create_time']}</div>
+<div class="msg-t">{$vo['msg']}</div>
+
+
+</volist>
+<div style="height:20px; clear:both"></div>
+
+</div>
+<div class="cl"></div>
+<div class="pa" style="position:fixed; width:350px;background:#c6dfec; height:36px;bottom:0px; right:0px; line-height:30px; left:350px; text-align:center">
+
+{$pageBar}
+
+</div>
+
+

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>职美OA-在线猎头业务管理系统</title>
+        <meta name="renderer" content="webkit"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="" />
+        <meta name="author" content="stilearning" />
+
+        <!-- google font -->
+       <link href="http://fonts.googleapis.com/css?family=Aclonica:regular" rel="stylesheet" type="text/css" />
+ <link href="/Static/skin/css/jquery-ui.css" rel="stylesheet"/>
+        <!-- styles -->
+        <link href="/Public/css/bootstrap.css" rel="stylesheet" />
+        <link href="/Public/css/bootstrap-responsive.css" rel="stylesheet" />
+        <link href="/Public/css/stilearn.css" rel="stylesheet" />
+        <link href="/Public/css/stilearn-responsive.css" rel="stylesheet" />
+        <link href="/Public/css/stilearn-helper.css" rel="stylesheet" />
+        <link href="/Public/css/stilearn-icon.css" rel="stylesheet" />
+        <link href="/Public/css/font-awesome.css" rel="stylesheet" />
+        <link href="/Public/css/animate.css" rel="stylesheet" />
+        <link href="/Public/css/uniform.default.css" rel="stylesheet" />
+        
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->  <style>
+		
+		.lo-type{ width:300px; float:right; line-height:30px; padding-top:6px; text-align:right; padding-right:80px; position:relative;}
+  .lo-type a{ font-weight:bold; font-size:14px; color:#CCC;}
+  .sanjiao{ width:24px; height:16px; background:url(/Public/img/sanjiao.png) no-repeat; position:absolute; bottom:-16px; left:80px; }
+
+  .lo-type a{ font-weight:bold; font-size:14px; color:#CCC;}
+ .info_box h3{ font-family:"微软雅黑"; color:#666; font-weight:100; font-size:22px;}
+ .info_box ul{ list-style:none; padding-top:30px; margin:0px;}
+ .info_box ul li{ display:block; padding:5px; line-height:40px; font-size:18px; font-family:"微软雅黑"; color:#666; text-shadow: #FFF 1px 1px; padding-left:50px;}
+  .info_box ul li.zhenshi{ background:url(/Public/img/bag.png) left center no-repeat}
+  
+  .info_box ul li.huiju{ background:url(/Public/img/users.png) left center no-repeat}
+ 
+ 
+ .info_box ul li.gengduo{ background:url(/Public/img/premium.png) left center no-repeat}
+ #footer{ width:900px; margin:0 auto; line-height:30px; color:#999; border-top:1px #ccc solid}
+ .i-table{ font-size:14px; color:#666}
+ .sanjiao{ width:24px; height:16px; background:url(/Public/img/sanjiao.png) no-repeat; position:absolute; bottom:-20px; left:160px; }
+		.cl{ clear:both;}
+		
+		.lrkf{ width:164px;}				/*������һ�����ʵĿ��ȣ�������ȡ������ȷ�Ŀ���*/
+.lrkfshow { right:0;}				/*������Ҫ��*/
+.lrkf .lrkf a{}
+.lrkf a:hover{color:#B50708;}
+
+.lrkf .lrkf_box{ background-color:#009EE8; padding:6px; border-radius:4px;}
+
+.lrkf .lrkf_header,.lrkf .lrkf_con,.lrkf .lrkf_tool a{
+	background-color:#fff; margin-top:4px;border-radius:4px;}
+	
+.lrkf .lrkf_header,.lrkf .lrkf_con{ margin-top:0;}
+
+.lrkf .lrkf_btn{background-color:#009EE8;color:#fff;border-radius:4px 0 0 4px;}
+.lrkf .lrkf_btn:hover{ background-color:#009EE8;color:#fff;}
+.page{ line-height:40px}
+.page_content{ padding:30px 0}
+.pdv_border{ background-repeat:no-repeat}
+
+.anlibox ul { margin-left:-18px;}
+.anlibox ul li{ width:230px; float:left; _display:inline; margin-top:18px; margin-left:18px; border:3px solid #f4f4f4;}
+.anlibox ul li img{ width:230px; height:180px;}
+#cnzz_stat_icon_1000122810 a{ color:#FFF !important}
+
+
+
+
+
+
+p#back-to-top{
+      position:fixed;
+      bottom:100px;
+      right:10px;
+	  border:1px solid #eeee;
+}
+p#back-to-top a{
+      text-align:center;
+      text-decoration:none;
+      color:#333;
+	  background:#f1f1f1;
+      display:block;
+      width:80px;
+      /*使用CSS3中的transition属性给跳转链接中的文字添加渐变效果*/
+      -moz-transition:color 1s;
+      -webkit-transition:color 1s;
+      -o-transition:color 1s;
+	   border:1px solid #eeee;
+}
+p#back-to-top a:hover{
+      color:#979797;
+}
+p#back-to-top a span{
+	font-size:12px;
+      display:block;
+	  padding:6px;
+      width:80px;
+      margin-bottom:5px;
+      /*使用CSS3中的transition属性给<span>标签背景颜色添加渐变效果*/
+      -moz-transition:background 1s;
+      -webkit-transition:background 1s;
+      -o-transition:background 1s;
+	  background:#f4f4f4;
+	  border:1px solid #eeee;
+}
+#back-to-top a:hover span{
+     
+}
+.contro-right td{ line-height:24px; font-size:13px;}
+.contro-right td a{ font-size:13px;}
+.info{ line-height:24px; margin-top:18px; font-size:13px; color:#666}
+.contro-right a{ padding:4px; background:#EDEDED; color:#000; margin-top:6px}
+.tic{ margin-top:10px;}
+		</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+
+    <body>
+        <!-- section header -->
+        <header class="header" data-spy="affix" data-offset-top="0">
+            <!--nav bar helper-->
+            <div class="navbar-helper">
+                  <div class="row-fluid" style="width:1000px; height:54px; padding-top:10px; margin:0 auto">
+                    <!--panel site-name-->
+                    <div class="span2"  style="width:200px;">
+                        <div class="panel-sitename">
+                           <h2><a href="/" style="width:150px; height:46px;"><img style="width:200px !important; height:43px;"  src="/Public/img/logo.png"/></a></h2>
+                        </div>
+                    </div>
+                    <div class="lo-type" align="right" style="padding-right:30px;"> <a href="http://oa.jobme.cn">登录</a>
+</div>
+                    <!--/panel name-->
+                </div>
+            </div><!--/nav bar helper-->
+        </header>
+        
+        <!-- section content -->
+        <section class="section">
+            <div class="container" style="width:960px; margin:0 auto">
+                <div class="signin-form row-fluid">
+                    <!--Sign In-->
+                    <div class="span8">
+                    
+                   <div class="info_box">
+<h3>职美OA-猎头公司的专属招聘平台</h3>
+
+<ul >
+
+<li class="zhenshi">功能丰富、流程合理，使顾问的工作事半功倍</li>
+<li class="huiju">收款、佣金、业绩，各种统计数据轻松获得</li>
+<li class="gengduo">个性化的佣金设置，适应不同猎头公司的业务需求</li>
+
+
+</ul>
+</div>
+
+                    
+                    </div>
+                    <div class="span4">
+                        <div class="box corner-all" style="margin-right:10px;">
+                            <div class="box-header grd-green color-white corner-top">
+                                <span>马上创建一个账号!</span>
+                            </div>
+                            <div class="box-body bg-white">
+                                <form id="sign-up" method="post"  action="/Login/do_reg" />
+                                    <div class="control-group">
+                                        <label class="control-label">用户名</label>
+                                        <div class="controls">
+                                            <input  type="text" class="input-block-level" data-validate="{required: true, messages:{required:'请输入用户名'}}" name="username" id="reg_user" autocomplete="off" />
+                                            <p class="help-block muted helper-font-small">可以包含字母、数字和下划线,破折号不要超过20个字符。</p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">邮箱</label>
+                                        <div class="controls">
+                                            <input type="text" class="input-block-level" data-validate="{required: true, email:true, messages:{required:'请输入邮件地址', email:'请输入一个有效的邮件地址'}}" name="email" id="email" autocomplete="off" />
+                                            <p class="help-block muted helper-font-small"><strong>真实邮件地址</strong> 你将会收到一封确认邮件。</p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">密码</label>
+                                        <div class="controls">
+                                            <input type="password" class="input-block-level" data-validate="{required: true, minlength: 6, messages:{required:'请输入密码', minlength:'密码不能小于6位.'}}" name="password" id="password" autocomplete="off" />
+                                            <p class="help-block muted helper-font-small">密码越复杂越安全</p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">确认密码</label>
+                                        <div class="controls">
+                                            <input type="password" class="input-block-level" data-validate="{required: true, equalTo: '#password', messages:{required:'请输入确认密码', equalTo: '确认密码与密码不相同'}}" name="password_again" id="password_again" autocomplete="off" />
+                                            <p class="help-block muted helper-font-small">&nbsp;</p>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <p class="term-of-use"><input type="checkbox" name="agree" value="1" id="agree"  data-validate="{required: true, equalTo: '#agree', messages:{required:'请同意只用协议', equalTo: '请同意只用协议'}}" /><a href="agreement.html">您需要同意网站使用协议</a></p>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="checkbox">
+                                            <span id="msg"></span>
+                                       </label>
+                                    </div>
+                                    <div class="form-actions">
+                                        <input type="submit" class="btn btn-block btn-large btn-success" id="reg_btn" value="创建账号" />
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            
+                            
+                            
+                        </div>
+                        
+                 
+                    </div><!--/Sign In-->
+                    
+                       <div class="cl"></div>
+<div id="footer">
+<a href="http://www.jobme.cn">职美网</a>  <span style=" color:#FFF">
+ <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000238885'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000238885' type='text/javascript'%3E%3C/script%3E"));</script></span>
+
+</div>    
+                        
+                    
+                </div><!-- /row -->
+            </div><!-- /container -->
+            
+            <!-- modal recover -->
+            <div id="modal-recover" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-recoverLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 id="modal-recoverLabel">Reset password <small>用户名 Or Email Address</small></h3>
+                </div>
+                <div class="modal-body">
+                    <form id="form-recover" method="post" />
+                        <div class="control-group">
+                            <div class="controls">
+                                <input type="text" data-validate="{required: true, email:true, messages:{required:'Please enter field email', email:'Please enter a valid email address'}}" name="recover" />
+                                <p class="help-block helper-font-small">Enter your 用户名 or email address and we will send you a link to reset your password.</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                    <input type="submit" form="form-recover" class="btn btn-primary" value="Send reset link" />
+                </div>
+            </div><!-- /modal recover-->
+        </section>
+
+        <!-- javascript
+        ================================================== -->
+        
+        <script src="/Public/js/jquery.js"></script>
+        <script src="/Public/js/bootstrap.js"></script>
+        <script src="/Public/js/uniform/jquery.uniform.js"></script>
+        
+        <script src="/Public/js/validate/jquery.metadata.js"></script>
+        <script src="/Public/js/validate/jquery.validate.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                // try your js
+                
+                // uniform
+                $('[data-form=uniform]').uniform();
+                
+                // validate
+                $('#sign-in').validate();
+                $('#sign-up').validate();
+
+
+			
+                $('#form-recover').validate();
+				
+				
+				
+				$("#reg_user").blur(function(e) {
+                      
+					if($(this).val()==""){
+						    
+							return false;
+						  
+						}
+					
+					 $this=$(this); 
+				     $.ajax({
+						     url:"{:U('Login/checkInput',array('act'=>'uname'))}",
+							 type:"POST",
+							 data:{username:$("#reg_user").val()},
+							 
+							 beforeSend: function(){
+								 
+								 
+								 },success: function(data){
+									    
+										
+										 if(data==true){
+											
+											
+										$this.next().html('可以包含字母、数字和下划线,破折号不要超过20个字符。').css('color','#666')
+									 }else{
+										    
+											$this.next().html('用户名已经存!').css('color','red');
+											$this.focus();
+										 
+										 }
+								 }
+						 
+						 }) 
+                });
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				$("#email").blur(function(e) {
+                      
+					if($(this).val()==""){
+						    
+							return false;
+						  
+						}
+					
+					 $this=$(this); 
+				     $.ajax({
+						     url:"{:U('Login/checkInput',array('act'=>'mail'))}",
+							 type:"POST",
+							 data:{email:$("#email").val()},
+							 
+							 beforeSend: function(){
+								 
+								 
+								 },success: function(data){
+									    
+										
+										 if(data==true){
+											
+											$("#msg").html("");
+										
+									 }else{
+										    $this.next().html('真实邮件地址 你将会收到一封确认邮件。').css('color','#666')
+											$this.next().html('邮箱已经存在!').css('color','red').show();
+											$this.focus();
+										 
+										 }
+								 }
+						 
+						 }) 
+                });
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+				$("#reg_btn1").click(function(e) {
+                      
+					  setTimeout(function(){},300);
+					
+					 $this=$(this); 
+				     $.ajax({
+						     url:"/Login/do_reg/ajax/1",
+							 type:"POST",
+							 data:{username:$("#reg_user").val(),password:$("#password").val(),email:$("#email").val(),ajax:1},
+							 
+							 beforeSend: function(){
+								 
+								 
+								 },success: function(data){
+									    
+										$this.val('处理中...');
+										$this.attr("disbaled",true);
+										 if(data.status==1){
+											
+											$this.val(data.info);
+											$this.attr("disbaled",true);
+											window.location='/';
+										
+									 }else{
+										    
+											$this.val(data.info);
+										 
+										 }
+								 }
+						 
+						 }) 
+						 
+						 return false;
+                });
+				
+				
+				
+				
+			
+				
+				
+				
+				
+            })
+        </script>
+        
+        
+             <script>
+$(function(){
+
+	$('#lrkfwarp').lrkf({
+		kftop:'140',
+		defshow:false,
+		Event:'hover',
+		qqs:[
+			{'name':'　客服1','qq':'1051898665'},	
+			{'name':'　客服3','qq':'2302238407'},
+			{'name':'　客服2','qq':'1051898665'},
+			
+			{'name':'　客服4','qq':'2302238407'}		//注意逗号是英文的逗号
+			
+			
+					//注意最后一个{}不要英文逗号
+		],
+		
+
+		
+					//>>更多方式		
+	});
+		
+});
+</script>
+<script src="/Public/js/lrkf.js"></script>
+    </body>
+</html>
+

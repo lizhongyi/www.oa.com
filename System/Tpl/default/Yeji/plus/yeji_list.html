@@ -1,0 +1,81 @@
+<!--全部业绩分配--->
+<present name="getList">
+
+               <form method="post" action="{:U('Works/yeji_doCommand',array('stage'=>$_GET['stage']))}">
+ <div style="min-height:120px;">             
+<table class="table">
+<tr>
+<th width="60">ID</th>
+<th width="90">团队成员</th>
+<th width="109">成功人选</th>
+<th width="120">工作角色</th>
+
+<th width="100" align="center">佣金基数</th>
+<th width="100" align="center">佣金比例</th>
+<th width="100" align="center">佣金金额</th>
+
+<th width="100" align="center">发放状态</th>
+<th width="120" align="center">更新时间</th>
+
+<th width="80" align="center">备注</th>
+<th width="90" align="center">操作</th>
+</tr>
+<volist name="getList" id="vo">
+<tr>
+  <td><input  style="width:20px;" type="checkbox" name="id[]" id="all3" class="piliang_box" value="{$vo.id}" />{$vo['id']}</td>
+  <td>{$vo['uid']|get_teamer}</td>
+  <td>{$vo['candidate_id']|get_houxuan}</td>
+ 
+  <td id="worksnr_{$vo['id']}"><script>get_sinfo("worksnr_{$vo['id']}",selecter.works_nr,'{$vo["work_content"]}')</script></td>
+   <td><span class="red jine">￥{$vo['jishu']}</span></td>
+  <td align="center">{$vo['ticheng_bili']}%</td>
+  <td><span class="red jine">￥{$vo['yd_ticheng']}</span></td>
+ 
+  <td><if condition="$vo['ticheng_stauts'] eq 1">已发放<else/>未发放</if></td>
+  <td>{$vo['update_time']|date='Y-m-d',###}</td>
+   <td><a href="javascript:;" title="{$vo['mark']}">查看</a></td>
+  <td>
+  
+  <a href="#yeji_modfy"  data-toggle="modal" class="modfy-a" link='{:U("Yeji/modfy",array("id"=>$vo["id"],"ajax"=>1))}'>修改</a> 
+  
+  　<a  loadbox="tab_{$vo['stage']}" style="margin-left:-1px !important;" href="javascript:;" class="del-a" link="{:U('Yeji/delete',array('id'=>$vo['id']))}">删除</a></td>
+  </tr>  
+</volist>
+
+</table>
+
+ </div> <!-----------======调用公共分页=======---------------->
+
+</div> <div class="tb_footer_l"><div class="btn-group"> <span class="btn " style="height:18px;"><input   type="checkbox" name="all2" id="chkall" onclick="checkAll(this.form, 'id')" /></span> <button class="btn  dropdown-toggle" data-toggle="dropdown">
+                       选择装操作 　<span class="caret" style="color:#CCC"></span>
+                        </button> <input type="hidden" name="sid" id="sid" class="sid"/><input type="hidden" name="stage_cn" id="stage_cn" class="stage_cn"/><input name="maodian" value="" type="hidden" id="maodian"/>  
+                                               <button class="btn  candidate_command" >提交</button><ul class="dropdown-menu stage_ul" style="margin-left:40px;">
+                                                <li><a href="javascript:;" set_pype="del" sid="101"><i class="icon-ok large"></i>　已发放</a></li>
+            <li><a href="javascript:;" set_pype="del" sid="100"><i class="icon-trash large"></i>　删除</a></li>                                   
+                                               
+</ul></div></div>
+               
+  </form>
+              <div class="tb_footer_r">
+              <div class="row-fluid">
+                     <div class="pag page-1">
+ 
+ <ul>
+{$pageBar}
+</ul>
+</div>
+                    </div>
+                    
+                    <script>
+                       // $(".stage_ul").html(selecter_list('stage'));
+					    $("#maodian").val(window.location.hash);
+                    </script>
+
+<!------==============调用公共分页=============================-->
+                    <div class="cl"></div>
+ 
+<else/>
+<div style="padding:50px;">
+暂时没有数据
+</div>
+</present>

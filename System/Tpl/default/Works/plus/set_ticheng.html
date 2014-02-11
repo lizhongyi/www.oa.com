@@ -1,0 +1,150 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>请设置佣金比例</h3>
+  </div>
+  <div class="modal-body">
+  <div class="custom_add">
+  <div id="msg"></div>
+  <form action="/Works/do_set_ticheng" name="" id="set_form">
+
+  <table width="499" class="tc">
+  <tr class="on">
+  <td width="87" align="right">寻访员：</td>
+  <td width="400"><div class="input-append">
+    <input name="xunfang" id="xunfang" type="text" class="span2" value="{$set['xunfang']}" /><span class="r_t btn"><i class="icon-remove-sign"></i></span> %</div></td>
+  </tr>
+ <tr class="on">
+    <td align="right">顾问：</td>
+    <td><div class="input-append"><input name="minshi" id="mianshi" type="text" class="span2"  value="{$set['mianshi']}"/><span class="r_t btn"><i class="icon-remove-sign"></i></span> %</div></td>
+  </tr>
+<tr class="on">
+    <td align="right">客户协调： </td>
+    <td><div class="input-append"><input name="goutong" id="goutong" type="text" class="span2" value="{$set['goutong']}" /><span class="r_t btn"><i class="icon-remove-sign"></i></span> %</div></td>
+  </tr>
+ <tr class="on">
+    <td align="right">销售：</td>
+    <td><div class="input-append"><input name="xiaoshou" id="xiaoshou" type="text" class="span2" value="{$set['xiaoshou']}"/><span class="r_t btn"><i class=" icon-remove-sign"></i></span> %</div></td>
+  </tr>
+ <tr class="on">
+    <td align="right">录入：</td>
+    <td><div class="input-append"><input name="luru" id="luru" type="text" class="span2" value="{$set['luru']}"/><span class="r_t btn"><i class="icon-remove-sign"></i></span> %</div></td>
+  </tr>
+ <tr class="on">
+    <td align="right">其他：</td>
+    <td><div class="input-append"><input name="other" id="other" type="text" class="span2" value="{$set['other']}"/><span class="r_t btn"><i class="icon-remove-sign"></i></span> %</div></td>
+  </tr>
+  </table>
+
+  <input id="candidate_id" type="hidden" name="candidate_id" value="{$_GET['gid']}"/>
+ 
+
+ </form>
+ </div>
+ 
+ 
+  </div>
+  
+  
+  <div class="modal-footer">
+   <button class="btn set_shuxing" type="submit">添加属性</button><button class="btn btn-primary set_ticheng_save" type="submit">保存</button>
+  </div>
+  
+  <script>
+  
+     //设置属性 
+	 
+	 
+	
+	 //初始化设置佣金
+	 
+	 $("#set_form input").each(function(index, element) {
+		 
+		 if($(this).val()==0){
+           $(this).parents('tr').removeClass('on');
+		 }
+	   
+      });
+	
+  
+    //设置清除佣金选项
+	
+	$(".r_t").click(function(e) {
+       
+	     if($(this).parents('table').find('tr.on').length > 1){
+		    $(this).parents('tr').removeClass('on');
+			$(this).prev().val(0);
+	   }else{
+		   $(this).parent().find(".red").remove();
+		   $(this).parent().append('<span class="red">这少保留一项</span>')
+		   }
+    });
+  
+  
+  
+    $("#set_form input").blur(function(e) {
+		
+         　　s=$(this).val();
+		if(s.length > 2){
+			$(this).parent().append("<span class='red'>　只能输入两位数字</span>");　　
+			}else{
+				$(this).parent().find(".red").remove();
+				
+				
+				   if(!(/^[0-9]\d{0,1}$/.test(s))){
+			  
+			  $(this).parent().append("<span class='red'>　只能数字</span>");           }else{
+				  $(this).parent().find(".red").remove();
+				}	
+				
+				}
+				
+		    		
+			
+				
+		
+    });
+   
+    $(".set_ticheng_save").click(function(e) {
+         
+		if($("#xunfang").val()=='' || 
+		   $("#mianshi").val()=='' ||
+		   $("#goutong").val()=='' ||
+		   $("#other").val()==''  ){
+			     
+				 alert("您还没有填写");
+			   
+			   }else{
+				   
+				     $.ajax({
+						    
+							url:"/Works/plus/act/do_set_ticheng/gid/{$set['id']}",
+							type:"POST",
+							data:{xunfang:$("#xunfang").val(),
+							      mianshi:$("#mianshi").val(),
+								  goutong:$("#goutong").val(),
+								  xiaoshou:$("#xiaoshou").val(),
+								  luru:$("#luru").val(),
+								  other :$("#other").val(),
+								  candidate_id :$("#candidate_id").val()
+								  
+								  },
+							beforeSend: function(){
+								 msg("提交中...")
+								},success: function(data){ 
+								  if(data=='ok'){
+								  msg("设置完成");
+								  $(".close").click();
+								  }else{
+									   msg('您没有修改');
+									   //$(".close").click();
+									  }
+								}
+						 
+						 });
+				   
+				   }
+		
+    });
+  
+  </script>
+  

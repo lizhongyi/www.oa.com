@@ -1,0 +1,196 @@
+
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>任务详情</h3>
+  </div>
+  <div class="modal-body s-detail" >
+  <input name="title" id="title"  value="{$dt.title}" placeholder="日程主题"  width="400px" style="border:0px solid #ddd !important" /><span id="ts" style="padding-left:10px"></span>
+ <br>
+
+                        
+                 <input type="text" name="start_time" id="start_time"  class="datepicker " style="width:110px;" data-date-format="yyyy-mm-dd"  value='{$dt.start_time|date="Y-m-d",###}' /> <select name="sshi" id="sshi" class="span1" style="width:50px;"> <?php
+                                       for($i=0;$i<=23;$i++){
+                                     ?>
+                                        <option value="{$i}" <if condition="$dt.sshi eq $i"> selected </if> >{$i}</option>
+                                      
+                                      <?php
+                                      }
+                                      ?>
+                                     </select> 
+                                     
+                                    
+                                     
+                                     <select name="sfen" id="sfen" class="span1" style="width:50px;">
+                                     
+                                      <?php
+                                       for($i=0;$i<=59;$i++){
+                                     ?>
+                                        <option value="{$i}" <if condition="$dt.sfen eq $i"> selected </if> >{$i}</option>
+                                      
+                                      <?php
+                                      }
+                                      ?>
+                                     </select>　至　<input type="text" name="end_time" id="end_time" style="width:110px;"  class="datepicker span2" data-date-format="yy-mm-dd"  value="<if condition = "$dt['end_time'] gt 10000"> {$dt.end_time|date='Y-m-d',###} </if>" />
+                                     
+                                     
+                                     
+                                     
+                                     
+                                   <select name="eshi" id="eshi" class="span1" style="width:50px;">
+                                     <?php
+                                       for($i=0;$i<=23;$i++){
+                                     ?>
+                                        <option value="{$i}" <if condition="$dt.eshi eq $i"> selected </if> >{$i}</option>
+                                      
+                                      <?php
+                                      }
+                                      ?>
+                                     </select> 
+                                     
+                                     <select name="efen" id="efen" class="span1" style="width:50px;">
+                                     
+                                      <?php
+                                       for($i=0;$i<=59;$i++){
+                                     ?>
+                                        <option value="{$i}" <if condition="$dt.efen eq $i"> selected </if> >{$i}</option>
+                                      
+                                      <?php
+                                      }
+                                      ?>
+                                     </select>
+                    
+
+ <textarea name="content" rows="4" id="content" placeholder="任务内容" style="margin-left:-0px;">{$dt.content}</textarea>
+  </div>
+  <div class="modal-footer">
+    <a href="javascript:;" class="btn del-schedule">删除</a>
+    <a href="javascript:;" class="btn btn-primary" id="update_renwu">保存修改</a>
+  </div>
+
+<script>
+
+ $(document).ready(function(e) {
+       
+	   
+	
+		
+	
+	
+	
+});
+ 
+ 
+ 
+ 
+ //save  schedule
+ 
+ $("#update_renwu").click(function(e) {
+    
+	  
+	  if($("#title").val()==''){
+		  
+		    $("#title").css('border','1px solid red');
+			$("#title").focus();
+			return false;
+	 }
+	 
+	   
+	   
+	   
+	  $data={
+		    url:'/Schedule/do_add',
+			type:'POST',
+			
+			
+		  
+		  
+		  
+		  
+		  }  
+	   
+	     
+	   
+	 $.ajax({
+		    url:'/Schedule/do_modfy',
+			type:'POST',
+			data:{
+				id:"{$dt.id}",
+				 title:$("#title").val(),
+			      start_time:$("#start_time").val(),
+				  sshi:$('#sshi').val(),
+				  sfen:$("#sfen").val(),
+				  end_time:$("#end_time").val(),
+				  eshi:$("#eshi").val(),
+				  efen:$("#efen").val(),
+				  content:$("#content").val(),
+				  },
+			beforeSend: function(){
+				   
+				   $("#ts").html('提交中...');
+				   $("#save_renwu").attr('disabled',true);
+				}
+			,success: function(data){
+				
+				     $("#ts").html(data.info);
+					 
+					 setTimeout(function(){
+						    
+							$('.close').click();
+							
+							$("#s_tt_{$dt.id} .fc-event-title").text($("#title").val());
+						   
+						 },1000);
+				  
+				}
+			
+			
+		  
+		  
+		  
+		  
+		  }  
+		  );
+	   
+});
+
+//delete
+
+$(".del-schedule").click(function(){
+	        
+			$this=$(this);
+			
+			 $.ajax({
+		    url:'/Schedule/delete/id/{$dt.id}/ajax/1',
+			type:'POST',
+			beforeSend: function(){
+				   
+				   $("#ts").html('提交中...');
+				   $("#save_renwu").attr('disabled',true);
+				}
+			,success: function(data){
+				
+				     $("#ts").html(data.info);
+					 
+					 setTimeout(function(){
+						    
+							$('.close').click();
+							 $("#s_tt_{$dt.id}").remove();
+						   
+						 },2000);
+				  
+				}
+			
+			
+		  
+		  
+		  
+		  
+		  }  
+		  );
+	
+	
+	});
+
+
+</script>
+

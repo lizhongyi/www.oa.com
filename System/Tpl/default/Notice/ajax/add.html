@@ -1,0 +1,85 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>新增内部通知</h3>
+  </div> 
+  
+
+  <div class="modal-body" style="padding:0px;"> 
+  
+  
+  <div class=" modal_box">
+<div id="msg"></div>
+<div  class="form-box">
+ <label class="control-label">通知标题：</label>
+     <input type="text" class="span3" name="title" id="title" />
+   <label class="control-label">  通知内容： </label>    <textarea name="content" id="content" style="margin-left:-2px; height:150px;"></textarea>
+   </div>
+ </div>
+ 
+  </div>
+
+</div> 
+
+
+
+ </div>
+  <div class="modal-footer">
+     <button class="btn btn-primary" type="submit" id="notice_bt" >保存</button></div>
+
+ </div>
+ <script>
+ 
+
+
+    $("#notice_bt").click(function(e) {
+		
+	
+    
+	  if($("#title").val()=="" || $("#content")==""){
+	                   	msg("请仔细检查必填项");
+	                    return false;
+	  }else{
+		     
+		   
+		    url="/Notice/do_add/ajax/1";
+		    tdata={
+					      title      : $("#title").val(),
+					      content       : $("#content").val(),
+					     
+					 
+                       };
+					      
+						  
+						  cb={bf:function(){
+							  
+							   msg("正在提交");
+							   
+							 },su:function(data){
+								 
+									 
+								if(data.status==1){
+							    $("#msg").html(data.info).show().fadeOut(1000,function(){
+							    $(".modal-backdrop").click();
+								
+								$("#load_notice").load('/Notice/index/ajax/1');
+	       									});
+								}else{
+									  msg(data.info);
+									  return false;
+									}
+								
+								
+						    }
+							}  
+						
+		                ajaxForm(url,tdata,cb);
+						
+	  }
+   
+   return false;
+	 
+}); 
+
+
+ </script>
+ 

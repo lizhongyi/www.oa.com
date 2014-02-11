@@ -1,0 +1,98 @@
+<div class="divider-content"><span></span></div>
+<h4>用户列表</h4>
+
+
+<present name="list" >
+<table class="table table_list table table-bordered table-striped responsive" >
+<tr>
+  <th width="60">ID</th>
+  <th width="224">部门</th>
+<th width="117">用户名</th>
+<th width="73">邮箱</th>
+<th width="109">职务</th>
+<th width="133">状态</th>
+<th width="264">注册时间</th>
+<th width="98">操作</th>
+</tr>
+<volist name="list" id="vo">
+<tr>
+  <td>{$vo.uid}</td>
+  <td>{$department[$vo['department']]}</td>
+
+  <td>{$vo.username}</td>
+  <td>{$vo.email}</td>
+  <td>{$vo['post']}</td>
+  <td><if condition="$vo.status eq 1">启用<else/><span style="color:#900">禁用</span></if></td>
+  <td>{$vo.create_time|date='Y-m-d',###}</td>
+  <td><a class="edit_user" href="#add_user" bid="{$_GET['bid']}" link="/User_group/user_edit/ajax/1/id/{$vo.uid}" data-toggle="modal">编辑</a> </td>
+</tr>
+
+</volist>
+</table>
+
+<div class="m15">
+{$pageBar}
+</div>
+<else/>
+
+<div class="m15">
+该部门还没有成员。
+</div>
+</present>
+<script>
+  
+  $(".edit_user").click(function(e) {
+      
+	   geta($("#add_user"),$(this).attr('link'),loadGif);
+	   
+});
+
+
+
+	//delete user
+				
+				
+				
+				 $(".del_user").click(function(e) {
+               
+			    if(window.confirm('这是一个危险的操作，您确定删除这个用户么？\n删除后，所有用户相关数据都将被删除!')){
+					    
+						
+						
+					
+					    $this=$(this);
+					   $.ajax({
+						      
+							   url:'/User_group/delete_user/ajax/1',
+							   type:"POST",
+							   data:{id:$(this).attr('xid')},
+							   beforeSend: function(){},
+							   success:function(data){
+								      
+								      if(data.status==1){
+										  show_stack_bar_top('success',data.info,'');
+										  
+										  setTimeout(function(){
+											   
+											  $("#user_list").load('/User_group/user_list/ajax/1/bid/'+$("#bid").val());
+											  
+											  },2000)
+										 
+										  }else{
+									      show_stack_bar_top('error',data.info,'');
+											 }
+								    
+								   },
+						   
+						   });
+					
+					
+					
+					}else{
+						   
+						   return false;
+						
+						}
+        });
+				   
+</script>

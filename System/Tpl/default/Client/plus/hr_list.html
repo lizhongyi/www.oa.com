@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>{$_GET['cname']}　HR联系人</h3>
+  </div> 
+  
+ 
+  <div class="modal-body"> 
+  
+  
+  <div class=" modal_box">
+<div id="msg"></div>
+
+<table width="416" class="table table-bordered  tb-auto">
+  <tr>
+  <th width="99"> 姓名 </th>
+    <th width="90">联系电话</th>
+    <th width="114">手机</th>
+    <th width="85">email</th>
+    </tr>
+  <volist name="hr_list" id="vo">
+    <tr>
+      <td>{$vo['hname']}</td>
+      <td>{$vo['tel']}</td>
+      <td>{$vo['phone']}</td>
+      <td>{$vo['email']}</td>
+      </tr>
+  </volist>
+ 
+</table>
+
+  </div>
+  </div>
+  
+  <div class="modal-footer">
+  <button type="button"  class="add_hr btn btn-primary">新增联系人</button>
+    </div>
+
+ </div>
+ 
+ <script>
+  
+  $(".add_hr").click(function(e) {
+    
+	$("#hr_list").load('/Client/hr_add/com_id/{$_GET["id"]}');
+	
+});
+ 
+ </script>

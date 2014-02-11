@@ -1,0 +1,212 @@
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 id="modal-recoverLabel">编辑成员</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="form-add" method="post" />
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="control-group">
+                                                           
+                                                           
+                                                           
+                                                           
+                                                                  <div class="controls">
+                                                  
+                           <label class="control-label span3" for="inputAuto" style="padding-top:6px; padding-right:18px; text-align:right">隶属于</label>     
+                           
+                           <select name="department" id="department" class="span5">
+                           
+                           {$pid|buildSelect2=0,$dt['department']}
+                           </select>
+                              
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                    
+                    
+                    
+                    
+                    
+                        <div class="control-group">
+                                                           
+                                                           
+                                                           
+                                                           
+                                                                  <div class="controls">
+                                                                  
+                           <label class="control-label span3" for="inputAuto" style="padding-top:6px; padding-right:18px; text-align:right">用户名</label>     <input type="text" data-validate="{required: true, messages:{required:'请输入用户名'}}" autocomplete="off" class="span5" disabled id="username" value="{$dt['username']}" name="username" />
+                              
+                            </div>
+                            
+                            
+                                                                  <div class="controls">
+                                                                  
+                           <label class="control-label span3" for="inputAuto" style="padding-top:6px; padding-right:18px; text-align:right">密码</label>     <input type="password" data-validate="{required: true, messages:{required:'请输入密码'}}" class="span5" id="password" value="" placeholder="不需要修改无需填写" name="password" />
+                              
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        
+                        
+                        
+                                                                  <div class="controls">
+                                                                  
+                           <label class="control-label span3" for="inputAuto" style="padding-top:6px; padding-right:18px; text-align:right">Email</label>     <input type="text" disabled  data-validate="{required: true, email:true, messages:{required:'请输入邮件地址', email:'请输入一个有效的邮件地址'}}" class="span5" id="email" value="{$dt['email']}" name="email" />
+                              
+                            </div>
+                            
+                            
+                            
+                                                                           <div class="controls">
+                                                                  
+                           <label class="control-label span3" for="inputAuto" style="padding-top:6px; padding-right:18px; text-align:right">职务</label>     <input type="text"  data-validate="{required: true, email:true, messages:{required:'请输入邮件地址', email:'请输入一个有效的邮件地址'}}" class="span5" id="post" value="{$dt['post']}" name="post" />
+                              
+                            </div>
+                            
+                            
+                            
+                                                                           <div class="controls">
+                                                                  
+                           <label class="control-label span3" for="inputAuto" style="padding-top:6px; padding-right:18px; text-align:right">状态</label>    <select name="status" id="status" class="span2">
+                           
+                            <option <if condition="$dt['status'] eq 1"> selected </if> value="1">
+                           启用
+                            </option>
+                           <option <if condition="$dt['status'] eq 0"> selected </if> value="0">
+                           禁用
+                           </option>
+                           </select>
+                              
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        
+                        
+                        
+                        
+                            
+                        
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                    <input type="submit" form="form-recover" id="add_user_bt" class="btn btn-primary" value="提交" />
+                </div>
+                
+                
+               <script>
+			   
+			   
+			   $(document).ready(function(e) {
+                   
+				   
+				   
+				 
+
+
+
+function yan_fn(obj,msg,btn){
+	
+	     
+		 
+		         if(msg!=''){
+				               obj.addClass('bred');
+				               if(obj.next().length==0){
+					           obj.parent().append("<span class='ms'>"+msg+"</span>")
+					         }  //obj.val("");
+				               btn.attr('disabled',true);
+							   return false;
+				 }else{
+					   obj.removeClass('bred'); 
+					   obj.next(".ms").remove();
+					     btn.attr('disabled',false);
+					 }
+					 
+	    
+	}
+				   
+				   
+				   
+				   $("#password").blur(function(e) {
+                        
+						if($(this).val().length > 0 && $(this).val().length <6){
+							  
+							   yan_fn($(this),'密码不能小于6位数',$("#add_user_bt"));
+							    
+							}else{
+								 yan_fn($(this),'',$("#add_user_bt"));
+								}
+					   
+                });
+		
+				   
+				   $("#add_user_bt").click(function(e) {
+                      
+					  
+					  //$("input").blur();
+					  
+					  
+					   $this=$(this);
+				        
+				
+						
+						
+						$.ajax({
+							url:'/User_group/do_user_edit/ajax/1/id/{$_GET["id"]}',
+							type:"POST",
+							data:{password:$("#password").val(),department:$("#department").val(),post:$("#post").val(),status:$("#status").val()},
+							beforeSend: function(){
+								   
+								   $this.val("提交中....").attr('disabled','disabled');
+								   
+								},
+							success:function(data){
+								       
+									   if(data.status==1){
+										   
+										   //  show_stack_bar_top('error','出错了','请填写完整');
+											$(".close").click();
+											$("#user_list").load('/User_group/user_list/ajax/1/bid/'+$("#bid").val());
+										   
+										 }else{
+											 
+											  show_stack_bar_top('error','出错了',data.info);
+											  $this.attr('disabled',false).val("提交");
+											 
+											 }
+								
+								}
+							
+							});
+						
+						return false;
+					  
+					
+					   
+                });
+				   
+				
+				
+            });
+			   
+			   </script>
+                

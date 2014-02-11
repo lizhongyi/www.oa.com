@@ -1,0 +1,175 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>编辑<span id="stage_{$detail['id']}"><script>get_sinfo("stage_{$detail['id']}",selecter.stage,"{$detail['stage']}")</script></span></h3>
+  </div> 
+  
+ 
+  <div class="modal-body"> 
+  
+  
+  <div class=" modal_box">
+<div id="msg"></div>
+ <table >
+ <tr>
+ <td width="125" align="right" class="th">候选人姓名</td>
+ <td width="464">{$detail['realname']}<input type="hidden" name="gid" id="gid" value="{$detail['gid']}"/></td>
+ </tr>
+ <tr>
+   <td align="right" class="th">最近工作单位</td>
+   <td>{$detail['before_job']}</td>
+ </tr>
+ <tr>
+   <td align="right" class="th">手机</td>
+   <td>{$detail['phone']}</td>
+ </tr>
+ 
+ <tr>
+   <td align="right" valign="top" class="th">就任职位</td>
+   <td>{$detail['jr_zhiwei']}</td>
+ </tr>
+ <tr>
+   <td align="right" valign="top" class="th">候选人状态</td>
+   <td> <div  class="erji-s">
+    <select name="stage" id="stage" class="big-s span2" style="display:none">
+      {:get_select($select['stage'],$detail['stage'])}
+       </select>
+     <select id="stages" name="stages" class="small-s span2" >
+       {:get_select($select['stages'][$detail['stage']],$detail['stages'])}       
+       </select>
+   </div></td>
+ </tr>
+ <tr>
+   <td align="right" class="th">应入职时期</td>
+   <td>
+              
+                 <input type="text" name="yrz_time" id="yrz_time"  class="datepicker span2" data-date-format="yyyy-mm-dd"  data-date="<php> echo date('Y-m-d',time());</php>" value="<if condition='$detail["yrz_time"] gt 10000'>{$detail['yrz_time']|date='Y-m-d',###}<else/><php> echo date('Y-m-d',time()) ;</php></if>" />
+               </if>
+                 
+                 
+      </td>
+ </tr>
+ <tr>
+   <td align="right" class="th">实际入职日期</td>
+   <td><input type="text" name="sjrz_time" id="sjrz_time"  class="datepicker span2" data-date-format="yyyy-mm-dd"  data-date="2012-12-12" value="<if condition='$detail["sjrz_time"] gt 10000'>{$detail['sjrz_time']|date='Y-m-d',###}<else/><php> echo date('Y-m-d',time()) ;</php></if>" /></div></td>
+ </tr>
+ <tr>
+   <td align="right" valign="top" class="th">入职备注</td>
+   <td><textarea name="rz_mark" id="rz_mark" style="margin-left:-2px;">{$detail['rz_mark']}</textarea></td>
+ </tr>
+  
+  
+  
+  
+  
+ </table>
+ 
+
+ </div>
+ 
+  </div>
+  
+  <div class="modal-footer">
+     <button class="btn btn-primary" type="submit" id="candidate_bt_md" >保存</button></div>
+
+ </div>
+ 
+ 
+  <!----================公共验证js================---->
+ 
+   <include file="Public:candidate_modfy_js" />
+ 
+ <!----================公共验证js================---->
+ 
+ 
+ 
+ 
+ 
+ 
+ <script>
+ 
+// ajax 提交联系人
+    
+	
+    $("#candidate_bt_md").click(function(e) {
+      
+	  if(1==0){
+	                   	msg("请仔细检查必填项");
+	                    return false;
+	  }else{
+		   
+		   $.ajax({
+			     
+				 url:"/Candidate/do_modfy/id/{$detail['id']}",
+				 type:"POST",
+				 data:{
+					      
+						  stage          : $("#stage").val(),
+						  stages         : $("#stages").val(),
+						  mark           : $("#mark").val(),
+	                      yrz_time       : $("#yrz_time").val(), 
+						  sjrz_time      : $("#sjrz_time").val(),
+						  rz_mark        : $("#rz_mark").val(),
+						  ajax           : 1
+					 
+                       },
+					   beforeSend: function(){
+						    
+							msg("正在提交");
+						   
+						   },
+						   success: function(data){
+							   
+							   if(data=="ok"){
+								
+								          msg("保存成功");
+										  
+										  $(".close").click();
+										  $("#tab_"+$("#stage").val()).click();
+								  // geta($("#clist_"+$("#stage").val()),"/Works/candidate/ajax/1/loadbox/clist_"+$("#stage").val()+"/stage/"+$("#stage").val()+"/gid/"+$("#gid").val());
+										 
+										  						  
+																		   }
+								   else{
+									     
+										 if(data==""){
+										 msg("没有任何编辑")
+										 }else{
+											  msg(data)
+											 }
+									   
+									   }
+									   
+									   
+							    
+							  }		
+							  
+							
+			   
+			   });
+		  
+		  }
+		
+   
+   return false;
+	 
+}); 
+var defaultOptions = {
+            dateFormat: "yy-mm-dd",
+            showMonthAfterYear: true,
+            dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+			monthNames:['1','2','3','4','5','6','7','8','9','10','11','12'],
+            nextText: '>',
+            prevText: '<',
+			changeMonth: true,
+            changeYear: true
+			
+		
+
+        };
+       // $("#time").datepicker(defaultOptions);
+      
+  
+  $('.datepicker').datepicker(defaultOptions);
+  
+ </script>
+ 

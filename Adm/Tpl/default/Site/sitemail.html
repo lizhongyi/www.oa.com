@@ -1,0 +1,271 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+<meta name="author" content="" />
+
+<meta name="copyright" content="jobmedia.cn" />
+
+<title> </title>
+
+<link href="__PUBLIC__/skin/style/common.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="__PUBLIC__/skin/js/init.js"></script>
+
+<script type="text/javascript"> 
+
+$(document).ready(function()
+
+{
+
+	setsendmailshow();
+
+	$("#methodsel :radio").click(function () {setsendmailshow();});
+
+	function setsendmailshow()
+
+	{
+
+		var stlval=$("#methodsel :radio[checked]").val();
+
+		if (stlval=="1")
+
+		{
+
+		$("#method_sendmail").show();
+
+		}
+
+		else
+
+		{
+
+		$("#method_sendmail").hide();
+
+		}
+
+	}
+
+	$("#check").click(function () {	
+
+	$("#submitbox").hide();
+
+	$("#hide").show();	
+
+	});
+
+});
+
+</script>
+
+
+</head>
+
+<body style="background-color:#E0F0FE">
+
+
+<div class="admin_nav_bg">
+
+
+
+
+<if condition="ACTION_NAME eq sitemail ">
+<div class="admin_nav_li"><a href="__APP__/Site/sitemail">邮件配置</a></div>
+<else /> 
+<div class="admin_nav_li_hover"><a href="__APP__/Site/sitemail">邮件配置</a></div>
+
+</if>
+
+
+<if condition="ACTION_NAME eq email_testing ">
+<div class="admin_nav_li"><a href="__APP__/Site/email_testing">测试邮件</a></div>
+<else /> 
+<div class="admin_nav_li_hover"><a href="__APP__/Site/email_testing">测试邮件</a></div>
+
+</if>
+
+<!--
+<if condition="ACTION_NAME eq agreement ">
+<div class="admin_nav_li"><a href="__APP__/Site/agreement">使用协议</a></div>
+<else /> 
+<div class="admin_nav_li_hover"><a href="__APP__/Site/agreement">使用协议</a></div>
+
+</if>
+
+
+<if condition="ACTION_NAME eq filter ">
+<div class="admin_nav_li"><a href="__APP__/Site/filter">词语过滤</a></div>
+<else /> 
+<div class="admin_nav_li_hover"><a href="__APP__/Site/filter">词语过滤</a></div>
+
+</if>
+
+
+-->
+
+
+
+
+
+
+
+<div class="clear"></div>
+
+</div>
+
+<div class="admin_main_nr_box">
+
+<div class="toptip">
+
+	<h2>提示：</h2>
+
+	<p>您可以先发送测试邮件来调试邮件发送配置信息。</p>
+
+  </div>
+
+<div class="toptit">设置</div>
+
+<form action="__APP__/Site/email_set_save" method="post"   name="form1" id="form1">
+
+<table width="100%" border="0" cellspacing="8" cellpadding="0" style="padding-left:15px;" id="methodsel">
+
+  <tr>
+
+    <td>
+
+	<label>
+
+	<input name="method" type="radio" value="1"  <if condition="$mailconfig['method'] eq 1 ">checked="checked"</if>/>
+
+      通过连接 SMTP 服务器发送邮件
+
+	  </label>
+
+	  </td>
+
+    </tr>
+
+  <tr>
+
+    <td>
+
+	<label>
+
+	<input type="radio" name="method" value="2" <if condition="$mailconfig['metmod'] eq 2"> checked="checked"</if>/>
+
+      通过sendmail 发送邮件
+
+	  </label>
+
+	</td>
+
+    </tr>
+
+  <tr>
+
+    <td>
+
+	<label>
+
+	<input type="radio" name="method" value="3"  <if condition="$mailconfig['metmod'] eq 3"> checked="checked"</if>/>
+
+     通过 PHP 函数 SMTP 发送邮件
+
+
+
+	  </label>
+
+	</td>
+
+    </tr>
+
+</table>	
+
+		<table width="700" border="0" cellspacing="8" cellpadding="1" style=" margin-bottom:3px; display:none" id="method_sendmail">
+
+          <tr>
+
+            <td width="121" align="right">SMTP服务器地址：</td>
+
+            <td width="560"><input name="smtpservers" type="text"  class="input_text_200" id="smtpservers" value="{$mailconfig.smtpservers}" maxlength="30"/>
+
+              如：smtp.qq.com</td>
+
+          </tr>
+
+          <tr>
+
+            <td align="right">SMTP服务帐户名：</td>
+
+            <td><input name="smtpusername" type="text"  class="input_text_200" id="smtpusername" value="{$mailconfig.smtpusername}" maxlength="100"/></td>
+
+          </tr>
+
+          <tr>
+
+            <td align="right">SMTP服务密码：</td>
+
+            <td><input name="smtppassword" type="password"  class="input_text_200" id="smtppassword" value="{$mailconfig.smtppassword}" maxlength="40"/></td>
+
+          </tr>
+
+          <tr>
+
+            <td align="right">发信人邮件地址：</td>
+
+            <td><input name="smtpfrom" type="text"  class="input_text_200" id="site_title" value="{$mailconfig.smtpfrom}" maxlength="60"/>
+
+             </td>
+
+          </tr>
+
+          <tr>
+
+            <td align="right">SMTP 端口：</td>
+
+            <td><input name="smtpport" type="text"  class="input_text_200" id="smtpport" value="{$mailconfig.smtpport}" maxlength="60"/>
+
+默认：25</td>
+
+          </tr>
+
+         
+
+      </table>
+
+	  <table width="700" border="0" cellspacing="8" cellpadding="1"  >
+
+        
+
+          <tr>
+
+            <td width="120" align="right">&nbsp;</td>
+
+            <td> 
+
+              <input name="save" type="submit" class="admin_submit"    value="保存修改"/>
+
+            </td>
+
+          </tr>
+
+      </table>
+
+  </form>
+
+		  
+
+  
+
+</div>
+
+
+</body>
+
+</html>

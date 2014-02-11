@@ -1,0 +1,293 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>新增HR联系人</h3>
+  </div> 
+  
+ 
+  <div class="modal-body"> 
+  
+  
+  <div class=" modal_box">
+
+ <div class="span3 input-append input-line">
+              <label class="control-label"><span class="red">*</span>联系人</label>  <input class="span2" id="hname" name="hname" placeholder="必先*" size="16" type="text"><span class="add-on"><i class="icon-user"></i></span>
+    </div>
+  <div class="span3 input-append input-line"><label class="control-label"><span class="red">*</span>电话</label>
+  <input type="hidden" name="company_id" id="company1" value="{$_GET['com_id']}"/>
+  
+<input type="text" name="tel" placeholder="电话 *必填" id="tel" class="span2"/><span class="add-on"><i class="icon-phone"></i></span>
+   </div>
+   <div class="span3 input-append input-line">
+   <label class="control-label">传真</label>
+  <input type="text" name="fax" id="fax" class="span2"/><span class="add-on"><i class="icon-inbox"></i></span>
+  
+</div>
+<div class="span3 input-append input-line">
+
+  <label class="control-label">手机</label>
+  <input type="text" name="phone"  id="phone" class="span2"/><span class="add-on"><i class="icon-phone"></i></span>
+  
+  </div>
+  <div class="span3 input-append input-line">
+  <label class="control-label">QQ</label>
+  <input type="text" name="qq"  id="qq" class="span2"/><span class="add-on">Q</i></span>
+  
+  </div>
+  <div class="span3  input-append input-line">
+  <label class="control-label">msn</label>
+   <input type="text" name="msn" id="msn" class="span2"/><span class="add-on">M</span>
+   </div>
+   <div class="span3 input-append input-line">
+    <label class="control-label">Email</label>
+  <input type="text" name="email"  id="email" class="span2" /><span class="add-on">@</span>
+  </div>
+  <div class="span3">
+  <label class="control-label">联系地址</label>
+  <input type="text" name="addr" id="addr"/>
+  
+  </div>
+  <div class="span3">
+  <span id="msg">　</span>
+  </div>
+  <div class="span2">
+ 
+  </div>
+ 
+  <div class="cl"></div>
+ </div>
+ 
+  </div>
+  
+  <div class="modal-footer">
+     <button class="btn btn-primary" type="submit" id="addhr_bt" >保存</button></div>
+
+ </div>
+ <script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ $("form input").live("blur",function(e) {
+        $this=$(this); 
+		var attr=$(this).attr("id"); 
+		var s=$this.val(); 
+		var pattern =/^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+                    //var pattern =/(^[0-9]{3,4}\-[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/; 
+		       switch(attr){
+			  
+			   case 'hname':
+			       if(s.length < 2){
+			           yan_fn($this,"请正确填写联系人");
+				       }else{
+					     yan_fn($this);
+					   }
+			   break;
+			   
+			   case 'title':
+			       if(s.length < 2){
+			           yan_fn($this,"请正确填写");
+				       }else{
+					     yan_fn($this);
+					   }
+			   break;
+			   
+			   case 'tel':
+			        
+			       
+                
+                     if(!pattern.exec(s))
+                     {
+                      yan_fn($this,"请正确填写电话号码");	
+                     }else{
+						  yan_fn($this);
+						 }
+					 
+					 
+                
+            
+			      
+			   break;
+			   case 'fax':
+			   if(s!=""){
+			   if(!pattern.exec(s))
+                     {
+                      yan_fn($this,"请正确填写传真");	
+                     }else{
+						  yan_fn($this);
+						 }
+			   }
+			   break;
+			   
+			   case 'phone':
+			        if(s!=""){
+			           if(!(/^1[3|5][0-9]\d{4,8}$/.test(s))){ 
+                       yan_fn($this,"不是完整的11位手机号或者正确的手机号前七位"); 
+				}else{
+					yan_fn($this);
+					}
+    }   
+		        break; 
+				
+				
+				 
+                    case 'email':
+			        if(s!=""){
+			           
+					   var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    
+                       if(!reg.test(s)){
+                            yan_fn($this,"email格式不正确，请重新输入！");
+                        }else{
+						     
+							 yan_fn($this);	
+							
+					  }
+					}
+                   break;
+				   
+				   
+				   case 'msn':
+			        if(s!=""){
+			           
+					   var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    
+                       if(!reg.test(s)){
+                            yan_fn($this,"msn格式不正确，请重新输入！");
+                        }else{
+						     
+							 yan_fn($this);	
+							
+					}
+					
+                   break;  
+					
+					}
+				
+				case 'qq':
+			        if(s!=""){
+			           
+					  
+						if(!(/^[0-9]\d{4,8}$/.test(s))){ 
+                       yan_fn($this,"qq不对"); 
+				}else{
+					yan_fn($this);
+					}	
+					
+					
+                   break;  
+					
+				
+        		
+			}
+			
+			
+			
+			   }
+		 
+		 
+		
+    });
+	
+
+
+
+function yan_fn(obj,msg){
+	
+	     
+		 
+		         if(msg!=undefined){
+				               obj.addClass('bred');
+				               if(obj.next().length==0){
+					           obj.parent().append("<span class='ms'>"+msg+"</span>")
+					        }  //obj.val("");
+				               obj.focus();
+							   return false;
+				 }else{
+					   obj.removeClass('bred'); 
+					   obj.next(".ms").remove();
+					 }
+	    
+	}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ // ajax 提交联系人
+
+    $("#addhr_bt").click(function(e) {
+      
+	
+	  
+	  if($("#hname").val()=="" || $("#tel")=="" || $("#company_id").val() ==""){
+	                   $("#addhr input").blur();
+	                    return false;
+	  }else{
+		   
+		   $.ajax({
+			     
+				 url:"/Hr_contacts/do_add",
+				 type:"POST",
+				 data:{
+					      hname      : $("#hname").val(),
+					      tel        : $("#tel").val(),
+					      fax        : $("#fax").val(),
+					      phone      : $("#phone").val(),
+						  email      : $("#email").val(),
+						  msn        : $("#msn").val(),
+						  qq         : $("#qq").val(),
+						  addr       : $("#addr").val(),
+						  company_id : $("#company1").val(),
+						  ajax       : 1
+					 
+                       },
+					   beforeSend: function(){
+						    
+							msg("正在提交");
+						   
+						   },
+						   success: function(data){
+							   
+							   if(data.status=1){
+								          msg(data.info)
+										  $(".close").click();
+								          $("#show_h_"+$("#company1").val()).click();
+;								   
+								   }
+								   else{
+									     
+										 
+										 msg("失败")
+									   
+									   
+									   }
+									   
+									   
+							    
+							  }		
+							  
+							
+			   
+			   });
+		  
+		  }
+		
+   
+   return false;
+	 
+}); 
+
+ </script>

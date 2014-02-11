@@ -1,0 +1,479 @@
+<include file="Public:header"/>                    
+<section class="section">
+            <div class="row-fluid">
+                <!-- span side-left -->
+                <div class="span1">
+                  
+                    <!--side bar-->
+                    
+                    <include file="Public:side-bar" />
+                    
+                  <!--/side bar -->
+                </div><!-- span side-left -->
+                
+                <!-- span content -->
+                <div class="span9">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content-header -->
+                        <div class="content-header">
+                            
+                              <include file="Public:breadcrumb"/>
+                        </div><!-- /content-header -->
+                        
+                        <!-- content-breadcrumb -->
+                        <div class="content-breadcrumb">
+                           
+                            
+                            
+                        </div><!-- /content-breadcrumb -->
+                        
+                        <!-- content-body -->
+                        <div class="content-body">
+                          <div class="box-header corner-top">
+                                    <div class="header-control pull-right">
+                                        <a data-box="collapse"><i class="icofont-caret-up"></i></a>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                       
+                                       
+                                        <li class="active" ><a  href="{:U('Talent/index')}">常规简历</a></li>  
+                                             <li><a  href="{:U('Talent_import/index')}">已下载的简历</a></li>                                    <li><a class="" style="color:#060" href="{:U('Talent/add')}">新增简历 <i class="icon-plus"></i></a></li>   
+                                    </ul>
+                          </div>
+                            
+                           
+                            
+                         
+
+                            <!-- tab resume content -->
+                            <div class="row-fluid">
+                                <!-- tab resume update -->
+                                <!-- tab resume update -->
+                                <div class="span12">
+                                    
+										
+                                        <div class="box-body">
+													
+	
+            
+              
+              <div class="m15"><form action="/Talent/do_edit/id/{$_GET['id']}" method="post" id="ad-gd"> 
+                <div class="cbox form-table" style="margin:15px;">
+                
+                
+                <div class="divf1">
+                
+                
+                <div class="span4  input-line">
+              <label class="control-label span3">真实姓名</label>  <input class="span7" id="realname" name="realname" value="{$dt['realname']}" size="16" type="text">
+    </div> 
+                
+               <div class="span4 input-line"> <label class="control-label span3" >出生日期</label>
+<select name='age' id="age" class="span4">
+
+<option <if condition=" $dt['age'] eq 1977 "> selected </if> value="1977">1977</option><option <if condition=" $dt['age'] eq 1978 "> selected </if> value="1978">1978</option><option <if condition=" $dt['age'] eq 1979 "> selected </if> value="1979">1979</option><option <if condition=" $dt['age'] eq 1980 "> selected </if> value="1980">1980</option><option <if condition=" $dt['age'] eq 1981 "> selected </if> value="1981">1981</option><option <if condition=" $dt['age'] eq 1982 "> selected </if> value="1982">1982</option><option <if condition=" $dt['age'] eq 1983 "> selected </if> value="1983">1983</option><option <if condition=" $dt['age'] eq 1984 "> selected </if> value="1984">1984</option><option <if condition=" $dt['age'] eq 1985 "> selected </if> value="1985">1985</option><option <if condition=" $dt['age'] eq 1986 "> selected </if> value="1986">1986</option><option <if condition=" $dt['age'] eq 1987 "> selected </if> value="1987">1987</option><option <if condition=" $dt['age'] eq 1988 "> selected </if> value="1988">1988</option><option <if condition=" $dt['age'] eq 1989 "> selected </if> value="1989">1989</option><option <if condition=" $dt['age'] eq 1990 "> selected </if> value="1990">1990</option><option <if condition=" $dt['age'] eq 1991 "> selected </if> value="1991">1991</option><option <if condition=" $dt['age'] eq 1992 "> selected </if> value="1992">1992</option><option <if condition=" $dt['age'] eq 1993 "> selected </if> value="1993">1993</option><option <if condition=" $dt['age'] eq 1994 "> selected </if> value="1994">1994</option><option <if condition=" $dt['age'] eq 1995 "> selected </if> value="1995">1995</option><option <if condition=" $dt['age'] eq 1996 "> selected </if> value="1996">1996</option><option <if condition=" $dt['age'] eq 1997 "> selected </if> value="1997">1997</option><option <if condition=" $dt['age'] eq 1998 "> selected </if> value="1998">1998</option><option <if condition=" $dt['age'] eq 1999 "> selected </if> value="1999">1999</option><option <if condition=" $dt['age'] eq 2000 "> selected </if> value="2000">2000</option><option <if condition=" $dt['age'] eq 2001 "> selected </if> value="2001">2001</option><option <if condition=" $dt['age'] eq 2002 "> selected </if> value="2002">2002</option><option <if condition=" $dt['age'] eq 2003 "> selected </if> value="2003">2003</option><option <if condition=" $dt['age'] eq 2004 "> selected </if> value="2004">2004</option><option <if condition=" $dt['age'] eq 2005 "> selected </if> value="2005">2005</option><option <if condition=" $dt['age'] eq 2006 "> selected </if> value="2006">2006</option><option <if condition=" $dt['age'] eq 2007 "> selected </if> value="2007">2007</option><option <if condition=" $dt['age'] eq 2008 "> selected </if> value="2008">2008</option><option <if condition=" $dt['age'] eq 2009 "> selected </if> value="2009">2009</option><option <if condition=" $dt['age'] eq 2010 "> selected </if> value="2010">2010</option><option <if condition=" $dt['age'] eq 2011 "> selected </if> value="2011">2011</option><option <if condition=" $dt['age'] eq 2012 "> selected </if> value="2012">2012</option><option <if condition=" $dt['age'] eq 2013 "> selected </if> value="2013">2013</option><option <if condition=" $dt['age'] eq 2014 "> selected </if> value="2014">2014</option><option <if condition=" $dt['age'] eq 2015 "> selected </if> value="2015">2015</option><option <if condition=" $dt['age'] eq 2016 "> selected </if> value="2016">2016</option><option <if condition=" $dt['age'] eq 2017 "> selected </if> value="2017">2017</option><option <if condition=" $dt['age'] eq 2018 "> selected </if> value="2018">2018</option><option <if condition=" $dt['age'] eq 2019 "> selected </if> value="2019">2019</option><option <if condition=" $dt['age'] eq 2020 "> selected </if> value="2020">2020</option><option <if condition=" $dt['age'] eq 2021 "> selected </if> value="2021">2021</option><option <if condition=" $dt['age'] eq 2022 "> selected </if> value="2022">2022</option><option <if condition=" $dt['age'] eq 2023 "> selected </if> value="2023">2023</option><option <if condition=" $dt['age'] eq 2024 "> selected </if> value="2024">2024</option><option <if condition=" $dt['age'] eq 2025 "> selected </if> value="2025">2025</option><option <if condition=" $dt['age'] eq 2026 "> selected </if> value="2026">2026</option><option <if condition=" $dt['age'] eq 2027 "> selected </if> value="2027">2027</option><option <if condition=" $dt['age'] eq 2028 "> selected </if> value="2028">2028</option><option <if condition=" $dt['age'] eq 2029 "> selected </if> value="2029">2029</option>
+
+</select>
+<select name="yue" id="yue" class="span3">
+<option value="0">选填</option>
+<option  <if condition=" $dt['yue'] eq 1 "> selected </if> value="1">1</option>
+<option <if condition=" $dt['yue'] eq 2 "> selected </if> value="2">2</option>
+<option  <if condition=" $dt['yue'] eq 3 "> selected </if> value="3">3</option>
+<option <if condition=" $dt['yue'] eq 4 "> selected </if> value="4">4</option>
+<option <if condition=" $dt['yue'] eq 5 "> selected </if> value="5">5</option>
+<option <if condition=" $dt['yue'] eq 6 "> selected </if> value="6">6</option>
+<option <if condition=" $dt['yue'] eq 7 "> selected </if> value="7">7</option>
+<option <if condition=" $dt['yue'] eq 8 "> selected </if> value="8">8</option>
+<option  <if condition=" $dt['yue'] eq 9 "> selected </if> value="9">9</option>
+<option <if condition=" $dt['yue'] eq 10 "> selected </if> value="10">10</option>
+<option <if condition=" $dt['yue'] eq 11 "> selected </if> value="11">11</option>
+<option <if condition=" $dt['yue'] eq 12 "> selected </if>  value="12">12</option>
+
+</select>
+
+</div>
+                       <div class="span4 input-append  input-line">
+                 <label class="control-label span3">性别</label>
+               <select name="sex" id="sex" class="span7">
+               {:get_select($select['sex'],$dt['sex'])}
+               </select>
+                  </div>
+                  
+                  <div class="cl"></div>
+                  
+                    
+                  
+                  </div>
+                  
+                  <div class="div-f2">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                
+                   <div class="span4  input-line">
+              <label class="control-label span3">所在地区</label>
+               <span>
+              <input class="span7 area" size="16" type="text" name="area_cn" id="area_cn" value="{$dt['area_cn']}" />
+              <input type="hidden" name="area" id="area-val" value="{$dt['area']}"/>
+              </span>
+    </div> 
+                       
+ 
+                       
+               
+                
+
+    
+    
+    
+           
+    
+    <!---
+    
+     <div class="span4 input-append input-line">
+               <label class="control-label">所在行业</label>  <input class="span7 industry" name="industry_cn" id="industry_input" size="16" type="text" value="请选择"><input type="hidden" value="" id="industry-val" name="industry" /><button class="btn industry" type="button"><i class="icon-plus industry"></i></button>
+    </div> 
+          -->
+          
+          
+     <div class="span4 input-line">
+              <label class="control-label span3">学历</label>  
+              
+            
+            <select name="education" class="span7" data-placeholder="Your Favorite Type of Bear">
+                                                                                                 {:get_select($select['education'],$dt['education'])}                                           
+                                                                </select>
+              
+            
+    </div> 
+  
+
+                   
+                                        <div class="span4  input-line"> 
+                                        
+                                        <label class="control-label span3" >工作年份</label>
+  <select id="workexp" name="workexp" class="span7">
+  
+  
+<option <if condition=" $dt['workexp'] eq 1990 "> selected </if> value="1990">1990</option><option <if condition=" $dt['workexp'] eq 1991 "> selected </if> value="1991">1991</option><option <if condition=" $dt['workexp'] eq 1992 "> selected </if> value="1992">1992</option><option <if condition=" $dt['workexp'] eq 1993 "> selected </if> value="1993">1993</option><option <if condition=" $dt['workexp'] eq 1994 "> selected </if> value="1994">1994</option><option <if condition=" $dt['workexp'] eq 1995 "> selected </if> value="1995">1995</option><option <if condition=" $dt['workexp'] eq 1996 "> selected </if> value="1996">1996</option><option <if condition=" $dt['workexp'] eq 1997 "> selected </if> value="1997">1997</option><option <if condition=" $dt['workexp'] eq 1998 "> selected </if> value="1998">1998</option><option <if condition=" $dt['workexp'] eq 1999 "> selected </if> value="1999">1999</option><option <if condition=" $dt['workexp'] eq 2000 "> selected </if> value="2000">2000</option><option <if condition=" $dt['workexp'] eq 2001 "> selected </if> value="2001">2001</option><option <if condition=" $dt['workexp'] eq 2002 "> selected </if> value="2002">2002</option><option <if condition=" $dt['workexp'] eq 2003 "> selected </if> value="2003">2003</option><option <if condition=" $dt['workexp'] eq 2004 "> selected </if> value="2004">2004</option><option <if condition=" $dt['workexp'] eq 2005 "> selected </if> value="2005">2005</option><option <if condition=" $dt['workexp'] eq 2006 "> selected </if> value="2006">2006</option><option <if condition=" $dt['workexp'] eq 2007 "> selected </if> value="2007">2007</option><option <if condition=" $dt['workexp'] eq 2008 "> selected </if> value="2008">2008</option><option <if condition=" $dt['workexp'] eq 2009 "> selected </if> value="2009">2009</option><option <if condition=" $dt['workexp'] eq 2010 "> selected </if> value="2010">2010</option><option <if condition=" $dt['workexp'] eq 2011 "> selected </if> value="2011">2011</option><option <if condition=" $dt['workexp'] eq 2012 "> selected </if> value="2012">2012</option><option <if condition=" $dt['workexp'] eq 2013 "> selected </if> value="2013">2013</option><option <if condition=" $dt['workexp'] eq 2014 "> selected </if> value="2014">2014</option><option <if condition=" $dt['workexp'] eq 2015 "> selected </if> value="2015">2015</option><option <if condition=" $dt['workexp'] eq 2016 "> selected </if> value="2016">2016</option><option <if condition=" $dt['workexp'] eq 2017 "> selected </if> value="2017">2017</option><option <if condition=" $dt['workexp'] eq 2018 "> selected </if> value="2018">2018</option><option <if condition=" $dt['workexp'] eq 2019 "> selected </if> value="2019">2019</option><option <if condition=" $dt['workexp'] eq 2020 "> selected </if> value="2020">2020</option><option <if condition=" $dt['workexp'] eq 2021 "> selected </if> value="2021">2021</option><option <if condition=" $dt['workexp'] eq 2022 "> selected </if> value="2022">2022</option><option <if condition=" $dt['workexp'] eq 2023 "> selected </if> value="2023">2023</option><option <if condition=" $dt['workexp'] eq 2024 "> selected </if> value="2024">2024</option><option <if condition=" $dt['workexp'] eq 2025 "> selected </if> value="2025">2025</option><option <if condition=" $dt['workexp'] eq 2026 "> selected </if> value="2026">2026</option><option <if condition=" $dt['workexp'] eq 2027 "> selected </if> value="2027">2027</option><option <if condition=" $dt['workexp'] eq 2028 "> selected </if> value="2028">2028</option><option <if condition=" $dt['workexp'] eq 2029 "> selected </if> value="2029">2029</option>
+  
+  </select>
+        
+               </div>
+                       
+<div class="cl"></div>
+                        
+                   </div>   
+                   
+                 
+                   <div class="">
+                    <div class="span4  input-line">
+              <label class="control-label span3">Email</label>  <input class="span7" id="email" name="email" size="16" value="{$dt['email']}" type="text">
+    </div>
+                   <div class="span4  input-line">
+              <label class="control-label span3">手机</label>  <input class="span7" id="phone" name="phone" size="16" value="{$dt['phone']}" type="text">
+    </div>
+    
+   
+                   
+                     
+                <div class="cl"></div>
+               
+               </div>
+               <div class="divider-content"><span></span></div>
+               
+                <div class="cl"></div>
+                
+                <div class="divf1">
+                <div class="span4 input-line"> <label class="control-label span3" >最近单位</label>
+<input class="span7" name="last_company" value="{$dt['last_company']}"   size="16" type="text" /></div>  
+
+
+<div class="span4 input-line"> <label class="control-label span3" >最近职位</label>
+<input class="span7" id="last_post"   size="16" type="text" name="last_post" value="{$dt['last_post']}"/></div>
+
+
+
+
+
+<div class="span4  input-line">
+              <label class="control-label span3">期望行业</label> 
+              <span> <input class="span7 industry" size="16" type="text" placeholder="选填" autocomplete="off"  name="trade_cn" id="industry_input" value="{$dt['trade_cn']}" /><input type="hidden" name="trade" value="{$dt['trade']}"   id="industry-val"/></span>
+    </div>   
+              
+</div>
+
+                
+      <div class="divf1">
+                
+                 
+                    <div class="span4 input-line"> <label class="control-label span3" >期望职位</label>
+<span>                   
+<input placeholder="选填" class="span7  cate_job" id="cate_job_input" size="16" type="text" name="post_cn" value="{$dt['post_cn']}"/><input type="hidden" name="post" value="{$dt['post']}"  id="cate_job-val" />
+</span>
+
+ 
+
+
+
+</div>
+              
+              
+                       <div class="span4   input-line">
+                 <label class="control-label span3">目前月薪</label>
+                <input class="xin1 span6" name="payment" id="xin1" type="text" onKeyUp="value=value.replace(/[^\d]/g,'')" value="{$dt['payment']}" /><input type="text" class="span2" value="元" style="width:40px; box-shadow:none; background:none; border:0px;" disabled="disabled"/>
+                
+                  </div>
+                       <div class="span4   input-line">
+                 <label class="control-label span3">目前年薪</label>
+                        <input class="xin2 span5" name="payment1" value="{$dt['payment1']}" id="xin2" type="text"/><input type="text" class="span2" value="万元" style="width:40px; box-shadow:none; background:none; border:0px;" disabled="disabled"/>
+                  </div>
+               
+                  
+                  <div class="cl"></div>
+                  
+                     <div class="">
+                    
+                  <div class="span7   input-line">
+                   <label class="control-label span2" style="width:64px;">语言能力</label>
+                  <select id="yuyan" name="yuyan" class="span4">
+                   
+                   <option value="英语" <if condition="$dt['yuyan'] eq '英语'"> selected </if> >英语</option>
+                   <option value="法语"  <if condition="$dt['yuyan'] eq '法语'"> selected </if>>法语</option>
+                   <option value="俄语" <if condition="$dt['yuyan'] eq '俄语'"> selected </if> >俄语</option>
+                   <option value="日语" <if condition="$dt['yuyan'] eq '日语'"> selected </if> >日语</option>
+                   <option value="阿拉伯语" <if condition="$dt['yuyan'] eq '阿拉伯语'"> selected </if>>阿拉伯语</option>
+                   <option value="其他" <if condition="$dt['yuyan'] eq '阿拉伯语'"> selected </if> >其他</option>
+                  
+                  </select>
+                  
+                  <input type="text" name="qita" id="yuyuan1" value="{$dt['qita']}"  class="span3" style=" display:none"/>
+                  
+                  </div>
+                  
+                  </div>
+                  
+                  
+                  
+                </div>
+                 
+                    
+                  
+                  </div>
+                  
+                  
+                  
+                
+                     
+                
+                <div>
+                
+                
+                          <div class="span4 input-append  input-line" style="display:none">
+                 <label class="control-label">招聘部门</label>
+                 <input type="text" name="hr_department" class="span7" id="hr_department" />
+                 </div>
+                 
+                 
+                 
+                  
+                        
+                       <div class="span12 input-append input-line">
+              <label class="control-label span1">职业技能</label>
+              <textarea name="skills" rows="5" class=" span10" id="skills">{$dt['skills']}</textarea>
+              
+            
+           </div>     
+           
+                  <div class="span12 input-append input-line">
+              <label class="control-label span1"> 项目经验</label>
+              <textarea name="about" placeholder="选填" rows="5" class=" span10" id="about">{$dt['about']}</textarea>
+                  </div> 
+           
+           
+           <div class="span12 input-append input-line">
+              <label class="control-label span1">备注</label>
+              <textarea name="mark" rows="4" class=" span10" id="mark" placeholder="选填">{$dt['mark']}</textarea>
+              
+            
+           </div>
+        
+             
+           
+           <div class="span12 input-append input-line" style="display:none">
+              <label class="control-label">备注</label>
+              <textarea name="remark" rows="5" class=" span10" id="yaoqiu"></textarea>
+              
+            
+           </div> 
+                 
+                        
+                        
+                
+                 <div class="cl"></div>
+            
+                       <div class="cl"></div>
+                       
+                       
+                    
+                       
+                    <div class="span8">
+                    <label class="span1"></label>
+                    <button  id="chongzhi" type="reset" class="btn btn ">　重置　</button> <button   type="submit" class="btn btn-primary ">　保存　</button>
+                     
+                     </div>
+                     
+                 <div class="cl"></div>
+                </form>
+                </div>
+            
+                <div class="divider-content"><span></span></div>
+                <div class="m15">
+                  
+              
+              </div>
+               
+              </div>
+               
+              </div>
+              
+             
+
+                          </div>
+                      </div><!-- tab stat -->
+                         
+                           
+                            
+                            <!--/dashboar-->
+                  </div><!--/content-body -->
+              </div><!-- /content -->
+  </div><!-- /span content -->
+                
+                <!-- span side-right -->
+  <div class="span2">
+                    <!-- side-right -->
+                    <aside class="side-right">
+                        <!-- sidebar-right -->
+                        <div class="sidebar-right">
+                            <!--sidebar-right-header-->
+                            <div class="sidebar-right-header">
+                                <div class="sr-header-right">
+                                   
+                                </div>
+                                <div class="sr-header-left">
+                                   <span id="localtime" style="font-size:12px; font-family:'微软雅黑'"></span>
+
+<script type="text/javascript">
+function showLocale(objD)
+{
+	var str,colorhead,colorfoot;
+	var yy = objD.getYear();
+	if(yy<1900) yy = yy+1900;
+	var MM = objD.getMonth()+1;
+	if(MM<10) MM = '0' + MM;
+	var dd = objD.getDate();
+	if(dd<10) dd = '0' + dd;
+	var hh = objD.getHours();
+	if(hh<10) hh = '0' + hh;
+	var mm = objD.getMinutes();
+	if(mm<10) mm = '0' + mm;
+	var ss = objD.getSeconds();
+	if(ss<10) ss = '0' + ss;
+	var ww = objD.getDay();
+	if  ( ww==0 )  colorhead="";
+	if  ( ww > 0 && ww < 6 )  colorhead="";
+	if  ( ww==6 )  colorhead="";
+	if  (ww==0)  ww="星期日";
+	if  (ww==1)  ww="星期一";
+	if  (ww==2)  ww="星期二";
+	if  (ww==3)  ww="星期三";
+	if  (ww==4)  ww="星期四";
+	if  (ww==5)  ww="星期五";
+	if  (ww==6)  ww="星期六";
+	colorfoot=""
+	str = colorhead + yy + "年" + MM + "月" + dd + "日  <br/>" + ww +""+ colorfoot + " " + hh + ":" + mm + ":" + ss ;
+	return(str);
+}
+function tick()
+{
+	var today;
+	today = new Date();
+	document.getElementById("localtime").innerHTML = showLocale(today);
+	window.setTimeout("tick()", 1000);
+}
+tick();
+</script>
+                                </div>
+                            </div><!--/sidebar-right-header-->
+                            <!--sidebar-right-control-->
+                            <div class="sidebar-right-control">
+                                <ul class="sr-control-item">
+                                    <li class="active"><a href="#contact" data-toggle="tab" title="contacts"><i class="icofont-group"></i></a></li>
+                                   
+                                    <li rel="tooltip-bottom" title="view site"><a href="/" target="_BLANK"><i class="icofont-external-link"></i></a></li>
+                                </ul>
+                            </div><!-- /sidebar-right-control-->
+                            <!-- sidebar-right-content -->
+                            
+                            
+                            
+                            
+                            
+                             <!-- sidebar-right-content -->
+                            <div class="sidebar-right-content">
+                                <div class="tab-content">
+                                    
+                                   {:W('rightInc')}<!--/alternative 1-->
+                                    
+                                </div>
+                            </div><!-- /sidebar-right-content -->
+                            
+                            
+                            
+                            
+                            <!-- /sidebar-right-content -->
+                        </div><!-- /sidebar-right -->
+                    </aside><!-- /side-right -->
+  </div><!-- /span side-right --></section>
+
+
+
+             <div class="modal" id="add_custom" style="width:560px; margin-left:-280px;"></div>
+
+
+          <include file="Public:footer" />
+          <include file="Public:js-tpl/area.inc"/> 
+          <include file="Public:js-tpl/hangye.inc"/> 
+          <include file="Public:js-tpl/cate_job.inc2"/>   
+       
+        <script>
+		
+		 
+		 $("#yuyan").change(function(e) {
+    
+	 
+	 if($("#yuyan").val()=="其他"){
+		    
+			$("#yuyuan1").show();
+		 
+		 }else{
+			 $("#yuyuan1").hide().val("");
+			 }
+		 
+	
+	
+});
+		
+		</script>
+	</body>
+</html>
+
+

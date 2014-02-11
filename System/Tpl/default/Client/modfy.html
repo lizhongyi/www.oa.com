@@ -1,0 +1,260 @@
+<include file="Public:header"/>                    
+               <section class="section">
+            <div class="row-fluid">
+                <!-- span side-left -->
+                <div class="span1">
+                  
+                    <!--side bar-->
+                    
+                    <include file="Public:side-bar" />
+                    
+                  <!--/side bar -->
+                </div><!-- span side-left -->
+                
+                <!-- span content -->
+                <div class="span9">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content-header -->
+                        <div class="content-header">
+                            
+                              <include file="Public:breadcrumb"/>
+                        </div><!-- /content-header -->
+                        
+                        <!-- content-breadcrumb -->
+                        <div class="content-breadcrumb">
+                           
+                            
+                            
+                        </div><!-- /content-breadcrumb -->
+                        
+                        <!-- content-body -->
+                        <div class="content-body">
+                          <div class="box-header corner-top">
+                                    <div class="header-control pull-right">
+                                        <a data-box="collapse"><i class="icofont-caret-up"></i></a>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                       
+                                        <li ><a  href="{:U('Client/index')}">客户查询</a></li>  
+                                        <li class="active"><a class="" style="color:#060" href="{:U('Client/add')}">新增客户 <i class="icon-plus"></i></a></li>
+                                        
+                                        <li><a href="/Client/recycle">回收站 <i class="icofont-trash"></i></a></li>
+                                        
+                                        
+                                    </ul>
+                                </div>
+                            
+                           
+                            
+                         
+
+                            <!-- tab resume content -->
+                            <div class="row-fluid">
+                                <!-- tab resume update -->
+                                <!-- tab resume update -->
+                                <div class="span12">
+                                    
+										
+                                        <div class="box-body">
+													
+	
+            
+              
+              <div class="m15">
+                
+                <form name="sr" id="sr" action="{:U('Client/do_modfy')}" method="post">
+      <div>
+      <div class="span11"></div>
+       <div class="span11  input-line">
+              <label class="control-label span2">全称</label> <input class="span4 companyname" placeholder="必填" size="16" type="text" value="{$dt.companyname}" id="companyname" name="companyname"><input type="hidden" name="id" id="id" value="{$dt['id']}"/>
+    </div> 
+    </div>
+    
+    
+     <div class="span11 input-append input-line">
+             <label class="control-label span2">简称</label> <span> <input type="text" class="span2" name="short_name" value="{$dt.short_name}" id="shortname"/></span>
+              
+    </div> 
+    
+    
+    
+    
+       <div class="span11 input-append input-line">
+              <label class="control-label span2">客户别名</label> <span> <input class="span6 company_name" placeholder="用于发布职位，请不要写真实名称
+" size="16" type="text" value="{$dt.company_name}" name="company_name"> </span>
+    </div> 
+    
+    
+    
+      
+    <div class="span11 input-append input-line">
+              <label class="control-label span2">城市地点</label> <span> <input class="span3 area" size="16" type="text" value="{$dt['area_cn']}" name="area_cn"><input type="hidden" name="area" value="{$dt['trade']}" id="area-val"/></span>
+    </div> 
+    
+    
+    <div class="span11 input-append input-line">
+              <label class="control-label span2">所属行业</label> <span> <input class="span3 industry" size="16" type="text" value="{$dt['trade_cn']}" autocomplete="off"  name="trade_cn" id="industry_input" /><input type="hidden" name="trade" value="{$dt['trade']}"   id="industry-val"/></span>
+    </div>
+    
+    <div class="span11 input-append input-line">
+              <label class="control-label span2">企业性质</label> <span> <select  id="xingzhi" name="nature"  class="span2">
+              {:get_select($select['nature'],$dt['nature'])}
+              </select></span>
+    </div>
+    
+    <div class="span11 input-append input-line">
+              <label class="control-label span2">公司规模</label> <span>  <select id="scale" name="scale" class="span3">
+			 {:get_select($select['scale'],$dt['scale'])}</select></span>
+    </div>
+    
+    
+    <div class="span11 input-append input-line">
+              <label class="control-label span2">公司介绍</label> <span> 
+              <textarea name="content" cols="30" rows="8" class="span6 scale_cn"  id="content" autocomplete="off">{$dt.content}</textarea>
+              </span>
+    </div>
+	
+	
+   <div class="cl"></div>
+                      
+					  
+					  
+					   <div class="modal-footer">
+                       
+                       <button class="btn" type="submit" id="client_bt" style="float:left" >重置</button>
+	 
+                       
+     <button class="btn btn-primary" type="submit" id="client_bt" style="float:left" >保存</button>
+	 
+	 </div>
+
+           
+					  
+					  
+                    </form>
+                
+           
+              </div>
+               
+              
+              
+              
+            </div>
+   
+
+                               </div>
+                            </div><!-- tab stat -->
+                            
+                           
+                            
+                            <!--/dashboar-->
+                        </div><!--/content-body -->
+                    </div><!-- /content -->
+                </div><!-- /span content -->
+                
+                <!-- span side-right -->
+                <div class="span2">
+                    <!-- side-right -->
+                    <aside class="side-right">
+                        <!-- sidebar-right -->
+                        <div class="sidebar-right">
+                            <!--sidebar-right-header-->
+                            <div class="sidebar-right-header">
+                                <div class="sr-header-right">
+                                   
+                                </div>
+                                <div class="sr-header-left">
+                                   <span id="localtime" style="font-size:12px; font-family:'微软雅黑'"></span>
+
+<script type="text/javascript">
+function showLocale(objD)
+{
+	var str,colorhead,colorfoot;
+	var yy = objD.getYear();
+	if(yy<1900) yy = yy+1900;
+	var MM = objD.getMonth()+1;
+	if(MM<10) MM = '0' + MM;
+	var dd = objD.getDate();
+	if(dd<10) dd = '0' + dd;
+	var hh = objD.getHours();
+	if(hh<10) hh = '0' + hh;
+	var mm = objD.getMinutes();
+	if(mm<10) mm = '0' + mm;
+	var ss = objD.getSeconds();
+	if(ss<10) ss = '0' + ss;
+	var ww = objD.getDay();
+	if  ( ww==0 )  colorhead="";
+	if  ( ww > 0 && ww < 6 )  colorhead="";
+	if  ( ww==6 )  colorhead="";
+	if  (ww==0)  ww="星期日";
+	if  (ww==1)  ww="星期一";
+	if  (ww==2)  ww="星期二";
+	if  (ww==3)  ww="星期三";
+	if  (ww==4)  ww="星期四";
+	if  (ww==5)  ww="星期五";
+	if  (ww==6)  ww="星期六";
+	colorfoot=""
+	str = colorhead + yy + "年" + MM + "月" + dd + "日  <br/>" + ww +""+ colorfoot + " " + hh + ":" + mm + ":" + ss ;
+	return(str);
+}
+function tick()
+{
+	var today;
+	today = new Date();
+	document.getElementById("localtime").innerHTML = showLocale(today);
+	window.setTimeout("tick()", 1000);
+}
+tick();
+</script>
+                                </div>
+                            </div><!--/sidebar-right-header-->
+                            <!--sidebar-right-control-->
+                            <div class="sidebar-right-control">
+                                <ul class="sr-control-item">
+                                    <li class="active"><a href="#contact" data-toggle="tab" title="contacts"><i class="icofont-group"></i></a></li>
+                                   
+                                    <li rel="tooltip-bottom" title="view site"><a href="/" target="_BLANK"><i class="icofont-external-link"></i></a></li>
+                                </ul>
+                            </div><!-- /sidebar-right-control-->
+                            <!-- sidebar-right-content -->
+                            <div class="sidebar-right-content">
+                                <div class="tab-content">
+                                    
+                                   {:W('rightInc')}<!--/alternative 1-->
+                                    
+                                </div>
+                            </div><!-- /sidebar-right-content -->
+                        </div><!-- /sidebar-right -->
+                    </aside><!-- /side-right -->
+                </div><!-- /span side-right -->
+            </div>
+        </section>
+
+
+
+             <div class="modal" id="add_custom" style="width:560px; margin-left:-280px;"></div>
+<div class="modal" id="show_client" style="width:600px; margin-left:-300px;"></div>
+
+       
+
+		<include file="Public:footer" />
+      <include file="Public:js-tpl/area.inc"/> 
+      <include file="Public:js-tpl/hangye.inc"/>  
+        <script src="/Static/skin/js/plus_tan.js"></script>
+        
+        <script>
+		
+		  $(".show_c").click(function(e) {
+            // document.write(loadGif);
+	        geta($($(this).attr('href')),$(this).attr('link'),loadGif);
+	
+});
+
+
+		</script>
+        
+	</body>
+</html>
+
+

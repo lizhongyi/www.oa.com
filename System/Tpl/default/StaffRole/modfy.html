@@ -1,0 +1,267 @@
+<include file="Public:header"/>                    
+               <section class="section">
+            <div class="row-fluid">
+                <!-- span side-left -->
+                <div class="span1">
+                  
+                    <!--side bar-->
+                    
+                    <include file="Public:side-bar" />
+                    
+                  <!--/side bar -->
+                </div><!-- span side-left -->
+                
+                <!-- span content -->
+                <div class="span9">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content-header -->
+                        <div class="content-header">
+                            
+                              <include file="Public:breadcrumb"/>
+                        </div><!-- /content-header -->
+                        
+                        <!-- content-breadcrumb -->
+                        <div class="content-breadcrumb">
+                            <!--breadcrumb-nav--><!--/breadcrumb-nav-->
+                          
+                      </div><!-- /content-breadcrumb -->
+                        
+                        <!-- content-body -->
+                        <div class="content-body"><!-- tab resume content -->
+                            <div class="row-fluid">
+                                <!-- tab resume update -->
+                                <!-- tab resume update -->
+                                <div class="span12">
+                                    
+										
+                                        <div class="box-body">
+													
+	
+            
+          
+               <div class="maininner">
+
+	<form method="post" action="{:U('StaffRole/do_modfy')}" enctype="multipart/form-data" id="mainFrom">
+
+	<div class="body_content">
+
+		<div class="top_action"><a href="__URL__">返回权限组</a> | <a href="{:U("Staff/index")}">雇员管理</a></div>
+
+		<table class="table">
+
+		<tr>
+
+		  <td style="width:7em;"> 权限组名称</td>
+
+		<td><input name="title" id="title" value="{$vo.title}"></td></tr>
+
+		
+
+       <volist name="dataList" id="dataVo">
+
+        <tr>
+
+        <td>{$dataVo.title}</td>
+
+          <td>
+
+            {$dataVo.permission|explodeRole=$vo['role_permission']}
+
+            </td>
+
+		</tr>
+
+        </volist>
+
+        
+
+		<tr><th colspan="2"><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'role_permission')">全选(不选择表示拥有全部权限)</th>
+
+		</tr>
+
+
+
+		</tbody>
+
+		
+
+		</table>
+
+	</div>
+
+		
+
+	<div class="foot_action">
+
+		
+        <input type="reset" name="button" id="button" value="还原重填" class="submit btn"/>
+<input type="submit" name="submit" value="提交编辑" class="submit btn btn-primary">
+
+        <input name="id" type="hidden" id="id" value="{$vo.id}" />
+
+	</div>
+
+	
+
+	</form>
+
+
+
+</div>           
+              </div>
+               
+              
+              
+              
+            </div>
+   
+
+                              
+                            </div><!-- tab stat -->
+                            
+                           
+                            
+                            <!--/dashboar-->
+                        </div><!--/content-body -->
+                    </div><!-- /content -->
+                </div><!-- /span content -->
+                
+                <!-- span side-right -->
+                <div class="span2">
+                    <!-- side-right -->
+                    <aside class="side-right">
+                        <!-- sidebar-right -->
+                        <div class="sidebar-right">
+                            <!--sidebar-right-header-->
+                            <div class="sidebar-right-header">
+                                <div class="sr-header-right">
+                                   
+                                </div>
+                                <div class="sr-header-left">
+                                   <span id="localtime" style="font-size:12px; font-family:'微软雅黑'"></span>
+
+<script type="text/javascript">
+function showLocale(objD)
+{
+	var str,colorhead,colorfoot;
+	var yy = objD.getYear();
+	if(yy<1900) yy = yy+1900;
+	var MM = objD.getMonth()+1;
+	if(MM<10) MM = '0' + MM;
+	var dd = objD.getDate();
+	if(dd<10) dd = '0' + dd;
+	var hh = objD.getHours();
+	if(hh<10) hh = '0' + hh;
+	var mm = objD.getMinutes();
+	if(mm<10) mm = '0' + mm;
+	var ss = objD.getSeconds();
+	if(ss<10) ss = '0' + ss;
+	var ww = objD.getDay();
+	if  ( ww==0 )  colorhead="";
+	if  ( ww > 0 && ww < 6 )  colorhead="";
+	if  ( ww==6 )  colorhead="";
+	if  (ww==0)  ww="星期日";
+	if  (ww==1)  ww="星期一";
+	if  (ww==2)  ww="星期二";
+	if  (ww==3)  ww="星期三";
+	if  (ww==4)  ww="星期四";
+	if  (ww==5)  ww="星期五";
+	if  (ww==6)  ww="星期六";
+	colorfoot=""
+	str = colorhead + yy + "年" + MM + "月" + dd + "日  <br/>" + ww +""+ colorfoot + " " + hh + ":" + mm + ":" + ss ;
+	return(str);
+}
+function tick()
+{
+	var today;
+	today = new Date();
+	document.getElementById("localtime").innerHTML = showLocale(today);
+	window.setTimeout("tick()", 1000);
+}
+tick();
+</script>
+                                </div>
+                            </div><!--/sidebar-right-header-->
+                            <!--sidebar-right-control-->
+                            <div class="sidebar-right-control">
+                                <ul class="sr-control-item">
+                                    <li class="active"><a href="#contact" data-toggle="tab" title="contacts"><i class="icofont-group"></i></a></li>
+                                   
+                                    <li rel="tooltip-bottom" title="view site"><a href="/" target="_BLANK"><i class="icofont-external-link"></i></a></li>
+                                </ul>
+                            </div><!-- /sidebar-right-control-->
+                            <!-- sidebar-right-content -->
+                            <div class="sidebar-right-content">
+                                <div class="tab-content">
+                                    
+                                   {:W('rightInc')}<!--/alternative 1-->
+                                    
+                                </div>
+                            </div><!-- /sidebar-right-content -->
+                        </div><!-- /sidebar-right -->
+                    </aside><!-- /side-right -->
+                </div><!-- /span side-right -->
+            </div>
+        </section>
+
+
+
+             <div class="modal" id="add_custom" style="width:560px; margin-left:-280px;"></div>
+<div class="modal" id="show_client" style="width:600px; margin-left:-300px;"></div>
+
+       
+
+		<include file="Public:footer" />
+      <include file="Public:js-tpl/area.inc"/> 
+      <include file="Public:js-tpl/hangye.inc"/>  
+        <script src="/Static/skin/js/plus_tan.js"></script>
+       <script>
+
+//修改权限设设置
+
+
+  
+
+  $(".setRole").change(function(e) {
+         
+		 if(window.confirm('确定要更改改雇员的权限组么？')){
+			   
+			   $this=$(this);
+			       $.ajax({
+				   url:"{:U('Staff/setRole',array('ajax'=>1))}",
+				   type:"POST",
+				   data:{uid:$this.attr('uid'),role_id:$this.val()},
+				   beforeSend: function(){
+					      $this.attr('disabled',true);
+					   },
+					   success:function(data){
+						         $this.attr('disabled',false);
+								 showResutl(data.info,data.status);
+						   
+						   }
+				   
+				   
+				   
+				   
+				   });
+			    
+			   
+			   
+			 }else{
+				    
+					return false;
+				   
+				 }
+		 
+});
+
+
+
+
+</script>
+        
+	</body>
+</html>
+
+

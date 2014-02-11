@@ -1,0 +1,377 @@
+  <aside class="side-left">
+                        <ul class="sidebar">
+                            <li <if condition="$module eq 'index'"> class="active first" </if>> <!--always define class .first for first-child of li element sidebar left-->
+                                <a href="/" title="dashboard">
+                                    <div class="helper-font-24">
+                                        <i class="icofont-dashboard"></i>
+                                    </div>
+                                    <span class="sidebar-text">控制面板</span>
+                                </a>
+                            </li>
+                             <li <if condition="$module eq 'Works'"> class="active" </if>>
+                                <a href="{:U('User/index')}" title="interface">
+                                    <div class="helper-font-24">
+                                        <i class="icofont-list-alt"></i>
+                                    </div>
+                                    <span class="sidebar-text">用户中心</span>
+                                </a></li>
+                                
+                                
+                                
+                            <li <if condition="$module eq 'Works'"> class="active" </if>>
+                                <a href="{:U('Works/index')}" title="interface">
+                                    <div class="helper-font-24">
+                                        <i class="icofont-list-alt"></i>
+                                    </div>
+                                    <span class="sidebar-text">工作单</span>
+                                </a>
+                                <ul class="sub-sidebar-form corner-top shadow-white">
+                                    <li class="title muted">操作</li>                  
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    <li>
+                                       <a href="{:U('Works/index')}"><i class="icofont-file"></i><span class="sidebar-text">我的工作单</span></a>
+                                    </li>
+                                    <li>
+                                       <a href="{:U('Works/add')}"><i class="icofont-plus"></i><span class="sidebar-text">创建工作单</span></a>
+                                    </li>
+                                    
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="{:U('Works/partake')}" title="form element" class="corner-all">
+                                            <i class="icofont-file"></i>
+                                            <span class="sidebar-text">我参与的工作单</span>
+                                        </a>
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="{:U('Works/all')}" title="code editor" class="corner-all">
+                                            <i class="icofont-book"></i>
+                                            <span class="sidebar-text">工作单管理</span>
+                                        </a>
+                                    </li>
+                                     <li class="divider"></li>
+                                    <li>
+                                        <a href="/Works/recycle" title="trash" class="corner-all">
+                                            <i class="icofont-trash"></i>
+                                            <span class="sidebar-text">回收站</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li <if condition="$module eq 'Candidate'"> class="active" </if>>
+                                <a href="{:U('Candidate/search')}" title="候选人">
+                                
+                                    <div class="helper-font-24">
+                                        <i class="icofont-group"></i>
+                                    </div>
+                                    <span class="sidebar-text">候选人</span>
+                                </a>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                <ul class="sub-sidebar-form corner-top shadow-white">
+                                    <li class="title muted">操作</li>                  
+                                    
+                                    
+                                    <li>
+                                       <a href="{:U('Candidate/search')}"><i class=" icon-search"></i>
+                                       <span class="sidebar-text">候选人查询</span></a>
+                                    </li>
+                                    
+                                   
+                                  
+                                 
+                                     <li class="divider"></li>
+                                    <li>
+                                        <a href="{:U('Candidate/recycle')}" title="trash" class="corner-all">
+                                            <i class="icofont-trash"></i>
+                                            <span class="sidebar-text">回收站</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                
+                                
+                                
+                                
+                                
+                                
+                            </li>
+                            
+                            
+                            
+                             <li     <if condition="$module eq 'Commission' ">  class="active" </if>  <if condition="$module eq 'Collection' ">  class="active" </if>" >
+                                <a href="{:U('Collection/index')}" title="charts">
+                                    <div class="helper-font-24">
+                                        <i class="icofont-credit-card"></i>
+                                    </div>
+                                    <span class="sidebar-text">账目</span>
+                                </a>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                <ul class="sub-sidebar-form corner-top shadow-white">
+                                    <li class="title muted">操作</li>                  
+                                    
+                                    
+                                    <li>
+                                       <a href="{:U('Collection/index')}"><i class=" icon-search"></i>
+                                       <span class="sidebar-text">收款查询</span></a>
+                                    </li>
+                                    
+                                     <li>
+                                       <a href="{:U('Commission/index')}"><i class=" icon-search"></i>
+                                       <span class="sidebar-text">佣金业绩查询</span></a>
+                                    </li>
+                                   
+                                  
+                                 
+                                     
+                                </ul>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                            </li>
+                            
+                            
+                            
+                            <li <if condition="$module eq 'Client'"> class="active"</if>>
+                                <a href="{:U('Client/index')}" >
+                                    <div class="helper-font-24">
+                                        <i class="icofont-user"></i>
+                                    </div>
+                                    <span class="sidebar-text">客户</span>
+                                </a>
+                                
+                                
+                                
+                                
+                                
+                                
+                                <ul class="sub-sidebar-form corner-top shadow-white">
+                                    <li class="title muted">操作</li>                  
+                                    
+                                    
+                                    <li>
+                                       <a href="{:U('Client/index')}"><i class=" icon-search"></i>
+                                       <span class="sidebar-text">客户查询</span></a>
+                                    </li>
+                                    
+                                   
+                                  
+                                 
+                                     <li class="divider"></li>
+                                    <li>
+                                        <a href="{:U('Client/add')}" title="trash" class="corner-all">
+                                            <i class="icofont-trash"></i>
+                                            <span class="sidebar-text">新增客户</span>
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    
+                                      <li class="divider"></li>
+                                    
+                                      <li>
+                                        <a href="{:U('Client/recycle')}" title="trash" class="corner-all">
+                                            <i class="icofont-trash"></i>
+                                            <span class="sidebar-text">回收站</span>
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                </ul>
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                            </li>
+                            <li <if condition="$module eq Schedule"> class='active' </if>>
+                                <a href="{:U('Schedule/index')}" title="table">
+                                    <div class="helper-font-24">
+                                        <i class="icofont-table"></i>
+                                    </div>
+                                    <span class="sidebar-text">日程表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{:U('Talent/index')}" title="Resume">
+                                    <div class="helper-font-24">
+                                        <i class="icofont-inbox"></i>
+                                    </div>
+                                    <span class="sidebar-text">简历库</span>
+                                </a>
+                                
+                                
+                                
+                                
+                                
+                                <ul class="sub-sidebar-form corner-top shadow-white">
+                                    <li class="title muted">操作</li>                  
+                                    
+                                    
+                                    <li>
+                                       <a href="{:U('Talent/index')}"><i class=" icon-search"></i>
+                                       <span class="sidebar-text">常规简历</span></a>
+                                    </li>
+                                    
+                                   
+                                  
+                                 
+                                     <li class="divider"></li>
+                                    <li>
+                                        <a href="{:U('Talent/add')}" title="trash" class="corner-all">
+                                            <i class="icofont-trash"></i>
+                                            <span class="sidebar-text">新增简历</span>
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    
+                                      <li class="divider"></li>
+                                    
+                                      <li>
+                                        <a href="{:U('Talent/recycle')}" title="trash" class="corner-all">
+                                            <i class="icofont-trash"></i>
+                                            <span class="sidebar-text">回收站</span>
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                </ul>
+                                
+                                
+                                
+                                
+                                
+                                
+                            </li>
+                            <li <if condition="$module eq 'Staff' ">  class="active" </if>  <if condition="$module eq 'StaffRole' ">  class="active" </if>" >
+                                <a href="{:U('Staff/index')}" title="icons">
+                                    <div class="helper-font-24">
+                                        <i class="icofont-user"></i>
+                                    </div>
+                                    <span class="sidebar-text">雇员</span>
+                                </a>
+                                
+                                <ul class="sub-sidebar-form corner-top shadow-white">
+                                    <li class="title muted">操作</li>                  
+                                    
+                                    
+                                    <li>
+                                       <a href="{:U('Staff/index')}">  <i class="icofont-user"></i>
+                                       <span class="sidebar-text">雇员列表</span></a>
+                                    </li>
+                                    
+                                   
+                                  
+                                 
+                                     <li class="divider"></li>
+                                    <li>
+                                        <a href="{:U('StaffRole/index')}" title="trash" class="corner-all">
+                                            <i class="icofont-trash"></i>
+                                            <span class="sidebar-text">权限管理</span>
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    
+                                    
+                                      <li class="divider"></li>
+                                    
+                                     
+                                    
+                                    
+                                    
+                                    
+                                    
+                                </ul>
+                                
+                                
+                                
+                            </li>
+                           
+                                   
+                                    <li>
+                                        <a href="javascript:;" title="系统配置">
+                                            <div class="helper-font-24">
+                                                <i class="icofont-cog"></i>
+                                            </div>
+                                            <span class="sidebar-text">配置</span>
+                                        </a>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        <ul class="sub-sidebar-form corner-top shadow-white">
+                                    <li class="title muted">操作</li>                  
+                                    
+                                    
+                                 
+                                    
+                                   
+                                  
+                                 
+                                     <li class="divider"></li>
+                                    <li>
+                                       <a data-toggle="modal" class="set_persona" href="#set_persona" link="/index.php/Persona/index/ajax/1">
+          　角色设置</a>
+                                    </li>
+                                    
+                                    
+                                    
+                                  
+                                     
+                                    
+                                    
+                                    
+                                    
+                                    
+                                </ul>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                    </li>
+                                 
+                                   
+                                </ul>
+                            </li>
+                        </ul>
+                    </aside>

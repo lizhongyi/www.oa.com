@@ -1,0 +1,172 @@
+
+  <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>添加任务</h3>
+  </div>
+  <div class="modal-body">
+  <input type="text" name="title" id="title" placeholder="日程主题" /><span id="ts" style="padding-left:10px"></span>
+ <br>
+
+                        
+                 <input type="text" name="start_time" id="start_time"  class="datepicker " style="width:110px;" data-date-format="yyyy-mm-dd"  value='' /> <select name="sshi" id="sshi" class="span1" style="width:50px;">
+                                     <?php
+                                       for($i=0;$i<24;$i++){
+                                     ?>
+                                        <option value="{$i}" <if condition="$dt.sshi eq $i"> seleced </if>>{$i}</option>
+                                      
+                                      <?php
+                                      }
+                                      ?>
+                                     </select> 
+                                     
+                                     <select name="sfen" id="sfen" class="span1" style="width:50px;">
+                                     
+                                      <?php
+                                       for($i=0;$i<60;$i++){
+                                     ?>
+                                        <option value="{$i}" <if condition="$dt.sfen eq $i"> seleced </if>>{$i}</option>
+                                      
+                                      <?php
+                                      }
+                                      ?>
+                                     </select>　至　<input type="text" name="end_time" id="end_time" style="width:110px;"  class="datepicker span2" data-date-format="yy-mm-dd"  data-date='' value="{$_GET['end_time']}" />
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     <select name="eshi" id="eshi" class="span1" style="width:50px;">
+                                     <?php
+                                       for($i=0;$i<24;$i++){
+                                     ?>
+                                        <option value="{$i}" <if condition="$dt.eshi eq $i"> seleced </if>>{$i}</option>
+                                      
+                                      <?php
+                                      }
+                                      ?>
+                                     </select> 
+                                     
+                                     <select name="efen" id="efen" class="span1" style="width:50px;">
+                                     
+                                      <?php
+                                       for($i=0;$i<60;$i++){
+                                     ?>
+                                        <option value="{$i}" <if condition="$dt.sfen eq $i"> seleced </if>>{$i}</option>
+                                      
+                                      <?php
+                                      }
+                                      ?>
+                                     </select>
+                                     
+                    
+
+ <textarea name="content" rows="4" id="content" placeholder="任务内容" style="margin-left:-0px;"></textarea>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">取消</a>
+    <a href="javascript:;" class="btn btn-primary" id="save_renwu">确认添加</a>
+  </div>
+
+<script>
+
+ $(document).ready(function(e) {
+       
+	   
+	
+	$("#start_time").val("{$_GET['st']}"); 
+		  
+		   
+		var defaultOptions = {
+            dateFormat: "yy-mm-dd",
+            showMonthAfterYear: true,
+            dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+			monthNames:['1','2','3','4','5','6','7','8','9','10','11','12'],
+            nextText: '>',
+            prevText: '<',
+			changeMonth: true,
+            changeYear: true
+			
+		
+
+        };
+	   $('.datepicker').datepicker(defaultOptions);
+	
+	
+	
+});
+ 
+ 
+ 
+ 
+ //save  schedule
+ 
+ $("#save_renwu").click(function(e) {
+    
+	  
+	  if($("#title").val()==''){
+		  
+		    $("#title").css('border','1px solid red');
+			$("#title").focus();
+			return false;
+	 }
+	 
+	   
+	   
+	   
+	  $data={
+		    url:'/Schedule/do_add',
+			type:'POST',
+			
+			
+		  
+		  
+		  
+		  
+		  }  
+	   
+	     
+	   
+	 $.ajax({
+		    url:'/Schedule/do_add',
+			type:'POST',
+			data:{title:$("#title").val(),
+			      start_time:$("#start_time").val(),
+				  sshi:$('#sshi').val(),
+				  sfen:$("#sfen").val(),
+				  end_time:$("#end_time").val(),
+				  eshi:$("#eshi").val(),
+				  efen:$("#efen").val(),
+				  content:$("#content").val(),
+				  },
+			beforeSend: function(){
+				   
+				   $("#ts").html('提交中...');
+				   $("#save_renwu").attr('disabled',true);
+				}
+			,success: function(data){
+				
+				     $("#ts").html(data.info);
+					  dt=data;
+					 setTimeout(function(data){
+						    
+							$('.close').click();
+							
+							window.location='/Schedule';
+						   
+						 },1000);
+				  
+				}
+			
+			
+		  
+		  
+		  
+		  
+		  }  
+		  );
+	   
+});
+
+
+
+</script>

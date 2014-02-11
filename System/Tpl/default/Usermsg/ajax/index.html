@@ -1,0 +1,17 @@
+
+<volist name="silist" id="vo">
+
+<if condition=" $vo['sixin'][0]['st'] neq '我发给'">
+<li>
+
+
+
+{$vo['sixin'][0]['st']}<a href="{:U('User/home',array('uid'=>$vo['tid']))}" >{$vo['uname']}</a> :{$vo['sixin'][0]['content']|msubstr=0,20}<a href="{:U('Usermsg/smsbox',array('toid'=>$vo['tid']))}">{$vo['tixing']}共{$vo['nums']}对话</a>
+
+
+
+
+
+</li>
+</if>
+</volist>

@@ -1,0 +1,516 @@
+<include file="Public:header"/>                    
+               <section class="section">
+            <div class="row-fluid">
+                <!-- span side-left -->
+                <div class="span1">
+                  
+                    <!--side bar-->
+                    
+                    <include file="Public:side-bar" />
+                    
+                  <!--/side bar -->
+                </div><!-- span side-left -->
+                
+                <!-- span content -->
+                <div class="span9">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content-header -->
+                        <div class="content-header">
+                            
+                             <include file="Public:breadcrumb"/>
+                        </div><!-- /content-header -->
+                        
+                        <!-- content-breadcrumb -->
+                        <div class="content-breadcrumb">
+                           
+                            
+                            <!--breadcrumb-->
+                            
+                         
+                            <!--/breadcrumb-->
+                        </div><!-- /content-breadcrumb -->
+                        
+                        <!-- content-body -->
+                        <div class="content-body" style="padding-top:10px;">
+                          
+                            
+                           
+                            
+                         
+
+                            <!-- tab resume content -->
+                            <div class="row-fluid">
+                                <!-- tab resume update -->
+                                <!-- tab resume update -->
+                                <div class="span12">
+                                    
+										
+                                        <div class="box-body">
+													
+	
+            
+              
+              <div class="m15">
+              
+            
+               <div class="tab"> <a  class="tab-bar hover"  link='{:U("Candidate/search",array("ajax"=>1,"loadbox"=>"h_box_1"))}' style="padding:1px 10px;">客户信息</a> <a link="{:U('Yeji/search',array('ajax'=>1,'loadbox'=>'h_box_2'))}"  class="tab-bar" style="padding:1px 10px;">HR联系人</a> </div>
+              
+              <div class="tab-box kehu" >
+              
+              <div class="tab_con_box" style="display:block;">
+              <div class="cl"></div>
+            <table class="table table-bordered  tb-auto">
+<tr>
+<td width="84">
+客户名称
+</td>
+<td width="300">{$detail['companyname']}</td>
+<td width="84">公司性质</td>
+<td width="213">{$select['nature'][$detail['nature']]}</td>
+</tr>
+<tr>
+  <td>公司规模</td>
+  <td>{$select['scale'][$detail['scale']]}</td>
+  <td>所属行业</td>
+  <td>{$detail['trade_cn']}</td>
+</tr>
+<tr>
+  <td>HR联系人</td>
+  <td align="left">{$detail['hr_contacts']['hname']}</td>  
+  <td align="left">电话</td>
+  <td align="left">{$detail['hr_contacts']['tel']}</td>   
+  </tr>
+
+<tr>
+  <td>公司简介</td>
+  <td colspan="3"><p>{$detail['content']}</p></td>
+  </tr>
+</table>
+<div class="cl"></div>
+              
+              </div>
+              
+              
+                <div class="tab_con_box">
+              
+              <div  style="padding:15px;">
+                  <div class="cl"></div>
+<span class="left"><strong>HR联系人列表</strong>
+ 
+</span>  <div class="btn-group right">
+   <button class="btn add_hr"  type="button" com_id="{$detail['id']}"  data-toggle="modal" href="#add_hr_contact">增加联系人</button>
+   <button class="btn add_hr" id="add_hr" type="button" com_id="{$detail['id']}"  data-toggle="modal" href="#add_hr_contact"><i class="icon-plus kehu-list"></i></button>
+ </div>
+<form method="post" action="{:U("Works/doCommand")}">
+  <table width="646" class="table table-bordered  tb-auto">
+  <tr>
+  <th width="40">序号</th>
+    <th width="99"> 姓名 </th>
+    <th width="114">手机</th>
+    <th width="80">QQ</th>
+    <th width="85">email</th>
+    <th width="110">传真</th>
+    <th width="72">操作</th>
+  </tr>
+  <volist name="hr_list" id="vo">
+    <tr>
+      <td><input  style="width:20px;" type="checkbox" name="id[]" id="all3" class="piliang_box" value="{$vo.id}" />
+                      {$vo['id']}</td>
+      <td>{$vo['hname']}</td>
+      <td>{$vo['phone']}</td>
+      <td>{$vo['qq']}</td>
+      <td>{$vo['email']}</td>
+      <td>{$vo['fax']}</td>
+      <td>
+      <a  class="btn btn-mini" data-toggle="modal" href="#add_hr_contact" class="hr_modfy" hid="{$vo['id']}">修改</a>
+      <a class="btn btn-mini" href="{:U('Hr_contacts/delete',array('id'=>$vo['id']))}">删除</a></td>
+    </tr>
+  </volist>
+ 
+</table>
+
+
+ <div class="tb_footer_l"><div class="btn-group"> <span class="btn" ><input  type="checkbox" name="all2" id="chkall" onclick="checkAll(this.form, 'id')" /></span><button class="btn" ><i class="icon-trash"></i></button></div></div>
+        </form>     
+        
+      
+                      
+             <div class="page" style="text-align:right; margin-top:-50px;">
+                         {$pageBar}
+                        </div>
+                        
+               
+                <div class="cl"></div>
+                </div>
+              
+              </div>
+            
+              
+            
+              </div>
+           
+              <div class="m15">
+              
+              
+               <present name="getList">
+           
+                <table width="90%" class="table" style="margin-left:">
+                
+               
+                  <tr>
+                    <th width="65" height="23">工单号</th>
+                    <th width="156">寻访职位</th>
+                    <th width="94">进展阶段</th>
+                    <th width="120">状态</th>
+                    <th width="90">候选人数量</th>
+                    <th width="50">负责人</th>
+                    <th width="78">更新时间</th>
+                    </tr>
+                  
+                  <volist name="getList" id="vo">
+                  <tr>
+                    <td width="65" height="24">{$vo['id']}</td>
+                    <td><a href="#show_client" link="{:U('Client/detail',array('id'=>$vo['cid'],'ajax'=>1))}" title="{$vo['custom']}" class="show_c" data-toggle="modal">{$vo['Search_posts']|msubstr=0,18}</a></td>
+                    <td>{$select['stage'][$vo['stage']]}</td>
+                  <td>{$select['stage'][$vo['stage']]}</td>
+                    <td>{$vo['hnums']}</td>
+                    <td>{$vo['principal_cn']}</td>
+                    <td>{$vo['create_time']|date='Y-m-d',###}</td>
+                    </tr>
+                  </volist>
+               
+                </table>
+                 <else/>
+                  <div class="cl"></div>
+            <div class="nodata">暂时没有数据</div>
+            </present>
+           
+              </div>
+               
+              
+              </div>
+              
+            </div>
+   
+<div class="tb_footer_r">
+              <div class="row-fluid">
+                      <div class="span8">
+                        <div class="dataTables_paginate paging_bootstrap pagination"><ul style="float:right;">
+                         {$pageBar}
+                          </ul>
+                          </div>
+                    </div>
+                  </div>
+                </div>
+                               </div>
+                            </div><!-- tab stat -->
+                            
+                           
+                            
+                            <!--/dashboar-->
+                        </div><!--/content-body -->
+                    </div><!-- /content -->
+                </div><!-- /span content -->
+                
+                <!-- span side-right -->
+                <div class="span2">
+                    <!-- side-right -->
+                    <aside class="side-right">
+                        <!-- sidebar-right -->
+                        <div class="sidebar-right">
+                            <!--sidebar-right-header-->
+                          <div class="sidebar-right-header">
+                                <div class="sr-header-right">
+                                   
+                                </div>
+                                <div class="sr-header-left">
+                                   <span id="localtime" style="font-size:12px; font-family:'微软雅黑'"></span>
+
+<script type="text/javascript">
+function showLocale(objD)
+{
+	var str,colorhead,colorfoot;
+	var yy = objD.getYear();
+	if(yy<1900) yy = yy+1900;
+	var MM = objD.getMonth()+1;
+	if(MM<10) MM = '0' + MM;
+	var dd = objD.getDate();
+	if(dd<10) dd = '0' + dd;
+	var hh = objD.getHours();
+	if(hh<10) hh = '0' + hh;
+	var mm = objD.getMinutes();
+	if(mm<10) mm = '0' + mm;
+	var ss = objD.getSeconds();
+	if(ss<10) ss = '0' + ss;
+	var ww = objD.getDay();
+	if  ( ww==0 )  colorhead="";
+	if  ( ww > 0 && ww < 6 )  colorhead="";
+	if  ( ww==6 )  colorhead="";
+	if  (ww==0)  ww="星期日";
+	if  (ww==1)  ww="星期一";
+	if  (ww==2)  ww="星期二";
+	if  (ww==3)  ww="星期三";
+	if  (ww==4)  ww="星期四";
+	if  (ww==5)  ww="星期五";
+	if  (ww==6)  ww="星期六";
+	colorfoot=""
+	str = colorhead + yy + "年" + MM + "月" + dd + "日  <br/>" + ww +""+ colorfoot + " " + hh + ":" + mm + ":" + ss ;
+	return(str);
+}
+function tick()
+{
+	var today;
+	today = new Date();
+	document.getElementById("localtime").innerHTML = showLocale(today);
+	window.setTimeout("tick()", 1000);
+}
+tick();
+</script>
+                                </div>
+                            </div><!--/sidebar-right-header-->
+                            <!--sidebar-right-control-->
+                            <div class="sidebar-right-control">
+                                <ul class="sr-control-item">
+                                    <li class="active"><a href="#contact" data-toggle="tab" title="contacts"><i class="icofont-group"></i></a></li>
+                                   
+                                    <li rel="tooltip-bottom" title="view site"><a href="/" target="_BLANK"><i class="icofont-external-link"></i></a></li>
+                                </ul>
+                            </div><!-- /sidebar-right-control-->
+                            <!-- sidebar-right-content -->
+                            
+                            
+                            
+                            
+                            {:W('rightInc')}
+                            
+                            
+                            
+                            
+                            
+                            
+                            <!-- /sidebar-right-content -->
+                        </div><!-- /sidebar-right -->
+                    </aside><!-- /side-right -->
+                </div><!-- /span side-right -->
+            </div>
+        </section>
+
+
+
+            <div class="tbox">
+ 
+ <div class="modal form" id="add_hr_contact" style="width:700px; margin-left:-350px;">
+ 
+</div>
+ 
+
+ </div>
+
+       
+
+		<include file="Public:footer" />
+      <script>
+   
+ 
+
+
+
+$(".form input").live("blur",function(e) {
+        $this=$(this); 
+		var attr=$(this).attr("id"); 
+		var s=$this.val(); 
+		var pattern =/^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+                    //var pattern =/(^[0-9]{3,4}\-[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/; 
+		       switch(attr){
+			  
+			   case 'hname':
+			       if(s.length < 2){
+			           yan_fn($this,"请正确填写联系人");
+				       }else{
+					     yan_fn($this);
+					   }
+			   break;
+			   
+			   case 'title':
+			       if(s.length < 2){
+			           yan_fn($this,"请正确填写");
+				       }else{
+					     yan_fn($this);
+					   }
+			   break;
+			   
+			   case 'tel':
+			        
+			       
+                
+                     if(!pattern.exec(s))
+                     {
+                      yan_fn($this,"请正确填写电话号码");	
+                     }else{
+						  yan_fn($this);
+						 }
+					 
+					 
+                
+            
+			      
+			   break;
+			   case 'fax':
+			   if(s!=""){
+			   if(!pattern.exec(s))
+                     {
+                      yan_fn($this,"请正确填写传真");	
+                     }else{
+						  yan_fn($this);
+						 }
+			   }
+			   break;
+			   
+			   case 'phone':
+			        if(s!=""){
+			           if(!(/^1[3|5][0-9]\d{4,8}$/.test(s))){ 
+                       yan_fn($this,"不是完整的11位手机号或者正确的手机号前七位"); 
+				}else{
+					yan_fn($this);
+					}
+    }   
+		        break; 
+				
+				
+				 
+                    case 'email':
+			        if(s!=""){
+			           
+					   var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    
+                       if(!reg.test(s)){
+                            yan_fn($this,"email格式不正确，请重新输入！");
+                        }else{
+						     
+							 yan_fn($this);	
+							
+					  }
+					}
+                   break;
+				   
+				   
+				   case 'msn':
+			        if(s!=""){
+			           
+					   var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    
+                       if(!reg.test(s)){
+                            yan_fn($this,"msn格式不正确，请重新输入！");
+                        }else{
+						     
+							 yan_fn($this);	
+							
+					}
+					
+                   break;  
+					
+					}
+				
+				case 'qq':
+			        if(s!=""){
+			           
+					  
+						if(!(/^[0-9]\d{4,8}$/.test(s))){ 
+                       yan_fn($this,"qq不对"); 
+				}else{
+					yan_fn($this);
+					}	
+					
+					
+                   break;  
+					
+				
+        		
+			}
+			
+			
+			
+			   }
+		 
+		 
+		
+    });
+	
+
+
+
+function yan_fn(obj,msg){
+	
+	     
+		 
+		         if(msg!=undefined){
+				               obj.addClass('bred');
+				               if(obj.next().length==0){
+					           obj.parent().append("<span class='ms'>"+msg+"</span>")
+					        }  //obj.val("");
+				               obj.focus();
+							   return false;
+				 }else{
+					   obj.removeClass('bred'); 
+					   obj.next(".ms").remove();
+					 }
+	    
+	}
+
+//ajax调用添加联系人表单
+
+     $(".add_hr").click(function(e) {
+         
+		 $("#add_hr_contact").load('/Client/hr_contact_add/com_id/{$detail["id"]}');
+		
+    });
+
+
+
+
+//ajax 调取修改HR联系人信息
+
+       $('.hr_modfy').click(function(e) {
+        $("#add_hr_contact").empty();
+	     geta($("#add_hr_contact"),'/Client/hr_modfy/id/'+$(this).attr('hid'),loadGif);	
+		
+    });
+	   	
+	
+//修改联系人提交
+
+      
+	 
+	
+	
+	
+	
+	var loadGif="<img src='/Static/skin/images/load.gif' class='loadbig' align='center' />";
+	
+function geta(obj,url,bef){
+	   
+	   $.ajax({
+		   url:url,
+		   beforeSend: function(){
+			   
+			     obj.html(bef)
+			   },success: function(data){
+				   
+				   obj.html(data);
+				   
+				   }
+			   
+		   
+		   })
+		   }
+	
+	
+
+	
+  </script>
+        
+	</body>
+</html>
+
+

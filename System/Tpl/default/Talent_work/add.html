@@ -1,0 +1,216 @@
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 id="modal-recoverLabel">新增工作经验</h3>
+                </div>
+                <div class="modal-body">
+
+                                    
+									
+               
+             <table class="" id="edu_inputs">
+                
+                <tr>
+                <td width="166">开始日期</td>
+                <td width="405">
+                                       
+                                       
+                                       
+                            <input id="wastart_time" name="start_time" class="grd-white span2 rizi"   size="16" type="text" value="" />  <select name="snian" id="snian"  style="width:100px; display:none">
+                   <option 2000 value="2000">2000</option><option 2001 value="2001">2001</option><option 2002 value="2002">2002</option><option 2003 value="2003">2003</option><option 2004 value="2004">2004</option><option 2005 value="2005">2005</option><option 2006 value="2006">2006</option><option 2007 value="2007">2007</option><option 2008 value="2008">2008</option><option 2009 value="2009">2009</option><option 2010 value="2010">2010</option><option 2011 value="2011">2011</option><option 2012 value="2012">2012</option><option 2013 value="2013">2013</option><option 2014 value="2014">2014</option><option 2015 value="2015">2015</option><option 2016 value="2016">2016</option><option 2017 value="2017">2017</option><option 2018 value="2018">2018</option><option 2019 value="2019">2019</option><option 2020 value="2020">2020</option><option 2021 value="2021">2021</option><option 2022 value="2022">2022</option><option 2023 value="2023">2023</option><option 2024 value="2024">2024</option><option 2025 value="2025">2025</option><option 2026 value="2026">2026</option><option 2027 value="2027">2027</option><option 2028 value="2028">2028</option><option 2029 value="2029">2029</option>
+                    </select>
+                    
+                    <select name="syue" id="syue" class="span1" style="display:none">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                      <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    </select></td>
+                </tr>
+                <tr>
+                  <td height="41">结束日期</td>
+                  <td>
+                  
+                    <input id="waend_time" name="end_time" class="grd-white rizi span2"    size="16" type="text" value="至今" />
+                    <select name="enian" id="enian"  style="width:100px; display:none">
+                    <option 2000 value="2000">2000</option><option 2001 value="2001">2001</option><option 2002 value="2002">2002</option><option 2003 value="2003">2003</option><option 2004 value="2004">2004</option><option 2005 value="2005">2005</option><option 2006 value="2006">2006</option><option 2007 value="2007">2007</option><option 2008 value="2008">2008</option><option 2009 value="2009">2009</option><option 2010 value="2010">2010</option><option 2011 value="2011">2011</option><option 2012 value="2012">2012</option><option 2013 value="2013">2013</option><option 2014 value="2014">2014</option><option 2015 value="2015">2015</option><option 2016 value="2016">2016</option><option 2017 value="2017">2017</option><option 2018 value="2018">2018</option><option 2019 value="2019">2019</option><option 2020 value="2020">2020</option><option 2021 value="2021">2021</option><option 2022 value="2022">2022</option><option 2023 value="2023">2023</option><option 2024 value="2024">2024</option><option 2025 value="2025">2025</option><option 2026 value="2026">2026</option><option 2027 value="2027">2027</option><option 2028 value="2028">2028</option><option 2029 value="2029">2029</option>
+                     <option value="0">至今</option>
+                    </select>
+                    
+                    <select name="eyue" id="eyue" class="span1" style="display:none">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                      <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="0">至今</option>
+                    </select></td>
+                </tr>
+                <tr>
+                  <td height="37">职位位</td>
+                  <td>
+                    <input class=""  id="title" name="title" size="20" type="text"><input type="hidden" value="{$_GET['resume_id']}" id="resume_id" name="resume_id" />        </td>
+                </tr>
+                <tr>
+                  <td>职位</td>
+                  <td>
+                   
+                   <input name="post" type="text" id="post" size="20" />
+                 </td>
+                </tr>
+                <tr>
+                  <td valign="top">工作职责</td>
+                  <td><textarea style="width:400px; height:180px;" name="duty"  cols="duty" id="duty"></textarea></td>
+                </tr>
+                
+                </table>
+
+              
+              
+              
+              
+              
+                 </div>
+                
+<div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+  <input type="submit"  id="add_edu_bt" class="btn btn-primary" value="提交" />
+</div>
+                
+                
+                
+                
+                
+<script>
+				
+			 
+  
+            $('[data-form=datepicker]').datepicker();
+
+			  
+			  
+			  
+			  
+			  
+			  $("#add_edu_bt").click(function(e) {
+                          
+						 $this=$(this);
+						if($("#title").val() =="" ){
+							    
+								  
+								  yan_fn($(".ms"),'请填写完整',$(this));
+								  
+								  return false;
+								  
+							}  
+							
+							
+							$.ajax({
+								     url:'/Talent_work/do_add',
+									 type:"POST",
+									 data:{start_time:$("#wastart_time").val(),end_time:$("#waend_time").val(),title:$("#title").val(),duty:$("#duty").val(),post:$("#post").val(),resume_id:$("#resume_id").val()
+									 },
+									 beforeSend: function(){
+										    
+											$this.val("提交中...").attr('disbaled',false);
+										   
+										 },success:function(data){
+											 
+											     if(data.status==1){
+													   
+													    $this.val("添加完成");
+														$(".close").click();
+														 window.location.reload();
+													 
+													 }else{
+														 
+														  $this.val(data.info);
+														 
+														 }
+												
+												
+											 }
+				                                       					 
+				 				
+								    });
+						
+						 
+                    });
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  
+			  $(".rizi").focus(function(e) {
+                
+				 $(this).parent().find('select').show();
+				 
+            });
+			  
+			  
+			  $("#snian").change(function(e) {                   
+			  
+			  $("#wastart_time").val($(this).val()+'-'+$(this).next().val());
+                 
+            });
+			
+			
+			
+			 $("#syue").change(function(e) {                   
+			  
+			  $("#wastart_time").val($(this).prev().val()+'-'+$(this).val());
+                 
+            });
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			 $("#enian").change(function(e) {                   
+			  
+			  $("#waend_time").val($(this).val()+'-'+$(this).next().val());
+                 
+            });
+			
+			
+			
+			 $("#eyue").change(function(e) {                   
+			  
+			  $("#waend_time").val($(this).prev().val()+'-'+$(this).val());
+                 
+            });
+			  
+			  
+			   $(".rizi").keyup(function(e) {
+				    
+					 $(this).next().change();
+				   
+				   });
+			  
+				</script>
+                
+                
+             

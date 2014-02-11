@@ -1,0 +1,119 @@
+<include file="Public:header"/>
+
+<title>雇员管理</title>
+<div id="contentcolumn"> 
+  <!-- ** blue top navbar ** --> 
+  <!-- ** ./ blue top navbar ** -->
+  <div class="container-fluid"> <include file="Public:sea.inc" />
+    <div class="row-fluid wrapper"> 
+      <!-- 这里是搜索----> 
+      <!---/这里是搜索---> 
+      <!-- ** left sidebar ** --> 
+      <include file="Public:works-left.inc" /> 
+      <!-- ** ./ left sidebar ** --> 
+      <!-- ** main content ** -->
+      <div class="contentcolumn">
+        <div class="row-fluid">
+          <div class="span12"> 
+            
+            <!-- ** widget ** -->
+            
+            <div class="well bg-FFF navbar-heading"><!--===============筛选联系人================-->
+              
+              <div class="btl" style=" background:#f7f7f7;">
+                <div class="container" style="width: auto;">录入权限</div>
+              </div>
+              
+        
+ <div class="box">
+
+
+	<form method="post" action="{:U("StaffRole/do_add")}" id="mainFrom">
+
+	
+
+	<div class="body_content">
+
+		
+
+	<div class="top_action"><a href="__URL__">返回权限组</a> | <a href="{:U("Admin/index")}">雇员员管理</a></div>
+
+		
+
+		<table cellspacing="0" cellpadding="0" class="table">
+
+		<tr>
+
+		  <th style="width:7em;">权限组名称</th>
+
+		<td><input name="title" id="role_name" value="{$vo.role_name}"></td></tr>
+
+		<volist name="dataList" id="dataVo">
+
+        <tr>
+
+        <td>{$dataVo.title}</td>
+
+          <td>
+
+            {$dataVo.permission|explodeRole}
+
+            </td>
+
+		</tr>
+
+        </volist>
+        <tr><td>备注</td><td><textarea name="mark" id="mark"></textarea></td></tr>
+		<tr><th colspan="2"><input type="checkbox" id="chkall" name="chkall" onclick="checkAll(this.form, 'role_permission')">
+
+		  全选</th>
+
+		  </tr>
+
+
+
+		</tbody>
+
+		
+
+		</table>
+
+	</div>
+
+		
+
+	<div class="foot_action">
+
+		<input type="submit" name="submit" value="提交录入" class="submit">
+
+        <input type="reset" name="button" id="button" value="还原重填" class="submit"/>
+
+	</div>
+
+	
+
+	</form>
+
+
+
+
+            
+              
+        </div>
+        </div>
+      </div>
+      
+      <!-- ** ./ main content ** --> 
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<include file="Public:left.inc"/>
+</div>
+
+
+
+<include file="Public:footer" /></body></html>

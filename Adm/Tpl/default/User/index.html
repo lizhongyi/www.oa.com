@@ -1,0 +1,574 @@
+<include file="Public:header"/>                    
+<section class="section">
+            <div class="row-fluid">
+                <!-- span side-left -->
+                <div class="span1">
+                  
+                    <!--side bar-->
+                    
+                    <include file="Public:side-bar" />
+                    
+                  <!--/side bar -->
+                </div><!-- span side-left -->
+                
+                <!-- span content -->
+              <div class="span9">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content-header -->
+                        <div class="content-header">
+                            
+                            <h2><i class="icofont-home"></i> 控制面板 <small>欢迎登陆，jobmeOA 系统</small></h2>
+                        </div><!-- /content-header -->
+                        
+                        <!-- content-breadcrumb -->
+                        <div class="content-breadcrumb">
+                           
+                            
+                            <!--breadcrumb-->
+                           <include file="Public:breadcrumb"/><!--/breadcrumb-->
+                        </div>
+                        
+                        <!-- /content-breadcrumb -->
+                        
+                        <!-- content-body -->
+                       
+                       
+                       
+                       
+                       
+                       
+                        <div class="content-body" style="padding-top:10px;">
+                        
+                        <div class="m15">
+                        
+                        
+                        <div class="box-header corner-top">
+                                    <div class="header-control pull-right">
+                                        <a data-box="collapse"><i class="icofont-caret-up"></i></a>
+                                    </div>
+                                    <ul class="nav nav-tabs" id="tab-stat">
+                                        <li class="active"><a data-toggle="tab" href="#system-stat">注册时间</a></li>
+                                        <li><a href="?act=User_list&settr=&key=&page=1" class="select">不限</a></li>
+                                        <li><a href="?act=User_list&settr=3&key=&page=1" >三天内</a></li>
+                                        
+                                        <li><a href="?act=User_list&settr=7&key=&page=1" >一周内</a></li>
+                                        
+                                        <li><a href="?act=User_list&settr=30&key=&page=1" >一月内</a></li>
+                                        <li><a href="?act=User_list&settr=180&key=&page=1" >半年内</a></li>
+                                        <li><a href="?act=User_list&settr=360&key=&page=1" >一年内</a></li>
+                                        
+                                        
+                                         <li><a href="" >审核账户</a></li>
+                                    </ul>
+                                </div>
+                        
+                        
+                        <div class="admin_main_nr_dbox">
+<div class="seltpye">
+		<div class="left"></div>	
+		<div class="right">
+		<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+  </div>
+  
+
+  
+  <form id="form1" name="form1" method="post" action="?act=delete_user">
+  <table class="table">
+    <tr>
+      <td   class="admin_list_tit admin_list_first" ><input type="checkbox" name=" " title="全选/反选" id="chk"/></td>
+      <td   class="admin_list_tit admin_list_first" >
+      <label id="chkAll">用户名</label></td>
+      <td  class="admin_list_tit">email</td>
+      <td align="center"   class="admin_list_tit">注册时间</td>
+	  <td    align="center"   class="admin_list_tit">注册IP</td>
+	  <td    align="center"   class="admin_list_tit">邮箱状态</td>
+      <td   align="center"   class="admin_list_tit">最后登录时间</td>
+	  <td  align="center"   class="admin_list_tit">最后登录IP</td>
+      <td width="13%"  align="center"  class="admin_list_tit" >操作</td>
+      </tr>
+    
+    <volist name="list" id="vo">
+
+	      <tr>
+	        <td class="admin_list admin_list_first"><input name="tuid[]" type="checkbox"   value="{$vo.uid}"/></td>
+      <td class="admin_list admin_list_first">
+        {$vo.username}</td>
+        <td class="admin_list">{$vo.email}</td>
+        <td align="center" class="admin_list">
+		{$vo.reg_time|date="Y-m-d",###} 		</td>
+        <td align="center" class="admin_list">
+		{$vo.reg_ip}</td>
+         <td align="center" class="admin_list">
+
+                  <if condition="$vo.step lt 2">
+                  <span style="color:#F00">未激活</span>
+                  <else/>
+                  <span style="color: #009900">已激活</span>
+                  </if>
+         
+				     </td>
+		<td align="center" class="admin_list">
+        <if condition="$vo.last_login_time eq  0">
+        从未登录
+        <else/>
+        {$vo.last_login_time|date="Y-m-d",###}
+        </if>
+				
+				</td>
+		<td align="center" class="admin_list">
+		<if condition="$vo.last_login_ip eq null">
+        从未登录
+        <else/>
+        {$vo.last_ip}
+        </if>
+		</td>       
+        <td align="center" class="admin_list">
+          <a href="?act=user_edit&tuid=1000153">修改</a>
+        </td>
+        </tr>
+     </volist>
+
+
+          </table>
+          
+        
+          
+          
+	<span id="DelSel"></span>
+  </form>
+  <div class="page link_bk">
+    {$page}
+    
+  <div class="clear"></div></div>
+	<div id="GetDelInfo" style="display: none" >
+	  <table width="100%" border="0" align="center" cellpadding="0" cellspacing="6" >
+		<tr>
+		  <td width="30" height="30">&nbsp;</td>
+		  <td height="30"><strong  style="color:#0066CC; font-size:14px;">你确定要删除吗？</strong></td>
+		</tr>
+			  <tr>
+		  <td width="27" height="25">&nbsp;</td>
+		  <td><label>
+			<input name="delete_user" type="checkbox" id="delete_user" value="yes" checked="checked" />
+			删除此会员 <span style="color:#666666">(删除后此会员将无法登录，无法管理已发布的信息等)<span></label></td>
+		</tr>
+		<tr>
+		  <td width="27" height="25">&nbsp;</td>
+		  <td width="425"><label>
+			<input name="delete_resume" type="checkbox" id="delete_resume" value="yes" checked="checked" />
+		  删除此会员发布的简历</label></td>
+		</tr>
+		<tr>
+		  <td height="25">&nbsp;</td>
+		  <td><input type="submit" name="delete" value="确定删除" class="admin_submit"/></td>
+		  </tr>
+	  </table>
+	  </div>
+      
+      
+      
+      
+
+      
+      
+      
+      
+      
+</div>
+
+
+                        </div>
+                        <!--/content-body -->
+                    </div><!-- /content -->
+                </div><!-- /span content -->
+            </div>    
+            
+                
+                
+                 <!-- span side-right -->
+                   <div class="span2">
+                    <!-- side-right -->
+                    <aside class="side-right">
+                        <!-- sidebar-right -->
+                        <div class="sidebar-right">
+                            <!--sidebar-right-header-->
+                            <div class="sidebar-right-header">
+                                <div class="sr-header-right">
+                                   
+                                </div>
+                                <div class="sr-header-left">
+                                   <span id="localtime" style="font-size:12px; font-family:'微软雅黑'"></span>
+
+<script type="text/javascript">
+function showLocale(objD)
+{
+	var str,colorhead,colorfoot;
+	var yy = objD.getYear();
+	if(yy<1900) yy = yy+1900;
+	var MM = objD.getMonth()+1;
+	if(MM<10) MM = '0' + MM;
+	var dd = objD.getDate();
+	if(dd<10) dd = '0' + dd;
+	var hh = objD.getHours();
+	if(hh<10) hh = '0' + hh;
+	var mm = objD.getMinutes();
+	if(mm<10) mm = '0' + mm;
+	var ss = objD.getSeconds();
+	if(ss<10) ss = '0' + ss;
+	var ww = objD.getDay();
+	if  ( ww==0 )  colorhead="";
+	if  ( ww > 0 && ww < 6 )  colorhead="";
+	if  ( ww==6 )  colorhead="";
+	if  (ww==0)  ww="星期日";
+	if  (ww==1)  ww="星期一";
+	if  (ww==2)  ww="星期二";
+	if  (ww==3)  ww="星期三";
+	if  (ww==4)  ww="星期四";
+	if  (ww==5)  ww="星期五";
+	if  (ww==6)  ww="星期六";
+	colorfoot=""
+	str = colorhead + yy + "年" + MM + "月" + dd + "日  <br/>" + ww +""+ colorfoot + " " + hh + ":" + mm + ":" + ss ;
+	return(str);
+}
+function tick()
+{
+	var today;
+	today = new Date();
+	document.getElementById("localtime").innerHTML = showLocale(today);
+	window.setTimeout("tick()", 1000);
+}
+tick();
+</script>
+                                </div>
+                            </div><!--/sidebar-right-header-->
+                            <!--sidebar-right-control-->
+                            <div class="sidebar-right-control">
+                                <ul class="sr-control-item">
+                                    <li class="active"><a href="#contact" data-toggle="tab" title="contacts"><i class="icofont-group"></i> 用户搜索</a></li>
+                                  
+                                </ul>
+                            </div><!-- /sidebar-right-control-->
+                            <!-- sidebar-right-content -->
+                            <div class="sidebar-right-content m15">
+                                <form id="formseh" name="formseh" method="get" action="?">	
+			<div class="seh">
+			    <div class="keybox"><input name="key" type="text"  class="span12"   value="" /></div>
+			    <div class="selbox">
+					<input name="key_type_cn" class="span12"  id="key_type_cn" type="text" value="用户名" />
+						<div>
+								<input name="key_type" class="span2"  id="key_type" type="hidden" value="1" />
+						</div>				
+				</div>
+				<div class="sbtbox">
+				<input name="act" type="hidden" value="User_list" />
+				<input type="submit" name="" class="sbt btn" id="sbt" value="搜索"/>
+				</div>
+				<div class="clear"></div>
+		  </div>
+		  </form>
+          
+          
+         
+            <input type="button" name="ButAdd" id="ButAdd" value="添加会员" class="btn" link='__APP__/User/addusers' data-toggle="modal" href='#addUsers'/>
+		<input type="btn" name="ButDel"  id="ButDel" value="删除会员" class="btn"/>
+       
+                           </div><!-- /sidebar-right-content -->
+                        </div><!-- /sidebar-right -->
+                    </aside><!-- /side-right -->
+                </div>
+                <!-- /span side-right -->
+           </div>
+           </div>
+           
+        </section>
+
+
+   <div class="modal" id="addUsers"></div>
+
+
+        <include file="Public:footer" />
+ 
+        <script src="/Static/skin/js/plus_tan.js"></script>
+<script>
+  
+ //私信函数			
+
+
+
+    $(document).keydown(function(e) {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+        if (e.ctrlKey && e.which == 13) {
+            $('.sms_bt').click();
+
+        }
+
+    });
+
+
+    $('.sms_bt').click(function(e) {
+
+
+        if ($('#content').val() == '') {
+            $("#msg").html('内容不能为空').show();
+            return false;
+
+        }
+		  $('#msg').html(""); 
+
+        var content = guolv($('#content').val());
+        var suser = $("#inputSelect1").val();
+		var url=$(this).attr("sendUrl");
+		
+        $.ajax({
+            type: "POST",
+            url:url,
+            data: {
+                toid: suser,
+                content: content
+            },
+            beforeSend: function() {
+                msg("发送中.....");
+
+            },
+            success: function(data) {
+
+                if (data.status== 1) {
+                    //刷新当前页面
+
+                 window.location.reload();
+
+                }else{
+					
+					//alert("chucuole");
+					
+					}
+
+
+
+
+            }
+
+
+
+        });
+
+        return false;
+
+
+    });
+
+    $('button.sixin').click(function(e) {
+
+        $(".huifu_box").toggle();
+
+
+    });
+
+    $('.hfs').click(function(e) {
+        $(".huifu_box").show();
+        $("#content").focus();
+
+       $("#inputSelect1").val($(this).attr('hfid'));
+	   $("#suid").hide();
+        $("#hfname").html("<span class='text'>发给：  <a href='#'>" + $(this).attr("hfname") + "</a>  </span><span class='modfy'>修改</span><div class='cl'></div>").show();
+
+    });
+
+
+
+    /*选择私信用户*/
+    $('.x_user').live("click", 
+    function() {
+
+        $("#suser").attr("toid",$(this).attr("toid")).hide();
+        $("#uli").html("");
+
+        $("#hfname").html("<span class='text'>发给:  <a href='#'>" + $(this).attr("uname") + "</a>  </span><span class='modfy'>修改</span><div class='cl'></div>").show();
+
+
+
+    });
+    /*修改发送用户*/
+
+$("span.modfy").live("click", 
+    function() {
+
+        $(this).parent().html("").hide();
+        $("#suser").val("").show();
+
+    });
+
+$(".deldh").click(function(e){
+	
+	      
+		   $this=$(this);
+		     if(window.confirm("你确定要删除全部对话么？")){
+				   
+				  $.ajax({
+					    
+						 url:'/Usermsg/deldh/ajax/1/id'+$this.attr('uid'),
+						 
+					  
+					  
+					  });
+				 
+				 }else{
+					    
+						return false;
+					   
+					 }
+	
+	
+	})
+
+
+</script>
+        
+<script>
+					 
+					 $(".quanxuan").click(function(e) {
+                          
+						
+						  //$(".sid").val(99999);
+						  $(".ckd").html('请选择 　<span class="caret" style="color:#CCC"></span>');
+						  
+                    });
+					  $(".stage_ul.skzt li a").click(function(e) {
+                        
+						
+						
+						if($(this).attr('sid')==13){
+							$("#maodian").val("佣金/业绩");
+						   $(".piliang_box").each(function(index, element) {
+                             
+							 if($(this).attr('st')==0 || $(this).attr("fen")==1 ){
+								   
+								    $(this).attr('checked',false);
+								    $(this).attr('disabled','disabled');
+								   
+								 } else{
+									 
+								    $(this).attr('disabled',false);
+									 }
+							
+                        });
+						}
+						
+						
+						
+						
+						if($(this).attr('sid')==0){
+						  $(".piliang_box").each(function(index, element) {
+                             
+							 if($(this).attr('st')==0 || $(this).attr("fen")==1){
+								   
+								   $(this).attr('checked',false);
+								   $(this).attr('disabled','disabled');
+								 } 
+							
+                        });
+						}
+						
+						
+						
+						
+						
+						
+						if($(this).attr('sid')==1){
+						  $(".piliang_box").each(function(index, element) {
+                             
+							 if($(this).attr('st')==1){
+								   
+								   $(this).attr('checked',false);
+								   $(this).attr('disabled','disabled');
+								 } 
+							
+                        });
+						
+						}
+						
+						
+						
+						
+						
+                    });
+					     
+	                      
+						  $(".beizhu").popover().
+                          click(function(e) {
+                          e.preventDefault()
+      });
+                    </script>
+        
+<script type="text/javascript">
+            $(document).ready(function() {
+                // try your js
+                
+                // auto complete
+                $('#inputAuto').typeahead({
+                    source : ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
+                });
+                
+                // select2
+                $('#inputTags').select2({tags:["red", "green", "blue"]});
+                $('[data-form=select2]').select2();
+                $('[data-form=select2-group]').select2();
+                
+                // this select2 on side right
+                $('#tagsSelect').select2({
+                    tags:["red", "green", "blue"],
+                    tokenSeparators: [",", " "]
+                });
+                
+                
+                // datepicker
+                $('[data-form=datepicker]').datepicker();
+
+             
+                
+                // uniform
+                $('[data-form=uniform]').uniform()
+
+                // wysihtml5
+                $('[data-form=wysihtml5]').wysihtml5();
+                
+                
+       
+                
+                
+                
+            });
+			
+			
+			
+			$("#ButAdd").click(function(e) {
+                   
+				    geta($($(this).attr('href')),$(this).attr('link'),loadGif);
+            });
+      
+        </script>
+        
+	</body>
+</html>
+
+

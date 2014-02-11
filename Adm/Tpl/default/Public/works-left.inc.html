@@ -1,0 +1,160 @@
+<div class="span2 leftsidebar" style="width:220px!important">
+        <!-- ** sidebar chart ** -->
+        <!--邮件那就-->
+        <div class="well" style="width:200px!important">
+          <div class="navbar navbar-heading menu-t">
+            <div class="btl">
+              <div class="container" > <a class="brand" href="javascript:;"><span><i class=" icon-large icon-th"></i></span> 工作单管理</a></div>
+            </div>
+          </div>
+          <div class="cbox mail-bt" style="margin-top:-20px; display:block" >
+           
+            <ul class="nav nav-tabs nav-stacked">
+              <li <if condition="$page_hover eq 'myWork'"> class='active' </if>><a href="/Works">　我的工作单</a></li>
+              
+              
+         <li <if condition="$page_hover eq 'work_insert'"> class='active' </if>><a href="/Works/add">　创建工作单</a></li>
+         
+           <li <if condition="$page_hover eq 'allWork'"> class='active' </if>><a href="/Works/all">　工作单管理</a></li>
+             
+            
+            
+             <li>
+             
+             <a  data-toggle="modal"  class="set_persona" href="#set_persona"  link="{:U('Persona/index',array('ajax'=>1))}">
+          　角色设置</a>
+             </li>
+             
+            
+             <li <if condition="$page_hover eq 'candidate'"> class='active' </if>><a href="/Candidate/search">　候选人查询</a></li>
+              
+             
+           
+              <li><a href="{:U('Works/recycle')}">　回收站</a></li>
+            
+            </ul>
+          </div>
+        </div>
+        
+        <!------------简历库-------------->
+        
+        
+              
+          <div class="well" style="width:200px!important">
+             <div class="navbar navbar-heading menu-t">
+             <div class="btl">
+              <div class="container" > <a class="brand" href="javascript:;"><span><i class=" icon-large icon-th"></i></span> 简历库</a></div>
+            </div>
+          </div>
+          <div class="cbox mail-bt" style="margin-top:-20px; <if condition="$module eq 'Talent' ">  display:block </if> " >
+            <ul class="nav nav-tabs nav-stacked">
+              <li><a href="/Talent">　简历列表</a>
+              </li>
+              
+              <li 
+              <if condition="$page_hover eq 'candidate'"> class='active' </if>
+              ><a href="#">　录入简历</a>
+              </li>
+            
+            </ul>
+          </div>
+        </div>
+        
+        
+        
+        
+        <!------------------------------->
+        
+        <div class="well" style="width:200px!important">
+          <div class="navbar navbar-heading menu-t">
+            <div class="btl">
+              <div class="container" > <a class="brand" href="javascript:;"><span><i class=" icon-large icon-th"></i></span> 统计与查询</a></div>
+            </div>
+          </div>
+          <div class="cbox mail-bt" style="margin-top:-20px; <if condition="$module eq 'Commission' ">  display:block </if>  <if condition="$module eq 'Collection' ">  display:block </if>"   >
+            <ul class="nav nav-tabs nav-stacked">
+              <li><a href="/Commission/">　佣金/业绩查询</a>
+              </li>
+              
+              <li 
+              <if condition="$page_hover eq 'candidate'"> class='active' </if>
+              ><a href="/Collection/?keyword=">　收款查询</a>
+              </li>
+            
+            </ul>
+          </div>
+        </div>
+        <div class="well" style="width:200px!important">
+          <div class="navbar navbar-heading menu-t">
+            <div class="btl">
+              <div class="container" > <a class="brand" href="javascript:;"><span><i class=" icon-large icon-th"></i></span> 客户管理</a></div>
+            </div>
+          </div>
+          <div class="cbox mail-bt" style="margin-top:-20px; <if condition="$module eq 'Client' ">  display:block </if>" >
+           
+            <ul class="nav nav-tabs nav-stacked">
+               <li <if condition="$page_hover eq 'custom'"> class='active' </if>><a href="/Client">　客户列表</a></li>
+               
+               
+                <li <if condition="$page_hover eq 'cient_add'"> class='active' </if>><a href="/Client/add">　添加客户</a></li>
+               
+             
+           
+                <li><a href="/Client/recycle">　回收站</a></li>
+            
+            </ul>
+          </div>
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+   
+        
+        
+        
+        
+        
+        
+        
+        
+      <if condition="$role_id == 1">
+          
+        <div class="well" style="width:200px!important">
+          <div class="navbar navbar-heading menu-t">
+            <div class="btl">
+              <div class="container"> <a class="brand" href="javascript:;"><span><i class="icon-user icon-large"></i></span> 雇员管理</a></div>
+            </div>
+          </div>
+          <div class="cbox mail-bt" style="margin-top:-20px; <if condition="$module eq 'Staff' ">  display:block </if>  <if condition="$module eq 'StaffRole' ">  display:block </if>" >
+           
+            <ul class="nav nav-tabs nav-stacked">
+               <li <if condition="$page_hover eq 'Staff'"> class='active' </if> ><a href="{:U('Staff/index')}">　雇员列表</a></li>
+                <li><a href="{:U('StaffRole/index')}">　权限管理</a></li>
+            
+            </ul>
+          </div>
+        </div>
+       </if>
+        
+        
+        
+        
+        
+       
+        <!--组织架构列表-->
+        <!--组织架构结束-->
+        <!--按钮结束-->
+        <!-- ** ./ sidebar chart ** -->
+        <!-- custom button -->
+        <!-- ./ custom button -->
+        <!-- ** widget ** -->
+        <!-- ** ./ widget ** -->
+        <!-- ** widget ** -->
+        <!-- ** ./ widget ** -->
+      </div>

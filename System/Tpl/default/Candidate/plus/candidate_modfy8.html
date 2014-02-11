@@ -1,0 +1,418 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+  <h3>编辑<span id="stage_{$detail['id']}"><script>get_sinfo("stage_{$detail['id']}",selecter.stage,"{$detail['stage']}")</script></span></h3>
+  </div> 
+  
+  
+  <style>
+  
+  
+  .title{ margin-left:32px;}
+  
+  
+  </style>
+ 
+  <div class="modal-body"> 
+  
+  
+  <div class=" modal_box">
+<div id="msg"></div>
+ <table>
+ <tr>
+ <td width="182" align="right" class="th">候选人姓名：</td>
+ <td colspan="2" >{$detail['realname']}<input type="hidden" name="gid" id="gid" value="{$detail['gid']}"/>
+ <input name="realname" type="hidden" id="realname" value="{$detail['realname']}"/>
+ </td>
+ </tr>
+ <tr>
+   <td align="right" class="th">最近工作单位：</td>
+   <td colspan="2">{$detail['before_job']}</td>
+ </tr>
+ <tr>
+   <td align="right" class="th" >手机：</td>
+   <td colspan="2">{$detail['phone']}</td>
+ </tr>
+ 
+ <tr>
+   <td height="42" align="right" class="th">就任职位：</td>
+   <td colspan="2">{$detail['jr_zhiwei']}</td>
+ </tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ <if condition="$detail['fenpei'] eq 0">
+ 
+ 
+ 
+ 
+ 
+ <tr>
+   <td height="35" align="right" valign="top" class="th">收款类型：</td>
+   <td colspan="2"><input id="stage" name="stage" value="{$detail['stage']}" type="hidden"/>
+       
+    
+     <div  class="erji-s">
+    <select  id="stages" name="stages" class="small-s span2" <if condition="$vo['fenpei'] eq 1"> disabled </if> >
+      {:get_select($select['stages'][8],$detail['stages'])} 
+   </select><span class="btn add-pici" style=" border-radius:0px; margin-left:10px; margin-top:-8px;             <if condition="$detail['stages'] neq 2">display:none </if>"><i class="icon-plus"></i></span>
+  </div></td>
+ </tr>
+ 
+ 
+ 
+ 
+ <else/>
+ 
+ 
+ 
+  
+ <tr>
+   <td height="35" align="right" valign="top" class="th"><span class="erji-s">收款类型：</span></td>
+   <td colspan="2">
+   
+   <if condition="$detail['stages'] eq 1">全额收款<else/>分批收款</if>
+   
+   </td>
+ </tr>
+ 
+ 
+ 
+ 
+ 
+ </if>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <tr class="ys"  <if condition ="$detail['stages'] eq 2">style="display:none" </if>>
+     <td height="33" align="right" valign="top" class="th">应收金额：</td>
+   
+   
+   <td width="169"><input type="text" name="yfk_jine" id="yfk_jine" value="{$detail['yfk_jine']}" class="span2" <if condition="$vo['fenpei'] eq 1"> disabled </if>  /></td>
+   
+ </tr>
+ 
+ 
+ 
+ <tr class="fp" <if condition="$detail['stages'] eq 1"> style="display:none" </if>>
+   <td height="32" align="right" valign="top" class="th">&nbsp;</td>
+   <td height="32" colspan="2" align="left" valign="top" class="th">
+   
+   
+   
+   <table id="person"  style="margin-left:-100px;">
+   
+   
+   
+   <volist name="ph" id="ph">
+   
+   <tr>
+ <td><div class="input-append">
+ 
+ 
+ 
+ 
+ 
+ 
+    第{$key+1}批金额：<input  <if condition="$detail['fenpei'] eq 1"> disabled </if>  name="title[]" id="title_137" type="text" class="span1 title" style="margin-left:20px" value="{$ph.jine}" style="width:100px"> 　应收日期：<input data-form="datepicker"  <if condition="$detail['fenpei'] eq 1"> disabled </if> type="text" name="yfk_time"   class="ys_time span2" data-date-format="yyyy-mm-dd"  data-date="<php> echo date('Y-m-d',time()) ;</php>" value="{$ph.time}" /><span class="r_t btn"><i class="icon-remove-sign"></i></span>　 </div></td></tr>
+    
+    
+    
+    </volist>
+    
+   </table></td>
+   </tr>
+   <tr  class="ys" <if condition ="$detail['stages'] eq 2">style="display:none" </if>>
+ <td align="right" class="th">应收日期：
+ </td>
+ <td width="260"><input  <if condition="$vo['fenpei'] eq 1"> disabled </if>  type="text" name="yfk_time" id="yfk_time"  class=" span2" data-date-format="yyyy-mm-dd" data-form='datepicker'  data-date="<php> echo date('Y-m-d',time()) ;</php>" value="<if condition='$detail["yfk_time"] gt 10000'>{$detail['yfk_time']|date='Y-m-d',###}<else/><php> echo date('Y-m-d',time()) ;</php></if>" />
+   </td>
+ </tr>
+ <tr>
+   <td height="42" align="right" valign="top" class="th">收款备注</td>
+   <td colspan="2"><textarea name="fk_mark" id="fk_mark">{$detail['fk_mark']}</textarea></td>
+ </tr>
+ 
+ 
+  
+ </table>
+ </td>
+   </tr>
+
+ </div>
+ 
+  </div>
+  
+  <div class="modal-footer">
+ 
+  <if condition="$detail['fenpei'] eq 1">
+   
+     
+     
+      <button class="btn btn-primary" disabled >已分配佣金不能修改</button>
+     <else/>
+     
+      <button class="btn btn-primary" type="submit" id="candidate_bt_md" >保存</button>
+     
+     </if>
+     
+     </div>
+
+ </div>
+ <script>
+ 
+// ajax 提交联系人
+
+  $('[data-form=datepicker]').datepicker();
+ 
+  $("#stages").change(function(e) {
+      
+	  if($(this).val()==1){
+		  
+		    $(".ys").show();
+		    $(".add-pici").hide();
+			$(".fp").hide();
+			
+		  }else{
+			   $(".add-pici").show();
+			   $(".fp").show();
+			   $(".ys").hide();
+			   }
+	  
+});
+
+  $('[data-form="datepicker"]').datepicker();
+
+
+
+
+
+	 $(".add-pici").click(function(e) {
+	 
+	 
+	 
+	      $('[data-form="datepicker"]').datepicker();
+	  
+		 string="<tr><td><div class=\"input-append input-line\">第"+parseInt($("#person input.title").length+1)+"批金额：　<input name=\"title[]\"  id=\"title_{$vo['id']}\" type=\"text\" class=\"span1 title\" style=\"margin-left:8px;\" value=\"\" /> 　应收日期：<input type=\"text\"  name=\"yfk_time[]\"  class=\" ys_time span2\" data-form='datepicker'  value=\"<php> echo date('Y-m-d',time()) ;</php>\" /><span class=\"r_t_1 btn\" style=\" margin-top:0px; \"><i class=\"icon-remove-sign\"></i></span></div></td></tr>";
+        
+	
+				
+		if( $("#person input.title").length >4){
+		   msg("最多不能超5次");	
+		   return false;
+		}else{
+			
+		     $(string).appendTo("#person");
+		
+		}
+		
+		
+		 
+		
+    });
+
+
+
+
+	$("span.r_t").click(function(e) {
+		
+       if($(this).parent().parent().parent().index() > 0){
+		   
+		$(this).parent().parent().parent().remove();
+		
+	   }else{
+		   
+		  alert( $(this).parent().parent().text());
+		   
+		   alert("至少要保留一项");
+		   }
+    });
+	
+	$("span.r_t_1").live("click",function(e) {
+      
+		$(this).parent().parent().remove();
+	   
+    })
+
+
+     
+
+
+
+    
+	
+    $("#candidate_bt_md").click(function(e) {
+		
+         $v=0;
+	    // alert($v);
+	    if($("#stages").val()==2){		
+		
+		$this=$(this);
+		 $title="";
+		 $bili="";
+		 $v=0;
+		          
+	     $("#person input.title").each(function(index, element) {
+					  
+					      if($(this).val()==""){
+						       
+							   $v+=1;
+							    
+					}
+					
+					$title+=$(this).val()+",";
+                    
+                }); 
+		  if($v>=1){
+			   
+			   msg("请填写完整");
+			   return false;
+		  }
+		  
+		  
+		  
+		  $this=$(this);
+		
+		 $ys_time="";
+		 $v=0;
+		          
+	     $("#person input.ys_time").each(function(index, element) {
+					  
+					      if($(this).val()==""){
+						       
+							   $v+=1;
+							    
+					}
+					
+					$ys_time+=$(this).val()+",";
+                    
+                }); 
+		  if($v>=1){
+			   
+			   msg("请填写完整");
+			   return false;
+		  }
+		  
+		  
+		
+		  
+		  
+		     tdata= {
+					      stage          : 8, 
+						  stages         : $("#stages").val(),
+						  fp_jine        : $title,
+						  ys_time        : $ys_time,
+						  yfk_time   : $("#yfk_time").val(),
+						  sjdz_time  : $("#sjdz_time").val(),
+						  yfk_jine   : $("#yfk_jine").val(),
+						  sjdz_jine  : $("#sjdz_jine").val(),
+						  fk_mark       : $("#fk_mark").val(),
+						  realname   : $("#realname").val(),
+						  ajax       : 1
+						  
+					 
+                       }
+		  
+		  
+		  
+		
+		}else{
+			
+			 tdata= {
+					      stage          : 8, 
+						  stages         : $("#stages").val(),
+						  yfk_time   : $("#yfk_time").val(),
+						  sjdz_time  : $("#sjdz_time").val(),
+						  yfk_jine   : $("#yfk_jine").val(),
+						  sjdz_jine  : $("#sjdz_jine").val(),
+						  fk_mark       : $("#fk_mark").val(),
+						  realname   : $("#realname").val(),
+						  ajax       : 1
+					 
+                       }
+			
+			
+			}
+		
+      
+	  if($("#realname").val()=="" || $("#phone")=="" || $("#area-val").val() ==""){
+	                   	msg("请仔细检查必填项");
+	                    return false;
+	  }else{
+		        
+				
+		  
+		  		
+			
+				
+		   $.ajax({ 
+		   
+		     
+			     
+				 url:"/Candidate/do_modfy/id/{$detail['id']}",
+				 type:"POST",
+				 data:tdata,
+					   beforeSend: function(){
+						    
+							msg("正在提交");
+						   
+						   },
+						   success: function(data){
+							   
+							   if(data=="ok"){
+								
+								          msg("保存成功");
+										  
+										  $(".close").click();
+										   $("#tab_8").click();
+								    
+								//	geta($("#clist_"+$("#stage").val()),"/Works/candidate/ajax/1/loadbox/clist_"+$("#stage").val()+"/stage/"+$("#stage").val()+"/gid/"+$("#gid").val());
+										 
+										  						  
+																		   }
+								   else{
+									     
+										 if(data==""){
+										 msg(data.info)
+										 }else{
+											  msg(data)
+											 }
+									   
+									   }
+									   
+									   
+							    
+							  }		
+							  
+							
+			   
+			   });
+		  
+		  }
+		
+   
+   return false;
+	 
+}); 
+
+  
+ </script>
+ 
+
+
+
+
+

@@ -1,0 +1,20 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>通知：{$vo['title']}</h3>
+  </div> 
+  
+
+  <div class="modal-body" style="padding:0px;"> 
+  
+  
+  <div class=" modal_box">
+ 
+                <p style="line-height:30px; padding:10px;">
+                {$vo['content']}
+                </p>
+                
+                </div>
+                </div> <div class="modal-footer">
+     <strong>{$vo['uid']|getTruename}</strong>  {$vo['create_time']|date='Y-m-d',###}</div>
+
+ </div>

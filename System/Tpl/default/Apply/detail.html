@@ -1,0 +1,351 @@
+<include file="Public:header"/>                    
+               <section class="section">
+            <div class="row-fluid">
+                <!-- span side-left -->
+                <div class="span1">
+                  
+                    <!--side bar-->
+                    
+                    <include file="Public:side-bar" />
+                    
+                  <!--/side bar -->
+                </div><!-- span side-left -->
+                
+                <!-- span content -->
+                <div class="span9">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content-header -->
+                        <div class="content-header">
+                            
+                              <include file="Public:breadcrumb"/>
+                        </div><!-- /content-header -->
+                        
+                        <!-- content-breadcrumb -->
+                        <div class="content-breadcrumb">
+                            <!--breadcrumb-nav--><!--/breadcrumb-nav-->
+                            
+                            
+                        </div><!-- /content-breadcrumb -->
+                        
+                        <!-- content-body -->
+                        <div class="content-body" style="margin-top:0; padding-top:10px;">
+                         
+                            
+                           
+                            
+                         
+
+                            <!-- tab resume content -->
+                            <div class="row-fluid">
+                                <!-- tab resume update -->
+                                <!-- tab resume update -->
+                                <div class="span12">
+                                    
+										
+                                  <div class="box-body">
+													
+	
+        
+             
+                   
+                   <ul class="inform_ul">
+
+<h4>职位名称</h4>
+<table class=" table table-bordered  tb-auto" >
+              <tr>
+              <th colspan="6">{$wt['Search_posts']}　（<span style="color:#333;">{$wt['hr_num']}</span>人)　WO-{$wt['id']}</th>
+              </tr>
+              <tr>
+              <td width="107"><strong>客户名称</strong></td>
+              <td width="150">{$wt['cid']|get_clientname}</td>
+              <td width="150"><strong>HR联系人　</strong></td>
+              <td width="150">{$wt['hr_contact']}</td>
+              <td width="150"><strong>工作地点</strong></td>
+              <td width="150">{$wt['area_cn']}</td>
+              </tr>
+              <tr>
+                <td><strong>薪酬待遇</strong></td>
+                <td>{$wt['payment']}~{$wt['payment1']}万元</td>
+                <td><strong>执行部门</strong></td>
+                <td>{$wt['department_id']|get_bumen}</td>
+                <td><strong>负责人　</strong></td>
+                <td>{$wt['principal_cn']}</td>
+              </tr>
+            
+              
+              </table>
+ 
+
+</ul>
+
+
+ <ul class="inform_ul">
+<h4>应聘者</h4>
+
+<table class=" table   tb-auto">
+<tr>
+<th width="54">序号</th>
+<th width="203">人才姓名</th>
+<th width="147">职位位</th>
+<th width="219">职位</th>
+<th width="78">简历</th>
+<th width="179">应聘时间</th>
+<th width="66">发私信</th>
+</tr>
+<volist name="dt"  id="vo">
+<tr>
+<td height="21">{$key+1}</td>
+<td>{$vo['a_uid']|getTruename}</td>
+<td>{$vo['last_company']}</td>
+<td>{$vo['post']}</td>
+<td><a href="#resume_box" class='res_id' data-toggle="modal" link="/Resume/detail/id/{$vo['a_uid']}/rname/{$vo['a_uid']|getTruename}/gid/{$_GET['gid']}">查看</a></td>
+<td>{$vo['create_time']|date='Y-m-d',###}</td>
+<td><a href="#sms_box" mingzi="{$vo['a_uid']|getTruename}" tid='{$vo["uid"]}' data-toggle="modal" class="sms_an btn btn-mini"> 发私信</a></td>
+</tr>
+</volist>
+</table>
+
+
+</ul>
+                  
+                 
+          
+           
+             
+               
+              
+              
+              
+            </div>
+   
+
+                               </div>
+                            </div><!-- tab stat -->
+                            
+                           
+                            
+                            <!--/dashboar-->
+                        </div><!--/content-body -->
+                    </div><!-- /content -->
+                </div><!-- /span content -->
+                
+                <!-- span side-right -->
+                <div class="span2">
+                    <!-- side-right -->
+                    <aside class="side-right">
+                        <!-- sidebar-right -->
+                        <div class="sidebar-right">
+                            <!--sidebar-right-header-->
+                            <div class="sidebar-right-header">
+                                <div class="sr-header-right">
+                                   
+                                </div>
+                                <div class="sr-header-left">
+                                   <span id="localtime" style="font-size:12px; font-family:'微软雅黑'"></span>
+
+<script type="text/javascript">
+function showLocale(objD)
+{
+	var str,colorhead,colorfoot;
+	var yy = objD.getYear();
+	if(yy<1900) yy = yy+1900;
+	var MM = objD.getMonth()+1;
+	if(MM<10) MM = '0' + MM;
+	var dd = objD.getDate();
+	if(dd<10) dd = '0' + dd;
+	var hh = objD.getHours();
+	if(hh<10) hh = '0' + hh;
+	var mm = objD.getMinutes();
+	if(mm<10) mm = '0' + mm;
+	var ss = objD.getSeconds();
+	if(ss<10) ss = '0' + ss;
+	var ww = objD.getDay();
+	if  ( ww==0 )  colorhead="";
+	if  ( ww > 0 && ww < 6 )  colorhead="";
+	if  ( ww==6 )  colorhead="";
+	if  (ww==0)  ww="星期日";
+	if  (ww==1)  ww="星期一";
+	if  (ww==2)  ww="星期二";
+	if  (ww==3)  ww="星期三";
+	if  (ww==4)  ww="星期四";
+	if  (ww==5)  ww="星期五";
+	if  (ww==6)  ww="星期六";
+	colorfoot=""
+	str = colorhead + yy + "年" + MM + "月" + dd + "日  <br/>" + ww +""+ colorfoot + " " + hh + ":" + mm + ":" + ss ;
+	return(str);
+}
+function tick()
+{
+	var today;
+	today = new Date();
+	document.getElementById("localtime").innerHTML = showLocale(today);
+	window.setTimeout("tick()", 1000);
+}
+tick();
+</script>
+                                </div>
+                            </div><!--/sidebar-right-header-->
+                            <!--sidebar-right-control-->
+                            <div class="sidebar-right-control">
+                                <ul class="sr-control-item">
+                                    <li class="active"><a href="#contact" data-toggle="tab" title="contacts"><i class="icofont-group"></i></a></li>
+                                   
+                                    <li rel="tooltip-bottom" title="view site"><a href="/" target="_BLANK"><i class="icofont-external-link"></i></a></li>
+                                </ul>
+                            </div><!-- /sidebar-right-control-->
+                            <!-- sidebar-right-content -->
+                            <div class="sidebar-right-content">
+                                <div class="tab-content">
+                                    
+                                   {:W('rightInc')}<!--/alternative 1-->
+                                    
+                                </div>
+                            </div><!-- /sidebar-right-content -->
+                        </div><!-- /sidebar-right -->
+                    </aside><!-- /side-right -->
+                </div><!-- /span side-right -->
+            </div>
+        </section>
+
+
+<div class="modal" id="sms_box">
+
+ <a class="close" data-dismiss="modal" style="margin:10px; margin-right:15px;">×</a>
+<div class="huifu_box" style="display:block; padding:18px; padding-bottom:5px;">
+
+  <label class="control-label span2 mingziya" style="margin-left:5px;"></label>
+<div class="cl"></div>
+<form action="" method="post" name="huifu_frm">
+
+<input type="hidden" name="toid" class="span12" id="toid" value="{$toid}" />
+<span id="msg"></span>
+<textarea name="content" id="content" class="txtbox" toid='{$urr["id"]}' style="margin:0px; min-width:80%; height:70px;"></textarea><div class="tjdiv"><span class="zishu"></span>
+<div class="cl"></div>
+<div style="padding:10px 0">
+<button type="button" sendUrl="{:U('Usermsg/sendmsg')}" class="sms_bt btn btn-primary" >发送</button>
+</div>
+
+</div>
+</form>
+</div>
+
+
+</div>
+
+       
+
+		<include file="Public:footer" />
+     
+        <script src="/Static/skin/js/plus_tan.js"></script>
+        
+        <div class="modal" id="resume_box" style="width:900px; margin-left:-450px;"></div>
+        
+        
+        <script>
+		
+		$(".res_id").click(function(e) {
+             
+			 geta($("#resume_box"),$(this).attr('link'),loadGif);
+			 
+        });
+		
+		
+		
+		$(".sms_an").click(function(e) {
+            
+			$("#toid").val($(this).attr('tid'));
+			$(".mingziya").text("发给:"+$(this).attr('mingzi'));
+			$("#content").val("");
+			 $("#msg").val("");
+			 
+        });
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		$('.sms_bt').click(function(e) {
+
+
+        if ($('#content').val() == '') {
+            $("#msg").html('内容不能为空').show();
+            return false;
+
+        }
+		  $('#msg').html(""); 
+
+        var content = guolv($('#content').val());
+        var suser = $('#toid').val();
+		var url=$(this).attr("sendUrl");
+		
+        $.ajax({
+            type: "POST",
+            url:url,
+            data: {
+                toid: suser,
+                content: content
+            },
+            beforeSend: function() {
+                msg('...');
+
+            },
+            success: function(data) {
+
+                if (data.status == 1) {
+                    //刷新当前页面
+				 $("#msg").text("发送成功");
+				 $(".close").click();
+
+                }else{
+					
+					alert(data);
+					
+					}
+
+
+
+
+            }
+
+
+
+        });
+
+        return false;
+
+
+    });
+
+		
+		
+		
+		
+		</script>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+	</body>
+</html>
+
+

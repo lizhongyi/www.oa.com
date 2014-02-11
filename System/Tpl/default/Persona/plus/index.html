@@ -1,0 +1,163 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>设置工作角色</h3>
+  </div>
+  <div class="modal-body" style="min-height:130px;">
+  
+  
+  <div class="custom_add">
+  <div style="position:relative;">
+    <div class="info" style="position:absolute;  right:10px; top:-10px; width:140px; color:#C60; line-height:20px; font-size:10px !important; padding:10px">
+     <h5 style="margin-bottom:8px;">温馨提示</h5>
+     <p>请仔细填写工作角色，不要轻易删除工作角色，因为可能会导致已有的工作内容发生错误。</p>
+    </div>
+  </div>
+  <div id="msg"></div>
+  
+  <present name="getList">
+  <form action="/Works/do_set_ticheng" name="persona" id="persona_form">
+
+  <table id="person" style="margin-left:10px; margin-top:10px;">
+  <volist name="getList" id="vo">
+  <tr>
+ <td><div class="input-append">
+    角色{$key+1}：<input name="title[]" id="title_{$vo['id']}" type="text" class="span2 title3" value="{$vo['title']}" style="width:100px; margin-right:8px;" /> 　佣金比例： <input type="text" name="bili" class="bili span1" value="{$vo['bili']}"/><span class="r_t btn"><i class="icon-remove-sign"></i></span>　% </div></td></tr>
+  </volist>
+  </table>
+  
+  
+
+ </form>
+ <else/>
+ 您还没有设置，请点击添加角色。
+ </present>
+ </div>
+ 
+ 
+  </div>
+  
+  
+  <div class="modal-footer">
+  <button class="btn set_shuxing" type="submit">添加角色</button><button class="btn btn-primary set_persona_save" type="submit">保存</button>
+  </div>
+  
+ 
+ 
+<script>
+
+
+	 $(".set_shuxing").click(function(e) {
+	
+		 string="<tr><td><div class=\"input-append\">角色"+parseInt($(".title3").length+1)+"：<input name=\"title[]\"  style=\"width:100px;margin-right:8px;\" id=\"title_{$vo['id']}\" type=\"text\" class=\"span2 title3\" value=\"\" /> 　佣金比例： <input type=\"text\" name=\"bili\" class=\"bili span1\" value=\"{$vo['bili']}\" /><span class=\"r_t_1 btn\"><i class=\"icon-remove-sign\"></i></span></div></td></tr>";
+        
+		
+		if( $("#persona_form input.title3").length > 8){
+		   msg("最多不能超过10项");	
+		   return false;
+		}else{
+		$(string).appendTo("#person");
+		
+		}
+		 
+		
+    });
+		
+	
+	
+	$("span.r_t").click(function(e) {
+       if($(this).parents("tr").index() > 0){
+		$(this).parents("tr").remove();
+	   }else{
+		   alert("至少要保留一项");
+		   }
+    });
+	
+	$("span.r_t_1").live("click",function(e) {
+      
+		$(this).parents("tr").remove();
+	   
+    })
+	
+	
+	
+
+	
+	
+	
+	
+	//save  persona 
+	$(".set_persona_save").click(function(e) {
+		
+		 $this=$(this);
+		 $title="";
+		 $bili="";
+		 $v=0;
+		          
+	     $("#persona_form input.title3").each(function(index, element) {
+					  
+					      if($(this).val()==""){
+						       
+							   $v+=1;
+							    
+					}
+					
+					$title+=$(this).val()+",";
+                    
+                }); 
+		  if($v>=1){
+			   
+			   msg("请填写完整");
+			   return false;
+		  }
+		      
+			  
+			  $("#persona_form input.bili").each(function(index, element) {
+					  
+					      if($(this).val()==""){
+						       
+							   $v+=1;
+							    
+					}
+					
+					$bili+=$(this).val()+",";
+                    
+                }); 
+		  if($v>=1){
+			   
+			   msg("请填写完整");
+			   return false;
+		  }  
+			   
+			 
+		  
+				   msg("");
+				   
+				   //start submit
+				   $title=$title.substr(0,$title.length-1);
+				   $uid="{$uid}";
+				   $url="{:U('Persona/do_add',array('ajax'=>1))}";
+				   tdata={title:$title,bili:$bili,uid:$uid};
+				    cb={ 
+				        bf:function(){
+							 msg("正在提交请稍后...");
+							},
+						su:function(data){
+                                if(data.status==1){
+								   
+								   $("#msg").html(data.info).fadeOut(1000,function(){$(".close").click();});
+								   
+	                           }else{
+								    msg(data.info);
+								   }
+							}	
+					   
+					   }
+				   ajaxForm($url,tdata,cb);
+				  
+ 
+		
+		
+    });
+	
+
+</script>

@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>请选择负责人</h3>
+  </div>
+  <div class="modal-body">
+  <div class="fuze_add">
+ 
+ </div>
+ <div class="fuze_list">
+ <ul data-dismiss="modal" class="modal_list">
+ <volist name="getList" id="vo">
+ <li><a href="javascript:;" fid="{$vo['uid']}" pid="{$vo['pid']}" class="fuze_a"><if condition="$vo['realname'] neq ''">{$vo.realname}<else/>{$vo.username}</if><span style="font-size:12px !important; color:#999"> <if condition="$vo['post'] neq '' ">({$vo['post']})</if></span></a></li>
+ </volist>
+ </ul>
+ 
+ </div>
+  </div>
+  <div class="modal-footer">
+    {$pageBar}
+   
+  </div>
+  
+  

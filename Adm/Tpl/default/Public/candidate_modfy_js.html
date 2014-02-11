@@ -1,0 +1,94 @@
+<script>
+ 
+// ajax 提交联系人
+
+
+$("#add_co input").live("blur",function(e) {
+        $this=$(this); 
+		var attr=$(this).attr("id"); 
+		var s=$this.val(); 
+		var pattern =/^(([0\+]\d{2,3}-)?(0\d{2,3})-)(\d{7,8})(-(\d{3,}))?$/;
+                    //var pattern =/(^[0-9]{3,4}\-[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/; 
+		       switch(attr){
+			  
+			   case 'realname':
+			       if(s.length < 2 || s.length > 5 ){
+			           yan_fn($this,"请正确填写联系人");
+				       }else{
+					     yan_fn($this);
+					   }
+			   break;
+			   
+			   case 'before_job':
+			       if(s.length < 2 ||  s.length > 30){
+			           yan_fn($this,"请正确填写工作单位");
+				       }else{
+					     yan_fn($this);
+					   }
+			   break;
+			   
+			
+			   
+			   case 'phone':
+			        if(s!=""){
+			           if(!(/^1[3|5][0-9]\d{4,8}$/.test(s))){ 
+                       yan_fn($this,"不是完整的11位手机号或者正确的手机号前七位"); 
+				}else{
+					yan_fn($this);
+					}
+    }   
+		        break; 
+				
+				
+				 
+                    case 'email':
+			        if(s!=""){
+			           
+					   var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+    
+                       if(!reg.test(s)){
+                            yan_fn($this,"email格式不正确，请重新输入！");
+                        }else{
+						     
+							 yan_fn($this);	
+							
+					  }
+					}
+                   break;
+				   
+				   
+				   
+				
+				
+			
+			
+			
+			   }
+		 
+		 
+		
+    });
+	
+
+
+
+function yan_fn(obj,msg){
+	
+	     
+		 
+		         if(msg!=undefined){
+				               obj.addClass('bred');
+				               if(obj.next().length==0){
+					           obj.parent().append("<span class='ms'>"+msg+"</span>")
+					        }  //obj.val("");
+				               obj.focus();
+							   return false;
+				 }else{
+					   obj.removeClass('bred'); 
+					   obj.next(".ms").remove();
+					 }
+	    
+	}
+
+
+</script>

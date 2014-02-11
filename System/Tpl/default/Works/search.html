@@ -1,0 +1,149 @@
+<include file="Public:header"/>
+<style></style>
+<title>统计与查询</title>
+<div id="contentcolumn"> 
+  <!-- ** blue top navbar ** --> 
+  <!-- ** ./ blue top navbar ** -->
+  <div class="container-fluid"> <include file="Public:sea.inc" />
+    <div class="row-fluid wrapper"> 
+      <!-- 这里是搜索----> 
+      <!---/这里是搜索---> 
+      <!-- ** left sidebar ** --> 
+      <include file="Public:works-left.inc" /> 
+      <!-- ** ./ left sidebar ** --> 
+      <!-- ** main content ** -->
+      <div class="contentcolumn">
+        <div class="row-fluid">
+          <div class="span12"> 
+            
+            <!-- ** widget ** -->
+            
+            <div class="well bg-FFF navbar navbar-heading"><!--===============筛选联系人================-->
+              
+              <div class="btl" style=" background:#f7f7f7;">
+                <div class="container" style="width: auto;"> <a class="brand" href="javascript:;">统计与查询</a></div>
+              </div>
+              <div class="box">
+                <div class="tab" id="tongji"> <a  class="tab-bar hover" href="#候选人查询" link='{:U("Candidate/search",array("ajax"=>1,"loadbox"=>"h_box_1"))}'>候选人查询</a> <a link="{:U('Yeji/search',array('ajax'=>1,'loadbox'=>'h_box_2'))}"  class="tab-bar" href="#业绩分配查询">业绩分配查询</a> </div>
+                <div class="tab-box" id="tongji-box">
+                
+                
+                
+                
+                <!--------------------candidate search start------------------->
+                  <div class="tab_con_box" id="h_box_1">
+                    
+                    
+                    
+                  </div>
+                   <!--------------------candidate search end------------------->
+                  
+                  <!--------------------yeji search start------------------->
+                  <div class="tab_con_box" id="h_box_2">
+                       
+               
+                
+                  </div>
+                  <!--------------------yeji search end------------------->
+                  
+               
+                  
+                  
+                  
+                </div>
+              </div>
+            </div>
+            
+            <!-- ** ./ widget ** --> 
+            
+          </div>
+        </div>
+      </div>
+      <!-- ** ./ main content ** --> 
+      
+    </div>
+  </div>
+</div>
+
+</div>
+<include file="Public:left.inc"/>
+</div>
+
+<!--调用行业模板---> 
+
+<!--调用地区模板---> 
+<include file="Public:js-tpl/area.inc"/>
+<script>
+$("#tongji .tab-bar").click(function(e) {
+   if($(this).attr('link')!=""){
+	$yuan = $(this).parent().next().find(".tab_con_box").eq($(this).index()); 
+	geta($yuan,$(this).attr('link'),loadGif);
+   }
+});
+
+
+
+$("#tongji .tab-bar").each(function(index) {
+    
+	
+	
+	   if (location.hash == $(this).attr('href')) {
+        $(this).addClass('hover').siblings().removeClass('hover');
+        $(this).parent().next().find(".tab_con_box").eq($(this).index()).fadeIn(0).siblings().fadeOut(0);
+		
+		
+		geta($(this).parent().next().find(".tab_con_box").eq(index),$(this).attr('link'),loadGif);
+		
+		
+		}
+		
+		
+		
+		
+	
+	
+});
+
+         //提交搜索链接
+
+         
+   
+ 
+
+
+
+/*删除操作*/
+$(".del-a").live("click", 
+function(e) {
+    if (ajax == 1) {
+
+            tdata={ajax:1};
+			
+		 cb={bf:function(){
+			
+			   },su:function(data){
+				 
+				 $(this).attr('loadbox').click();
+				 
+				}
+				
+		 }
+		
+            ajaxForm($(this).attr('link')+'&ajax=1', tdata,cb);
+			
+		   
+			  
+			
+
+    } else {
+
+        window.location = $(this).attr('link') + "/maodian/" + location.hash.substr(1, 20);
+
+
+    }
+
+});
+
+
+</script>
+<include file="Public:footer" /></body></html>

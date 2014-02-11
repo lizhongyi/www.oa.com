@@ -1,0 +1,139 @@
+ <div class="sidebar-right-content">
+                                <div class="tab-content">
+                                    
+                                    <!--chat-->
+                                    <div class="tab-pane fade" id="chat">
+                                        <div class="side-chat">
+                                            <!--header part-->
+                                            <div class="chat-header">
+                                                <div class="chat-action">
+                                                    <div class="btn-group pull-right">
+                                                        <!--we use data toggle tab for navigate this action-->
+                                                        <a class="bg-transparent no-border" href="#contact" data-toggle="tab" title="minimize"><i class="icofont-minus"></i></a>
+                                                        <a class="bg-transparent no-border" title="pop out"><i class="icofont-resize-full"></i></a>
+                                                        <a class="bg-transparent no-border" href="#contact" data-toggle="tab" title="close"><i class="icofont-remove-sign"></i></a>
+                                                    </div>
+                                                </div>
+                                                <h5><i class="icofont-certificate color-green"></i> Jane smith</h5>
+                                            </div>
+                                            <!--content part-->
+                                            
+                                            <!--status typed part-->
+                                            <div class="chat-typed"><i class="typicn-chat"></i> Jane smith is typing...</div>
+                                            <!--input part-->
+                                            <div class="chat-input">
+                                                <div class="chat-desc muted">Lorem ipsum dolor sit amet.</div>
+                                                <textarea class="input-block-level" placeholder="chat here..."></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="divider-content"><span></span></div>
+                                    </div><!--chat-->
+                                    
+                                    <!--contact-->
+                                    <div class="tab-pane fade active in" id="contact">
+                                        <div class="side-contact">
+                                            <!--contact-control-->
+                                            <div class="contact-control">
+                                                <div class="btn-group pull-right">
+                                                    <button class="dropdown-toggle bg-transparent no-border" data-toggle="dropdown">
+                                                        <i class="icofont-caret-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#"><i class="icofont-certificate color-green"></i> Online</a></li>
+                                                        <li><a href="#"><i class="icofont-certificate color-silver-dark"></i> Ofline</a></li>
+                                                        <li><a href="#"><i class="icofont-certificate color-red"></i> Busy</a></li>
+                                                        <li><a href="#"><i class="icofont-certificate color-orange"></i> Idle</a></li>
+                                                    </ul>
+                                                </div>
+                                                <h5><i class="icofont-comment color-green"></i> {$uid|getTruename}</h5>
+                                            </div><!--/contact-control-->
+                                            <!--contact-search-->
+                                            <div class="contact-search" style=" display:none">
+                                                <div class="input-icon-prepend">
+                                                    <div class="icon">
+                                                        <button type="submit">
+                                                            <i class="typicn-message color-silver-dark"></i>
+                                                        </button>
+                                                    </div>
+                                                    <input class="input-block-level grd-white" maxlength="11" type="text" name="contact-search" placeholder="chat with..." />
+                                                </div>
+                                            </div><!--/contact-search-->
+                                            <!--contact-list, we set this max-height:380px, you can set this if you want-->
+                                            <ul class="contact-list">
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            <volist name="ulist" id="vo">
+                                            
+                                            
+                                                <li class="contact-alt grd-white">
+                                                    <!--we use data toggle tab for navigate this action-->
+                                                    <a href="javascript:;" class="im-bar" link="/Im/msg/touid/{$vo['uid']}" data-id="iin@mail.com" uid="{$vo['uid']}">
+                                                        <!--we use contact-item structure like the component media in bootstrap-->
+                                                        <div class="contact-item">
+                                                            <div class="pull-left" style="position:relative;">
+                                                            
+                                                            
+                                                            <if condition="$vo['tome'] gt 0">
+                                                               <span class="tome" style="position:absolute; width:16px; height:16px; background:#900; border-radius:16px; line-height:16px; text-align:center; right:-8px; color:#FFF; font-size:8px;">{$vo['tome']}</span>
+                                                               </if>
+                                                               
+                                                               
+                                                               
+                                                               
+                                                               
+                                                               
+                                                               
+                                                               
+                                                               
+                                                                <img class="contact-item-object" style="width: 32px;height: 32px;" src="{$vo['uid']|get_user_face}" />
+                                                            </div>
+                                                            <div class="contact-item-body">
+                                                            
+                                                            <if condition="$vo['online'] eq 1">
+                                                            
+                                                                <div class="status" title="busy"><i class="icofont-certificate color-green"></i></div>
+                                                                
+                                                                <else/>
+                                                                
+                                                                <div class="status" title="busy"><i class="icofont-certificate color-dark"></i></div>
+                                                                
+                                                                </if>
+                                                                <p class="contact-item-heading bold">{$vo['realname']}</p>
+                                                                <p class="help-block"><small class="muted">{$vo['department']|get_bumen}</small></p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </li>
+                                                
+                                                </volist>
+                                                
+                                                
+                                              
+                                              
+                                            </ul><!--/contact-list-->
+                                        </div>
+                                    </div><!--/contact-->
+                                    
+                                    <!--alternative 1-->
+                                    <div class="tab-pane fade" id="alt1">
+                                        <div class="divider-content"><span></span></div> <!--divider-->
+                                        
+                                        <button class="btn btn-block btn-mini btn-primary">Add Action</button>
+                                        <button class="btn btn-block btn-mini">Add Action</button>
+                                        
+                                        <div class="divider-content"><span></span></div> <!--divider-->
+                                        
+                                        <!-- side-task -->
+                                        <!-- /side-task -->
+                                        
+                                        <div class="divider-content"><span></span></div> <!--divider-->
+                                        
+                                    </div><!--/alternative 1-->
+                                    
+                                </div>
+                            </div>

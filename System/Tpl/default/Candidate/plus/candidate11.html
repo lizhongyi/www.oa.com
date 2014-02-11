@@ -1,0 +1,60 @@
+<!--全部业绩分配--->
+<present name="getList">
+
+               <form method="post" action="{:U('Works/yeji_doCommand',array('stage'=>$_GET['stage']))}">
+ <div style="min-height:120px;">             
+<table class="table">
+<tr>
+<th width="60">ID</th>
+<th width="90">团队成员</th>
+<th width="109">成功人选</th>
+<th width="124">到账金额</th>
+<th width="120">工作角色</th>
+
+<th width="100" align="center">佣金基数</th>
+<th width="100" align="center">佣金比例</th>
+<th width="100" align="center">佣金金额</th>
+
+<th width="100" align="center">发放状态</th>
+
+<th width="80" align="center">备注</th>
+<th width="90" align="center">操作</th>
+</tr>
+<volist name="getList" id="vo">
+<tr>
+  <td><input  style="width:20px;" type="checkbox" name="id[]" id="all3" class="piliang_box" value="{$vo.id}" />{$vo['id']}</td>
+  <td>{$vo['uid']|get_teamer}</td>
+  <td>{$vo['candidate_id']|get_houxuan}</td>
+ 
+  <td><span class="red jine">￥{$vo['sjdz_jine']}</span></td>
+   
+  
+  <td id="worksnr_{$vo['id']}"><script>get_sinfo("worksnr_{$vo['id']}",selecter.works_nr,'{$vo["work_content"]}')</script></td>
+   <td>{$vo['jishu']}</td>
+  <td align="center">{$vo['ticheng_bili']}%</td>
+  <td>{$vo['sj_ticheng']}</td>
+ 
+  <td>{$vo['ticheng_stauts']}</td>
+   <td><a href="#" class="beizhu" title="" data-content="{$vo['mark']}" data-original-title="备注">查看</a></td>
+  <td>
+  
+  <a href="#yeji_modfy"  data-toggle="modal" class="modfy-a" link='{:U("Works/yeji_modfy",array("id"=>$vo["id"],"ajax"=>1))}'>编辑</a> 
+  
+  　<a  loadbox="tab_{$vo['stage']}" style="margin-left:-1px !important;" href="javascript:;" class="del-a" link="{:U('Works/yeji_delete',array('id'=>$vo['id']))}">删除</a></td>
+  </tr>  
+</volist>
+
+</table>
+
+ </div> <!-----------======调用公共分页=======---------------->
+
+<include file="Public:page_set"/>
+
+<!------==============调用公共分页=============================-->
+                    <div class="cl"></div>
+ 
+<else/>
+<div style="padding:50px;">
+暂时没有数据
+</div>
+</present>

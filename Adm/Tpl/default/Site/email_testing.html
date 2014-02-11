@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+
+<meta name="author" content="" />
+
+<meta name="copyright" content="jobmedia.cn" />
+
+<title> </title>
+
+<link href="__PUBLIC__/skin/style/common.css" rel="stylesheet" type="text/css" />
+<link href="__PUBLIC__/skin/style/validform.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="__PUBLIC__/skin/js/init.js"></script>
+<script type="text/javascript" src="__PUBLIC__/skin/js/init.validate.min.js"></script>
+
+
+<script type="text/javascript"> 
+
+$(document).ready(function()
+
+{
+
+	setsendmailshow();
+
+	$("#methodsel :radio").click(function () {setsendmailshow();});
+
+	function setsendmailshow()
+
+	{
+
+		var stlval=$("#methodsel :radio[checked]").val();
+
+		if (stlval=="1")
+
+		{
+
+		$("#method_sendmail").show();
+
+		}
+
+		else
+
+		{
+
+		$("#method_sendmail").hide();
+
+		}
+
+	}
+
+	/*$("#check").click(function () {	
+
+	$("#submitbox").hide();
+
+	$("#hide").show();	
+
+	});*/
+
+});
+
+</script>
+
+
+</head>
+
+<body style="background-color:#E0F0FE">
+
+
+<div class="admin_nav_bg">
+
+
+
+
+<if condition="ACTION_NAME eq sitemail ">
+<div class="admin_nav_li"><a href="__APP__/Site/sitemail">邮件配置</a></div>
+<else /> 
+<div class="admin_nav_li_hover"><a href="__APP__/Site/sitemail">邮件配置</a></div>
+
+</if>
+
+
+<if condition="ACTION_NAME eq email_testing ">
+<div class="admin_nav_li"><a href="__APP__/Site/email_testing">测试邮件</a></div>
+<else /> 
+<div class="admin_nav_li_hover"><a href="__APP__/Site/email_testing">测试邮件</a></div>
+
+</if>
+
+<!--
+<if condition="ACTION_NAME eq agreement ">
+<div class="admin_nav_li"><a href="__APP__/Site/agreement">使用协议</a></div>
+<else /> 
+<div class="admin_nav_li_hover"><a href="__APP__/Site/agreement">使用协议</a></div>
+
+</if>
+
+
+<if condition="ACTION_NAME eq filter ">
+<div class="admin_nav_li"><a href="__APP__/Site/filter">词语过滤</a></div>
+<else /> 
+<div class="admin_nav_li_hover"><a href="__APP__/Site/filter">词语过滤</a></div>
+
+</if>
+
+
+-->
+
+
+
+
+
+
+
+<div class="clear"></div>
+
+</div>
+
+<div class="admin_main_nr_box">
+
+<div class="toptip">
+
+	<h2>提示：</h2>
+
+	<p>您可以先发送测试邮件来调试邮件发送配置信息。</p>
+
+  </div>
+
+
+
+
+		  
+
+		  <div class="toptit">发送测试邮件</div>
+
+    <span id="submitbox">
+
+		<form action="__APP__/Site/email_testing_sends" method="post"   name="form1" id="form1">
+
+		<table width="700" border="0" cellspacing="10" cellpadding="1" style=" margin-bottom:3px;">
+
+          <tr>
+
+            <td width="100" align="right">收件人地址:</td>
+
+            <td width="228">
+
+			<input name="check_smtp" type="text"  datatype="e" nullmsg="请输入邮箱" errormsg="请输入邮箱！"  class="input_text_200" id="check_smtp" value="" maxlength="60"/></td>
+            <td width="326">
+            
+            
+            <div class="Validform_checktip"></div></td>
+
+          </tr>
+
+          <tr>
+
+            <td align="right">&nbsp;</td>
+
+            <td colspan="2"><input name="check" type="submit" class="admin_submit" id="check"    value="立即测试" /></td>
+
+          </tr>
+
+        </table>
+
+	    </form>
+
+  </span>
+
+<span id="hide" style="display: none; color: #009900; padding-left:30px; padding-bottom:80px;">
+
+ 正在发送测试邮件.......<br />
+
+<br />
+
+</span>
+
+  
+
+</div>
+
+<script type="text/javascript"> 
+$(function(){
+	//$(".registerform").Validform();  //就这一行代码！;
+	$("#form1").Validform({
+		tiptype:2
+	});
+})
+</script>
+</body>
+
+</html>

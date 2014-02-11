@@ -1,0 +1,162 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+  <h3>编辑业绩详情</h3>
+  </div> 
+  
+ 
+  <div class="modal-body"> 
+  
+  
+  <div class=" modal_box">
+<div id="msg"></div>
+ <table class="m16">
+ <tr>
+ <td width="191" align="right">团队成员：</td>
+ <td width="497">{$detail['uid']|get_teamer}<input type="hidden" name="gid" id="gid" value="{$detail['gid']}"/>
+   　  <input  name="stage" id="stage" value="11" type="hidden" /> </td>
+ </tr>
+ 
+ <tr>
+   <td height="42" align="right">候选人姓名：</td>
+   <td>{$detail['candidate_id']|get_houxuan}</td>
+ </tr>
+ <tr>
+   <td height="25" align="right" valign="top">佣金基数：</td>
+   <td valign="top">{$detail['jishu']}<input type="hidden" id="jishu" value="{$detail['jishu']}" name="jishu"/></td>
+ </tr>
+ <tr>
+   <td height="27" align="right" valign="top">佣金比例：</td>
+   <td valign="top"><input type="text" name="ticheng_bili" value="{$detail['ticheng_bili']}" id="ticheng_bili" class="span1" />%</td>
+ </tr>
+ <tr>
+   <td height="26" align="right" valign="top">佣金金额：</td>
+   <td><span id="tc_jine">{$detail['yd_ticheng']}</span><input type="hidden" id="yd_ticheng" value="{$detail['yd_ticheng']}" readonly/></td>
+ </tr>
+ <tr>
+   <td height="33" align="right" valign="top">发放状态：</td>
+   <td><select id="ticheng_stauts" name="ticheng_stauts"  class="span2" >
+   <option value="0"  <if condition="$detail['ticheng_stauts'] eq 0"> selected </if> >未发放</option>
+   <option value="1" <if condition="$detail['ticheng_stauts'] eq 1"> selected </if>>已发放</option>
+   </select></td>
+ </tr>
+ <tr>
+   <td height="42" align="right" valign="top">备注：</td>
+   <td><textarea name="mark" id="mark" class="span4">{$detail['mark']}</textarea></td>
+ </tr>
+ 
+ 
+  
+ </table>
+ 
+
+ </div>
+ 
+  </div>
+  
+  <div class="modal-footer">
+     <button class="btn btn-primary" type="submit" id="candidate_bt_md" >保存</button></div>
+
+ </div>
+ <script>
+ 
+// ajax 提交联系人
+    
+	
+    $("#candidate_bt_md").click(function(e) {
+      
+	  if($("#realname").val()=="" || $("#phone")=="" || $("#area-val").val() ==""){
+	                   	msg("请仔细检查必填项");
+	                    return false;
+	  }else{
+		    
+		   $.ajax({ 
+		   
+		     
+			     
+				 url:"/Yeji/do_modfy/id/{$detail['id']}",
+				 type:"POST",
+				 data:{
+					     
+						
+						  ticheng_bili      : $("#ticheng_bili").val(),
+						  yd_ticheng        : $("#yd_ticheng").val(),
+						  ticheng_stauts    : $("#ticheng_stauts").val(),
+						  mark              : $("#mark").val(),
+						  ajax              : 1
+					 
+                       },
+					   beforeSend: function(){
+						    
+							msg("正在提交");
+						   
+						   },
+						   success: function(data){
+							   
+							   if(data=="ok"){
+								
+								          msg("保存成功");
+										  
+										  $(".close").click();
+										   $("#tab_"+$("#stage").val()).click();
+								    
+								//	geta($("#clist_"+$("#stage").val()),"/Works/candidate/ajax/1/loadbox/clist_"+$("#stage").val()+"/stage/"+$("#stage").val()+"/gid/"+$("#gid").val());
+										 
+										  						  
+																		   }
+								   else{
+									     
+										 if(data==""){
+										 msg("没有任何修改")
+										 }else{
+											  msg(data)
+											 }
+									   
+									   }
+									   
+									   
+							    
+							  }		
+							  
+							
+			   
+			   });
+		  
+		  }
+		
+   
+   return false;
+	 
+}); 
+
+
+
+//佣金比例修改
+
+ 
+ $("#ticheng_bili").blur(function(e) {
+     
+	 $("#yd_ticheng").val($(this).val() * $("#jishu").val() / 100)
+	 $("#tc_jine").text($(this).val() * $("#jishu").val() / 100); 
+});
+ 
+
+var defaultOptions = {
+            dateFormat: "yy-mm-dd",
+            showMonthAfterYear: true,
+            dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+			monthNames:['1','2','3','4','5','6','7','8','9','10','11','12'],
+            nextText: '>',
+            prevText: '<',
+			changeMonth: true,
+            changeYear: true
+			
+		
+
+        };
+       // $("#time").datepicker(defaultOptions);
+      
+  
+  $('.datepicker').datepicker(defaultOptions);
+  
+ </script>
+ 

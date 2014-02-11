@@ -1,0 +1,194 @@
+<!--付款状态--->
+<present name="getList">
+
+               <form method="post" action="{:U('Collection/doCommand',array('stage'=>$_GET['stage']))}">
+              
+ <div style="min-height:120px;">             
+<table class="table">
+<tr>
+<th width="70">序号</th>
+<th width="90">姓名</th>
+<th width="124">收款类型</th>
+<th width="109">应收款金额</th>
+<th width="124">应收日期</th>
+<th width="100" align="center">到账状态</th>
+<th width="90" align="center">佣金</th>
+<th width="100" align="center">更新日期</th>
+<th width="80" align="center">备注</th>
+<th  align="center" style="min-width:40px !important">操作</th>
+</tr>
+<volist name="getList" id="vo">
+<tr>
+<td><input  style="width:20px;" st="{$vo['c_status']}" class="piliang_box" type="checkbox" name="id[]" id="all3" class="piliang_box" value="{$vo.id}" fen="{$vo['fen']}" />    {$vo['id']}</td>
+<td><a href="javascript:;" title="{$vo['realname']}">{$vo['realname']}</a></td>
+  <td id="stages_{$vo['id']}">
+  
+  
+  <if condition="$vo['c_type'] eq 2">
+  <script>get_sinfo("stages_{$vo['id']}",selecter.stages[8],"{$vo['c_type']}","（{$vo['pici']}-{$vo['zongpi']}）")</script>
+  
+  <else/>
+   <script>get_sinfo("stages_{$vo['id']}",selecter.stages[8],"{$vo['c_type']}")</script>
+  </if>
+  
+  
+  
+  </td>
+  
+  <td><span class="red jine">￥{$vo['yfk_jine']}</span>　
+  
+ 
+  
+  
+  </td>
+  <td>{$vo['yfk_time']|date='Y-m-d',###}</td>
+  <td>
+    
+    
+    
+    <if condition="$vo['c_status'] eq 1"><span style="color:#0C0">已到账<elseif condition ="$vo['c_status'] eq 0"/><span style=" color:#999">未到账</span>  <else/> 取消收款 </if>
+    
+    
+    
+  </td>
+  <td> 
+    <if condition="$vo['c_status'] eq 1"><span style="color:#0C0"><if condition="$vo['fen'] eq 1"><a  class="yeji_detail" data-toggle="modal" href="#yeji_detail" link="{:U('Commission/cid_list',array('cid'=>$vo['cid'],'did'=>$vo['id'],'ajax'=>1))}">已分配</a>
+    
+    <else/><a href="javascript:;"  link="{:U('Collection/fenpei',array('ajax'=>1,'id'=>$vo['id']))}" class="fenpei-a">分配佣金</a>
+    
+    </if></span><else/><span style=" color:#999"></span></if></td>
+  <td><if condition="$vo['update_time'] gt 1"> {$vo['update_time']|date='Y-m-d',###}</if></td>
+ <td align="center"><a href="#" class="beizhu" title="" data-content="{$vo['mark']}" data-original-title="备注">查看</a></td>
+  <td align="center"><a  link="/Collection/modfy/ajax/1/id/{$vo['id']}/stage/9" data-toggle="modal" href="#add_candidate" class="modfy-a">修改</a></td>
+  </tr>  
+</volist>
+
+</table>
+
+ </div> <!-----------======调用公共分页=======---------------->
+
+</div> <div class="tb_footer_l">
+<div class="btn-group dropup"> <span class="btn btn-mini"><input class="quanxuan" type="checkbox" name="all2" id="chkall" onclick="checkAll(this.form, 'id')" /></span> <button class="btn btn-mini ckd dropdown-toggle" data-toggle="dropdown">请选择　<span class="caret" style="color:#CCC"></span>
+                        </button> <input type="hidden" name="sid" id="sid" class="sid" value="10000"/><input type="hidden"  name="stage_cn" value="佣金分配" id="stage_cn" class="stage_cn"/><input name="maodian" value="收款状态" type="hidden" id="maodian"/><button class="btn btn-primary  candidate_command btn-mini" >提交</button><ul class="dropdown-menu skzt stage_ul">
+                        
+                        
+                        
+                      
+                                           <li><a href="javascript:;" set_pype="stage" sid="1" stage_cn="已到账"><i class="icon-th-large"></i>已到账</a></li>  
+                                            <li><a href="javascript:;" set_pype="stage" sid="0" stage_cn="佣金分配"><i class="icon-th-large"></i>未到账</a></li> 
+                                          <li><a href="javascript:;" set_pype="stage" sid="13" stage_cn="佣金分配"><i class="icon-th-large"></i>佣金分配</a></li>
+                                        
+                                               
+</ul></div></div>
+               
+  </form>
+              <div class="tb_footer_r">
+              <div class="row-fluid">
+                     <div class="pag page-1">
+ 
+ <ul>
+{$pageBar}
+</ul>
+</div>
+                    </div>
+                    
+                    <script>
+					 
+					 $(".quanxuan").click(function(e) {
+                          
+						
+						  //$(".sid").val(99999);
+						  $(".ckd").html('请选择 　<span class="caret" style="color:#CCC"></span>');
+						  
+                    });
+					  $(".stage_ul.skzt li a").click(function(e) {
+                        
+						
+						
+						if($(this).attr('sid')==13){
+							 return(confirm('您确定团队成员与佣金比例设置完毕,现在要进入佣金分配么?'));
+							$("#maodian").val("佣金/业绩");
+						   $(".piliang_box").each(function(index, element) {
+                             
+							 if($(this).attr('st')==0 || $(this).attr("fen")==1 ){
+								   
+								    $(this).attr('checked',false);
+								    $(this).attr('disabled','disabled');
+								   
+								 } else{
+									 
+								    $(this).attr('disabled',false);
+									 }
+							
+                        });
+						}
+						
+						
+						
+						
+						if($(this).attr('sid')==0){
+						  $(".piliang_box").each(function(index, element) {
+                             
+							 if($(this).attr('st')==0 || $(this).attr("fen")==1){
+								   
+								   $(this).attr('checked',false);
+								   $(this).attr('disabled','disabled');
+								 } 
+							
+                        });
+						}
+						
+						
+						
+						
+						
+						
+						if($(this).attr('sid')==1){
+						  $(".piliang_box").each(function(index, element) {
+                             
+							 if($(this).attr('st')==1){
+								   
+								   $(this).attr('checked',false);
+								   $(this).attr('disabled','disabled');
+								 } 
+							
+                        });
+						
+						}
+						
+						
+						
+						
+						
+                    });
+					     
+	                      
+						  $(".beizhu").popover().
+                          click(function(e) {
+                          e.preventDefault()
+						  
+						  
+						
+						  
+						  
+						  
+						  
+						  
+      });
+	  
+	  
+	  
+
+	  
+                    </script>
+
+<!------==============调用公共分页=============================-->
+                    <div class="cl"></div>
+ 
+<else/>
+<div style="padding:50px;">
+暂时没有数据
+</div>
+</present>
+
+

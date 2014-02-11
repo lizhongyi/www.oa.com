@@ -1,0 +1,131 @@
+
+      <div class="ajax_add_client"> <div class="span6 input-append input-line">
+              <label class="control-label span1"><span class="red">*</span>客户全称</label> <span> <input class="span4 companyname" placeholder="必填" size="16" type="text" value="" id="companyname" name="companyname"></span>
+    </div> 
+    
+    
+    
+     <div class="span6 input-append input-line">
+             <label class="control-label span1">简称：</label> <span> <input type="text" class="span2" style="width:200px;" name="short_name" id="shortname"/></span>
+              
+    </div> 
+    
+    
+    
+    
+       <div class="span6 input-append input-line">
+              <label class="control-label span1"><span class="red">*</span>客户别名</label> <span> <input class="span3" id="company_name" placeholder="用于发布职位，请不要写真实名称
+" size="16" type="text" value=""  placeholder="此处会被候选人看到" name="company_name"> </span>
+    </div> 
+    
+    
+    
+      
+    <div class="span6 input-append input-line">
+              <label class="control-label span1"><span class="red">*</span>城市地点</label> <span> <input class="span3 area" size="16" id="area_cn-1" type="text" value="{$Think.get.area_cn}" name="area_cn">
+              <input type="hidden" name="area" value="{$Think.get.area}" id="area-val-1"/></span>
+    </div> 
+    
+    
+    <div class="span6 input-append input-line">
+              <label class="control-label span1"><span class="red">*</span>所属行业</label> <span> <input class="span3 industry" size="16" type="text" value="{$Think.get.industry_cn}" autocomplete="off"  name="trade_cn" id="industry_input" /><input type="hidden" name="trade" value="{$Think.get.industry}"   id="industry-val"/></span>
+              
+    </div>
+    
+    <div class="span6 input-append input-line">
+              <label class="control-label span1">企业性质</label> <span>  <select  id="xingzhi" name="nature"  class="span2">
+              {:get_select($select['nature'])}
+              </select></span>
+    </div>
+    
+    <div class="span6 input-append input-line">
+              <label class="control-label span1">公司规模</label> <span> <select id="scale" name="scale" class="span3">
+			 {:get_select($select['scale'])}</select>
+			  </select></span>
+    </div>
+    
+    
+    <div class="span6 input-append input-line">
+              <label class="control-label span1">公司介绍</label> <span> 
+              <textarea name="content"  style="min-width:300px !important;" rows="3"  id="content" autocomplete="off"></textarea>
+              </span>
+    </div>
+	
+</div>
+      
+       <script>
+
+$(".ajax_add_client input").blur(function(e) {
+        
+		if($(this).val()==""){
+			  $(this).addClass('red-border');
+			 //$(this).focus();
+			  return false;
+			}else{
+				  $(this).removeClass('red-border');
+				}
+	  
+});
+
+
+$("#save_client").click(function(e) {
+	      p=0;
+         $(".ajax_add_client input").each(function(index, element) {
+               
+			   if($(this).val()==''){
+				      
+					  $(this).addClass('red-border');
+				     p=p+1;
+				   }
+			 
+        });  
+		
+		$this=$(this);
+	
+		
+		if(p==0){
+			
+			//there ok save code
+			
+			$.ajax({
+				   
+				   url:'/Client/do_add/ajax/1',
+				   type:"POST",
+				   data:{
+					    companyname:$("#companyname").val(),
+						short_name:$("#shortname").val(),
+						company_name:$("#company_name").val(),
+						area_cn:$("#area_cn-1").val(),
+						area:$("#area-val-1").val(),
+						trade:$("#industry-val").val(),
+						trade_cn:$("#industry_input").val(),
+						nature:$("#xingzhi").val(),
+						scale:$("#scale").val(),
+						content:$("#content").val()
+						
+						
+					    
+					   
+					   
+					   },
+					   beforeSend: function(){
+						     $this.val('提交中...');
+						   },
+					 success:function(data){
+						       
+							    $(".close").click(); 
+							    $("#custom_cn").click();
+							    
+						   },
+				  
+				});
+			    
+				
+				return false;
+				
+			}
+		
+	   
+});
+
+</script>

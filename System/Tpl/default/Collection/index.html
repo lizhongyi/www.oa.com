@@ -1,0 +1,498 @@
+<include file="Public:header"/>                    
+               <section class="section">
+            <div class="row-fluid">
+                <!-- span side-left -->
+                <div class="span1">
+                  
+                    <!--side bar-->
+                    
+                    <include file="Public:side-bar" />
+                    
+                  <!--/side bar -->
+                </div><!-- span side-left -->
+                
+                <!-- span content -->
+                <div class="span9">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content-header -->
+                        <div class="content-header">
+                            
+                              <include file="Public:breadcrumb"/>
+                        </div><!-- /content-header -->
+                        
+                        <!-- content-breadcrumb -->
+                        <div class="content-breadcrumb">
+                            <!--breadcrumb-nav-->
+                            <ul class="breadcrumb-nav pull-right">
+                               
+                              
+                                   
+                               
+                            </ul><!--/breadcrumb-nav-->
+                            
+                            
+                        </div><!-- /content-breadcrumb -->
+                        
+                        <!-- content-body -->
+                        
+                        <div class="content-body">
+                          
+                             <div class="box-header corner-top">
+                                    <div class="header-control pull-right">
+                                        <a data-box="collapse"><i class="icofont-caret-up"></i></a>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                       
+                                        <li class="active"><a  href="{:U('Collection/index')}">收款查询</a></li>      
+                                        
+                                        <li><a href="{:U('Commission/index')}">业绩查询 </a></li>
+                                        
+                                        
+                                    </ul>
+                                </div>
+                            
+                           
+                            
+                         
+
+                            <!-- tab resume content -->
+                            <div class="row-fluid">
+                                <!-- tab resume update -->
+                                <!-- tab resume update -->
+                                <div class="span12">
+                                    
+										
+                                        <div class="box-body">
+													
+	
+            
+              
+              <div class="m15">
+                
+                
+                <form action="" name="" method="get" id="" >
+                
+                
+             
+            
+      
+      
+      <div class="">
+           <div class="span4  input-line">
+   
+   <label class=" control-label span2">
+                 客户
+                  </label>
+   <span class="span8">
+   <input class=" c_name custom grd-white span12" link="/Client/indexs/act/search" id="custom_cn"  data-toggle="modal" href="#add_custom" size="16" type="text" name="custom" value="{$_GET['custom']}"/><input type="hidden" name="client_id" id="cid" value="{$_GET['client_id']}" />
+   </span>
+   </div>
+     
+
+  <div class="span4 input-line">
+              <label class="control-label span3">到账状态</label>
+             <select id="c_status" name="c_status" class="span6">
+                        <option 
+                        <if condition="$_GET['c_status'] eq '' "> selected </if>
+                         value="" >请选择
+                        </option>
+                        <option 
+                        <if condition="$_GET['c_status'] eq '0'"> selected </if>
+                         value="0">未到账
+                        </option>
+                        <option 
+                        <if condition="$_GET['c_status'] eq '1'"> selected </if>
+                         value="1">已到账
+                        </option>
+                      </select>
+  </div>
+       <div class="span4 input-append input-line">
+   
+   <label class=" control-label span2">
+                 关键字
+                  </label>
+   <span class="span8">
+   
+   <input class=" grd-white span9"  size="16" type="text" name="keyword" value="{$_GET['keyword']}"/><button type="submit" class=" btn btn-primary">搜索</button>
+   </span>
+   </div>
+    
+    
+    
+    <div class="span4  input-line">
+   
+   <label class=" control-label span2">
+              
+                  </label>
+<a href="?p=1" class="btn" style="margin-left:-15px;">清空条件</a>
+  
+   </div>
+    
+    
+     <div class="cl"></div>
+      
+      
+    </div>
+     
+            </form>
+           
+              </div>
+
+
+
+
+
+<present name="getList">
+                    <form method="post" action="{:U('Collection/doCommand',array('stage'=>$_GET['stage']))}">
+                      <table class="table table_list">
+                        <tr>
+                          <th width="70">序号</th>
+                          <th width="90">姓名</th>
+                          <th width="124">客户</th>
+                          <th width="124">寻访职位</th>
+                          <th width="124">收款类型</th>
+                          <th width="109">应收款金额</th>
+                          <th width="124">应收日期</th>
+                          <th width="120" align="center">到账状态</th>
+                          <th width="80" align="center">备注</th>
+                        </tr>
+                        <volist name="getList" id="vo">
+                          <tr>
+                            <td>
+                              {$vo['id']}</td>
+                            <td><a href="/Works/detail/id/{$vo['gid']}#收款状态" >{$vo['resume_id']|get_resume_name}</a></td>
+                            <td>{$vo['client_name']}</td>
+                            <td > {:get_job($vo['gid'])}
+                            
+                            </td>
+                            <td id="stages_{$vo['id']}"><if condition="$vo['c_type'] eq 2"> 
+                                <script>get_sinfo("stages_{$vo['id']}",selecter.stages[8],"{$vo['c_type']}","（{$vo['pici']}-{$vo['zongpi']}）")</script>
+                                <else/>
+                                <script>get_sinfo("stages_{$vo['id']}",selecter.stages[8],"{$vo['c_type']}")</script> 
+                              </if></td>
+                            <td><span 
+                              <if condition="$vo['c_status'] eq 0">class="red jine"</if>
+                              class="jine">￥{$vo['yfk_jine']}</span>　 </td>
+                            <td>{$vo['yfk_time']|date='Y-m-d',###}</td>
+                            <td><if condition="$vo['c_status'] eq 1"><span style="color:#0C0">已到账
+                                <if condition="$vo['fen'] eq 1">　<a  class="yeji_detail" data-toggle="modal" href="#yeji_detail" link="{:U('Commission/cid_list',array('cid'=>$vo['cid'],'did'=>$vo['id'],'ajax'=>1))}">已分配</a></if>
+                                </span>
+                                <else/>
+                                <span style=" color:#999">未到账</span></if></td>
+                            <td align="center"><a href="#" class="beizhu" title="" data-content="{$vo['mark']}" data-original-title="备注">查看</a></td>
+                          </tr>
+                        </volist>
+                        <tr>
+                          <td colspan="9">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <th>&nbsp;</th>
+                          <th>&nbsp;</th>
+                          <th>&nbsp;</th>
+                          <th id="stages_{$vo['id']}2">&nbsp;</th>
+                          <th id="stages_{$vo['id']}2">&nbsp;</th>
+                          <th id="stages_{$vo['id']}2">合计</th>
+                          <th><span>￥{$zongjine}</span></th>
+                          <th>&nbsp;</th>
+                          <th>&nbsp;</th>
+                        </tr>
+                      </table>
+                      <div class="tb_footer_l">
+                        <if condition="$role_id lt 3">
+                          <div class="btn-group dropup"></div>
+                        </if>
+                      </div>
+                    </form>
+                    <div class="tb_footer_r">
+                      <div class="row-fluid">
+                        <div class="pag page-1">
+                          <ul>
+                            {$pageBar}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <else/>
+                    <div class="nodata"> 暂时没有数据 </div>
+                  </present>
+
+
+
+
+
+
+
+
+               
+         
+              
+            </div>
+   
+
+                               </div>
+                            </div><!-- tab stat -->
+                            
+                           
+                            
+                            <!--/dashboar-->
+                        </div><!--/content-body -->
+                    </div><!-- /content -->
+                </div><!-- /span content -->
+                
+                <!-- span side-right -->
+                <div class="span2">
+                    <!-- side-right -->
+                    <aside class="side-right">
+                        <!-- sidebar-right -->
+                        <div class="sidebar-right">
+                            <!--sidebar-right-header-->
+                            <div class="sidebar-right-header">
+                                <div class="sr-header-right">
+                                   
+                                </div>
+                                <div class="sr-header-left">
+                                   <span id="localtime" style="font-size:12px; font-family:'微软雅黑'"></span>
+
+<script type="text/javascript">
+function showLocale(objD)
+{
+	var str,colorhead,colorfoot;
+	var yy = objD.getYear();
+	if(yy<1900) yy = yy+1900;
+	var MM = objD.getMonth()+1;
+	if(MM<10) MM = '0' + MM;
+	var dd = objD.getDate();
+	if(dd<10) dd = '0' + dd;
+	var hh = objD.getHours();
+	if(hh<10) hh = '0' + hh;
+	var mm = objD.getMinutes();
+	if(mm<10) mm = '0' + mm;
+	var ss = objD.getSeconds();
+	if(ss<10) ss = '0' + ss;
+	var ww = objD.getDay();
+	if  ( ww==0 )  colorhead="";
+	if  ( ww > 0 && ww < 6 )  colorhead="";
+	if  ( ww==6 )  colorhead="";
+	if  (ww==0)  ww="星期日";
+	if  (ww==1)  ww="星期一";
+	if  (ww==2)  ww="星期二";
+	if  (ww==3)  ww="星期三";
+	if  (ww==4)  ww="星期四";
+	if  (ww==5)  ww="星期五";
+	if  (ww==6)  ww="星期六";
+	colorfoot=""
+	str = colorhead + yy + "年" + MM + "月" + dd + "日  <br/>" + ww +""+ colorfoot + " " + hh + ":" + mm + ":" + ss ;
+	return(str);
+}
+function tick()
+{
+	var today;
+	today = new Date();
+	document.getElementById("localtime").innerHTML = showLocale(today);
+	window.setTimeout("tick()", 1000);
+}
+tick();
+</script>
+                                </div>
+                            </div><!--/sidebar-right-header-->
+                            <!--sidebar-right-control-->
+                            <div class="sidebar-right-control">
+                                <ul class="sr-control-item">
+                                    <li class="active"><a href="#contact" data-toggle="tab" title="contacts"><i class="icofont-group"></i></a></li>
+                                   
+                                    <li rel="tooltip-bottom" title="view site"><a href="/" target="_BLANK"><i class="icofont-external-link"></i></a></li>
+                                </ul>
+                            </div><!-- /sidebar-right-control-->
+                            <!-- sidebar-right-content -->
+                            <div class="sidebar-right-content">
+                                <div class="tab-content">
+                                    
+                                   {:W('rightInc')}<!--/alternative 1-->
+                                    
+                                </div>
+                            </div><!-- /sidebar-right-content -->
+                        </div><!-- /sidebar-right -->
+                    </aside><!-- /side-right -->
+                </div><!-- /span side-right -->
+            </div>
+        </section>
+
+
+ <div class="tbox">
+   
+     <div class="modal" id="add_custom"></div>
+     
+    
+     <div class="modal" id="mark_info">
+     
+     <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h4></h4>
+  </div>
+  <div class="modal-body">
+  
+  <div id="bz_box"></div>
+  
+  </div>
+   <div class="modal-footer">
+    
+   
+  </div>
+     
+  
+     
+     </div>   
+     
+     
+     
+     </div>
+
+       
+
+		<include file="Public:footer" />
+    
+    
+    
+    
+    
+        <script src="/Static/skin/js/plus_tan.js"></script>
+        
+       
+        <script>
+
+ $(".zbeizhu").click(function(e) {
+    
+	   $("#bz_box").html($(this).next('div').html());
+	   $("#mark_info h4").html('备注信息　'+$(this).attr('realname'));
+	  
+});
+
+
+</script>
+
+
+
+
+
+<script>
+					 
+					 $(".quanxuan").click(function(e) {
+                          
+						
+						  //$(".sid").val(99999);
+						  $(".ckd").html('请选择 　<span class="caret" style="color:#CCC"></span>');
+						  
+                    });
+					  $(".stage_ul.skzt li a").click(function(e) {
+                        
+						
+						
+						if($(this).attr('sid')==13){
+							$("#maodian").val("佣金/业绩");
+						   $(".piliang_box").each(function(index, element) {
+                             
+							 if($(this).attr('st')==0 || $(this).attr("fen")==1 ){
+								   
+								    $(this).attr('checked',false);
+								    $(this).attr('disabled','disabled');
+								   
+								 } else{
+									 
+								    $(this).attr('disabled',false);
+									 }
+							
+                        });
+						}
+						
+						
+						
+						
+						if($(this).attr('sid')==0){
+						  $(".piliang_box").each(function(index, element) {
+                             
+							 if($(this).attr('st')==0 || $(this).attr("fen")==1){
+								   
+								   $(this).attr('checked',false);
+								   $(this).attr('disabled','disabled');
+								 } 
+							
+                        });
+						}
+						
+						
+						
+						
+						
+						
+						if($(this).attr('sid')==1){
+						  $(".piliang_box").each(function(index, element) {
+                             
+							 if($(this).attr('st')==1){
+								   
+								   $(this).attr('checked',false);
+								   $(this).attr('disabled','disabled');
+								 } 
+							
+                        });
+						
+						}
+						
+						
+						
+						
+						
+                    });
+					     
+	                      
+						  $(".beizhu").popover().
+                          click(function(e) {
+                          e.preventDefault()
+      });
+                    </script>
+        
+               <script type="text/javascript">
+            $(document).ready(function() {
+                // try your js
+                
+                // auto complete
+                $('#inputAuto').typeahead({
+                    source : ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
+                });
+                
+                // select2
+                $('#inputTags').select2({tags:["red", "green", "blue"]});
+                $('[data-form=select2]').select2();
+                $('[data-form=select2-group]').select2();
+                
+                // this select2 on side right
+                $('#tagsSelect').select2({
+                    tags:["red", "green", "blue"],
+                    tokenSeparators: [",", " "]
+                });
+                
+                
+                // datepicker
+                $('[data-form=datepicker]').datepicker();
+
+             
+                
+                // uniform
+                $('[data-form=uniform]').uniform()
+
+                // wysihtml5
+                $('[data-form=wysihtml5]').wysihtml5();
+                
+                
+       
+                
+                
+                
+            });
+      
+        </script>
+        
+	</body>
+</html>
+
+

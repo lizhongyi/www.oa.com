@@ -1,0 +1,218 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+  <h3>编辑<span id="stage_{$detail['id']}"><script>get_sinfo("stage_{$detail['id']}",selecter.stage,"{$detail['stage']}")</script></span>候选人</h3>
+  </div> 
+  
+ 
+  <div class="modal-body"> 
+  
+  
+  <div class=" modal_box">
+<div id="msg"></div>
+ <table>
+ <tr>
+ <td  align="right" class="th">候选人姓名</td>
+ <td>{$detail['realname']}
+   <input type="hidden" name="gid" id="gid" value="{$detail['gid']}"/>
+   　
+   <span class="erji-s" style="float:right">创建人：{$uname} </span></td>
+ </tr>
+ 
+ <tr>
+   <td height="42" align="right" class="th">就任职位</td>
+   <td><input type="text" class="span2" name="zhiwei" id="zhiwei" value="{$detail['jr_zhiwei']}" /></td>
+ </tr>
+ <tr>
+   <td height="42" align="right" valign="top" class="th">应付款金额</td>
+   <td><input type="text" name="yfk_jine" id="yfk_jine" value="{$detail['yfk_jine']}" class="span2" />　单位(元)</td>
+ </tr>
+ <tr>
+   <td height="42" align="right" valign="top" class="th">应付款日期</td>
+   <td>
+     <input type="text" name="yfk_time" id="yfk_time"  class="datepicker span2" data-date-format="yyyy-mm-dd"  data-date="2012-12-12" value="<if condition='$detail["yfk_time"] gt 10000'>{$detail['yfk_time']|date='Y-m-d',###}<else/><php> echo date('Y-m-d',time()) ;</php></if>" />
+    
+     </if>
+  </td>
+ </tr>
+ <tr>
+   <td height="35" align="right" valign="top" class="th">阶段状态</td>
+   <td><select id="stages" name="stages" class="small-s span2" >
+     <script>get_select('stages',selecter.stages["{$detail['stage']}"],"{$detail['stages']}")</script>
+   </select></td>
+ </tr>
+ <tr>
+   <td height="42" align="right" valign="top" class="th">到账金额</td>
+   <td><input type="text" name="sjdz_jine" id="sjdz_jine" value="{$detail['sjdz_jine']}" class="span2" />
+     单位(元)　 佣金基数：
+     <input type="text" name="jishu" id="jishu" value="{$detail['jishu']}" class="span2" /><div style="display:none"> <select name="stage" id="stage" class="big-s span2" style="display:inline">
+       <script>get_select('stage',selecter.stage,"{$detail['stage']}")</script>
+       </select>创建人：{$uname}</div>
+     单位(元)</td>
+ </tr>
+ <tr>
+   <td height="42" align="right" valign="top" class="th">到账日期</td>
+   <td>
+    <div class="span3 input-append input-line">
+  
+                 <input type="text" name="sjdz_time" id="sjdz_time"  class="datepicker span2" data-date-format="yyyy-mm-dd"  data-date="2012-12-12" value="<if condition='$detail["sjdz_time"] gt 10000'>{$detail['sjdz_time']|date='Y-m-d',###}<else/><php> echo date('Y-m-d',time()) ;</php></if>" /><span class="add-on"><i class=" icon-calendar"></i></span>
+   </div>
+   </td>
+ </tr>
+ <tr>
+   <td height="42" align="right" valign="top" class="th">备注</td>
+   <td><textarea name="mark" id="mark" style="margin-left:-0px;">{$detail['mark']}</textarea></td>
+ </tr>
+ 
+ 
+  
+ </table>
+ 
+
+ </div>
+ 
+  </div>
+  
+  <div class="modal-footer">
+     <button class="btn btn-primary" type="submit" id="candidate_bt_md" >保存</button></div>
+
+ </div>
+ <script>
+ 
+// ajax 提交联系人
+    
+	
+	if("{$detail['stages']}"=='1'){
+		 $(".qbdz").show();
+		 $(".jddz").hide();
+		 
+		}else{
+			 $(".qbdz").hide();
+			 $(".jddz").show();
+			}
+
+$("#stages").change(function(e) {
+    
+	if($(this).val()==1){
+		$("tr.qbdz").show();
+		$("tr.jddz").hide();
+		}else{
+			$("tr.qbdz").hide();
+			$("tr.jddz").show();
+			}
+	
+});
+	
+	
+    $("#candidate_bt_md").click(function(e) {
+      
+	  if($("#realname").val()=="" || $("#phone")=="" || $("#area-val").val() ==""){
+	                   	msg("请仔细检查必填项");
+	                    return false;
+	 }
+	 
+	 if(parseInt($("#sjdz_jine").val()) < parseInt($("#jishu").val()) ){
+		 
+		   	msg("佣金基数不能大于到账总金额！");
+	                    return false;
+		 }else{
+			 	msg("");
+			 }
+	 
+	 
+	 
+		    
+		   $.ajax({ 
+		   
+		     
+			     
+				 url:"/Candidate/do_modfy/id/{$detail['id']}",
+				 type:"POST",
+				 data:{
+					     
+						  
+						  stage      : $("#stage").val(),
+						  stages     : $("#stages").val(),
+						 
+						  yfk_time   : $("#yfk_time").val(),
+						  sjdz_time  : $("#sjdz_time").val(),
+						  yfk_jine   : $("#yfk_jine").val(),
+						  jishu   :   $("#jishu").val(),
+						  sjdz_jine  : $("#sjdz_jine").val(),
+						  mark       : $("#mark").val(),
+						  ajax       : 1
+					 
+                       },
+					   beforeSend: function(){
+						    
+							msg("正在提交...");
+						   
+						   },
+						   success: function(data){
+							   
+							   if(data=="ok"){
+								
+								          msg("保存成功");
+										  
+										  $(".close").click();
+										   $("#tab_"+$("#stage").val()).click();
+								    
+								//	geta($("#clist_"+$("#stage").val()),"/Works/candidate/ajax/1/loadbox/clist_"+$("#stage").val()+"/stage/"+$("#stage").val()+"/gid/"+$("#gid").val());
+										 
+										  						  
+																		   }
+								   else{
+									     
+										 if(data==""){
+										 msg("没有任何编辑")
+										 }else{
+											  msg(data)
+											 }
+									   
+									   }
+									   
+									   
+							    
+							  }		
+							  
+							
+			   
+			   });
+		  
+		  
+		
+   
+   return false;
+	 
+}); 
+
+
+
+
+
+
+
+//备注提示
+	  $(".beizhu").popover().
+      click(function(e) {
+        e.preventDefault()
+      });
+var defaultOptions = {
+            dateFormat: "yy-mm-dd",
+            showMonthAfterYear: true,
+            dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+			monthNames:['1','2','3','4','5','6','7','8','9','10','11','12'],
+            nextText: '>',
+            prevText: '<',
+			changeMonth: true,
+            changeYear: true
+			
+		
+
+        };
+       // $("#time").datepicker(defaultOptions);
+      
+  
+  $('.datepicker').datepicker(defaultOptions);
+  
+ </script>
+ 

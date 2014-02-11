@@ -1,0 +1,96 @@
+<include file="Public:inc/header"/>
+
+<style>
+
+.job_detail ul li{ width:360px; float:left;}
+
+</style>
+<div class="wp">
+
+<div class="lt" style="width:840px; margin-left:18px;">
+<div class="tab"> <a  class="tab-bar" href="/User/profile_edit" style="padding:1px 10px;">我的资料</a> <a class="tab-bar hover" style="padding:1px 10px;" href="/User/resume">我的简历</a> </div>
+
+<div style="padding:30px;">
+   
+                                             
+            
+      <div class="job_detail">
+
+<ul>
+<li><span class="label">真实姓名：</span>{$dt['realname']}</li>
+<li> <span class="label">性别：</span><if condition="$dt['sex'] eq 1">男<else/>女</if></li>
+<li> <span class="label">出生日期：</span> 不限</li>
+<li> <span class="label">婚姻状况：</span>
+<if condition="$dt['marriage'] eq 1">未婚<else/>已婚</if>
+ </li>
+
+<li><span class="label">通讯地址： </span> {$dt['addr']}</li>
+<li><span class="label">联系方式： </span> {$dt['phone']}</li>
+
+<li><span class="label">开始日期： </span> {$vo['start_time']|date='Y-m-d',###}</li>
+
+<li><span class="label">更新日期： </span> {$dt['update_time']|date='Y-m-d',###}</li>
+<div class="cl"></div>
+
+</ul>
+<div class="btl-small">
+教育经历<span class="btn btn-mini btn-primary" style="float:right; margin-top:5px;"><a href="#mbox" link="/Resume_edu/add" data-toggle="modal"> <i class="icon-plus"></i> 新增 </a></span>
+</div>
+<p>
+<table width="800" class="table table-bordered table-striped" align="center">
+<tr>
+
+<th width="173">教育日期</th>
+<th width="336">学校名称</th>
+<th width="88">专业</th>
+<th width="88">学位</th>
+<th width="91">操作</th>
+
+</tr>
+
+<volist name="edu_list" id="vo">
+<tr>
+  <td>{$vo['start_time']|date='Y-m-d',###}~{$vo['end_time']|date='Y-m-d',###}</td>
+  <td>{$vo['title']}</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+</tr>
+</volist>
+</table>
+</p>
+<div class="btl-small"><span class="btn btn-mini btn-primary" style="float:right; margin-top:5px;"><a href="#"> <i class="icon-plus"></i> 新增 </a></span>工作经验</div>
+<p>{$vo['job_requirements']}</p>
+<div class="btl-small">职业概况</div>
+<ul>
+<li><span class="label">企业名称：</span> {$client['company_name']}</li>
+<li><span class="label">企业性质：</span>  {$select['nature'][$client['nature']]}</li>
+<li><span class="label">企业规模：</span> {$select['scale'][$client['scale']]}</li>
+<li><span class="label">所属行业：</span><script>get_industry({$client['trade']})</script></li>
+<li>
+<span class="label">企业简介：</span></li>
+<li>　　</li>
+<li>
+{$client['content']}</li>
+<div class="cl"></div>
+</ul>
+</div>
+            
+            
+            
+            </div>
+
+
+</div>
+<div class="cl"></div>
+</div>
+
+<div class="cl"></div>
+</div>
+<include file="Public:inc/footer"/>
+
+<div class="modal" id="mbox">
+
+
+</div>
+     

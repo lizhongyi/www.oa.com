@@ -1,0 +1,156 @@
+
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 id="modal-recoverLabel">{$_GET['rname']}的简历</h3>
+                </div>
+                <div class="modal-body">
+
+<div class="job_detail" style="margin-top:-30px;">
+<div class="btl-small">
+基本信息
+</div>
+<ul>
+<li><span class="label">真实姓名：</span>{$dt['realname']}</li>
+<li> <span class="label">性别：</span><if condition="$dt['sex'] eq 1">男<else/>女</if></li>
+<li> <span class="label">出生日期：</span> {$dt['age']}</li>
+<li> <span class="label">婚姻状况：</span>
+<if condition="$dt['marriage'] eq 1">未婚<else/>已婚</if>
+ </li>
+
+<li><span class="label">最高学历： </span> {$select['education'][$dt['education']]}</li>
+<li><span class="label">联系方式： </span> {$dt['phone']}</li>
+
+<li><span class="label">工作年限： </span> 8年</li>
+
+<li style="width:500px;"><span class="label">通讯地址： </span> {$dt['addr']}</li>
+<div class="cl"></div>
+
+</ul>
+<div class="btl-small">
+教育经历
+</div>
+<p><present name="dt['edu']">
+<table width="800" class="table table-bordered " align="center">
+
+
+      <volist name="dt['edu']" id="vo">
+  <tr>
+    <td width="229" valign="middle">{$vo['start_time']|date='Y-m-d',###}　至　{$vo['end_time']|date='Y-m-d',###}</td>
+    <td width="183" valign="middle">{$vo['title']}</td>
+    <td width="119" valign="middle">{$vo.major}</td>
+    <td width="249" valign="middle">　{$select['degree'][$vo['degree']]} </td>
+    
+  </tr>
+</volist>
+</table>
+<else/>
+
+<div class="notdata">暂时没有数据！</div>
+
+</present>
+
+
+</p>
+<div class="btl-small">工作经验</div>
+
+
+<p>
+<present name="dt['work']">
+<table width="800" class="table table-bordered " align="center">
+  <volist name="dt['work']" id="vo">
+    <tr>
+      <td width="226" valign="middle">{$vo['start_time']|date='Y-m-d',###}　至　{$vo['end_time']|date='Y-m-d',###}</td>
+      <td width="562" valign="middle"><strong>{$vo['title']}</strong><strong><span class="description">　　{$vo.post}　</span></strong>　<br>
+        　<br>        <span class="description">{$vo['duty']|nl2br}</span></td>
+      </tr>
+  </volist>
+</table>
+<else/>
+
+<div class="nodata">没有填写工作经验</div>
+</present>
+</p>
+<div class="btl-small">求职意向</div>
+<ul>
+  <li><span class="label">期望职位：</span>  {$ex['post_cn']}</li>
+<li><span class="label">期望行业：</span> {$ex['trade_cn']}</li>
+<li><span class="label">岗位性质：</span><if condition="$ex['post_type'] eq 1">全职<else/>兼职</if></li>
+<li>
+<span class="label">期望薪资：</span>{$ex['payment']}</li>
+<li>　　</li>
+<div class="cl"></div>
+</ul>
+
+
+<div class="btl-small">职业技能</div>
+<p>{$ex['skills']|nl2br}</p>
+</div>
+   </div>
+                
+<div class="modal-footer">
+
+
+
+
+<if condition="$_GET['gid'] neq ''">
+
+<input type="hidden" name="uid" id="uid" value="{$dt['uid']}"/>
+<input type="hidden" name="gid" id="gid" value="{$_GET['gid']}"/>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">拒绝申请</button>
+  <input type="submit"  id="add_can" class="btn btn-primary" value="推荐为候选人" />
+  
+  </if>
+  
+  
+  
+</div>
+
+
+
+<script>
+  
+  $("#add_can").click(function(e) {
+    
+	    $this=$(this);
+		$.ajax({
+			   
+			   url:'/Resume/add_can/ajax/1',
+			   type:"POST",
+			   data:{id:$("#uid").val(),
+			   gid:$("#gid").val()},
+			   beforeSend: function(){
+			           
+					   $this.val('提交中...')	;   
+				    
+				   }, 
+			   success: function(data){
+				   
+				          if(data.status==1){
+							    
+								 $this.val(data.info);   
+								 
+								 setTimeout(function(){
+									   
+									    $(".close").click();
+									   
+									 },1000);
+							  
+							  }else{
+								  
+								 $this.val(data.info);
+								  
+								  }
+							  
+				   
+				   },
+			   
+			   
+			
+			
+			});
+	   
+	  
+});
+
+</script>

@@ -1,0 +1,128 @@
+
+<div id="per_list">
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h4>设置团队成员</h4>
+  </div>
+  <div class="modal-body">
+ 
+  <div class="msg"></div>
+  <form action="/Works/do_set_ticheng" name="" id="set_form">
+  <input name="gid" id="gid" value="{$_GET['gid']}"  type="hidden" />
+ <input type="hidden" name="cid" id="cid" value="{$_GET['cid']}" />
+<input name="backurl" id="backurl" type="hidden" value='/index.php/Nteam/index/cid/{$_GET["cid"]}/ajax/1/cname/{$_GET["cname"]}/gid/{$_GET["gid"]}'/>
+  <table class="table">
+  <tr>
+  <th width="40">序号</th>
+  <th width="80">成员姓名</th>
+  <th>工作角色</th>
+  <th width="40">备注</th>
+  <th width="80">操作</th>
+  </tr>
+  <volist name="getList" id="vo">
+  <tr>
+  <td>{$key+1}</td>
+  <td>{$vo.uid|getTruename}</td>
+  <td><span style="font-size:12px">{$vo.per}</span></td>
+  <td><a href="javacript:;" class="beizhu" title="{$vo['mark']}">查看</a></td>
+  <td><a href="javascript:;" class="modfy_per" link="{:U('Nteam/modfy',array('ajax'=>1,'id'=>$vo['id']))}">修改</a>  <a href="javascript:;" class="nteam-del-a" link="{:U('Nteam/delete',array('id'=>$vo['id']))}">删除</a>  </td>
+  </tr>
+  </volist>
+  
+  </table>
+
+ </form>
+ </div>
+ 
+ </div>
+  <div class="add_box" style="display:none">
+    这里加载
+  </div>
+  
+  
+  <!-----------修改box------------->
+  
+  
+  
+  <div class="modfy_box" style="display:none">
+     
+   <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h4>编辑团队成员</h4>
+  </div>
+    
+    <div id="modfy_from">
+     
+     这里增加表单   
+ 
+    </div>
+    
+  
+  </div>
+  
+  
+  <div class="modal-footer">
+   <button class="btn btn-primary add_nteam" link='/Nteam/add/ajax/1/gid/{$_GET["gid"]}/cid/{$_GET["cid"]}' type="submit">增加团队成员</button>
+  </div>
+  
+  
+  <script>
+  
+
+  
+  $(".add_nteam").click(function(e) {
+    
+	if($(this).text()=="增加团队成员"){
+		$('.add_box').show();
+		geta($('.add_box'),'{:U("Nteam/add",array("ajax"=>1,"gid"=>$_GET["gid"],"cid"=>$_GET["cid"]))}',loadGif)
+		
+		
+	
+		$('#per_list').hide();
+		$('.modfy_box').hide();
+		
+		$(this).text("返回团队列表");
+		
+		}else{
+			$('#per_list').show();
+			$('.add_box').hide();
+	        $('.modfy_box').hide();
+			$(this).text("增加团队成员");
+			}
+	
+});
+  
+  $(".modfy_per").click(function(e) {
+    
+	$('.modfy_box').toggle();
+	$('#per_list').toggle();
+	$(".add_nteam").text("返回团队列表");
+	
+	//ajax form
+	geta($("#modfy_from"),$(this).attr('link'),loadGif);
+});
+  
+  
+  
+  
+  
+  //start submit data
+  
+ 
+  
+  //delete Nteam
+  
+  $(".nteam-del-a").click(function(e) {
+   
+   if($(this).length ==1){
+   
+    $.get($(this).attr('link'));
+    geta($("#nteam_list"),'/index.php/Nteam/index/cid/{$_GET["cid"]}/ajax/1/cname/{$_GET["cname"]}/gid/{$_GET["gid"]}',loadGif);
+	
+	
+   }else{
+	    $(".msg").html('至少保留一项').show().fadeOut(2000);
+	   }
+});
+  
+  </script>

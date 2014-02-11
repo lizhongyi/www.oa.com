@@ -1,0 +1,150 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+  <h3>编辑业绩详情</h3>
+  </div> 
+  
+ 
+  <div class="modal-body"> 
+  
+  
+  <div class=" modal_box">
+<div id="msg"></div>
+ <table class="m16">
+ <tr>
+ <td width="191" align="right">团队成员：</td>
+ <td width="497">{$detail['uid']|get_teamer}<input type="hidden" name="gid" id="gid" value="{$detail['gid']}"/>
+   　   </td>
+ </tr>
+ 
+ <tr>
+   <td height="42" align="right">候选人姓名：</td>
+   <td>{$detail['candidate_id']|get_houxuan}</td>
+ </tr>
+ <tr>
+   <td height="25" align="right" valign="top">佣金基数：</td>
+   <td valign="top">{$detail['jishu']}</td>
+ </tr>
+ <tr>
+   <td height="31" align="right" valign="top">佣金比例：</td>
+   <td valign="top">{$detail['ticheng_bili']}</td>
+ </tr>
+ <tr>
+   <td height="42" align="right" valign="top">到账金额：</td>
+   <td><input type="text" name="sjdz_jine" id="sjdz_jine" value="{$detail['sjdz_jine']}" class="span2" />
+    　　</td>
+ </tr>
+ <tr>
+   <td height="42" align="right" valign="top">备注：</td>
+   <td><textarea name="mark" id="mark" class="span4">{$detail['mark']}</textarea></td>
+ </tr>
+ 
+ 
+  
+ </table>
+ 
+
+ </div>
+ 
+  </div>
+  
+  <div class="modal-footer">
+     <button class="btn btn-primary" type="submit" id="candidate_bt_md" >保存</button></div>
+
+ </div>
+ <script>
+ 
+// ajax 提交联系人
+    
+	
+    $("#candidate_bt_md").click(function(e) {
+      
+	  if($("#realname").val()=="" || $("#phone")=="" || $("#area-val").val() ==""){
+	                   	msg("请仔细检查必填项");
+	                    return false;
+	  }else{
+		    
+		   $.ajax({ 
+		   
+		     
+			     
+				 url:"/Works/do_candidate_modfy/id/{$detail['id']}",
+				 type:"POST",
+				 data:{
+					     
+						  zhiwei     : $("#zhiwei").val(),
+						  stage      : $("#stage").val(),
+						  stages     : $("#stages").val(),
+						  area       : $("#area_val").val(),
+						  area_cn    : $("#area_cn").val(),
+						  before_job : $("#before_job").val(),
+						  yfk_time   : $("#yfk_time").val(),
+						  sjdz_time  : $("#sjdz_time").val(),
+						  yfk_jine   : $("#yfk_jine").val(),
+						  jishu   :   $("#jishu").val(),
+						  sjdz_jine  : $("#sjdz_jine").val(),
+						  mark       : $("#mark").val(),
+						  ajax       : 1
+					 
+                       },
+					   beforeSend: function(){
+						    
+							msg("正在提交");
+						   
+						   },
+						   success: function(data){
+							   
+							   if(data=="ok"){
+								
+								          msg("保存成功");
+										  
+										  $(".close").click();
+										   $("#tab_"+$("#stage").val()).click();
+								    
+								//	geta($("#clist_"+$("#stage").val()),"/Works/candidate/ajax/1/loadbox/clist_"+$("#stage").val()+"/stage/"+$("#stage").val()+"/gid/"+$("#gid").val());
+										 
+										  						  
+																		   }
+								   else{
+									     
+										 if(data==""){
+										 msg("没有任何修改")
+										 }else{
+											  msg(data)
+											 }
+									   
+									   }
+									   
+									   
+							    
+							  }		
+							  
+							
+			   
+			   });
+		  
+		  }
+		
+   
+   return false;
+	 
+}); 
+var defaultOptions = {
+            dateFormat: "yy-mm-dd",
+            showMonthAfterYear: true,
+            dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+			monthNames:['1','2','3','4','5','6','7','8','9','10','11','12'],
+            nextText: '>',
+            prevText: '<',
+			changeMonth: true,
+            changeYear: true
+			
+		
+
+        };
+       // $("#time").datepicker(defaultOptions);
+      
+  
+  $('.datepicker').datepicker(defaultOptions);
+  
+ </script>
+ 

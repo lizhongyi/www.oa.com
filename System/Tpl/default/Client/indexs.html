@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>请选择客户</h3>
+  </div>
+  <div class="modal-body">
+  <div class="custom_add" style="display:none">
+  <form action="/Works/doClient" name="" id="">
+  <input name="fuze_name" id="fuze_name" type="text" class="span5" />
+ <textarea></textarea>
+ 
+ </form>
+ </div>
+ <div class="custom_list">
+ <ul data-dismiss="modal" class="modal_list">
+ 
+ 
+ <present name="getList">
+ <volist name="getList" id="vo">
+ <li><a href="javascript:void(0)" fid='{$vo.id}' uid="{$vo.uid}" class="custom_a" title="{$vo.companyname}">{$vo.short_name|msubstr=0,6}</a></li>
+</volist>
+<else/>
+
+<li>您还没有添加客户，可以点击新增按钮进行添加！</li>
+
+</present>
+
+
+ </ul>
+ 
+ 
+ </div>
+ 
+  </div>
+  
+  
+  <div class="modal-footer">
+  <if condition="$_GET['act'] neq 'search' ">
+   <a href="#" id="custom_add" class="btn">新增客户</a>
+   </if>
+   <button class="btn btn-primary plus_save" id="save_client" type="submit">保存</button>  <div class="page_left">
+  <div class="pag custom_list">
+ 
+ <ul>
+{$pageBar}
+</ul>
+</div> 
+</div>
+  </div>

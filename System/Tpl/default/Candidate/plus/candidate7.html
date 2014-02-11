@@ -1,0 +1,64 @@
+<!--已经入职--->
+<present name="getList">
+
+               <form method="post" action="{:U('Candidate/doCommand',array('stage'=>$_GET['stage']))}">
+ <div style="min-height:120px;">             
+<table class="table">
+<tr>
+<th width="60">ID</th>
+<th width="90">姓名</th>
+<th width="130">就任职位</th>
+<th width="124">应入职日期</th>
+<th width="120">实际入职日期</th>
+
+<th width="130">阶段状态</th>
+<th width="120" align="center">更新日期</th>
+<th width="120" align="center">团队成员</th>
+<th width="120" align="center">备注</th>
+<th width="90" align="center">操作</th>
+</tr>
+<volist name="getList" id="vo">
+<tr>
+  <td><input  style="width:20px;" type="checkbox" name="id[]" id="all3" class="piliang_box" value="{$vo.id}" />{$vo['id']}</td>
+  <td>
+  
+ 
+  <if condition="$vo['source'] eq 1"> <span style="color:#090"><a href="#resume_box" class='res_id' data-toggle="modal" link="/Resume/detail/id/{$vo['resume_id']}/rname/{$vo['resume_id']|getTruename}">{$vo['realname']|msubstr=0,10}</a></span></if> <if condition="$vo['source'] eq 0"> <a href="/Talent/detail/id/{$vo['resume_id']}" target="_blank">{$vo['realname']|msubstr=0,10} </a>  </if> 
+  
+  <if condition="$vo['source'] eq 2"> <a href="/Talent_import/detail/id/{$vo['resume_id']}" target="_blank">{$vo['realname']|msubstr=0,10} </a>  </if>  
+  
+  
+  
+  
+  
+  </td>
+  <td>{$vo['jr_zhiwei']}</td>
+  <td>           <if condition=" $vo['yrz_time'] gt 10000">   {$vo['yrz_time']|date='Y-m-d',###}          </if></td>
+  <td>           <if condition=" $vo['sjrz_time'] gt 10000">     {$vo['sjrz_time']|date='Y-m-d',###}        </if> </td>
+ 
+  <td>
+  {$select['stages'][$vo['stage']][$vo['stages']]}
+  
+  </td>
+  <td>{$vo['update_time']|date='Y-m-d',###}</td>
+  <td align="center"><a data-toggle="modal" href="#nteam_list"  link="{:U('Nteam/index',array('cid'=>$vo['id'],'ajax'=>1,'cname'=>$vo['realname'],'gid'=>$vo['gid']))}" class="set_nteam">点击查看</a></td>
+  <td><a href="#mark_info" data-toggle="modal" class="zbeizhu" info="" realname="{$vo['realname']}" >查看</a>
+    <div style="display:none">{$vo['mk']}</div></td>
+  <td><a  link="/Candidate/modfy/ajax/1/id/{$vo['id']}/stage/{$vo['stage']}" data-toggle="modal" href="#add_candidate" class="modfy-a">编辑</a>　<a loadbox='tab_{$vo['stage']}' style="margin-left:-1px !important;" href="javascript:;" class="del-a" link="{:U('Candidate/delete',array('id'=>$vo['id']))}">删除</a></td>
+  </tr>  
+</volist>
+
+</table>
+
+ </div> <!-----------======调用公共分页=======---------------->
+
+<include file="Public:page_set"/>
+
+<!------==============调用公共分页=============================-->
+                    <div class="cl"></div>
+ 
+<else/>
+<div style="padding:50px;">
+暂时没有数据
+</div>
+</present>

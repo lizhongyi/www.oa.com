@@ -1,0 +1,95 @@
+<include file="Public:header"/>
+<style></style>
+<title>统计与查询</title>
+<div id="contentcolumn"> 
+  <!-- ** blue top navbar ** --> 
+  <!-- ** ./ blue top navbar ** -->
+  <div class="container-fluid"> <include file="Public:sea.inc" />
+    <div class="row-fluid wrapper"> 
+      <!-- 这里是搜索----> 
+      <!---/这里是搜索---> 
+      <!-- ** left sidebar ** --> 
+      <include file="Public:works-left.inc" /> 
+      <!-- ** ./ left sidebar ** --> 
+      <!-- ** main content ** -->
+      <div class="contentcolumn">
+        <div class="row-fluid">
+          <div class="span12"> 
+            
+            <!-- ** widget ** -->
+            
+            <div class="well bg-FFF navbar navbar-heading"><!--===============筛选联系人================-->
+              
+              <div class="btl" style=" background:#f7f7f7;">
+                <div class="container" style="width: auto;"> <a class="brand" href="javascript:;">统计与查询</a></div>
+              </div>
+              <div class="box">
+                <div class="tab" id="tongji"> <a  class="tab-bar hover" href="javascript:;" link='{:U("Candidate/search",array("ajax"=>1))}'>候选人查询</a> <a  class="tab-bar" href="#">业绩分配查询</a> <a  class="tab-bar" href="#">团队成员</a> </div>
+                <div class="tab-box" id="tongji-box">
+                
+                
+                
+                
+                <!--------------------candidate search start------------------->
+                  <div class="tab_con_box">
+                    
+                    
+                    
+                  </div>
+                   <!--------------------candidate search end------------------->
+                  
+                  <!--------------------yeji search start------------------->
+                  <div class="tab_con_box">
+                  
+               <a href="#" class="btn btn-danger " rel="popover" data-content="他来自山东，是一名残疾人，因思想独立、指谪政弊而被政府迫害。地方政府和当权政要派专人看管他，调拨专款作为对他的看管费用，他每天都活在别人的监视和囚禁中，其遭遇只能用令人发指来形容。历尽万难，他终于成功逃离了当地，在外国使节的帮助和护送下去到了国外。他，就是孙膑。" data-original-title="他是谁">鼠标经过弹出提示</a>
+                  
+                  </div>
+                  <!--------------------yeji search end------------------->
+                  
+                  
+                  
+                  <!--------------------Team search start------------------->
+                  <div class="tab_con_box">
+                 
+                  <a href="#" class="btn btn-danger " rel="popover" data-content="他来自山东，是一名残疾人，因思想独立、指谪政弊而被政府迫害。地方政府和当权政要派专人看管他，调拨专款作为对他的看管费用，他每天都活在别人的监视和囚禁中，其遭遇只能用令人发指来形容。历尽万难，他终于成功逃离了当地，在外国使节的帮助和护送下去到了国外。他，就是孙膑。" data-original-title="他是谁">鼠标经过弹出提示</a>
+                  
+                  </div>
+                  <!--------------------team search end------------------->
+                  
+                  
+                  
+                  
+                  
+                  
+                </div>
+              </div>
+            </div>
+            
+            <!-- ** ./ widget ** --> 
+            
+          </div>
+        </div>
+      </div>
+      <!-- ** ./ main content ** --> 
+      
+    </div>
+  </div>
+</div>
+<div class="rili"></div>
+</div>
+<include file="Public:left.inc"/>
+</div>
+
+<!--调用行业模板---> 
+
+<!--调用地区模板---> 
+<include file="Public:js-tpl/area.inc"/>
+<script>
+$("#tongji .tab-bar").click(function(e) {
+    
+	$yuan = $(this).parent().next().find(".tab_con_box").eq($(this).index());
+	geta($yuan,$(this).attr('link'),loadGif);
+	
+});
+</script>
+<include file="Public:footer" /></body></html>

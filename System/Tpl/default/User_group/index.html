@@ -1,0 +1,480 @@
+<include file="User:header" />
+        <style>
+		/*行业baox*/
+*{ list-style:none; font-family:"微软雅黑"}
+.hangye-box{  position:absolute; border:1px solid #ddd; box-shadow:1px 1px 1px #ccc; background:#FFF; width:600px; z-index:9999; display:none; padding-bottom:30px;}
+
+div.h-title{ line-height:30px; height:30px; background:#F1F1F1; border-bottom:1px solid #ddd; padding-left:20px}
+div.h-title a.close{ font-size:12px; line-height:30px; padding-right:10px; font-size:12px;}
+.hangye-box ul{ margin:10px;padding-left:30px; margin-left:20px;}
+.hangye-box ul li{ float:left;_display:inline;  line-height:28px; color:#06C; width:170px; padding-right:16px;  font-size:13px !important; position:relative;}
+.hangye-box ul li:hover{  }
+.hangye-box  ul li dl{display:block; display: none; clear:both; padding:5px; margin:0px; margin-left:10px; margin-top:-4px; position:absolute; background:#F8F8F8; left:10px; top:28px; border:1px solid #ddd; z-index:100; padding-right:10px; width:400px; box-shadow:1px 1px 2px #ddd}
+.hangye-box  ul li dl.hover{ display:block;}
+.hangye-box  ul li dd{ line-height:24px; color:#999; display:block; word-wrap:normal; float:left; _display:inline; margin-left:9px; width:130px; overflow:hidden;}
+.hangye-box  ul li img,.hangye-box  ul li span.big-cate,.hangye-box  ul li input{  margin-right:5px;}
+ul li span.big-cate{ cursor:pointer}
+ul li span.big-cate:hover{ color:#039}
+ul li span.small-cate{ cursor:pointer; font:12px;}
+ul li span.small-cate:hover{ color:#06C}
+
+/*弹窗样式*/
+
+
+.area-box{ position:absolute; border:1px solid #ddd; box-shadow:1px 1px 1px #ccc; background:#FFF; width:600px; display:none; padding-bottom:30px;}
+
+div.h-title{ line-height:30px; height:30px; background:#F1F1F1; border-bottom:1px solid #ddd; padding-left:20px}
+div.h-title a.close{ font-size:12px; line-height:30px; padding-right:10px; font-size:12px;}
+.area-box ul{ margin:10px; padding-left:10px; padding-bottom:30px;}
+.area-box ul li{ float:left;_display:inline; line-height:28px; color:#06C; width:170px; padding-right:16px;  font-size:13px !important; position:relative;}
+.area-box ul li:hover{  }
+.area-box  ul li dl{display:block; display: none; clear:both; padding:5px; margin:0px; margin-left:10px; margin-top:-4px; position:absolute; background:#F8F8F8; left:10px; top:28px; border:1px solid #ddd; z-index:100; padding-right:10px; box-shadow:1px 1px 2px #ddd}
+.area-box  ul li dd{ line-height:24px; color:#999; float:left;_display:inline;}
+.area-box  ul li img,.area-box  ul li span.big-cate,..area-box  ul li input{  margin-right:5px;}
+#group{ margin:20px; margin-top:-40px;}
+.cl{ clear:both; height:1px; overflow:hidden;}
+.level_0{ float:left;  margin-left:22px}
+div.bumen{ border-radius:7px;text-align:center; line-height:50px; font:14px; position:relative; background:rgb(0,156,174);}
+div.bumen a{ font-size:14px; color:#FFF; display:block;}
+.zu{ background:rgb(0,176,194); border-radius:5px;  line-height:50px; text-align:center; float:left; word-break:break-all; margin-top:5px; position:relative;}
+.zu a{ color:#FFF}
+.b_set{ display:none; position:absolute; right:3px; width:18px; line-height:12px !important; margin-top:4px; top:-2px;}
+.b_set a{ margin-bottom:2px; display:block;}
+		</style>
+        <!-- section content -->
+        <section class="section">
+            <div class="container">
+                <div class="signin-form row-fluid">
+                    <!--Sign In-->
+                    <div class="span10 offset1">
+                        <div class="box corner-all">
+                            <div class="box-header grd-teal color-white corner-top">
+                                <span>编辑资料</span>
+                            </div>
+                             <div class="box-body">
+                             <div class="box-header corner-top" style="margin:20px;" >
+                                   
+                                    <ul class="nav nav-tabs">
+                                       
+                                        <li><a  href="/User/profile_edit">基本资料</a></li>
+                                        <li><a class=""  href="{:U('User/profile_company')}">企业信息</a></li>
+                                        
+                                         <li class="active"><a class=""  href="{:U('User_group/index')}"> <i class="icofont-sitemap"></i>组织架构</a></li>
+                                         
+                                         <li> <a href="#add_title" role="button" class="btn" data-toggle="modal"><i class="icofont-plus"></i>创建部门</a></li>
+                                     
+                                       
+                                        
+                                  
+                                        
+                                        
+                                    </ul>
+                                </div>
+                                                    <!--element-->
+
+                                                   <div>  <h3 class="" style="margin:0 30%; display:block; color:#FFF; line-height:50px; text-align:center; background:rgb(0,156,174); border-radius:6px;">{$company}</h3>
+                                                     </div>
+                                                    
+                                                     <div class="liney"></div>
+                                                     <div class="linex"></div>
+                                                     
+                                                     
+                                                    
+                                                        <div class="m15" id="group" style=" min-height:400px;">
+                                                      
+                                                        <present name="list">
+                                                     <volist name="list" id="vo">
+                                                       
+                                                      <div key="{$key}" xulie="{$vo.xulie}" level="{$vo['level']}" class="level_{$vo.level}   class_{$vo.id} group-box"  pid="class_{$vo.pid}">                          <div class="liney"></div>
+                                                       <div class="bumen "><a href="javascript:;" class="ba" xid="{$vo.id}" link="/User_group/user_list/ajax/1/bid/{$vo.id}">{$vo.title}</a> <span class="b_set"><a href="#add_user" class="add_user" data-toggle="modal" xid="{$vo.id}" title="增加成员" ><i class="icofont-plus"></i></a> <a href="#edit_bumen"  data-toggle="modal" class="edit_bumen" title="编辑部门" xid="{$vo.id}"><i class="icofont-edit"></i></a>  <a href="javascript:;" class="del_bumen" xid="{$vo.id}"> <i class="icofont-remove"></i></a></span></div>
+                                                       
+                                                       <volist name="list1" id="vo1">
+                                                      <if condition="$vo1['pid'] eq $vo['id']">                                                <div level="{$vo1['level']}" class="level_{$vo1.level}  class_{$vo1.id} group-box"  pid="class_{$vo1.pid}">
+                                                            
+                                                                       <div class="zu"><a href="javascript:;" class="ba" xid="{$vo1.id}" link="/User_group/user_list/ajax/1/bid/{$vo1.id}">{$vo1.title}</a><span class="b_set"><a href="#add_user" class="add_user" data-toggle="modal" xid="{$vo1.id}" title="增加成员" ><i class="icofont-plus"></i></a> <a href="#edit_bumen"  data-toggle="modal" title="编辑部门" class="edit_zu" xid="{$vo1.id}"><i class="icofont-edit"></i></a>  <a href="javascript:;" class="del_zu" title="删除部门" xid="{$vo1.id}"> <i class="icofont-remove"></i></a></span></div> 
+                                                                            
+                                                        
+                                                     </div>
+                                                         </if> 
+                                                       </volist>
+                                                       
+                                                        </div>
+                                                       
+                                                     </volist>
+                                                    
+                                                        <else/>
+                                                        <div class="box corner-all">
+                                                        您还没有创建部门
+                                                        </div>
+                                                        </present>
+                                                        <div>
+                                                        <div class="box">
+                                                        
+                                                        
+                                                        
+                                                    
+                                                    <!-- Button to trigger modal -->
+                                                    
+                                                
+                                                    <!-- Modal -->
+                                                   <div id="add_title" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-recoverLabel" aria-hidden="true" style="width:500px; margin-left:-250px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 id="modal-recoverLabel">增加部门</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="form-add" method="post" />
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="control-group">
+                                                           
+                                                           
+                                                           
+                                                           
+                                                                  <div class="controls">
+                                                                  
+                           <label class="control-label span3" for="inputAuto" style="padding-top:6px; padding-right:18px; text-align:right">隶属于</label>     
+                           
+                           <select name="pid" id="pid" class="span5">
+                           <option value="0" leval="{$vo.level}">{$company}</option>
+                           {$pid|buildSelect2=0,$vo['parent_id']}
+                           </select>
+                              
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                    
+                    
+                    
+                    
+                    
+                        <div class="control-group">
+                                                           
+                                                           
+                                                           
+                                                           
+                                                                  <div class="controls">
+                                                                  
+                           <label class="control-label span3" for="inputAuto" style="padding-top:6px; padding-right:18px; text-align:right">部门名称</label>     <input type="text" data-validate="{required: true, messages:{required:'请输入名称'}}" class="span5" id="title" name="title" />
+                              
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        
+                        
+                        
+                        
+                       
+                        
+                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                    <input type="submit" form="form-recover" id="add_p_bt" class="btn btn-primary" value="提交" />
+                </div>
+                                               
+                                                        
+                                                        
+                                                         </div>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        <div id="edit_bumen" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-recoverLabel" aria-hidden="true" style="width:500px; margin-left:-250px;">
+                 </div>
+                                        
+                                        <!--adduser-->
+                                        
+                                        
+                                        <div id="add_user" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modal-recoverLabel" aria-hidden="true" style="width:500px; margin-left:-250px;">
+                 </div>
+                                        
+                                        <input id="bid" type="hidden" value=""/>
+                                        
+                                        <!--adduser/-->
+                                          
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                      
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                                 </div>
+                                                        
+                                            
+                                                    <div class="cl"></div>
+                                    
+                                        
+                                        <div id="user_list">
+                                        
+                                        
+                                        </div>
+                                              
+                                                        
+                               
+                                                    <!--/element-->
+                                                </div>
+                        </div>
+                    </div><!--/Sign In-->
+                    <!--Sign Up-->
+                    <!--/Sign Up-->
+                </div><!-- /row -->
+            </div><!-- /container -->
+            
+            <!-- modal recover -->
+            <!-- /modal recover-->
+        </section>
+
+   <include file="Public:footer"/>
+   
+    <script src="/Public/js/uniform/jquery.uniform.js"></script>
+        
+        <script src="/Public/js/validate/jquery.metadata.js"></script>
+        <script src="/Public/js/validate/jquery.validate.js"></script>
+   <script>
+   
+   
+    $(document).ready(function() {
+                // try your js
+                
+              
+             //get user_list
+			 
+			   $("#user_list").load('/User_group/user_list/ajax/1');
+                
+			    $(".ba").click(function(e) {
+                      
+					   $("#user_list").load($(this).attr('link')); 
+					   $("#bid").val($(this).attr('xid'));
+					  
+                });
+             
+
+                // wysihtml5
+                $('[data-form=wysihtml5]').wysihtml5();
+                $("#form-add").validate();
+              
+		      
+			
+		   
+		   
+		         //提交部门表单
+		     $("#add_p_bt").click(function(e) {
+                   $this=$(this);
+				        
+					if($("#title").val()==""){
+						   
+						   msg("部门不能为空",'e');
+						  
+						}
+						
+						
+						
+						$.ajax({
+							url:'/User_group/add/ajax/1',
+							type:"POST",
+							data:{title:$("#title").val(),pid:$("#pid").val()},
+							beforeSend: function(){
+								   
+								   $this.val("提交中....").attr('disabled','disabled');
+								   
+								},
+							success:function(data){
+								       
+									   if(data.status==1){
+										   
+										    msg(data.info,'s');
+											$(".close").click();
+											window.location.reload();
+										   
+										 }else{
+											  
+											  //alert(data);
+											// alert(data); 
+											  msg(data.info,'e');
+											  $this.attr('disabled',false).val("提交");
+											 
+											 }
+								
+								}
+							
+							});
+						
+						return false;
+				
+            });
+		   
+		   
+		   
+		   
+		   
+		       $('div').modal({
+                        backdrop:false,
+                           keyboard:true,
+                            show:false,
+});
+		   
+		     
+			 $zw=$("#group").width();
+			 $zw= $zw - ("{$list_count}" *  10);
+			 $bw=$zw  / "{$list_count}" - 34 ;
+			 
+             $(".bumen").width($bw);
+		      $(".zu").width($(".zu").parent().width());
+		  			
+					 
+			 
+	/*	        
+       $("#group .group-box").each(function(index, element) {
+        
+		    
+			if($(this).attr('level')==0){
+				  
+				  $(this).css('left',$(this).attr('key')*130);
+				  $(this).css('top',$(this).attr('level')*100);
+				   $(this).css('font-size','26px');
+				 
+				}
+				else{
+					
+					  
+					   $(this).css('top',$(this).attr('level')*60);
+				  fleft=parseInt($("."+$(this).attr('pid')).css('left'))+$(this).width()*($(this).attr('xulie')-1);
+				
+				  $(this).css('left',fleft);
+				    $(this).css('padding','10px;');
+				   $(this).css('width','12px');
+					  
+					
+					}
+    });*/
+                
+            
+                
+            });
+      
+	  
+	       
+		   // delete deparment
+		   
+		   $(".del_bumen,.del_zu").click(function(e) {
+               
+			    if(window.confirm('这是一个危险的操作，您确定删除整个部门么？\n删除后，整个部门的小组和成员将全部呗删除!')){
+					    
+						
+						
+					
+					    $this=$(this);
+					   $.ajax({
+						      
+							   url:'/User_group/delete/ajax/1',
+							   type:"POST",
+							   data:{id:$(this).attr('xid'),fid:$(this).attr("fid")},
+							   beforeSend: function(){},
+							   success:function(data){
+								      
+								      if(data.status==1){
+										  show_stack_bar_top('success',data.info,'');
+										  
+										  setTimeout(function(){
+											   
+											    window.location.reload();
+											  
+											  },2000)
+										 
+										  }else{
+									      show_stack_bar_top('error',data.info,'');
+											 }
+								    
+								   },
+						   
+						   });
+					
+					
+					
+					}else{
+						   
+						   return false;
+						
+						}
+        });
+		   
+		   
+		   
+		   
+		   
+		   
+		   $(".bumen").hover(function(e) {
+            
+			 $(this).find('.b_set').slideToggle(0);
+       
+	        })
+		
+		 $(".zu").hover(function(e) {
+            
+			 $(this).find('.b_set').slideToggle(0);
+       
+	        })
+		
+	  
+	  
+	  //edit deparment
+	  
+	    $(".edit_bumen,.edit_zu").click(function(e) {
+              
+			    
+				geta($("#edit_bumen"),'/User_group/edit/ajax/1/id/'+$(this).attr('xid'),loadGif);
+				
+			    
+        });
+	   //add_user
+	   
+	   
+	   
+	    $(".add_user").click(function(e) {
+              
+			    
+				geta($("#add_user"),'/User_group/add_user/ajax/1/pid/'+$(this).attr('xid'),loadGif);
+				
+			    
+        });
+        </script>
+
+ 
+   </body>
+   
+   </html>
+

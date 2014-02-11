@@ -1,0 +1,134 @@
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 id="modal-recoverLabel">编辑部门</h3>
+                </div>
+                <div class="modal-body">
+                    <form id="form-add" method="post" />
+                    
+                    
+                    
+                    
+                    
+                    
+                        <div class="control-group">
+                                                           
+                                                           
+                                                           
+                                                           
+                                                                  <div class="controls">
+                                                  
+                           <label class="control-label span3" for="inputAuto" style="padding-top:6px; padding-right:18px; text-align:right">隶属于</label>     
+                           
+                           <select name="pid1" id="pid1" class="span5">
+                           <option value="0" leval="{$vo.level}">{$company}</option>
+                           {$pid|buildSelect2=0,$dt['pid']}
+                           </select>
+                              
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                    
+                    
+                    
+                    
+                    
+                        <div class="control-group">
+                                                           
+                                                           
+                                                           
+                                                           
+                                                                  <div class="controls">
+                                                                  
+                           <label class="control-label span3" for="inputAuto" style="padding-top:6px; padding-right:18px; text-align:right">部门名称</label>     <input type="text" data-validate="{required: true, messages:{required:'请输入名称'}}" class="span5" id="title1" value="{$dt['title']}" name="title1" />
+                              
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                        </div>
+                        
+                        
+                        
+                        
+                       
+                         <input type="hidden" id="id1"  name="id1" value="{$dt['id']}"/>              
+                        
+                    </form>
+                </div>
+                
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                    <input type="submit" form="form-recover" id="edit_p_bt" class="btn btn-primary" value="提交" />
+                </div>
+                
+                
+               <script>
+			   
+			   
+			   $(document).ready(function(e) {
+                   
+				   
+				   $("#edit_p_bt").click(function(e) {
+                      
+					  
+					  
+					  
+					  
+					   $this=$(this);
+				        
+					if($("#title").val()==""){
+						   
+						   msg("部门不能为空",'e');
+						  
+						}
+						
+						
+						
+						$.ajax({
+							url:'/User_group/doEdit/ajax/1',
+							type:"POST",
+							data:{title:$("#title1").val(),id:$("#id1").val(),pid:$("#pid1").val()},
+							beforeSend: function(){
+								   
+								   $this.val("提交中....").attr('disabled','disabled');
+								   
+								},
+							success:function(data){
+								       
+									   if(data.status==1){
+										   
+										    msg(data.info,'s');
+											$(".close").click();
+											window.location.reload();
+										   
+										 }else{
+											  
+											  //alert(data);
+											// alert(data); 
+											  msg(data.info,'e');
+											  $this.attr('disabled',false).val("提交");
+											 
+											 }
+								
+								}
+							
+							});
+						
+						return false;
+					  
+					
+					   
+                });
+				   
+				
+				
+            });
+			   
+			   </script>

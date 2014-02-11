@@ -1,0 +1,470 @@
+<include file="Public:header"/>                    
+               <section class="section">
+            <div class="row-fluid">
+                <!-- span side-left -->
+                <div class="span1">
+                  
+                    <!--side bar-->
+                    
+                    <include file="Public:side-bar" />
+                    
+                  <!--/side bar -->
+                </div><!-- span side-left -->
+                
+                <!-- span content -->
+                <div class="span9">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content-header -->
+                        <div class="content-header">
+                            
+                              <include file="Public:breadcrumb"/>
+                        </div><!-- /content-header -->
+                        
+                        <!-- content-breadcrumb -->
+                        <div class="content-breadcrumb">
+                           
+                            
+                            
+                        </div><!-- /content-breadcrumb -->
+                        
+                        <!-- content-body -->
+                        <div class="content-body">
+                          <div class="box-header corner-top">
+                                    <div class="header-control pull-right">
+                                        <a data-box="collapse"><i class="icofont-caret-up"></i></a>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                       
+                                        <li><a  href="{:U('Works/index')}">我的职位</a></li>      <li><a  href="{:U('Works/partake')}" >我参与的职位</a></li>
+                                        <li><a  href="{:U('Works/all')}" >职位管理</a></li> <li><a class="" style="color:#060" href="{:U('Works/add')}">创建职位 <i class="icon-plus"></i></a></li>
+                                        
+                                        
+                                        
+                                        
+                                        
+                                         <li  class="active"><a  href="#" >编辑职位</a></li> 
+                                        
+                                        
+                                        
+                                        <li><a href="/Works/recycle">回收站 <i class="icofont-trash"></i></a></li>
+                                        
+                                        
+                                    </ul>
+                                </div>
+                            
+                           
+                            
+                         
+
+                            <!-- tab resume content -->
+                            <div class="row-fluid">
+                                <!-- tab resume update -->
+                                <!-- tab resume update -->
+                                <div class="span12">
+                                    
+										
+                                        <div class="box-body">
+													
+	
+            
+              
+              <div class="m15"><form action="/Works/do_modfy/id/{$detail['id']}" method="post" name="ad-gd" > 
+                <div class="cbox form-table" style="margin:15px;">
+                
+                
+                <div class="divf1">
+                
+                
+                <div class="span4  input-line">
+              <label class="control-label span3">寻访职位</label>  <input class="span7" id="Search_posts" name="Search_posts" size="16" type="text" value="{$detail['Search_posts']}">
+    </div> 
+                
+               <div class="span4 input-line"> <label class="control-label span3" >客户名称</label>
+              
+<input class="span7 c_name custom" id="custom_cn" link="/Client/indexs"  data-toggle="modal" href="#add_custom" size="16" type="text" name="custom" value="{$detail['custom']}"/><input type="hidden" name="cid" id="cid"  value="{$detail['cid']}" /></div>
+                       <div class="span4 input-append  input-line">
+                 <label class="control-label span3">招聘人数</label>
+                 <input type="text" name="hr_num" class="span7" id="hr_num" value="{$detail['hr_num']}" />
+                  </div>
+                  
+                  <div class="cl"></div>
+                  
+                  </div>
+                  
+                  <div class="div-f2">
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                
+                   <div class="span4  input-line">
+              <label class="control-label span3">工作地点</label> <span><input class="span7 area" size="16" type="text" name="area_cn" id="area_cn" value="{$detail['area_cn']}" /><input type="hidden" name="area" id="area-val"/></span>
+    </div> 
+                       
+ 
+                       
+               
+                
+
+    
+    
+    
+           
+    
+    <!---
+    
+     <div class="span4 input-append input-line">
+               <label class="control-label">所在行业</label>  <input class="span7 industry" name="industry_cn" id="industry_input" size="16" type="text" value="请选择"><input type="hidden" value="" id="industry-val" name="industry" /><button class="btn industry" type="button"><i class="icon-plus industry"></i></button>
+    </div> 
+          -->
+          
+          
+          
+     <div class="span4 input-line">
+              <label class="control-label span3">薪酬范围</label>  
+              
+            <input class="xin1 span2" name="payment" id="xin1" type="text" onKeyUp="value=value.replace(/[^\d]/g,'')"  value="{$detail['payment']}" /><input type="text" class="span2" value="至" style="width:26px; box-shadow:none; background:none; border:0px;" onKeyUp="value=value.replace(/[^\d]/g,'')" disabled="disabled"/><input class="xin2 span2" name="payment1" id="xin2" type="text" value="{$detail['payment1']}"/><input type="text" class="span2" value="万元" style="width:40px; box-shadow:none; background:none; border:0px;" disabled="disabled"/>
+              
+            
+    </div> 
+  
+  
+ 
+                   
+                                        <div class="span4  input-line"> <label class="control-label span3" >HR联系人</label>
+<input class="span7 add_hr" com_id="" id="hr_contact" size="16" type="text" name="hr_contact" value="{$detail['hr_contact']}"  data-toggle="modal" href="#add_hr_contact"  /><input id="company_id" name="company_id" type="hidden" /><input name="hr_c" id="hr_c" type="hidden" /></div>
+                       
+ 
+                        
+                   </div> 
+                      
+
+                  
+                <div class="cl"></div>
+               
+               <div class="divf3">
+                    <div class="span4  input-line"> <label class="control-label span3" >客户部门</label>
+                                        <input name="khbumen" id="khbumen" type="text"  placeholder="可选填" class="span6"value="{$detail['khbumen']}"/>
+</div>    
+                </div>
+                  
+                   <div class="span4 input-append  input-line">
+                 <label class="control-label span3">性别要求</label>
+                 <select type="text" name="sex" class="span4 bitian" id="sex">
+                 
+                 
+                   <option <if condition="$detail['sex'] eq 不限"> selected  </if> value="不限">不限</option>
+                 
+                 <option <if condition="$detail['sex'] eq 男"> selected  </if> value="男">男</option>
+       <option value="女"  <if condition="$detail['sex'] eq 女"> selected  </if>>女</option>          
+                 </select>
+                  </div>    
+                
+                
+</div>
+                
+                     
+                
+                <div>
+                
+                
+                          <div class="span4 input-append  input-line" style="display:none">
+                 <label class="control-label">招聘部门</label>
+                 <input type="text" name="hr_department" class="span7" id="hr_department" />
+                 </div>
+                 
+                 
+                 
+                  
+                        
+                       <div class="span12 input-append input-line">
+              <label class="control-label span1">职位描述</label>
+              <textarea name="job_descriptions" rows="5" class=" span10" id="job_descriptions">{$detail['job_descriptions']}</textarea>
+              
+            
+           </div>     
+           
+                  <div class="span12 input-append input-line">
+              <label class="control-label span1"> 任职要求</label>
+              <textarea name="job_requirements" rows="5" class=" span10" id="job_requirements">{$detail['job_requirements']}</textarea>
+                  </div> 
+           
+           
+             
+           
+           <div class="span12 input-append input-line" style="display:none">
+              <label class="control-label">备注</label>
+              <textarea name="remark" rows="5" class=" span10" id="yaoqiu"></textarea>
+              
+            
+           </div> 
+                 
+                        
+                        
+                
+                 <div class="cl"></div>
+            
+               
+                </div>
+            
+                <div class="divider-content"><span></span></div>
+                
+                   <div class="small-brand"><strong>寻访信息</strong></div>
+                   
+                   
+                     <div class="cbox form-table" style="margin:20px; overflow:hidden;">
+                     
+                     
+                    
+<!--
+                     
+                      <div class="span4 input-append input-line">
+              <label class="control-label">执行部门</label>  
+              
+              <select name="executive_arm" class="span7" id="executive_arm">
+               <script> get_select('executive_arm',selecter.executive_arm)</script>
+              </select>
+            
+            
+    </div> -->
+    
+         <div class=""> <span class="span4">
+                   <label class="control-label span3">执行部门</label>
+                   
+                   
+                 <select id="department_id" name="department_id" class="span7">
+                    
+<option value="">请选择</option>                    {:get_select1($bm,$detail['department_id'])}
+                             
+                 </select>
+                   </span>
+      
+                      <div class="span4  input-line"> <label class="control-label span3">负责人</label>
+<input class="span7 c_fuze" id="principal_cn" size="16" type="text" name="principal_cn" value="{$detail['principal_cn']}"   data-toggle="modal" href="#add_fuzeren" /><input type="hidden" id="principal" name="principal" value="{$detail['principal']}" /><input type="hidden" name="yfz" value="{$detail['principal']}"></div>
+    
+    
+       
+                      <div class="span4  input-line">
+              <label class="control-label span3">进展阶段</label>  
+              
+              <select name="stage" id="stage" class="small span7">
+            <option value="1">初选</option>
+              </select>
+              
+            
+    </div>
+    
+    
+    <div class="cl"></div>
+    
+    </div>
+    <div> <div class="span4 input-append input-line">
+                <label class="control-label span3" >状态</label>
+                
+                           <select name="status" id="status" class="span7">
+              {:get_select($select['status'],$detail['status'])}
+              </select>  
+             
+
+    </div> 
+    
+     <div class="span4 input-append input-line">
+                 <label class="control-label span3">开始日期</label>
+                 <input type="text" name="start_time" id="start_time"  class="span6" data-date-format="yyyy-mm-dd" data-form="datepicker"  data-date='<php>echo date("Y-m-d",time())</php>' value='{$detail['start_time']|date='Y-m-d',###}' /><span class="add-on"><i class=" icon-calendar"></i></span>
+                 </div>
+                   
+                   
+                      <div class="span4 input-append input-line">
+                 <label class="control-label span3">结束日期</label>
+                 <input type="text" name="end_time"  id="end_time" class=" span4" data-date-format="yyyy-mm-dd" data-form="datepicker" value="<if condition="$detail['end_time'] eq 0"> 长期<else/>{$detail['end_time']|date='Y-m-d',###} </if>" /><span class="add-on"><i class=" icon-calendar"></i></span><a href="javascript:;" class="changqi btn"> 长期</a>
+                 </div>
+                     
+                 <div class="cl"></div> 
+    </div>
+    
+  
+  
+  
+    
+    
+             <!--   
+                 <div class="span4 input-append input-line">
+              <label class="control-label">阶段停留</label>  
+               <select name="stage_stay" id="stage_stay" class="span7">
+                 {:get_select($select['stage_stay'])}
+               </select>
+              
+            
+    </div> -->
+    
+    <div style="margin-top:10px;">
+           <div class="span12 input-append input-line">
+              <label class="control-label span1">备注</label>
+              <textarea style="margin-left:12px;" name="remark" rows="4" class=" span10" id="beizhu">{$detail['remark']}</textarea>
+              
+            
+           </div>
+         </div>  
+
+                       
+                        
+                      
+                     
+                     
+                     
+                     
+                     
+                     
+                 
+                     
+                     
+                     
+                     
+                     
+                     
+                       <div class="cl"></div>
+                       
+                       
+                    
+                       
+                    <div class="span8">
+                    <label class="span1"></label>
+                    <button  type="reset" class="btn btn ">　重置　</button> <button  id="inser" type="submit" class="btn btn-primary ">　保存　</button>
+                     
+                     </div>
+                     
+                 <div class="cl"></div>
+                 
+                
+                </div>
+               
+                
+                 </form></div>
+              </div>
+               
+              
+              
+             
+
+                               </div>
+                            </div><!-- tab stat -->
+                            
+                           
+                            
+                            <!--/dashboar-->
+                        </div><!--/content-body -->
+                    </div><!-- /content -->
+                </div><!-- /span content -->
+                
+                <!-- span side-right -->
+                <div class="span2">
+                    <!-- side-right -->
+                    <aside class="side-right">
+                        <!-- sidebar-right -->
+                        <div class="sidebar-right">
+                            <!--sidebar-right-header-->
+                            <div class="sidebar-right-header">
+                                <div class="sr-header-right">
+                                   
+                                </div>
+                                <div class="sr-header-left">
+                                   <span id="localtime" style="font-size:12px; font-family:'微软雅黑'"></span>
+
+<script type="text/javascript">
+function showLocale(objD)
+{
+	var str,colorhead,colorfoot;
+	var yy = objD.getYear();
+	if(yy<1900) yy = yy+1900;
+	var MM = objD.getMonth()+1;
+	if(MM<10) MM = '0' + MM;
+	var dd = objD.getDate();
+	if(dd<10) dd = '0' + dd;
+	var hh = objD.getHours();
+	if(hh<10) hh = '0' + hh;
+	var mm = objD.getMinutes();
+	if(mm<10) mm = '0' + mm;
+	var ss = objD.getSeconds();
+	if(ss<10) ss = '0' + ss;
+	var ww = objD.getDay();
+	if  ( ww==0 )  colorhead="";
+	if  ( ww > 0 && ww < 6 )  colorhead="";
+	if  ( ww==6 )  colorhead="";
+	if  (ww==0)  ww="星期日";
+	if  (ww==1)  ww="星期一";
+	if  (ww==2)  ww="星期二";
+	if  (ww==3)  ww="星期三";
+	if  (ww==4)  ww="星期四";
+	if  (ww==5)  ww="星期五";
+	if  (ww==6)  ww="星期六";
+	colorfoot=""
+	str = colorhead + yy + "年" + MM + "月" + dd + "日  <br/>" + ww +""+ colorfoot + " " + hh + ":" + mm + ":" + ss ;
+	return(str);
+}
+function tick()
+{
+	var today;
+	today = new Date();
+	document.getElementById("localtime").innerHTML = showLocale(today);
+	window.setTimeout("tick()", 1000);
+}
+tick();
+</script>
+                                </div>
+                            </div><!--/sidebar-right-header-->
+                            <!--sidebar-right-control-->
+                            <div class="sidebar-right-control">
+                                <ul class="sr-control-item">
+                                    <li class="active"><a href="#contact" data-toggle="tab" title="contacts"><i class="icofont-group"></i></a></li>
+                                   
+                                    <li rel="tooltip-bottom" title="view site"><a href="/" target="_BLANK"><i class="icofont-external-link"></i></a></li>
+                                </ul>
+                            </div><!-- /sidebar-right-control-->
+                            <!-- sidebar-right-content -->
+                            <div class="sidebar-right-content">
+                                <div class="tab-content">
+                                    
+                                   {:W('rightInc')}<!--/alternative 1-->
+                                    
+                                </div>
+                            </div><!-- /sidebar-right-content -->
+                        </div><!-- /sidebar-right -->
+                    </aside><!-- /side-right -->
+                </div><!-- /span side-right -->
+            </div>
+        </section>
+
+
+
+             <div class="modal" id="add_custom" style="width:560px; margin-left:-280px;"></div>
+<div class="modal" id="add_fuzeren"></div>
+
+<div class="modal" id="add_hr_contact"></div>
+
+       
+
+		<include file="Public:footer" />
+      <include file="Public:js-tpl/area.inc"/>  
+        <script src="/Static/skin/js/plus_tan.js"></script>
+        
+        <script>
+		 $(".changqi").click(function(e) {
+             
+			 $("#end_time").val('长期');
+        });
+		
+		</script>
+        
+      
+        
+	</body>
+</html>
+
+

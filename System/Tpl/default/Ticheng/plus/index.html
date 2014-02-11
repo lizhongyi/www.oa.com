@@ -1,0 +1,193 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>设置提成比例</h3>
+  </div>
+  <div class="modal-body" style="min-height:130px;">
+  
+  
+  <div class="custom_add" style="position:relative;">
+   <div class="info" style="position: absolute; right: 10px; top: 0px; width: 182px;line-height: 24px; font-size: 12px; padding: 10px">
+     <h5>温馨提示</h5>
+     <p>如要添加其他工作角色<br>
+<a style="color:#039" href="javascript:;" cid="{$_GET['cid']}" class="jump-nteam">请点击这里</a></p>
+    </div>
+ 
+  <div id="msg"></div>
+  
+  <present name="getList">
+  <form action="/Works/do_set_ticheng" name="persona" id="set_form">
+
+  <table id="person" style="margin-left:30px; margin-top:10px;">
+  <tr><td height="30" colspan="2" valign="top"><div class="title"><strong>候选人：ID {$_GET['cid']}　姓名：{$_GET['hname']}</strong></div></td></tr>
+  <volist name="getList" id="vo">
+  
+  
+  <tr <if condition="$vo['dis'] neq ''"> style="display:none" </if>>
+ <td>{$vo['title']}：</td><td><div class="input-append">
+    <input <if condition="$vo['dis'] neq ''">  none='1' </if> name="title2[]" id="title_{$vo['id']}" type="text" class="span2 title2" value="{$vo['tc']}" />　％</div></td></tr>
+    
+    
+    
+  </volist>
+  </table>
+  
+  
+
+ </form>
+ <else/>
+ 您还没有设置，请点击添加角色。
+ </present>
+ </div>
+ 
+ 
+  </div>
+  
+  
+  <div class="modal-footer">
+ <button class="btn btn-primary set_ticheng_save" type="submit">保存</button>
+  </div>
+  
+ 
+ 
+<script>
+
+$("#set_form input.title2").blur(function(e) {
+		
+         　　s=$(this).val();
+		if(s.length > 2){
+			$("span.red").remove();
+			$(this).parent().append("<span class='red'>　只能输入两位数字</span>");　　
+			$(this).focus();
+			}else{
+				$(this).parent().find(".red").remove();
+				if(!(/^[0-9]\d{0,1}$/.test(s))){
+			  
+			  $(this).parent().append("<span class='red'>只能数字</span>"); 
+			    $(this).focus(); 
+			  
+			           }else{
+				  $(this).parent().find(".red").remove();
+				     }	
+				
+				
+				}
+				
+				
+				
+				//alert(baifenbi());
+		    	
+				if(baifenbi() > 100){
+					
+					   $(this).parent().append("<span class='red'>　总数值不能超过100</span>"); 
+					  $(this).val("");
+					  
+					  $(this).focus();
+					  
+					}	
+			
+				
+		
+    });
+	
+	
+	
+	
+	function baifenbi(){
+		
+		  var yibai=0;
+		  $("#set_form input.title2").each(function(index, element) {
+            
+			yibai=(yibai*1)+($(this).val()*1);  
+			  	 
+			
+           });
+		
+		return yibai;
+		
+		}
+	
+	
+	
+	//save  persona 
+	$(".set_ticheng_save").click(function(e) {
+		
+		 $this=$(this);
+		 $title="";
+		 $v=0;
+		          
+	     $("#set_form input.title2").each(function(index, element) {
+					  
+					  
+					    if($(this).attr('none')==1){
+							  
+							  $(this).remove();
+							  
+							
+							}else{
+								
+								  if($(this).val()==""){
+						       
+							   $v+=1;
+							    
+					}
+								
+								}
+					  
+					    
+					
+					$title+=$(this).val()+",";
+                    
+                }); 
+		  if($v>=1){
+			   
+			   msg("请填写完整");
+			   return false;
+			   }else{
+				   msg("");
+				   cid="{$_GET['cid']}";
+				  				   //start submit
+				   $title=$title.substr(0,$title.length-1);
+				  
+				 
+				   $url="{:U('Ticheng/do_add',array('ajax'=>1,'cid'=>$_GET['cid']))}";
+				   tdata={ticheng:$title};
+				    cb={ 
+				        bf:function(){
+							 msg("正在提交请稍后...");
+							},
+						su:function(data){
+                                if(data.status==1){
+								   
+								   $("#msg").html(data.info).fadeOut(1000,function(){$(".close").click();});
+								   
+	                           }else{
+								    msg(data.info);
+								   }
+							}	
+					   
+					   }
+				   ajaxForm($url,tdata,cb);
+				  
+               }
+                     
+					
+             
+			 
+				  
+			
+       
+            
+		
+		
+    });
+	
+	
+	$(".jump-nteam").click(function(e) {
+          
+		   $(".close").click();
+		   $("#set_nteam_"+$(this).attr("cid")).click();
+		   
+    });
+	
+
+</script>

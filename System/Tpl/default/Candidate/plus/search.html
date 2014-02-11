@@ -1,0 +1,259 @@
+<div class="se-box cbox form-table">
+      
+               
+  <div class="span4  input-line">
+                        <label class="control-label span4" > 团队成员：</label>
+                       <input name="uname" type="text" id="uname" class="span6 c_fuze" value="{$_GET['uname']}"  data-toggle="modal" href="#add_fuzeren"  /><input type="hidden" name="uid" id="uid"/>
+                      </div>
+                      
+                      
+                       <div class="span4  input-line">
+                        <label class="control-label span4">客户名称:</label>
+                     <input type="text" id="custom_cn" class="span6 c_name custom"  data-toggle="modal" href="#add_custom" size="16" value="{$_GET['custom_cn']}" />
+                     <input type="hidden" id="gid" name="gid"/>
+                      </div>
+                      
+                      
+                      <div class="span4 input-append input-line">
+                        <label class="control-label">进展阶段:</label>
+                      <select name="stage" id="stage" class="big-s span6">
+<script>get_select('stage',selecter.stage,"{$_GET['stage']}")</script>
+</select>
+                      </div>
+                      <div class="span4 input-append input-line">
+                        <label class="control-label span4" >关键字:</label>
+                        <input class="span5" id="c_keyword" name="keyword" size="16" type="text" value="{$_GET['keyword']}"><button class="btn btn-primary" name="se" id="se_team_bt" action='{:U("Works/candidate_list",array("gid"=>$detail["id"],"loadbox"=>"tlist_box"))}' ><i class="icon-search"></i></button>
+                      </div>
+                      <div class="cl"></div>
+                    </div>
+                    <div class="cl"></div>
+                    <div class="tlist_box" id="tlist_box"> 
+                   <!--初选--->
+<present name="getList">
+
+               <form method="post" id="nihao" name="nihao" action="{:U('Candidate/doCommand',array('stage'=>$_GET['stage']))}">
+ <div style="min-height:120px;">             
+<table class="table">
+<tr>
+<th width="60">ID</th>
+<th width="60">姓名</th>
+<th width="120">客户名称</th>
+<th width="90" align="center">进展阶段</th>
+<th width="90" align="center">录入时间</th>
+<th width="90" align="center">更新时间</th>
+<th width="40" align="center">备注</th>
+<th width="100" align="center">操作</th>
+</tr>
+<volist name="getList" id="vo">
+<tr>
+  <td><input  style="width:20px;" type="checkbox" name="id[]" id="all3" class="piliang_box" value="{$vo.id}" />{$vo['id']}</td>
+  <td>{$vo['realname']|msubstr=0,4}.oooo</td>
+  <td><a href="{:U('Works/work_detail',array('id'=>$vo['gid']))}#{$select['stage'][$vo['stage']]}" title="">{$vo['gongdan']}</a></td>
+  <td id="stage_{$vo['id']}"><script>get_sinfo("stage_{$vo['id']}",selecter.stage,"{$vo['stage']}")</script></td>
+ <td align="center">{$vo['create_time']|date='Y-m-d',###}</td>
+ <td align="center">{$vo['update_time']|date='Y-m-d',###}</td>
+ <td align="center"><a href="#" class="beizhu" title="" data-content="{$vo['mark']}" data-original-title="备注">查看</a></td>
+    <td> <a loadbox='tab_{$vo['stage']}' style="margin-left:-1px !important;" href="javascript:;" class="del-a" link="{:U('Candidate/delete',array('id'=>$vo['id']))}"> 删除</a></td>
+  </tr> 
+</volist>
+
+</table>
+<!-----------======调用公共分页=======---------------->
+</div> <div class="tb_footer_l"><div class="btn-group"> <span class="btn " style="height:18px;"><input   type="checkbox" name="all2" id="chkall" onclick="checkAll(this.form, 'id')" /></span> <button class="btn  dropdown-toggle stage_cn" data-toggle="dropdown"> 
+                       放入回收站 　<span class="caret" style="color:#CCC"></span>
+                        </button> <input type="hidden" name="sid" id="sid" value="100" class="sid"/><input type="hidden" name="stage_cn" id="stage_cn" class="stage_cn"/><input name="maodian" value="" type="hidden" id="maodian"/>  
+                                               <button class="btn  candidate_command" >提交</button></div></div>
+               
+  </form>
+              <div class="tb_footer_r">
+              <div class="row-fluid">
+                     <div class="pag page-1">
+ 
+ <ul>
+{$pageBar}
+</ul>
+</div>
+                    </div>
+                    
+                    <script>
+                       
+					    $("#maodian").val(window.location.hash);
+						 $(".beizhu").popover().
+      click(function(e) {
+        e.preventDefault()
+      });
+	  
+	  
+	  
+	  $(".c_fuze").click(function(e) {
+
+    //$("#add_fuzeren").empty();
+    if ($("#add_fuzeren").html() == "" || 1 == 1) {
+        geta($("#add_fuzeren"), '/Works/plus/act/fuze', loadGif);
+
+    } else {
+
+
+        $("#add_fuze").text("新增负责人");
+        $(".fuze_add").hide();
+        $(".fuze_list").show();
+        $("#add_fuzeren .modal-header h3").text("选择负责人");
+
+
+    }
+	
+	
+	$(".fuze_a").live("click", 
+function() {
+
+
+    $(".c_fuze").val($(this).text());
+    $("#uid").val($(this).attr('fid'));
+
+
+
+
+});
+
+});
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+/*添加客户弹窗*/
+
+
+$(".custom").click(function(e) {
+
+    //$("#add_fuzeren").empty();
+    if ($("#add_custom").html() == "") {
+
+
+        //$("#add_custom").load('/Works/plus/act/custom/ps/10');
+        geta($("#add_custom"), '/Works/plus/act/custom/ps/10', loadGif);
+
+
+    } 
+
+});
+
+
+
+
+$("#custom_add").live("click", 
+function(e) {
+
+
+
+    if ($(this).text() == "新增客户") {
+
+        $(this).text("选择客户");
+        $(".custom_add").show();
+        $(".custom_list").hide();
+        $(".plus_save").show();
+        $("#add_custom .modal-header h3").text("新增客户");
+
+
+    } else {
+        $(this).text("新增客户");
+        $(".custom_add").hide();
+        $(".custom_list").show();
+        $(".plus_save").hide();
+        $("#add_custom .modal-header h3").text("选择客户");
+
+
+    }
+
+
+});
+
+//客户传值
+
+$(".custom_a").live("click", 
+function() {
+  
+    $("#custom_cn").val($(this).text());
+    $("#gid").val($(this).attr('fid'));
+   // $(".add_hr").attr("com_id", $(this).attr('fid'));
+
+
+
+
+});
+	
+	$(".stage_ul li a").click( 
+function(e) {
+      
+	  
+	  
+    $(this).parents().find('.dropdown-toggle').html($(this).text() + '　<span class="caret" style="color:#CCC"></span>');
+    $(this).parents().find('.sid').val($(this).attr('sid'));
+   // $(this).parents().find('.stage_cn').val($(this).attr('stage_cn'));
+
+
+
+});
+
+
+
+
+
+ $("#se_team_bt").click(function(e) {
+                    
+					 box= $(this).parents('.tab_con_box');
+				
+                    $.ajax({
+				        url:'{:U("Candidate/search",array("ajax"=>1,"loadbox"=>"h_box_1"))}',
+					     type:"GET",
+						 cache:false,
+					      data:{stage:$("#stage").val(),custom_cn:$("#custom_cn").val(),keyword:$("#c_keyword").val(),uid:$("#uid").val(),gid:$("#gid").val(),uname:$("#uname").val()},
+					       beforeSend: function(){
+						 
+						  box.html(loadGif);
+						 
+						 },success: function(data){
+							 
+							   box.html(data);
+							 }
+				   });
+	 
+        });
+
+
+
+
+
+
+
+
+
+                    </script>
+
+<!------==============调用公共分页=============================-->
+ 
+   <div class="cl"></div>
+ 
+<else/>
+<div style="padding:50px;">
+暂时没有数据
+</div>
+</present>
+
+</div>
+     <div class="tbox">
+     <div class="modal" id="add_fuzeren"></div>
+     <div class="modal" id="add_custom"></div>
+     </div>               
+                    <div class="cl"></div>
+                    
+         
+         
+            
+                    
+                    

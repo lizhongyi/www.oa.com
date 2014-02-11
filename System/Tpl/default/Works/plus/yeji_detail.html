@@ -1,0 +1,131 @@
+<div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>查看候选人业绩分配</h3>
+  </div>
+<div class="modal-body">
+ <br>
+ <h4>候选人详细信息</h4>
+        
+<table class="table">
+<tr>
+<th width="60">ID</th>
+<th width="90">姓名</th>
+<th width="90">就任职位</th>
+<th width="109">收款款金额</th>
+<th width="124">实到账金额</th>
+<th width="120">实到账日期</th>
+
+<th width="100" align="center">更新日期</th>
+</tr>
+
+<tr>
+  <td>{$daozhang['id']}</td>
+  <td>{$daozhang['realname']|msubstr=0,4}</td>
+  <td>{$daozhang['zhiwei']}</td>
+  <td><span class="red jine">￥{$daozhang['yfk_jine']}</span></td>
+ 
+  <td><span class="red jine">￥{$daozhang['sjdz_jine']}</span></td>
+    <td>{$daozhang['sjdz_time']|date='Y-m-d',###}</td>
+  
+  <td>{$daozhang['update_time']|date='Y-m-d',###}</td>
+  </tr>  
+
+
+</table><br>
+
+
+<h4>参与团队业绩表</h4>
+
+
+
+<table class="table table-bordered ti_table tb-auto">
+<tr>
+<th width="60">ID</th>
+<th width="60">成员姓名</th>
+<th width="90">工作项目</th>
+
+<th width="124">实到账金额</th>
+<th width="124">佣金基数</th>
+<th width="90">佣金比例</th>
+<th width="90">佣金金额</th>
+<th width="120">发放状态</th>
+</tr>
+<volist name="yeji_list" id="vo">
+<tr>
+  <td>{$vo['id']}</td>
+  <td>{$vo['uid']|get_teamer}</td>
+   <td>
+   {$vo['work_content']|get_juese}
+   </td>
+ 
+ 
+  <td><span class="red jine">￥{$daozhang['sjdz_jine']}</td>
+   <td><span class="red jine">￥{$daozhang['jishu']}</td>
+  <td class="t_bili">{$vo['ticheng_bili']}%</td>
+  
+  
+  <td class="ticheng_td"><span class="red jine">￥<span class="qian">{$vo['jishu'] * $vo['ticheng_bili'] / 100}</span></span></td>
+  <td><if condition="$vo['ticheng_stauts'] eq 0">未发放<else/>已发放</if></td>
+  </tr>  
+</volist>
+
+</table><br>
+
+<h4>综合统计</h4>
+
+<table class="table">
+<tr>
+
+<th width="229">候选人姓名</th>
+<th width="151">实际收款</th>
+<th width="135">佣金基数</th>
+
+<th width="135">佣金总比例</th>
+<th width="170">佣金总金额</th>
+<th width="146">剩余款</th>
+</tr>
+
+<tr>
+  <td>{$daozhang['realname']|msubstr=0,4}</td>
+  <td><span class="red jine">￥{$daozhang['sjdz_jine']}</span></td>
+  <td><span class="red jine">￥{$vo['jishu']}</span></td>
+   <td class="zongbi"></td>
+ 
+ 
+  <td class="zonge"></td> <td class="shengyu"></td>
+  </tr>  
+
+
+</table>
+
+</div>
+  
+  
+  <div class="modal-footer">
+
+  </div>
+
+
+<script>
+
+      zongbi=0;
+	$('.ti_table .t_bili').each(function(index) {
+          
+	      zongbi+=parseInt($(this).text());	
+		
+    });
+	$(".zongbi").text(zongbi+"%");
+	
+	 zongti=0;
+	$(".ti_table .ticheng_td .qian").each(function(index, element) {
+       
+	  zongti+=parseInt($(this).text());
+		
+    });
+	$(".zonge").html("<span class='red'>￥"+zongti+"<span>");
+	 
+	   shengyu=parseInt("{$daozhang['sjdz_jine']}") - zongti;
+	 
+	 	$(".shengyu").html("<span class='red'>￥"+shengyu+"</span>")
+
+</script>

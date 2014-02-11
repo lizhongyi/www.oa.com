@@ -1,0 +1,97 @@
+<div class="msg"></div>
+<table class="m16"id="add_co" width="90%">
+ <tr>
+ <td width="125" height="30" align="right" valign="top">参与人姓名：</td>
+ <td width="352" valign="top"> <a href="javascript:;">{$detail['uid']|getTruename}</a></td>
+ </tr>
+ <tr>
+   <td align="right" valign="top">工作内容：</td>
+   <td  height="30" valign="top">
+  {$checkbox}
+   </td>
+ </tr>
+ 
+ <tr>
+   <td align="right" valign="top">备注：</td>
+   <td><textarea name="mark1" class="span4" id="mark1">{$detail['mark']}</textarea></td>
+ </tr>
+<tr>
+<td></td><td><button class="btn btn-primary" id="save_modfy_nteamer" type="submit">保存</button></td>
+</tr>
+ 
+ 
+ 
+ </table>
+ 
+ 
+ <script>
+ 
+ 
+  
+  $("#save_modfy_nteamer").click(function(e) {
+     //start 
+	 
+	
+	  
+	  $persona='';
+           $(".persona_cbox1").each(function(index, element) {
+    
+	          if($(this).attr('checked')=='checked'){
+		           $persona+=$(this).val()+',';
+		      }
+	
+         });
+
+           $persona=$persona.substr(0,$persona.length-1);
+	  
+	           if($persona==""){
+			        	$(".msg").html("请选择工作角色").show();
+	                    return false;
+				}
+				
+		
+			
+			//start save
+			
+			url="/Nteam/do_modfy/ajax/1/id/{$detail['id']}";
+		    tdata={
+					  
+						  mark       : $("#mark1").val(),
+						  persona    : $persona,
+                          ajax       : 1
+					 
+                       };
+					      
+						  
+						  cb={bf:function(){
+							  
+							   $(".msg").html("正在提交")
+							   
+							 },su:function(data){
+								 
+									 
+								if(data.status==1){
+							    $(".msg").html(data.info).fadeOut(1000,function(){
+								 $(".add_nteam").click();
+								 //$("#per_list").empty();
+							     geta($("#nteam_list"),$("#backurl").val()); 
+	                            
+								});
+								}else{
+									$(".msg").html(data.info);
+									  return false;
+									}
+								
+								
+						    }
+							}  
+						
+		                ajaxForm(url,tdata,cb);
+						   
+                return false;
+	  
+   }); 
+ 
+ 
+ 
+ </script>

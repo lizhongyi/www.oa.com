@@ -1,0 +1,458 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>{$_GET['touid']|getTruename}</title>
+<script src="/Public/js/jquery.js"></script>
+ <script src="/Public/js/jquery-ui.min.js"></script>
+
+<style>
+body{ margin:0; padding:0; background:#f6f6f6}
+#wp-box{ margin:0px; min-height:460px; background:#f6f6f6; padding:0 10px; border-radius:5px;}
+#top{ height:60px; background:rgb(12,149,217);margin:0px; position:relative}
+.left{ margin:0px;  position:absolute; right:200px;border:1px solid #DDD;border-left:0px; background:#FFF; left:0px; top:60px; bottom:0px; }
+
+
+
+
+.x-box{ margin:0px;  position:absolute; right:0px;border:1px solid #DDD;border-left:0px; background:#FFF; width:350px;top:60px; bottom:56px; display:none;background:#FFF; bottom:0px;border:1px solid #ddd; margin:0px;min-height:430px; overflow:auto;}
+
+.x-box{ font-size:12px;}
+
+
+
+
+
+.right{ position:absolute; right:0px; top:60px; width:180px; background:#FFF; bottom:0px;border:1px solid #ddd; margin:0px; padding:10px;}
+#info_box{  margin:0px; background:#FFF; padding:15px; position:absolute; left:0; top:0; right:0px;bottom:170px}
+.form-box{ background:#FFF;  height:60px; position:absolute; height:170px; right:0px; left:0px; bottom:0px;}
+#msg-text{ border:0px; min-height:88px; width:99%;}
+.btn-s{ padding:4px; height:26px; background:#c6dfec; border-top:1px solid #a9d8ed; position:relative}
+.cl{ clear:both; height:1px; overflow:hidden;}
+.btn-sb{ height:24px; line-height:20px; border:0px; color:#FFF; width:60px; float:right; margin-left:15px; border-radius:2px; cursor:pointer;
+ 
+background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0,  #FEFEFE), color-stop(1,  #F3F3F3)); color:#666; border:1px solid #d8f3fb; border-right:1px solid #cfcfcf;
+border-bottom:1px solid #cfcfcf}
+.btn-close{ height:24px; line-height:20px; border:0px; color:#666; border:1px solid #ddd; width:60px; float:right; text-align:center; margin-left:10px; border-radius:2px; cursor:pointer;
+
+background-image: -moz-linear-gradient(top, #099, #036); /* Firefox */
+background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0,  #F6F6F6), color-stop(1,  #F1F1F1)); /* Saf4+, Chrome */
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c6ff00', endColorstr='#538300', GradientType='0'); /* IE*/
+
+}
+.btn-sb:hover{ background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0,  #F1F1F1), color-stop(1, #fefefe)); color:#666; border:1px solid #d8f3fb; border-right:1px solid #cfcfcf;
+border-bottom:1px solid #ddd; };
+
+
+.btn-close:hover{ background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0,  #333), color-stop(1,  #666));}
+.face{ float:left;}
+.uname{ float:left; font-size:14px; line-height:56px; color:#F3F3F3;}
+.uname-big{  font-size:14px; line-height:40px; color:#666; margin: 0 15px;}
+.face img{ height:40px; width:40px; border:#f3f3f3 1px solid; margin:10px;}
+.face-big{ text-align:center; padding-top:15px;}
+.face-big img{ height:148px; width:148px; border:#f3f3f3 1px solid; text-align:center}
+.xian{ border-bottom:1px solid #ddd; margin:0 10px;}
+#info_box{ font-size:12px; overflow:auto;
+}
+.realname{ color:#090}
+.msg-t{ padding:8px; line-height:20px; padding-left:18px; padding-top:4px;} 
+
+
+
+/** scrollbar **/
+::-webkit-scrollbar {
+    background: transparent;
+    border: rgba(0, 0, 0, 0.2) solid;
+}
+::-webkit-scrollbar:vertical {
+    border-width: 0 0 0 1px;
+    width: 8px;
+    background: #F1F1F1;
+}
+::-webkit-scrollbar:horizontal {
+    border-width: 0 0 0 1px;
+    height: 8px;
+    background: #F1F1F1;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+/* These rules are for scrollbar draggable panel */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* These rules are for buttons */
+::-webkit-scrollbar-button:start{display:none}
+::-webkit-scrollbar-button:end{display:block}
+
+::-webkit-scrollbar-button:vertical:increment {
+    background: no-repeat url("../img/waffle_sprite27.png") -21px 0;
+    height:15px;
+}
+::-webkit-scrollbar-button:vertical:decrement {
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: no-repeat url("../img/waffle_sprite27.png") -70px -62px;
+    height: 16px;
+}
+.dui{ color:rgb(0,110,254)}
+/** end scrollbar **/
+.bt{ position:absolute; right:0px; top:0px; height:20px;}
+.bt a{ width:18px; height:18px; margin-left:4px; line-height:18px; float:left; color:#FFF; font-size:12px; text-decoration:none; text-align:center; font-weight:bold}
+.bt a:hover{ background:#09F}
+a.xiaoxi{ width:80px; line-height:22px; text-align:center; background:#39C; font-size:12px; text-decoration:none; height:24px; color:#eee;  float:right; margin-right:5px; margin-top:6px; border-radius:4px}
+a.xiaoxi:hover{ color:#FFF; background:#069}
+
+.pa ul{ list-style:none}
+.pa ul li a{ float:left; text-decoration:none}
+</style>
+</head>
+
+<body>
+<div id="top">
+<div class="bt">
+<a href="javascript:;" style="font-size:14px;" class="zuixiao">-</a><a href="javascript:;" class="big" zt='kai'>□</a><a href="javascript:;" class="guanbi">×</a>
+</div>
+<div class="face">
+<img src="{$user['uid']|get_user_face}" width="40" height="40"/>
+</div>
+<div class="uname">{$user['realname']}(在线)</div>
+<div class="cl"></div>
+</div>
+<div id="wp-box">
+
+
+<div class="x-box" id="x-box">
+
+</div>
+
+<div class="right">
+<div class="face-big">
+
+<img src="{$user['uid']|get_user_face}" width="172" height="172"/>
+</div>
+
+<div class="uname-big">{$user['realname']} |{$user['department']|get_bumen}</div>
+<div class="xian"></div>
+
+
+
+
+
+
+
+<div class="face-big">
+
+<img src="{$uid|get_user_face}" width="172" height="172"/>
+</div>
+
+<div class="uname-big">{$realname} |{$department|get_bumen}</div>
+
+
+
+</div>
+<div class="left">
+
+<div id="info_box">
+
+</div>
+
+
+<div class="form-box">
+<div class="tool" style=" background:#c6dfec;  height:36px;"><a class="xiaoxi" href="javascript:;" link="/Im/story/touid/{$_GET['touid']}/loadbox/x-box/ajax/1">消息记录</a></span></div>
+<form action="" method="" name="" id="">
+<textarea name="" id="msg-text" class="" hidefocus="true"
+ style="outline:none;
+"></textarea>
+
+<div class="btn-s">
+
+<input type="submit" name="sb" id="sb" class="btn-sb btn" value="发送" />
+<input type="button" name="" id="" class="btn-close btn" value="关闭" /><span class="" style="font-size:12px; float:right; line-height:24px; color:#099"></span>
+
+</div>
+
+</form>
+</div>
+
+</div>
+
+
+
+</div>
+<audio id="mz" src="/Public/img/sound_1.mp3"  hidden="true">您的浏览器不支持标签</audio>
+</body>
+</html>
+<script>
+
+$(document).ready(function(e) {
+    
+	$("#msg-text").focus();
+	$(".btn-close,.guanbi").click(function(e) {
+     parent.$("#w_{$_GET['touid']}").remove();
+   // window.close();
+	});
+	$(".big").click(function(e) {
+          
+		  if($(this).attr('zt')=='kai'){
+		  parent.$("#w_{$_GET['touid']}").css({"width":"100%","height":"100%","top":"0","left":"0",'margin-left':"0px"});   
+		  $(this).attr('zt','guan');
+		  }else{
+			  parent.$("#w_{$_GET['touid']}").css({"width":"700","height":"560","top":"200px","left":"50%",'margin-left':"-350px"});
+			  $(this).attr('zt','kai'); 
+			  }
+		 
+    });
+	
+	
+	
+	$(".xiaoxi").click(function(e) {
+          
+		  if($('.left').css('right')=="200px"){
+			   
+			   $('.left').css('right','350px')
+			   $(".right").hide();
+			   $(".msg-t").css('width','80%');
+			   $("#x-box").load($(this).attr('link')).show();
+			  
+			  }else{
+				   $('.left').css('right','200px')
+				   $(".right").show();
+				  }
+		 
+		  
+    });
+	
+	
+	 $(".zuixiao").click(function(e) {
+          
+		  
+		//   parent.$("#w_{$_GET['touid']}").css({"width":"100px","height":"60px","bottom":"0px","left":"0px",'margin-left':"0px"});
+			   
+		    parent.$("#w_{$_GET['touid']}").hide();
+    });
+	
+	
+	
+	
+	
+	$(".btn-sb").click(function(e) {
+          
+		  $this=$(this);
+		  
+		  if($("#msg-text").val()==""){
+			   $("#msg-text").focus();
+			   return false;
+			   
+			     }
+		  
+		     send()
+		
+		  
+		return false;
+		 
+    });
+	
+	
+	
+	/*相应回车操作*/
+
+	     $('textarea').bind("keydown",function(e) {
+        
+		
+		   if (e.ctrlKey && e.which == 13) {
+			   
+			   $(this).val($(this).val()+"\n");
+			   return false;
+			  }
+		
+       if (e.keyCode == 13) {
+		   
+          $(".btn-sb").click();
+            }
+         })
+       
+	
+	
+	
+	
+	
+	
+	//消息轮询
+	
+	
+	
+	
+	
+	
+});
+
+
+
+
+function send(){
+	   
+	   
+	   
+	     $.ajax({
+			      url:'/Im/add/touid/{$_GET["touid"]}',
+				  type:"POST",
+				  data:{msg:$("#msg-text").val()},
+				  beforeSend: function(){},
+				  success: function(data){
+					     var data = eval("("+data+")");
+
+
+						 if(data.status==1){
+							  $("<div class='realname'>{$realname}　"+data.create_time+"</div>").appendTo("#info_box");
+							  $("<div class='msg-t'>"+data.msg+"</div>").appendTo("#info_box");                 $("#msg-text").val("").focus();
+							  
+							  $("#info_box").scrollTop(999999);
+							 
+							 }else{
+								 
+								  $("<div>出错了</div>").appendTo("#info_box");
+								 }
+					  
+					  }
+			  
+			  
+			  });
+	
+	
+	}
+
+	
+	
+
+
+
+setTimeout(function(){
+		  //   polllist(); 
+		},1000);
+
+
+
+setInterval(function(){
+		  //   poll(); 
+		},3000);
+
+
+
+
+function poll(){
+	   
+	    $.ajax({
+				 
+				    url:'/Im/poll/fauid/{$_GET["touid"]}',
+					type:"GET",
+					beforeSend: function(){
+						},
+					success: function(data){
+                            var data = eval("("+data+")");
+
+							if(data.status==1){
+								
+								$("<div class='realname dui'>"+data.realname+"  "+data.create_time+"</div>").appendTo("#info_box");
+							  $("<div class='msg-t'>"+data.msg+"</div>").appendTo("#info_box");             
+							  
+							  $("#info_box").scrollTop(999999);
+							  $("#mz")[0].play();
+							  window.focus();	
+								
+								}
+						}
+				 
+				 
+				 });
+		    
+	
+	
+	}
+
+
+
+
+
+function polllist(){
+	   
+	    $.ajax({
+				 
+				    url:'/Im/polllist/fauid/{$_GET["touid"]}',
+					type:"GET",
+					beforeSend: function(){
+						},
+					         success: function(data){
+                                       var data = eval("("+data+")");
+                                       var dnums=data.length;
+							   
+							   for(var i=0;i<dnums;i++){
+								   if(data[0].status!=0){
+								   
+								   
+								
+											$("<div class='realname dui'>"+data[i].realname+"  "+data[i].create_time+"</div>").appendTo("#info_box");             $("<div class='msg-t'>"+data[i].msg+"</div>").appendTo("#info_box");             
+											$("#info_box").scrollTop(999999);
+											
+											
+											  $("#mz")[0].play();
+											
+											
+											
+											   }else{
+												   
+												   
+												   }
+											   
+											
+							       }
+								
+								
+								
+							  
+								   
+								   
+								   
+								   
+								  
+						}
+						
+						
+				 
+				 
+				 });
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+		    
+	
+	
+	}
+
+
+
+$(".page-a").live('click',function(e) {
+    
+	 
+	 $("#"+$(this).attr('loadbox')).load($(this).attr('link'));
+	 
+});
+
+
+</script>

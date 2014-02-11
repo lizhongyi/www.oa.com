@@ -1,0 +1,478 @@
+<include file="Public:header"/>                    
+               <section class="section">
+            <div class="row-fluid">
+                <!-- span side-left -->
+                <div class="span1">
+                  
+                    <!--side bar-->
+                    
+                    <include file="Public:side-bar" />
+                    
+                  <!--/side bar -->
+                </div><!-- span side-left -->
+                
+                <!-- span content -->
+                <div class="span9">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content-header -->
+                        <div class="content-header">
+                            
+                              <include file="Public:breadcrumb"/>
+                        </div><!-- /content-header -->
+                        
+                        <!-- content-breadcrumb -->
+                        <div class="content-breadcrumb">
+                            <!--breadcrumb-nav--><!--/breadcrumb-nav-->
+                            
+                            
+                        </div><!-- /content-breadcrumb -->
+                        
+                        <!-- content-body -->
+                        <div class="content-body">
+                          
+                            
+                           
+                            
+                         
+
+                          <!-- tab resume content -->
+                            <div class="row-fluid">
+                                <!-- tab resume update -->
+                                <!-- tab resume update -->
+                                <div class="span12">
+                                    
+										
+                                        <div class="box-body">
+													
+	
+            
+              
+              <div class="m15">
+                
+                      <div id='calendar'></div>
+                
+           
+              </div>
+               
+              
+              
+              
+            </div>
+   
+
+                               </div>
+                            </div><!-- tab stat -->
+                            
+                           
+                            
+                            <!--/dashboar-->
+                        </div><!--/content-body -->
+                    </div><!-- /content -->
+                </div><!-- /span content -->
+                
+                <!-- span side-right -->
+                <div class="span2">
+                    <!-- side-right -->
+                    <aside class="side-right">
+                        <!-- sidebar-right -->
+                        <div class="sidebar-right">
+                            <!--sidebar-right-header-->
+                            <div class="sidebar-right-header">
+                                <div class="sr-header-right">
+                                   
+                                </div>
+                                <div class="sr-header-left">
+                                   <span id="localtime" style="font-size:12px; font-family:'微软雅黑'"></span>
+
+<script type="text/javascript">
+function showLocale(objD)
+{
+	var str,colorhead,colorfoot;
+	var yy = objD.getYear();
+	if(yy<1900) yy = yy+1900;
+	var MM = objD.getMonth()+1;
+	if(MM<10) MM = '0' + MM;
+	var dd = objD.getDate();
+	if(dd<10) dd = '0' + dd;
+	var hh = objD.getHours();
+	if(hh<10) hh = '0' + hh;
+	var mm = objD.getMinutes();
+	if(mm<10) mm = '0' + mm;
+	var ss = objD.getSeconds();
+	if(ss<10) ss = '0' + ss;
+	var ww = objD.getDay();
+	if  ( ww==0 )  colorhead="";
+	if  ( ww > 0 && ww < 6 )  colorhead="";
+	if  ( ww==6 )  colorhead="";
+	if  (ww==0)  ww="星期日";
+	if  (ww==1)  ww="星期一";
+	if  (ww==2)  ww="星期二";
+	if  (ww==3)  ww="星期三";
+	if  (ww==4)  ww="星期四";
+	if  (ww==5)  ww="星期五";
+	if  (ww==6)  ww="星期六";
+	colorfoot=""
+	str = colorhead + yy + "年" + MM + "月" + dd + "日  <br/>" + ww +""+ colorfoot + " " + hh + ":" + mm + ":" + ss ;
+	return(str);
+}
+function tick()
+{
+	var today;
+	today = new Date();
+	document.getElementById("localtime").innerHTML = showLocale(today);
+	window.setTimeout("tick()", 1000);
+}
+tick();
+</script>
+                                </div>
+                            </div><!--/sidebar-right-header-->
+                            <!--sidebar-right-control-->
+                            <div class="sidebar-right-control">
+                                <ul class="sr-control-item">
+                                    <li class="active"><a href="#contact" data-toggle="tab" title="contacts"><i class="icofont-group"></i></a></li>
+                                   
+                                    <li rel="tooltip-bottom" title="view site"><a href="/" target="_BLANK"><i class="icofont-external-link"></i></a></li>
+                                </ul>
+                            </div><!-- /sidebar-right-control-->
+                            <!-- sidebar-right-content -->
+                            <div class="sidebar-right-content">
+                                <div class="tab-content">
+                                    
+                                   {:W('rightInc')}<!--/alternative 1-->
+                                    
+                                </div>
+                            </div><!-- /sidebar-right-content -->
+                        </div><!-- /sidebar-right -->
+                    </aside><!-- /side-right -->
+                </div><!-- /span side-right -->
+            </div>
+        </section>
+
+
+
+ <div class="modal" id="detail_renwu" style="width:580px; margin-left:-280px;"></div>  
+ <div class="modal" id="add_renwu" style="width:580px; margin-left:-280px;">
+ <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h3>添加任务</h3>
+  </div>
+ 
+  <div class="modal-body">
+   <form id="s-add" name="s-add">
+  <input type="text" name="title" id="title1" placeholder="日程主题" /><span id="ts1" style="padding-left:10px"></span>
+ <br>
+
+                        
+                 <input type="text" name="start_time" id="start_time1"  data-form=datepicker class="" style="width:110px;" data-date-format="yyyy-mm-dd"  value='' /> <select name="sshi" id="sshi1" class="span1" style="width:50px;">
+                                     <?php
+                                       for($i=0;$i<=23;$i++){
+                                     ?>
+                                        <option value="{$i}" <if condition="$dt.sshi eq $i"> seleced </if>>{$i}</option>
+                                      
+                                      <?php
+                                      }
+                                      ?>
+                                     </select> 
+                                     
+                                     <select name="sfen" id="sfen1" class="span1" style="width:50px;">
+                                     
+                                      <?php
+                                       for($i=0;$i<=59;$i++){
+                                     ?>
+                                        <option value="{$i}" <if condition="$dt.sfen eq $i"> seleced </if>>{$i}</option>
+                                      
+                                      <?php
+                                      }
+                                      ?>
+                                     </select>　至　<input type="text" name="end_time" id="end_time1" style="width:110px;"  data-form=datepicker class=" span2"  data-date='' value="{$_GET['end_time']}" />
+                                     
+                                     
+                                     
+                                     
+                                     
+                                     <select name="eshi1" id="eshi1" class="span1" style="width:50px;">
+                                     <?php
+                                       for($i=0;$i<=23;$i++){
+                                     ?>
+                                        <option value="{$i}" <if condition="$dt.eshi eq $i"> seleced </if>>{$i}</option>
+                                      
+                                      <?php
+                                      }
+                                      ?>
+                                     </select> 
+                                     
+                                     <select name="efen1" id="efen1" class="span1" style="width:50px;">
+                                     
+                                      <?php
+                                       for($i=0;$i<=59;$i++){
+                                     ?>
+                                        <option value="{$i}" <if condition="$dt.sfen eq $i"> seleced </if>>{$i}</option>
+                                      
+                                      <?php
+                                      }
+                                      ?>
+                                     </select>
+                                     
+                    
+
+ <textarea name="content1" rows="4" id="content1" placeholder="任务内容" style="margin-left:-0px; min-width:500px;"></textarea>
+ <input type="reset" name="sb" id="s-reset" value="重置"  style="display:none" />
+ </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">取消</a>
+    <a href="javascript:;" class="btn btn-primary" id="save_renwu">确认添加</a>
+  </div>
+       
+
+		
+     
+       
+
+      
+      
+      
+      
+      
+      
+      
+      
+ 
+</div>
+  <div id="sms_box" class="modal" style="width:600px; margin-left:-300px;"></div>
+	<include file="Public:footer" /></body>
+</html> <script src="/Static/skin/js/plus_tan.js"></script>
+        <script>
+
+
+       
+	   
+	
+	 $("#start_time1").val("{$_GET['st']}"); 
+	$('[data-form=datepicker]').datepicker();
+	
+
+ 
+ 
+ 
+ //save  schedule
+ 
+ $("#save_renwu").click(function(e) {
+    
+	  
+	  if($("#title").val()==''){
+		  
+		    $("#title").css('border','1px solid red');
+			$("#title").focus();
+			return false;
+	 }
+	 
+	   
+	   
+	
+	     
+	   
+	 $.ajax({
+		    url:'/Schedule/do_add/ajax/1',
+			type:'POST',
+			data:{title:$("#title1").val(),
+			      start_time:$("#start_time1").val(),
+				  sshi:$('#sshi1').val(),
+				  sfen:$("#sfen1").val(),
+				  end_time:$("#end_time1").val(),
+				  eshi:$("#eshi1").val(),
+				  efen:$("#efen1").val(),
+				  content:$("#content1").val(),
+				  },
+			beforeSend: function(){
+				   
+				   $("#ts1").html('提交中...');
+				   $("#save_renwu").attr('disabled',true);
+				}
+			,success: function(data){
+				
+				     $("#ts1").html(data.info);
+					setTimeout(function(){
+						 $(".close").click();
+						
+						},1000);
+						
+					 window.location='/Schedule';	
+					 
+				}
+			
+			
+		  
+		  
+		  
+		  
+		  }  
+		  );
+	   
+});
+
+
+
+</script>
+<script>
+
+ var nobj={11:{'title':'今天吃饭','content':'今天要和很多的领导一起大可撒旦就撒旦埃索达阿四大说的ads将爱神的箭爱神的箭爱神的箭阿萨德爱神的箭埃索达加速度爱神的箭阿萨德爱神的箭阿萨德'},12:{'title':'明天打猎'}};
+
+
+    
+	
+	
+
+		  
+		 
+
+		  
+		  
+
+
+
+ $(".add-rw").live("click",function(e) {
+			 
+	       add_s($(this));
+          
+		   
+	
+});
+
+$(".fc-day").live("dblclick",function(){
+	
+	   add_s($(this).children('.add-rw'));
+	    
+	})
+
+function add_s(obj){
+	
+	        $("#s-reset").click();
+	        $("#start_time1").val(obj.parents('.fc-day').attr('data-date'));
+	}
+
+
+ $("a.fc-event").live("click",function(e) {
+			   
+			   id=$(this).attr('link').split('/');
+			 
+			   $(this).attr('id','s_tt_'+id[7]);
+			  
+			  geta($("#detail_renwu"),$(this).attr('link'),loadGif);
+          
+		   
+	
+});
+  
+ /* setTimeout(function(){
+        
+		$(".fc-event-title").each(function(){
+	    
+		  $(this).html($(this).text()+"<span>X</span>");
+		
+		})	  
+	  
+	  },100);
+  
+*/
+	
+$(document).ready(function(e) {
+	
+
+$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			allDayText: '全天',
+			monthNames: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+	monthNamesShort: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'],
+	dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+	dayNamesShort: ['日','一','二','三','四','五','六'],
+	buttonText: {
+		prev: "<span class='fc-text-arrow'>&lsaquo;</span>",
+		next: "<span class='fc-text-arrow'>&rsaquo;</span>",
+		prevYear: "<span class='fc-text-arrow'>&laquo;</span>",
+		nextYear: "<span class='fc-text-arrow'>&raquo;</span>",
+		today: '今天',
+		month: '月',
+		week: '周',
+		day: '日'
+	},titleFormat:{ month: 'yyyy-MMMM ',                             // September 2009
+                    week: "MMM d[ yyyy]{ '&#8212;'[ MMM] d yyyy}", // Sep 7 - 13 2009
+   
+                    day: 'dddd, yyyy MMM d, '                  // Tuesday, Sep 8, 2009
+	},
+			editable: false,
+		    events:function(start, end, callback) {
+           $.ajax({
+            url: '/Schedule/index_json/',
+            dataType: 'json',
+            data: {
+                // our hypothetical feed requires UNIX timestamps
+                st: Math.round(start.getTime() / 1000),
+                end: Math.round(end.getTime() / 1000)
+            },
+            success: function(data) {
+               
+                callback(data);
+            }
+        });
+    },
+	
+	
+	
+	
+		});
+	
+    
+ eachbt();
+	   
+
+
+});	
+
+
+$(".fc-button").live("click",function(){
+	 //$(".add-rw").remove();
+	 eachbt();
+	})
+
+
+
+
+
+
+function eachbt(){
+
+  $(".fc-day-number").each(function(index) {
+  
+$(this).next().find('div').html("<a style='padding:0 3px; margin-top:-18px; float:left; bottom:1px;border-radius:0px;' class='btn btn-mini add-rw' data-toggle='modal' href='#add_renwu'><i class='icon-plus'></i></a>")
+	
+	
+	/*var num=parseInt($(this).text())
+nobj[num]？nobj[num].title?$(this).next().find("div").html(nobj[num].title):0:0;*/
+
+	   
+     })
+	 
+	}
+
+
+$(".send_sms").click(function(e) {
+        
+	
+	geta($("#sms_box"),$(this).attr('link'),loadGif);	
+	 
+});
+
+
+</script>
+        
+        
+	</body>
+</html>
+
+

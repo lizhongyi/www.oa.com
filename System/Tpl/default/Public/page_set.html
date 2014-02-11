@@ -1,0 +1,31 @@
+</div> <div class="tb_footer_l"><div class="btn-group"> <span class="btn btn-mini"><input class="quanxuan" type="checkbox" name="all2" id="chkall" onclick="checkAll(this.form, 'id')" style="margin-top:-2px;"/></span> <button class="btn btn-mini  dropdown-toggle ckd" data-toggle="dropdown">
+                         　<span class="caret" style="color:#CCC"></span>
+                        </button> <input type="hidden" name="sid" id="sid" class="sid"/><input type="hidden" name="stage_cn" id="stage_cn" class="stage_cn"/><input name="maodian" value="" type="hidden" id="maodian"/><button class="btn btn-primary btn-mini  candidate_command" >提交</button><ul class="dropdown-menu stage_ul" style="margin-left:40px">
+</ul></div></div>
+               
+  </form>
+              <div class="tb_footer_r">
+              <div class="row-fluid">
+                     <div class="pag page-1">
+ 
+ <ul>
+{$pageBar}
+</ul>
+</div>
+                    </div>
+                    
+                    <script>
+					     
+						$su=$(".stage_ul");
+                        $su.html(selecter_list('stage',"{$_GET['stage']}"));
+						//设置初始状态
+						$($su).find('li a:lt(1)').click();
+						
+						
+						
+					    $("#maodian").val(window.location.hash);
+						 $(".beizhu").popover().
+      click(function(e) {
+        e.preventDefault()
+      });
+                    </script>

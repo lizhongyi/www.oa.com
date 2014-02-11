@@ -1,0 +1,515 @@
+<include file="Public:header"/>                    
+               <section class="section">
+            <div class="row-fluid">
+                <!-- span side-left -->
+                <div class="span1">
+                  
+                    <!--side bar-->
+                    
+                    <include file="Public:side-bar" />
+                    
+                  <!--/side bar -->
+                </div><!-- span side-left -->
+                
+                <!-- span content -->
+                <div class="span9">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content-header -->
+                        <div class="content-header">
+                            
+                              <include file="Public:breadcrumb"/>
+                        </div><!-- /content-header -->
+                        
+                        <!-- content-breadcrumb -->
+                        <div class="content-breadcrumb">
+                            <!--breadcrumb-nav-->
+                            <ul class="breadcrumb-nav pull-right">
+                               
+                              
+                                   
+                                <li class="divider"></li>
+                                <li class="btn-group"></li>
+                            </ul><!--/breadcrumb-nav-->
+                            
+                            
+                        </div><!-- /content-breadcrumb -->
+                        
+                        <!-- content-body -->
+                        <div class="content-body">
+                        
+                        <div class="cbox  form-table" style=" margin:15px; margin-top:0px;">
+                
+                   
+                   <div class="u_right_box">
+<div class="like_box">
+<div class="hziliao">
+
+<div>
+ <div class="liuyan">
+ <button class="sixin btn">写私信</button><div id="rr"></div>
+</div>
+<div class="cl"></div>
+<div id="liu_f" style="margin-top:16px;">
+
+<div class="huifu_box" style="display:block; padding:4px;display:none; margin-top:8px; clear:both;">
+<div class="span4  input-line" id="suid">
+ 
+
+                                                            <label class="control-label span2" for="inputSelect">收信人</label>
+                                                          
+    <span class="span10"><select id="inputSelect1" data-form="select2" class="span9" name="uid" data-placeholder="Your Favorite Type of Bear">                                                       <option value="1" selected="selected"/>请选择
+        
+        
+        
+        
+                                                               <volist name="ul" id="vo">
+                                                                    <option <if condition="$vo['uid'] eq $_GET['uid']"> selected="selected"  </if> value="{$vo['uid']}" />{$vo['realname']}
+                                                                    
+                                                                  </volist>
+                                                                </select>
+</span>
+      
+   </div>
+
+<div class="ajax_user">
+<div class="uli">
+
+
+</div></div><div id="hfname"></div><span id="msg"></span>
+
+<div class="cl"></div>
+<form action="" method="post" name="huifu_frm">
+   <label class="control-label span1" for="inputSelect">内容</label>
+<textarea name="content" id="content" class="txtbox"  toid='' style="width:520px !important; margin-left:0px; height:80px"></textarea><span class="tishi"></span><div class="tjdiv"><button type="button" class="sms_bt btn btn-primary" style="margin-left:56px;" sendUrl="{:U('Usermsg/sendmsg')}" >发送</button></div><div class="cl"></div></form>
+
+
+
+
+</div>
+
+
+
+
+
+
+</div>
+</div>
+<div class="cl"></div>
+</div>
+
+<div class="list_box" >
+<ul>
+<volist name="silist" id="vo">
+
+
+<li>
+
+
+
+
+<div class="book_item">
+<div  class="sm_face"><img src="{$vo['tid']|get_user_face}" width="56" height="56" /></div>
+
+
+
+<div style="padding:0px; margin-top:-7px; margin-left:80px;">{$vo['sixin'][0]['st']}{$vo['uname']}: {$vo['sixin'][0]['content']}
+
+
+<span style="display:block;">
+
+<span style="float:right;">
+<a href="{:U('Usermsg/smsbox',array('toid'=>$vo['tid']))}">{$vo['tixing']}共{$vo['nums']}对话</a> | <a href="javascript:;" hfid="{$vo['tid']}" hfname="{$vo['tid']|getTruename}" class="hfs">回复</a> | <a href="javascript:;" uname="{$vo['tid']|getTruename}" uid="{$vo['tid']}" class="deldh" >删除</a>{$vo['sz']}
+</span>
+
+<span style="float:left;">{$vo['sixin'][0]['create_time']|date='Y-m-d',###}</span>
+<div class="cl"></div>
+</span>
+
+
+
+</div>
+</li>
+
+</volist>
+</ul>
+</div>
+<div class="cl"></div>
+</div>
+<!--留言区域-->
+
+</div>
+</div><div class="tanchuang" style="position:absolute; width:300px; display:none; margin-left:-150px; left:50%; top:100px; border:2px solid #ddd; background:#FFF;">
+<div class="delbox">
+<h3>你确定要删与除所有回话么？</h3>
+<button type="button">取消</button><button type="button">确定</button>
+</div>
+</div>
+                        </div>
+                        <!--/content-body -->
+                    </div><!-- /content -->
+                </div><!-- /span content -->
+                
+                <!-- span side-right -->
+                <div class="span2">
+                    <!-- side-right -->
+                    <aside class="side-right">
+                        <!-- sidebar-right -->
+                        <div class="sidebar-right">
+                            <!--sidebar-right-header-->
+                            <div class="sidebar-right-header">
+                                <div class="sr-header-right">
+                                   
+                                </div>
+                                <div class="sr-header-left">
+                                   <span id="localtime" style="font-size:12px; font-family:'微软雅黑'"></span>
+
+<script type="text/javascript">
+function showLocale(objD)
+{
+	var str,colorhead,colorfoot;
+	var yy = objD.getYear();
+	if(yy<1900) yy = yy+1900;
+	var MM = objD.getMonth()+1;
+	if(MM<10) MM = '0' + MM;
+	var dd = objD.getDate();
+	if(dd<10) dd = '0' + dd;
+	var hh = objD.getHours();
+	if(hh<10) hh = '0' + hh;
+	var mm = objD.getMinutes();
+	if(mm<10) mm = '0' + mm;
+	var ss = objD.getSeconds();
+	if(ss<10) ss = '0' + ss;
+	var ww = objD.getDay();
+	if  ( ww==0 )  colorhead="";
+	if  ( ww > 0 && ww < 6 )  colorhead="";
+	if  ( ww==6 )  colorhead="";
+	if  (ww==0)  ww="星期日";
+	if  (ww==1)  ww="星期一";
+	if  (ww==2)  ww="星期二";
+	if  (ww==3)  ww="星期三";
+	if  (ww==4)  ww="星期四";
+	if  (ww==5)  ww="星期五";
+	if  (ww==6)  ww="星期六";
+	colorfoot=""
+	str = colorhead + yy + "年" + MM + "月" + dd + "日  <br/>" + ww +""+ colorfoot + " " + hh + ":" + mm + ":" + ss ;
+	return(str);
+}
+function tick()
+{
+	var today;
+	today = new Date();
+	document.getElementById("localtime").innerHTML = showLocale(today);
+	window.setTimeout("tick()", 1000);
+}
+tick();
+</script>
+                                </div>
+                            </div><!--/sidebar-right-header-->
+                            <!--sidebar-right-control-->
+                            <div class="sidebar-right-control">
+                                <ul class="sr-control-item">
+                                    <li class="active"><a href="#contact" data-toggle="tab" title="contacts"><i class="icofont-group"></i></a></li>
+                                   
+                                    <li rel="tooltip-bottom" title="view site"><a href="/" target="_BLANK"><i class="icofont-external-link"></i></a></li>
+                                </ul>
+                            </div><!-- /sidebar-right-control-->
+                            <!-- sidebar-right-content -->
+                            <div class="sidebar-right-content">
+                                <div class="tab-content">
+                                    
+                                   {:W('rightInc')}<!--/alternative 1-->
+                                    
+                                </div>
+                            </div>
+                            <!-- /sidebar-right-content -->
+                        </div><!-- /sidebar-right -->
+                    </aside><!-- /side-right -->
+                </div><!-- /span side-right -->
+            </div>
+        </section>
+
+
+
+             <div class="modal" id="add_custom" style="width:560px; margin-left:-280px;"></div>
+<div class="modal" id="show_client" style="width:600px; margin-left:-300px;"></div>
+
+       
+
+		<include file="Public:footer" />
+      <include file="Public:js-tpl/area.inc"/> 
+      <include file="Public:js-tpl/hangye.inc"/>  
+        <script src="/Static/skin/js/plus_tan.js"></script>
+       <script>
+  
+ //私信函数			
+
+
+
+    $(document).keydown(function(e) {
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+        if (e.ctrlKey && e.which == 13) {
+            $('.sms_bt').click();
+
+        }
+
+    });
+
+
+    $('.sms_bt').click(function(e) {
+
+
+        if ($('#content').val() == '') {
+            $("#msg").html('内容不能为空').show();
+            return false;
+
+        }
+		  $('#msg').html(""); 
+
+        var content = guolv($('#content').val());
+        var suser = $('#content').attr('toid');
+		var url=$(this).attr("sendUrl");
+		
+        $.ajax({
+            type: "POST",
+            url:url,
+            data: {
+                toid: suser,
+                content: content
+            },
+            beforeSend: function() {
+                msg(loader);
+
+            },
+            success: function(data) {
+
+                if (data.status== 1) {
+                    //刷新当前页面
+
+                 window.location.reload();
+
+                }else{
+					
+					//alert("chucuole");
+					
+					}
+
+
+
+
+            }
+
+
+
+        });
+
+        return false;
+
+
+    });
+
+    $('button.sixin').click(function(e) {
+
+        $(".huifu_box").toggle();
+
+
+    });
+
+    $('.hfs').click(function(e) {
+        $(".huifu_box").show();
+        $("#content").focus();
+
+       $("#content").attr('toid',$(this).attr('hfid'));
+	   $("#suid").hide();
+        $("#hfname").html("<span class='text'>发给：  <a href='#'>" + $(this).attr("hfname") + "</a>  </span><span class='modfy'>修改</span><div class='cl'></div>").show();
+
+    });
+
+
+
+    /*选择私信用户*/
+    $('.x_user').live("click", 
+    function() {
+
+        $("#suser").attr("toid",$(this).attr("toid")).hide();
+        $("#uli").html("");
+
+        $("#hfname").html("<span class='text'>发给:  <a href='#'>" + $(this).attr("uname") + "</a>  </span><span class='modfy'>修改</span><div class='cl'></div>").show();
+
+
+
+    });
+    /*修改发送用户*/
+
+$("span.modfy").live("click", 
+    function() {
+
+        $(this).parent().html("").hide();
+        $("#suser").val("").show();
+
+    });
+
+$(".deldh").click(function(e){
+	
+	      
+		   $this=$(this);
+		     if(window.confirm("你确定要删除全部对话么？")){
+				   
+				  $.ajax({
+					    
+						 url:'/Usermsg/deldh/ajax/1/id'+$this.attr('uid'),
+						 
+					  
+					  
+					  });
+				 
+				 }else{
+					    
+						return false;
+					   
+					 }
+	
+	
+	})
+
+
+</script>
+        
+<script>
+					 
+					 $(".quanxuan").click(function(e) {
+                          
+						
+						  //$(".sid").val(99999);
+						  $(".ckd").html('请选择 　<span class="caret" style="color:#CCC"></span>');
+						  
+                    });
+					  $(".stage_ul.skzt li a").click(function(e) {
+                        
+						
+						
+						if($(this).attr('sid')==13){
+							$("#maodian").val("佣金/业绩");
+						   $(".piliang_box").each(function(index, element) {
+                             
+							 if($(this).attr('st')==0 || $(this).attr("fen")==1 ){
+								   
+								    $(this).attr('checked',false);
+								    $(this).attr('disabled','disabled');
+								   
+								 } else{
+									 
+								    $(this).attr('disabled',false);
+									 }
+							
+                        });
+						}
+						
+						
+						
+						
+						if($(this).attr('sid')==0){
+						  $(".piliang_box").each(function(index, element) {
+                             
+							 if($(this).attr('st')==0 || $(this).attr("fen")==1){
+								   
+								   $(this).attr('checked',false);
+								   $(this).attr('disabled','disabled');
+								 } 
+							
+                        });
+						}
+						
+						
+						
+						
+						
+						
+						if($(this).attr('sid')==1){
+						  $(".piliang_box").each(function(index, element) {
+                             
+							 if($(this).attr('st')==1){
+								   
+								   $(this).attr('checked',false);
+								   $(this).attr('disabled','disabled');
+								 } 
+							
+                        });
+						
+						}
+						
+						
+						
+						
+						
+                    });
+					     
+	                      
+						  $(".beizhu").popover().
+                          click(function(e) {
+                          e.preventDefault()
+      });
+                    </script>
+        
+               <script type="text/javascript">
+            $(document).ready(function() {
+                // try your js
+                
+                // auto complete
+                $('#inputAuto').typeahead({
+                    source : ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"]
+                });
+                
+                // select2
+                $('#inputTags').select2({tags:["red", "green", "blue"]});
+                $('[data-form=select2]').select2();
+                $('[data-form=select2-group]').select2();
+                
+                // this select2 on side right
+                $('#tagsSelect').select2({
+                    tags:["red", "green", "blue"],
+                    tokenSeparators: [",", " "]
+                });
+                
+                
+                // datepicker
+                $('[data-form=datepicker]').datepicker();
+
+             
+                
+                // uniform
+                $('[data-form=uniform]').uniform()
+
+                // wysihtml5
+                $('[data-form=wysihtml5]').wysihtml5();
+                
+                
+       
+                
+                
+                
+            });
+      
+        </script>
+        
+	</body>
+</html>
+
+

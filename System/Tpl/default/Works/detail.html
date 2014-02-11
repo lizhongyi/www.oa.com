@@ -1,0 +1,551 @@
+<include file="Public:header"/>                    
+               <section class="section">
+            <div class="row-fluid">
+                <!-- span side-left -->
+                <div class="span1">
+                  
+                    <!--side bar-->
+                    
+                    <include file="Public:side-bar" />
+                    
+                  <!--/side bar -->
+                </div><!-- span side-left -->
+                
+                <!-- span content -->
+                <div class="span9">
+                    <!-- content -->
+                    <div class="content">
+                        <!-- content-header -->
+                        <div class="content-header">
+                            
+                              <include file="Public:breadcrumb"/>
+                        </div><!-- /content-header -->
+                        
+                        <!-- content-breadcrumb -->
+                        <div class="content-breadcrumb">
+                           
+                            
+                            
+                        </div><!-- /content-breadcrumb -->
+                        
+                        <!-- content-body -->
+                        <div class="content-body">
+                        
+                        
+                        
+                        
+                          <div class="box-header corner-top">
+                                    <div class="header-control pull-right">
+                                        <a id="ze" data-box="collapse"><i class="icofont-caret-up"></i></a>
+                                    </div>
+                                    <ul class="nav nav-tabs">
+                                       
+                                        <li class="active"><a  href="javascript:;">职位详细</a></li>      
+                                     
+                                        <li><a class="zedie" href='javascript:;' data-box="collapse" >{$detail['Search_posts']}　（<span style="color:#333;">{$detail['hr_num']}</span>人)　WO-{$detail['id']}</a></li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                           
+                            
+                         
+
+                            <!-- tab resume content -->
+                            <div class="row-fluid" >
+                          
+                           
+                                <div class="span12" >
+                                    
+										
+                                        <div class="box-body" style="display:none">
+													
+	
+            
+              
+              <div class="m15">
+              
+              
+              
+              
+              
+              
+              
+              
+              <table class=" table table-bordered  tb-auto" >
+              <tr>
+              <th colspan="6">{$detail['Search_posts']}　（<span style="color:#333;">{$detail['hr_num']}</span>人)　WO-{$detail['id']}</th>
+              </tr>
+              <tr>
+              <td width="107"><strong>客户名称</strong></td>
+              <td width="150">{$detail['cid']|get_clientname}</td>
+              <td width="150"><strong>HR联系人　</strong></td>
+              <td width="150">{$detail['hr_contact']}</td>
+              <td width="150"><strong>工作地点</strong></td>
+              <td width="150">{$detail['area_cn']}</td>
+              </tr>
+              <tr>
+                <td><strong>薪酬待遇</strong></td>
+                <td>{$detail['payment']}~{$detail['payment1']}万元</td>
+                <td><strong>执行部门</strong></td>
+                <td>{$bm[$detail['department_id']]}</td>
+                <td><strong>负责人　</strong></td>
+                <td>{$detail['principal_cn']}</td>
+              </tr>
+              <tr>
+                <td><strong>进展阶段　</strong></td>
+                <td>{$select['stage1'][$detail['stage']]}</td>
+                <td><strong>起止日期</strong></td>
+                <td colspan="3">　{$detail['start_time']|date='Y-m-d',###}　至　<if condition="$detail['end_time'] neq 0">{$detail['end_time']|date='Y-m-d',###}<else/>长期</if></td>
+                </tr>
+              <tr>
+                <td><strong>状态</strong></td>
+                <td>{$select['status'][$detail['status']]}</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              
+              </table>
+              
+              
+              
+              <div class="cl"></div>
+              
+              <table class=" table table-bordered  tb-auto">
+              <tr>
+              <th>职位描述</th>
+              </tr>
+              <tr>
+              <td>{$detail['job_descriptions']|nl2br}</td>
+              </tr>
+              <tr><th>任职要求</th></tr>
+               <tr><td>{$detail['job_requirements']|nl2br}</td></tr>
+               <tr><th>备注</th></tr>
+               <tr><td>{$detail['remark']|nl2br}</td></tr>
+              </table>
+         
+         
+          <hr/>
+          <div class="">
+         <span class="left"> 创建日期：{$detail['create_time']|date='Y-m-d',###} 　　 更新日期：<if condition=" $detail['update_time'] neq '0'">{$detail['update_time']|date='Y-m-d',###}</if></span>
+         <span class="right">创建人：{$detail['uid']|getTruename}</span>
+        
+          </div>
+      </div>
+              
+ <div class="divider-content"><span></span></div>
+ 
+              </div>
+               
+ <div class="cl"></div>             
+              
+             
+
+                               </div>
+                            </div><!-- tab stat -->
+                            
+                          
+                           <div class="box-header corner-top">
+                                   
+                                      
+                                      
+                                        
+                                        
+                                    
+                                </div>
+                                
+                                
+                                <div class="row-fluid">
+                                
+                             
+            
+            
+            
+            <!-------这里先注释小掉
+            
+                 <div class="tab" id="stage_box" >
+                 
+                 
+                 
+                 
+                 
+                
+                 
+                 <volist name="stage" id="vo">
+                 
+                 
+                 
+                 
+                 <if condition="$vo['id'] eq 10">
+                 
+                 
+                  <a style="float:right; color:#000; " link="{:U('Team/index',array('loadbox'=>'clist_'.$vo['id'],'stage'=>$vo['id'],'gid'=>$detail['id'],'ajax'=>1))}"   href="#{$vo.title}" class="tab-bar stage_tab " zid="{$vo['id']}" gid='{$detail["id"]}' id="tab_{$vo['id']}" >{$vo.title}</a>
+                 
+                 
+                 <elseif condition="$vo['id'] eq 11"/>
+             
+                 
+                  <a  style="float:right; color:#000; "  link="{:U('Commission/index_list',array('loadbox'=>'clist_'.$vo['id'],'stage'=>$vo['id'],'gid'=>$detail['id'],'ajax'=>1))}"  href="#{$vo.title}" class="tab-bar stage_tab " zid="{$vo['id']}" gid='{$detail["id"]}' id="tab_{$vo['id']}" >{$vo.title}</a>
+                  
+                  
+                  
+                   <elseif condition="$vo['id'] eq 9"/>
+             
+                 
+                  <a  style="float:right; color:#000; " link="{:U('Collection/index_list',array('loadbox'=>'clist_'.$vo['id'],'stage'=>$vo['id'],'gid'=>$detail['id'],'ajax'=>1))}"  href="#{$vo.title}" class="tab-bar stage_tab " zid="{$vo['id']}" gid='{$detail["id"]}' id="tab_{$vo['id']}" >{$vo.title}</a>
+                  
+                  
+                 
+                 
+                 
+                 <elseif condition="$vo['id'] gt 7"  />
+                 
+                 
+                  <a style="float:right; color:#000; "  link="{:U('Candidate/index',array('loadbox'=>'clist_'.$vo['id'],'stage'=>$vo['id'],'gid'=>$detail['id'],'ajax'=>1))}" <if condition='$vo["id"] eq 10'> style="float:right;"</if>  href="#{$vo.title}" class="tab-bar stage_tab <if condition="$vo['id'] eq '1'"> hover </if>" zid="{$vo['id']}" gid='{$detail["id"]}' id="tab_{$vo['id']}">{$vo.title}</a>
+                  
+                  <else/>
+                 <a  link="{:U('Candidate/index',array('loadbox'=>'clist_'.$vo['id'],'stage'=>$vo['id'],'gid'=>$detail['id'],'ajax'=>1))}" <if condition='$vo["id"] eq 10'> style="float:right;"</if>  href="#{$vo.title}" class="tab-bar stage_tab <if condition="$vo['id'] eq '1'"> hover </if>" zid="{$vo['id']}" gid='{$detail["id"]}' id="tab_{$vo['id']}">{$vo.title}</a>
+                 </if>
+                 
+                    
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                     
+                 </volist>
+                
+                 </div>
+                 
+                 
+                 ---------->
+                 
+               
+               <!-----------这里放上静态的tab------------>
+               
+               <div class="tab" id="stage_box">
+                 
+                 
+                 
+                 
+                 
+                
+                 
+                                  <a link="/index.php/Candidate/index/loadbox/clist_1/stage/1/gid/{$_GET['id']}/ajax/1" href="#初选" class="tab-bar stage_tab" zid="1" gid="{$_GET['id']}" id="tab_1">{:get_stage_nums($detail['id'],1)}初选</a>                 <a link="/index.php/Candidate/index/loadbox/clist_2/stage/2/gid/{$_GET['id']}/ajax/1" href="#顾问面试" class="tab-bar stage_tab" zid="2" gid="{$_GET['id']}" id="tab_2"> {:get_stage_nums($detail['id'],2)}顾问面试</a>                 <a link="/index.php/Candidate/index/loadbox/clist_3/stage/3/gid/{$_GET['id']}/ajax/1" href="#已推荐" class="tab-bar stage_tab" zid="3" gid="{$_GET['id']}" id="tab_3">{:get_stage_nums($detail['id'],3)}已推荐</a>                 <a link="/index.php/Candidate/index/loadbox/clist_4/stage/4/gid/{$_GET['id']}/ajax/1" href="#客户面试" class="tab-bar stage_tab" zid="4" gid="{$_GET['id']}" id="tab_4">{:get_stage_nums($detail['id'],4)}客户面试</a>                 <a link="/index.php/Candidate/index/loadbox/clist_5/stage/5/gid/{$_GET['id']}/ajax/1" href="#薪酬谈判" class="tab-bar stage_tab" zid="5" gid="{$_GET['id']}" id="tab_5">{:get_stage_nums($detail['id'],5)}薪酬谈判</a>                 <a link="/index.php/Candidate/index/loadbox/clist_6/stage/6/gid/{$_GET['id']}/ajax/1" href="#已录用" class="tab-bar stage_tab" zid="6" gid="{$_GET['id']}" id="tab_6">{:get_stage_nums($detail['id'],6)}已录用</a>                 <a link="/index.php/Candidate/index/loadbox/clist_7/stage/7/gid/{$_GET['id']}/ajax/1" href="#入职" class="tab-bar stage_tab" zid="7" gid="{$_GET['id']}" id="tab_7">{:get_stage_nums($detail['id'],7)}入职</a>     
+                                  
+       <a link="/index.php/Candidate/index/loadbox/clist_8/stage/8/gid/{$_GET['id']}/ajax/1" href="#付款通知" class="tab-bar stage_tab hover" zid="8" gid="{$_GET['id']}" id="tab_8">{:get_stage_nums($detail['id'],8)}付款通知</a>     
+       
+       
+       <a link="/index.php/Collection/index_list/loadbox/clist_9/stage/9/gid/{$_GET['id']}/ajax/1" href="#收款状态" class="tab-bar stage_tab" zid="9" gid="{$_GET['id']}" id="tab_9">收款状态</a>                       
+                                              
+                     <a style="float:right; color:#000; " link="/index.php/Team/index/loadbox/clist_10/stage/10/gid/{$_GET['id']}/ajax/1" href="#内部团队" class="tab-bar stage_tab" zid="10" gid="{$_GET['id']}" id="tab_10">内部团队</a>   
+                     
+                     
+                     <a style="float:right; color:#000; " link="/index.php/Candidate/index/loadbox/clist_10/stage/12/ajax/1/gid/{$_GET['id']}" href="#统计" class="tab-bar stage_tab" zid="12" gid="{$_GET['id']}" id="tab_12">统计</a>  
+                     
+                      <a style="float:right; color:#000; " link="/index.php/Commission/index_list/loadbox/clist_11/stage/11/gid/{$_GET['id']}/ajax/1" href="#佣金/业绩" class="tab-bar stage_tab" zid="11" gid="{$_GET['id']}" id="tab_11">佣金/业绩</a>
+                      
+                       
+                        
+                                     
+                 
+                 
+                  
+                               
+               
+                                  
+                 </div>
+               
+               
+               
+                 
+   <div class="tab-box">
+    <volist name="stage" id="vo">
+   <div class="tab_con_box" <if condition="$vo['id'] eq '1'"> style="display:block" </if>>
+   <div class="clist" id="clist_{$vo['id']}"></div>
+   <div class="cl"></div>
+   
+   </div>
+   </volist>
+  
+   </div>
+    <div class="box_footer">
+    
+    
+    
+<!--<a style="position:absolute; top:-40px; right:300px;"  class="btn add_condidate btn-primary" href="/Talent/add/act/import/gid/{$detail['id']}">新增 <i class="icofont-plus"></i></a>-->
+
+<span style="position:absolute; top:-50px; right:10px;" link="{:U('Talent/index',array('ajax'=>1,'loadbox'=>'import_candidate','gid'=>$detail['id'],'job'=>$detail['Search_posts'],'noids'=>$detail['noids']))}" id="import_c" class="btn add_condidate  btn-primary" gid="{$detail['id']}" data-toggle="modal" href="#import_candidate">导入 <i class="icofont-plus"></i></span>
+
+<span style="position:absolute; display:none; bottom:10px; right:300px;" link="{:U('Team/add',array('ajax'=>1,gid=>$detail['id']))}" class="btn add_works_team btn-primary" gid="{$detail['id']}" data-toggle="modal" href="#add_works_team">新增团队成员<i class="icofont-plus"></i></span>
+
+
+
+   
+   </div>        
+            </div>
+            
+            
+        
+            
+            
+            
+            
+            
+        
+    
+      
+     
+      
+      
+      
+      
+      
+      
+   
+                              
+                   
+                                
+                            
+                            <!--/dashboar-->
+                        </div><!--/content-body -->
+                    </div><!-- /content -->
+                </div><!-- /span content -->
+                
+                <!-- span side-right -->
+                <div class="span2">
+                    <!-- side-right -->
+                    <aside class="side-right">
+                        <!-- sidebar-right -->
+                        <div class="sidebar-right">
+                            <!--sidebar-right-header-->
+                            <div class="sidebar-right-header">
+                                <div class="sr-header-right">
+                                   
+                                </div>
+                                <div class="sr-header-left">
+                                   <span id="localtime" style="font-size:12px; font-family:'微软雅黑'"></span>
+
+<script type="text/javascript">
+function showLocale(objD)
+{
+	var str,colorhead,colorfoot;
+	var yy = objD.getYear();
+	if(yy<1900) yy = yy+1900;
+	var MM = objD.getMonth()+1;
+	if(MM<10) MM = '0' + MM;
+	var dd = objD.getDate();
+	if(dd<10) dd = '0' + dd;
+	var hh = objD.getHours();
+	if(hh<10) hh = '0' + hh;
+	var mm = objD.getMinutes();
+	if(mm<10) mm = '0' + mm;
+	var ss = objD.getSeconds();
+	if(ss<10) ss = '0' + ss;
+	var ww = objD.getDay();
+	if  ( ww==0 )  colorhead="";
+	if  ( ww > 0 && ww < 6 )  colorhead="";
+	if  ( ww==6 )  colorhead="";
+	if  (ww==0)  ww="星期日";
+	if  (ww==1)  ww="星期一";
+	if  (ww==2)  ww="星期二";
+	if  (ww==3)  ww="星期三";
+	if  (ww==4)  ww="星期四";
+	if  (ww==5)  ww="星期五";
+	if  (ww==6)  ww="星期六";
+	colorfoot=""
+	str = colorhead + yy + "年" + MM + "月" + dd + "日  <br/>" + ww +""+ colorfoot + " " + hh + ":" + mm + ":" + ss ;
+	return(str);
+}
+function tick()
+{
+	var today;
+	today = new Date();
+	document.getElementById("localtime").innerHTML = showLocale(today);
+	window.setTimeout("tick()", 1000);
+}
+tick();
+</script>
+                                </div>
+                            </div><!--/sidebar-right-header-->
+                            <!--sidebar-right-control-->
+                            <div class="sidebar-right-control">
+                                <ul class="sr-control-item">
+                                    <li class="active"><a href="#contact" data-toggle="tab" title="contacts"><i class="icofont-group"></i></a></li>
+                                   
+                                    <li rel="tooltip-bottom" title="view site"><a href="/" target="_BLANK"><i class="icofont-external-link"></i></a></li>
+                                </ul>
+                            </div><!-- /sidebar-right-control-->
+                            <!-- sidebar-right-content -->
+                            <div class="sidebar-right-content">
+                                <div class="tab-content">
+                                    
+                                   {:W('rightInc')}<!--/alternative 1-->
+                                    
+                                </div>
+                            </div><!-- /sidebar-right-content -->
+                        </div><!-- /sidebar-right -->
+                    </aside><!-- /side-right -->
+                </div><!-- /span side-right -->
+            </div>
+        </section>
+
+
+
+            <div class="tbox">
+  <div class="modal" id="add_candidate" style="width:700px; margin-left:-350px;"></div>
+   <div class="modal" id="import_candidate" style="width:900px; margin-left:-450px;"></div>
+  <div class="modal" id="add_works_team"></div>
+   <div class="modal" id="set_ticheng"></div>
+   <div class="modal" id="yeji_detail" style="width:900px; margin-left:-450px;"></div>
+   <div class="modal" id="yeji_modfy"></div>
+    <div class="modal" id="nteam_list" style="width:700px; margin-left:-350px;"></div>
+     <div class="modal" id="mark_info">
+     
+     <div class="modal-header">
+    <a class="close" data-dismiss="modal">×</a>
+    <h4></h4>
+  </div>
+  <div class="modal-body">
+  
+  <div id="bz_box"></div>
+  
+  </div>
+   <div class="modal-footer">
+    
+   
+  </div>
+     
+     </div>
+</div>
+
+       
+<div class="cl"></div>
+		<include file="Public:footer" />
+      
+        <script src="/Static/skin/js/plus_tan.js"></script>
+        
+      
+<script>
+
+ $(".zbeizhu").live("click",function(e) {
+    
+	   $("#bz_box").html($(this).next('div').html());
+	   $("#mark_info h4").html('备注信息　'+$(this).attr('realname'));
+	   
+	   
+	   
+	  
+});
+
+
+  
+						  $(".fenpei-a").live("click",function(e) {
+							  
+							  if(window.confirm('您确定团队成员与佣金比例设置完毕,现在要进入佣金分配么?')){
+								      
+									 
+									  
+									   $this=$(this);
+                             
+						 $.ajax({
+									   url: $this.attr('link'),
+									   type:"GET",
+									   data:'{}',
+									   beforeSend: function(){
+										    $this.text('分配中..');
+										   },success: function(data){
+											        
+													if(data){
+														  $this.text('已分配');
+														} else{
+															 $(this).text(data.info); 
+															}
+											   
+											   }
+									});
+									  
+									 
+								  }else{
+									  
+									   
+									  
+									   return false;
+									  
+									  }
+							  
+							 
+							  
+                        });
+						
+						
+						
+						
+						
+						$("#import_c").click(function(e) {
+                              
+							  geta($("#import_candidate"),$(this).attr('link'),loadGif);
+							
+                        });
+
+</script> 
+
+ <div class="modal" id="resume_box" style="width:900px; margin-left:-450px;"></div>
+        
+  
+        <script>
+		
+		$(".res_id").live('click',function(e) {
+			
+			//alert("nihao");
+             
+			 geta($("#resume_box"),$(this).attr('link'),loadGif);
+			 
+        });
+		
+		$(".zedie").click(function(){
+			
+			  $("#ze").click();
+			
+			})
+			
+			
+			
+			
+			
+			
+			
+$("#import_candidate").delegate('a#changgui',"click",function(e){
+							
+						geta($("#import_candidate"),"{:U('Talent/index',array('ajax'=>1,'loadbox'=>'import_candidate','gid'=>$detail['id'],'job'=>$detail['Search_posts'],'noids'=>$detail['noids']))}",loadGif);
+							  
+							  })
+							  
+							  
+							  
+							  
+$("#import_candidate").delegate('a#import',"click",function(e) {
+    
+
+				geta($("#import_candidate"),"{:U('Talent_import/index',array('ajax'=>1,'loadbox'=>'import_candidate','gid'=>$detail['id'],'job'=>$detail['Search_posts'],'noids'=>$detail['noids']))}",loadGif);	
+	
+});		
+		
+			
+		
+		</script>
+        
+         
+     
+	</body>
+</html>
+
+

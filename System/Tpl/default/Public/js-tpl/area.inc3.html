@@ -1,0 +1,127 @@
+<script src="/Static/skin/js/area.js"></script>
+<div class="area-box tan-box">
+
+ <script id="diqu" type="text/html">
+    <div class="h-title">请选则地区<a href='javascript:void(0)' class='close'>关闭</a></div>
+	<form id="area-f">
+     <ul>
+    <% for (var i = 0; i < list.length; i ++) { %>
+<%  if (list[i].parentid ==0) { %><li data-id='<%= list[i].id%>'>
+<img src="/Static/skin/images/left_e.gif" border="0" align="absmiddle" id="5" class="a-leftimg pointer"><span class='big-cate' data-text='<%=list[i].categoryname%>' class='h-s' hid='<%=list[i].id%>'><%=list[i].categoryname%></span>
+ <dl> <% for (var j = 0; j < list.length; j ++) { %><% if(list[j].parentid ==list[i].id ) {%><dd><span class='small-cate' data-text='<%=list[i].categoryname%> / <%=list[j].categoryname%>' hid='<%=list[j].id%>' ><%= list[j].categoryname %> </dd><%}else {%><% } %><%  }%>
+</dl></li><% } %> <% } %>
+</ul>
+<button type="reset" class='reset' style="display:none">重置</button> 
+</form>
+</script>
+
+                    
+                    
+<script>
+ 
+  
+ html = template.render('diqu', {
+	list:area
+});
+$('.area2').live("focus","click",function(e) {
+      
+	 $(".tan-box").hide();
+	// alert($(this).parent());
+	 $(".area-box").show().css({'top':$(this).parent().offset().top+28+"px",'left':$(this).parent().offset().left+0+'px','z-index':'999993'});
+	
+});
+
+$(".area_1").live("click",function(){
+	 
+	 $(".area").focus();
+	
+	});
+
+
+
+$(".area-box").html(html);
+
+
+
+           $(".area-box ul li img").click(function(e) {
+			   $(".area-box ul li").find("dl").hide();
+			  $(".h-leftimg").attr('src','/Static/skin/images/left_e.gif');
+               if($(this).attr('src')=='/Static/skin/images/left_e.gif'){
+					 $(this).parent().find("dl").show();
+					 $(this).attr('src','/Static/skin/images/left_d.gif');
+					}else{
+						$(this).parent().find("dl").hide();
+						$(this).attr('src','/Static/skin/images/left_e.gif');
+						}
+				
+	        
+});
+
+
+
+
+
+
+$(".area-box ul li span.big-cate").click(function(e) {
+	
+    $(".area-box ul li dl").hide(); 
+    $(".area-queding").attr('text',$(this).attr('data-text'));
+	$(".area-queding").attr('hid',$(this).attr('hid'));
+	$(".area-queding").click();
+	
+	
+});
+
+
+$(".area-box ul li span.small-cate").click(function(e) {
+    //$(".hangye-box ul li dl").hide(); 
+	
+	$(".area-queding").attr('text',$(this).attr('data-text'));
+	$(".area-queding").attr('hid',$(this).attr('hid'));
+	$(".area-queding").click();
+	
+});
+
+
+$(".h-s").click(function(e) {
+     
+	$(".area-box ul li dl").hide(); 
+	  
+});
+$(".area-box a.close").click(function(e) {
+    
+	$(".area-box").hide();
+	$(".reset").click();
+	$(".area-box ul li dl").hide();
+	
+});
+$(".area-queding").live("click",function(e) {
+    $("input.area").val($(this).attr('text'));
+	$("input#area-val-1").val($(this).attr('hid'));
+	$(".area-box").hide();
+	$(".reset").click();
+	$("input.area").focus();
+	$(".area-box ul li dl").hide();
+});
+
+$(document).click(function(e) {
+    
+	if(e.target.className.indexOf('area') != -1 || e.target.className.indexOf('a-leftimg') != -1){
+		$(".area-box").show(); 
+		}else{
+			$(".area-box").hide();
+			$(".area-box ul li dl").hide();
+			$(".a-leftimg").attr('src','/Static/skin/images/left_e.gif')
+			}
+	
+});
+</script>
+<div align="right" style="padding:15px; padding-right:50px;">
+<div class="cl"></div>
+<button type="button" class="btn area-queding" style="display:none">确定</button>
+</div>
+</div>
+
+
+
+

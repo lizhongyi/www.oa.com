@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>用户注册</title>
+
+<css href="/Static/skin/assets/css/bootstrap-responsive.css" />
+<css href="/Static/skin/assets/css/bootstrap.css" />
+<js href="/Static/skin/js/jquery-1.7.2.js" />
+<style>
+ body{ background:#F8F8F8 !important; margin:0px; padding:0px;}
+ div.login_box{ width:300px;  position:absolute; margin-left:-150px; left:50%; top:50%; margin-top:-190px;}
+ div.logo{  width:300px; padding-top:10px; padding-bottom:16px}
+ div.sigin{ width:300px;}
+ div.sigin h1{ font-family:"微软雅黑"; font-size:26px; font-weight:100; padding:10px 0; color:#ccc; .text-shadow:2px 2px 2px #F7F7F7;}
+ div.login_box .input_box input{ display:block; height:24px; line-height:24px; width:240px; margin-bottom:13px;}
+ 
+ .cl{ height:1px; clear:both; overflow:hidden}
+ #msg{ font-size:14px; color:#900}
+ div.u_top{ background:#525252; height:300px; width:100%; position:absolute; top:50%; margin-top:-150px;}
+ div.top{ height:70px; background:#525252}
+ div.top_c{ width:960px; margin:0 auto;}
+  div.bts { margin-top:-0px; padding-left:120px;}
+ div.bts span{ float:left;margin-right:10px; color:#666}
+ div.bts #remember{ height:24px; line-height:24px; margin-right:6px; color:#666}
+ .red-border{ border:#F30 1px solid !important;}
+ #bt{ width:80px;}
+
+</style>
+
+
+
+
+
+
+<script>
+
+$(document).ready(function(e) {
+    
+	 $("#bt").click(function(e) {
+            p=0;
+				$(".sigin input").each(function(index, element) {
+                       
+					   if($(this).val()==""){
+						     
+				      			 $(this).addClass('red-border');
+						      p=p+1;   
+						   }
+					   
+                });  
+				
+			  
+			 // alert(p);
+			  if(p==0){
+				    
+					alert("注册完成，我们需要审核您的资料，稍后会给您发电子邮件");
+				  
+				  }	
+			
+			 return false;  
+		 
+    });
+});
+
+
+
+</script>
+</head>
+
+<body>
+<div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="top_c">
+<div class="logo"><img src="../Public/img/logo.png"/></div>
+
+</div>
+      </div>
+    </div>
+
+
+<div class="login_box">
+
+
+<div class="sigin">
+<h1>注册</h1>
+<form method="post">
+<div class="input_box">
+<input type="text"  name="email" placeholder="电子邮箱" id="email" autocomplete="off" />
+<input type="password" name="password" placeholder="密码" id="password" />
+<input type="password" name="password" placeholder="确认密码" id="password" />
+<input type="text" name="" placeholder="学历" id="last_company" />
+<input type="text" name="last_company" placeholder="最近工作单位" id="last_company" />
+<input type="text" name="" placeholder="职务" id="last_company" />
+</div>
+<div class="bts"><span style="padding-top:4px; padding-right:10px;"><a href="/User/login">登陆</a></span><span><input type="submit" class="btn btn-primary" name="bt" id="bt" value="完成注册"/></span> 
+
+</div>
+</form>
+</div>
+<div class="cl"></div>
+<div id="msg"></div
+
+
+
+></div>
+</body>
+</html>

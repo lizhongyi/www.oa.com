@@ -1,0 +1,58 @@
+	<table width="421"  class="table  small-font" style="border:1px solid #ddd;">
+											  <tr>
+											    <th  >id</th>
+											    <th = >标题</th>
+											    <th>通知日期</th>
+	<if condition="$role_id == 1">										    <th>操作</th>
+	</if>									      </tr>
+											  <volist name="notList" id="vo" >
+											    <tr>
+											      <td>{$vo.id}</td>
+											      <td><a href="#notice_box" link="/Notice/detail/ajax/1/id/{$vo.id}" data-toggle="modal" class="title-a">{$vo.title}</a></td>
+											      <td>{$vo.create_time|date='Y-m-d',###}</td>
+			<if condition="$role_id == 1">								      <td><a href="#notice_box" data-toggle="modal" link='/Notice/modfy/ajax/1/id/{$vo["id"]}' class="modfy-a">编辑</a> <a did="{$vo['id']}" href="javascript:;" class="del-notice">删除</a></td>
+				</if>						        </tr>
+										      </volist>
+										  </table>
+                                         <a href="/Notice" class="btn btn-small btn-link pull-right">查看全部 &rarr;</a>
+                                         <div class="cl" style="clear:both"></div>  
+                                          
+                                          
+   <script>
+   
+   $(".modfy-a").click(function(e) {
+     
+	 geta($("#notice_box"),$(this).attr('link'),loadGif);
+	
+});
+
+
+   $(".title-a").click(function(e) {
+     
+	 geta($("#notice_box"),$(this).attr('link'),loadGif);
+	
+});
+
+
+$(".del-notice").click(function(e) {
+	    
+		$url='/Notice/delete/ajax/1/id/'+$(this).attr('did');
+       // alert($url);
+	   $.ajax({
+		       url:$url,
+			   type:"GET",
+			   success: function(data){
+				      
+					  if(data.status==1){
+						    
+							$("#load_notice").load('/Notice/index/ajax/1');
+						  
+						  }
+				   
+				   }
+		   })
+	
+});
+
+   
+   </script>                                       

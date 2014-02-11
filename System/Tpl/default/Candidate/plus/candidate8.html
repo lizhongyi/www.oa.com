@@ -1,0 +1,149 @@
+<!--富矿付款状态--->
+<present name="getList">
+
+               <form method="post" action="{:U('Candidate/doCommand',array('stage'=>$_GET['stage']))}">
+ <div style="min-height:120px;">             
+<table class="table">
+<tr>
+  <th width="120" align="center">通知单号</th>
+<th width="90">姓名</th>
+<th width="109">收款类型</th>
+<th width="129">应收款金额</th>
+<th width="109">应收款日期</th>
+<th width="100" align="center">设置提成</th>
+
+<th width="100" align="center">更新日期</th>
+<th width="120" align="center">团队成员</th>
+<th width="120" align="center">备注</th>
+<th width="60" align="center">操作</th>
+</tr>
+<volist name="getList" id="vo">
+<tr>
+  <td>    PN.{$vo['gid']}-{$vo['id']}    </td>
+  <td>
+  
+  
+  
+  <if condition="$vo['source'] eq 1"> <span style="color:#090"><a href="#resume_box" class='res_id' data-toggle="modal" link="/Resume/detail/id/{$vo['resume_id']}/rname/{$vo['resume_id']|getTruename}">{$vo['realname']|msubstr=0,10}</a></span></if> <if condition="$vo['source'] eq 0"> <a href="/Talent/detail/id/{$vo['resume_id']}" target="_blank">{$vo['realname']|msubstr=0,10} </a>  </if> 
+  
+  <if condition="$vo['source'] eq 2"> <a href="/Talent_import/detail/id/{$vo['resume_id']}" target="_blank">{$vo['realname']|msubstr=0,10} </a>  </if>  
+  
+  
+  </td>
+  <td>{$select['stages'][$vo['stage']][$vo['stages']]}</td>
+  <td>
+  
+  
+  <if condition =" $vo['yfk_jine'] neq 0"> 
+  
+  <if condition="$vo['stages'] eq 1">
+  <span class='red jine'>￥{$vo['yfk_jine']}</span>
+  </if>
+  
+  
+  <if condition="$vo['stages'] eq 2">
+  
+  
+  
+      <a href="#" rel="tooltip" class="top_tooltip" data-original-title="{$vo['pici_jin']}"><span class='red jine'>￥{$vo['yfk_jine']}</span></a>
+  
+ 
+  
+  
+  </if>
+  
+  
+  <else/>
+  未填写
+  </if>
+  
+  
+  </td>
+
+  <td><if condition ="$vo['yfk_time'] neq 0"></if>
+  
+  
+  
+  
+  
+  
+  <if condition =" $vo['yfk_jine'] neq 0"> 
+  
+  <if condition="$vo['stages'] eq 1">
+  {$vo['yfk_time']|date='Y-m-d',###}
+  </if>
+  
+  
+  <if condition="$vo['stages'] eq 2">
+  
+  
+  
+      <a href="#" rel="tooltip" class="top_tooltip" data-original-title="{$vo['pici_time']}">{$vo['pici_time0']}</a>
+  
+ 
+  
+  
+  </if>
+  
+  
+  <else/>
+  未填写
+  </if>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  </td>
+  <td><a class="set_ticheng" gid="{$vo['id']}" data-toggle="modal" hname="{$vo['realname']}" href="#set_ticheng">比例</a></td>
+ 
+  
+  <td>{$vo['update_time']|date='Y-m-d',###}</td>
+  <td align="center"><a data-toggle="modal" href="#nteam_list"  link="{:U('Nteam/index',array('cid'=>$vo['id'],'ajax'=>1,'cname'=>$vo['realname'],'gid'=>$vo['gid']))}" class="set_nteam" id="set_nteam_{$vo['id']}">点击查看</a>
+  </td>
+  <td><a href="#mark_info" data-toggle="modal" class="zbeizhu" info="" realname="{$vo['realname']}" >查看</a>
+    <div style="display:none">{$vo['mk']}</div></td>
+  <td><a  link="/Candidate/modfy/ajax/1/id/{$vo['id']}/stage/{$vo['stage']}" data-toggle="modal" href="#add_candidate" class="modfy-a">编辑</a>　</td>
+  </tr>  
+</volist>
+
+</table>
+
+ </div> <!-----------======调用公共分页=======---------------->
+
+
+
+<!------==============调用公共分页=============================-->
+                    <div class="cl"></div>
+ 
+<else/>
+<div style="padding:50px;">
+暂时没有数据
+</div>
+</present>
+
+
+<script>
+
+
+$('.bottom_tooltip').tooltip({
+		placement: 'bottom'
+	});
+	$('.left_tooltip').tooltip({
+		placement: 'left'
+	});
+	$('.right_tooltip').tooltip({
+		placement: 'right'
+	});
+$('.top_tooltip').tooltip();
+
+</script>

@@ -1,0 +1,93 @@
+<!--初选--->
+<present name="getList">
+
+               <form method="post" id="nihao" name="nihao" action="{:U('Candidate/doCommand',array('stage'=>$_GET['stage']))}">
+ <div style="min-height:120px;">             
+<table class="table">
+<tr>
+<th width="60">ID</th>
+<th width="90">姓名</th>
+<th width="159">最近工作单位</th>
+<th width="130">职位</th>
+<th width="124">录入日期</th>
+<th width="80">录入人员</th>
+
+<th width="120" align="center">进展阶段　</th>
+<th width="120" align="center">阶段状态　</th>
+<th width="91" align="center">备注</th>
+
+</tr>
+<volist name="getList" id="vo">
+<tr>
+  <td><input  style="width:20px;" type="checkbox" name="id[]" id="all3" class="piliang_box" value="{$vo.id}" />{$vo['id']}</td>
+  <td>
+  <if condition="$vo['source'] eq 1"> <span style="color:#090"><a href="#resume_box" class='res_id' data-toggle="modal" link="/Resume/detail/id/{$vo['resume_id']}/rname/{$vo['resume_id']|getTruename}">{$vo['realname']|msubstr=0,10}</a></span></if> <if condition="$vo['source'] eq 0"> <a href="/Talent/detail/id/{$vo['resume_id']}" target="_blank">{$vo['realname']|msubstr=0,10} </a>  </if> 
+  
+  <if condition="$vo['source'] eq 2"> <a href="/Talent_import/detail/id/{$vo['resume_id']}" target="_blank">{$vo['realname']|msubstr=0,10} </a>  </if>  </td>
+  <td>{$vo['before_job']}</td>
+  <td>{$vo['zhiwei']}</td>
+  <td>{$vo['create_time']|date='Y-m-d',###}</td>
+  <td>{$uname}</td>
+  
+  
+  
+  <if condition="$vo['st'] eq ''">
+
+   <td id="st1_{$vo['id']}"><script>get_sinfo("st1_{$vo['id']}",selecter.stage,"{$vo['stage']}")</script></td>
+   
+   
+  <else/>
+  
+  <td>          <if condition="$vo['st'] eq '收款中'">   <a href="#" rel="tooltip" class="top_tooltip" data-original-title="{$vo['pici_jin']}">{$vo['st']}</a><else/>{$vo['st']}</if>         </td>
+  
+  </if> 
+   
+   
+   
+   
+   
+   
+   
+   
+    <td id="stages1_{$vo['id']}"><script>get_sinfo("stages1_{$vo['id']}",selecter.stages['{$vo[stage]}'],"{$vo['stages']}")</script></td>
+      <td align="center"><a href="#mark_info" data-toggle="modal" class="zbeizhu" info="" realname="{$vo['realname']}" >查看</a><div style="display:none">{$vo['mk']}</div>　</td>
+  
+  </tr> 
+</volist>
+
+</table>
+<!-----------======调用公共分页=======---------------->
+
+
+
+<!------==============调用公共分页=============================-->
+ 
+                    <div class="cl"></div>
+ 
+<else/>
+<div style="padding:50px;">
+暂时没有数据
+</div>
+</present>
+
+
+<script>
+
+ $(".zbeizhu").click(function(e) {
+    
+	   $("#bz_box").html($(this).next('div').html());
+	   $("#mark_info h4").html('备注信息　'+$(this).attr('realname'));
+	  
+});
+$('.bottom_tooltip').tooltip({
+		placement: 'bottom'
+	});
+	$('.left_tooltip').tooltip({
+		placement: 'left'
+	});
+	$('.right_tooltip').tooltip({
+		placement: 'right'
+	});
+$('.top_tooltip').tooltip();
+
+</script>
