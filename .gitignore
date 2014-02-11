@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 tmp/*
 temp/*
 cache/*
@@ -16,3 +17,6 @@ app/[Cc]onfig/core.php
 app/[Cc]onfig/database.php
 !emptys
 
+=======
+.c #huolvbianwenjian
+>>>>>>> 69efadc42525c4022096c79f407b48a70e02abbf
