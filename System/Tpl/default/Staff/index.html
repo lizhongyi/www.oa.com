@@ -40,7 +40,7 @@
                                          
                                         <li><a  href="{:U('StaffRole/index')}">权限管理</a></li>  
                                         
-                                        
+                                          <li><a  href="/User_group">添加雇员</a></li> 
                                         
                                     </ul>
                           </div>
@@ -84,7 +84,6 @@
 <th width="124">推荐候选人</th>
 <th width="120" align="center">成功数量</th>
 <th width="120" align="center">权限组</th>
-<th width="80" align="center">备注</th>
 </tr>
 <volist name="getList" id="vo">
 <tr>
@@ -95,17 +94,16 @@
   <td>{$vo['c_nums']}</td>
   <td>{$vo['sc_nums']}</td>
   <td>
-
-   <select name="role" id="role_{$vo['uid']}" class="span12 setRole" uid='{$vo["uid"]}'>
-     
+    
+    <select name="role" id="role_{$vo['uid']}" class="span12 setRole" uid='{$vo["uid"]}'>
+      
       <volist name="role" id="vo2">
-          <option value="{$vo2['id']}"  <if condition="$vo['role_id'] eq $vo2['id']"> selected </if>>{$vo2['title']}</option>
-     </volist>
-  </select>
-  
+        <option value="{$vo2['id']}"  <if condition="$vo['role_id'] eq $vo2['id']"> selected </if>>{$vo2['title']}</option>
+        </volist>
+      </select>
+    
   </td>
-    <td align="center"><a href="#" class="beizhu" title="" data-content="{$vo['mark']}" data-original-title="备注">查看</a></td>
-  </tr>
+    </tr>
   
   </volist>  
 

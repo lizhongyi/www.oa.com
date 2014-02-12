@@ -136,7 +136,7 @@ class NteamAction extends GlAction{
 							  $dt = $this->dao->where($where)->order('id asc')->select(); //团队列表                 
 						      $persona=$this->persona;//角色列表
 							
-							 
+							 if($dt){
 							 //request Nteam persona
 							 $personas="";
 							 $puid="";
@@ -195,7 +195,39 @@ class NteamAction extends GlAction{
 							 $puid=substr($puid,0,strlen($puid)-1); 
                              $Team_list=M('Team')->where("uid not in($puid) and gid=".$gid)->select();
 							
-						   
+							 }else{
+								 
+								 
+								 
+								 
+								 
+								 
+								 
+								 
+								 $cunzai=explode(',',substr($personas,0,strlen($personas)-1));
+							 
+						
+							  $kexuan=0;
+							  foreach($persona as $k=>$v){
+								     
+								
+											 $kexuan=$kexuan+1;
+											  $checkbox.='<input type="checkbox" name="persona"  value='.$k.' class="persona_cbox1"/>'.$persona[$k]['title']."　";
+											
+								 }
+							    
+								if($kexuan==0){
+									 
+									$msg="已经没有工作角色,如果要增加请点击左侧设置角色！<br/>";
+									 
+									}
+								 
+								 
+								 
+								 
+								 
+								   $Team_list=M('Team')->where("gid=".$gid)->select();
+								 }
 							 
 							/*foreach($Team_list as $k=>$v){
 								     
@@ -209,6 +241,7 @@ class NteamAction extends GlAction{
 								  
 								   $msg.="已经没有其他团队成员可选，请先在流程管理最右侧的内部团队中增加其他成员。";
 								 }
+							 
 							  $this->assign("msg",$msg);
 							  $this->assign("checkbox",$checkbox); 
 							  $this->assign('Team_list',$Team_list);

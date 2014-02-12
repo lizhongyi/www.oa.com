@@ -19,6 +19,9 @@
   <th width="40">备注</th>
   <th width="80">操作</th>
   </tr>
+  
+  <present name="getList">
+  
   <volist name="getList" id="vo">
   <tr>
   <td>{$key+1}</td>
@@ -28,7 +31,17 @@
   <td><a href="javascript:;" class="modfy_per" link="{:U('Nteam/modfy',array('ajax'=>1,'id'=>$vo['id']))}">修改</a>  <a href="javascript:;" class="nteam-del-a" link="{:U('Nteam/delete',array('id'=>$vo['id']))}">删除</a>  </td>
   </tr>
   </volist>
+  <else/>
   
+  
+  <tr>
+  <td colspan="5">
+  
+  暂时没有团队成员
+  
+  </td>
+  </tr>
+  </present>
   </table>
 
  </form>

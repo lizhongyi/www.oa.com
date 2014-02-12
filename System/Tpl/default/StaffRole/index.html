@@ -39,7 +39,9 @@
                                        
                                         <li class="active"><a  href="{:U('Staff/index')}">权限管理</a></li>  
                                         
-                 <li><a  href="{:U('Staff/index')}">雇员管理</a></li>                            
+                 <li><a  href="{:U('Staff/index')}">雇员管理</a></li>
+                 
+                  <li><a  href="/User_group">添加雇员</a></li>                            
                                         
                                     </ul>
                           </div>
@@ -66,26 +68,24 @@
 <tr>
 <th width="70">序号</th>
 <th width="90">职务名称</th>
-<th width="80" align="center">备注</th>
 <th  align="center" style="min-width:40px !important">操作</th>
 </tr>
 <volist name="dataList" id="vo">
 <tr>
 <td>{$key+1}</td>
 <td><a href="javascript:;" uid="{$vo['uid']}" pid="{$vo['pid']}" title="{$vo['realname']}">{$vo['title']}</a></td>
-  <td align="center"><a href="#" class="beizhu" title="" data-content="{$vo['mark']}" data-original-title="备注">查看</a></td>
   <td align="center">
-  
-  
-  
-  <if condition="$vo['systeam'] neq 1">
-  
-  <a class="btn btn-mini" href="{:U('StaffRole/modfy',array('id'=>$vo['id']))}">修改</a></if>
-  
-  
-  
-  
-  
+    
+    
+    
+    <if condition="$vo['systeam'] neq 1">
+      
+      <a class="btn btn-mini" href="{:U('StaffRole/modfy',array('id'=>$vo['id']))}">修改</a></if>
+    
+    
+    
+    
+    
   </td>
   </tr>
   

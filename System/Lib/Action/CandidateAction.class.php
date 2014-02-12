@@ -843,9 +843,19 @@ class CandidateAction extends GlAction{
                                 
                                          if($id!=0){
                                                      $data['id']=$id;
-                                                     $data['display']=0;   
+                                                     $data['display']=0;
+													 
+													 //此处判断是否是第一次
+													 
+													 
+													 $st=$this->dao->where('id='.$id)->getField('stage');
+													 
+													 if($st<2){
+													 $rs=$this->dao->where("id=".$id)->delete();	 
+														 }else{
+													    
                                                      $rs=$this->dao->where("id=".$id)->save($data);
-                                                         
+														 }
                                                   if($rs){
                                                            
                                                    

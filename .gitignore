@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 tmp/*
 temp/*
 cache/*
@@ -6,7 +6,7 @@ Framework/*
 
 daima/cache/
 validform/
-
+erpking.sql
 _notes
 Static/Temp
 *.log
@@ -17,6 +17,3 @@ app/[Cc]onfig/core.php
 app/[Cc]onfig/database.php
 !emptys
 
-=======
-.c #huolvbianwenjian
->>>>>>> 69efadc42525c4022096c79f407b48a70e02abbf
