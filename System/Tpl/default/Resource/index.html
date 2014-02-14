@@ -72,9 +72,7 @@
          
          
             <div class="">
-            <div class="span4  input-line">
-              <label class="control-label span3">工作地点</label> <span> <input class="span6 area" size="16" type="text" value="{$Think.get.area_cn}" name="area_cn"><input type="hidden" name="area" value="{$Think.get.area}" id="area-val"/></span>
-    </div>      
+           
                   <div class="span4 input-line">
                     <label class="control-label span3">所在公司</label>  
               <input class="span7" id="company" name="last_company" size="16" type="text" value="{$Think.get.last_company}">
@@ -111,7 +109,7 @@
 	          <tr>
 	            <td>{$key+1}</td>
 	            <td><a href="/Resource/detail/id/{$vo['uid']}">{$vo['uid']|getTruename}</a></td>
-	            <td>{$vo['area_cn']|msubstr=0,3}</td>
+	            <td>{$vo['area_cn']}</td>
 	            <td>{$vo['last_company']}</td>
 	            <td>{$select['education'][$vo['education']]}</td>
 	            <td>
@@ -394,6 +392,26 @@ $('#sms_bt').click(function(e) {
   
 </script>
         
+        
+        
+        
+        
+        <script type="text/javascript">
+$(function() {
+        
+		if($("#keyword").val()!='' || $("company").val()){
+        // pull in the new value
+         var searchTerm = $("#keyword").val() || $("#company").val();
+        // remove any old highlighted terms
+        $('body').removeHighlight();
+        // disable highlighting if empty
+        if ( searchTerm ) {
+            // highlight the new term
+            $('body').highlight( searchTerm );
+        }
+		}
+});
+</script>
 	</body>
 </html>
 

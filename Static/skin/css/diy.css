@@ -175,7 +175,7 @@ textarea{ border-radius:0px;}
 .modal-header h3{ cursor:move};
 .bordernone td{ border:0px;}
 .bordernone{ border:0px;}
-.green{ color:#0C0}
+.green{ color:#060}
 .table{ margin-top:15px;}
 .page-a{ font-size:12px;}
 .page-1{ font-size:12px;}
@@ -213,7 +213,7 @@ textarea{ border-radius:0px;}
 #mark_info .info_b{ width:370px; margin-right:10px; float:left;_display:inline; min-height:80px; border: 1px solid #ddd; margin-bottom:10px;}
 #mark_info h5{ font-family:"微软雅黑"; border-bottom:1px solid #EDEDED; line-height:24px; background:#f8f8f8; height:24px; padding-left:8px; font-weight:100}
 #mark_info p{ margin:8px; padding:5px; border:0px  dashed #ccc; margin-left:0px;}
-span.lv{ color:#0C0}
+span.lv{ color:#060}
  .mail-bt{ display:none}
  .menu-t{ cursor:s-resize}
  .fc-view a:hover{ color:#FFF; text-decoration:underline}

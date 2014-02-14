@@ -46,7 +46,7 @@ class WorksAction extends GlAction {
                              $stage !=0 && $condition['stage'] = array('eq', $stage);
 							 $Search_posts && $condition['Search_posts']=array('like','%'.$Search_posts.'%');
 							 $condition['uid']=$this->uid;
-							 
+							 $orders="up_time desc, id desc";
 							 
 							 
 							 //exit($wids);
@@ -110,6 +110,7 @@ class WorksAction extends GlAction {
 							 $department_id   =$this->_get('department_id');
 							 $Search_posts    =$this->_get('Search_posts');
 							 $display=1;
+							  $orders="up_time desc, id desc";
 							 $condition = !empty($conditions) ? $conditions : '' ;
 	                         $title &&  $condition['title'] = array('like', '%'.$title.'%');
 							 $area &&  $condition['area'] = array('eq',$area);
@@ -123,6 +124,7 @@ class WorksAction extends GlAction {
 							 $Search_posts && $condition['Search_posts']=array('like','%'.$Search_posts.'%');
 							 $wid=M('Team')->Field('gid,uid')->where('uid='.$this->uid)->select();
 							 $wids=imp($wid,',','gid');
+							 
 							 if($resume_id!=0){
 								 
 									   $ngid=M('Candidate')->Field('gid')->where('resume_id='.$resume_id.' and source='.$source)->select();

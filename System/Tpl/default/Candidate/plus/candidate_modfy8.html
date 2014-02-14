@@ -127,7 +127,7 @@
  
  
  
-    第{$key+1}批金额：<input  <if condition="$detail['fenpei'] eq 1"> disabled </if>  name="title[]" id="title_137" type="text" class="span1 title" style="margin-left:20px" value="{$ph.jine}" style="width:100px"> 　应收日期：<input data-form="datepicker"  <if condition="$detail['fenpei'] eq 1"> disabled </if> type="text" name="yfk_time"   class="ys_time span2" data-date-format="yyyy-mm-dd"  data-date="<php> echo date('Y-m-d',time()) ;</php>" value="{$ph.time}" /><span class="r_t btn"><i class="icon-remove-sign"></i></span>　 </div></td></tr>
+    第{$key+1}批金额：<input  <if condition="$detail['fenpei'] eq 1"> disabled </if>  name="title[]" id="title_137" type="text" class="span1 title" style="margin-left:33px" value="{$ph.jine}" style="width:100px"> 　应收日期：<input data-form="datepicker"  <if condition="$detail['fenpei'] eq 1"> disabled </if> type="text" name="yfk_time"   class="ys_time span2" data-date-format="yyyy-mm-dd"  data-date="<php> echo date('Y-m-d',time()) ;</php>" value="{$ph.time}" /><span class="r_t btn"><i class="icon-remove-sign"></i></span>　 </div></td></tr>
     
     
     
@@ -206,7 +206,7 @@
 	 
 	      $('[data-form="datepicker"]').datepicker();
 	  
-		 string="<tr><td><div class=\"input-append input-line\">第"+parseInt($("#person input.title").length+1)+"批金额：　<input name=\"title[]\"  id=\"title_{$vo['id']}\" type=\"text\" class=\"span1 title\" style=\"margin-left:8px;\" value=\"\" /> 　应收日期：<input type=\"text\"  name=\"yfk_time[]\"  class=\" ys_time span2\" data-form='datepicker'  value=\"<php> echo date('Y-m-d',time()) ;</php>\" /><span class=\"r_t_1 btn\" style=\" margin-top:0px; \"><i class=\"icon-remove-sign\"></i></span></div></td></tr>";
+		 string="<tr><td><div class=\"input-append input-line\">第"+parseInt($("#person input.title").length+1)+"批金额：　<input name=\"title[]\"  id=\"title_{$vo['id']}\" type=\"text\" class=\"span1 title\" style=\"margin-left:20px;\" value=\"\" /> 　应收日期：<input type=\"text\"  name=\"yfk_time[]\"  class=\" ys_time span2\" data-form='datepicker'  value=\"<php> echo date('Y-m-d',time()) ;</php>\" /><span class=\"r_t_1 btn\" style=\" margin-top:0px; \"><i class=\"icon-remove-sign\"></i></span></div></td></tr>";
         
 	
 				
@@ -220,7 +220,7 @@
 		}
 		
 		
-		 
+		  $('[data-form="datepicker"]').datepicker();
 		
     });
 

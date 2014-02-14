@@ -9,11 +9,11 @@
                                 </a>
                             </li>
                             <li <if condition="$module eq 'Works'"> class="active" </if>>
-                                <a href="{:U('Works/add')}" >
+                                <a href="{:U('Works/index')}" >
                                     <div class="helper-font-24">
                                         <i class="icofont-list-alt"></i>
                                     </div>
-                                    <span class="sidebar-text">发布职位</span>
+                                    <span class="sidebar-text">职位</span>
                                 </a>
                                 <ul class="sub-sidebar-form corner-top shadow-white" style="display:none">
                                     <li class="title muted">操作</li>                  
@@ -460,8 +460,20 @@
                                 
                                 
                             </li>
+                            
+                            
                            
                                     </if>  
+                                             
+                             <li <if condition="$module eq Schedule"> class='active' </if>>
+                                <a href="/help.html" target="_blank" >
+                                    <div class="helper-font-24">
+                                        <i class="icofont-table"></i>
+                                    </div>
+                                    <span class="sidebar-text">帮助中心</span>
+                                </a>
+                            </li>
+                                    
                                     <li>
                                         <a href="javascript:;" >
                                             <div class="helper-font-24">
@@ -493,7 +505,7 @@
                                     
                                     
                                   
-                                     
+                                  
                                     
                                     
                                     
@@ -511,5 +523,13 @@
                                    
                                 </ul>
                             </li>
+                            
+                            
+                            
+                            
+                           
+                            
+                            
+                              
                         </ul>
                     </aside>

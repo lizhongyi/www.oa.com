@@ -78,9 +78,7 @@ class CandidateAction extends GlAction{
 										   
 									 }
 							
-													
-									}
-									
+											
 									 if($v['stage'] == 4){
 									
 							                            $mian=(array)json_decode($dt[$k]['mianshidate']);
@@ -96,7 +94,9 @@ class CandidateAction extends GlAction{
 							                            $dt[$k]['mian']='<a href="#" rel="tooltip" class="top_tooltip" data-original-title="'.$dt[$k]['mm'].'">'.date('Y-m-d',$dt[$k]['mianshi_time'])." ".$dt[$k]['shi'].':'.$dt[$k]['fen'].'</a>';
 														
 							 
-									 }
+									 }			
+									}
+								
 									
 									$pj=$dt[$k]['pici_jin'];
 									

@@ -16,18 +16,17 @@ class ResourceAction extends GlAction{
 				 $this->checkLevel('该服务需要升级VIP会员');
 				 
 				
-				                $area_cn =$_GET['area_cn'];
-								$area_cn && $condition['area_cn']=array('like','%'.$area_cn.'%');
+				               
 								
 								$last_company=$_GET['last_company'];
-								$last_company && $condition['last_company']=array('like','%'.$last_company.'%');         
-							    $post = $_GET['post'];
-								$post && $condition['post']=array('eq',$post);
-								
+								$last_company && $condition['a.last_company']=array('like','%'.$last_company.'%');         
+							    
 								$keyword=$_GET['keyword'];
-								$keyword && $condition['realname']=array('like','%'.$keyword.'%');
-				  
-				                $condition['type']=array('eq',3);
+								$keyword && $condition['a.realname']=array('like','%'.$keyword.'%');
+				                $condition['b.skills']=array('neq','');
+							
+				                $condition['a.type']=array('eq',3);
+								
 				                $pageCount = M('Resume')->where($condition)->count();
 			                	$listRows = empty($listRows) ? 10 : $listRows;
 						 	    $orderd = empty($orders) ? 'uid DESC' : $orders;
@@ -37,30 +36,22 @@ class ResourceAction extends GlAction{
 							    
 						
 								
-					            $dt = M('Resume')
-							                        ->Where($condition)
-													//->field('uid,username,realname,type,level,last_company,update_time,education,area_cn')
-							                        ->Order($orderd)
-							                        ->Limit($paged->firstRow.','.$paged->listRows)
-													->select();  
+					            $this->getJoinList($condition, 'a.uid DESC', 12, C('DB_PREFIX').'user a', C('DB_PREFIX').'resume b on a.uid=b.uid','a.*,b.*');
 													
-													
-													foreach($dt as $k=>$v){
-															  	
-												       $dt[$k]['down']=M('Resume_down')->where('Resume_id='.$v['uid'].' and comid='.$this->comid)->count();
-														
-													
-														}
-													
-											//print_r($dt);
-													
-											                          
-							$pageContentBar = $paged->show();
-							$this->assign('getList', $dt);
-							$this->assign('pageBar', $pageContentBar);
-				             
-							$this->display(); 
-				 
+												
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+							
 			   
 			
 			
@@ -163,6 +154,36 @@ class ResourceAction extends GlAction{
 					   
 					   
 					   }
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					   
+					     public function getJoinList($conditions = '', $orders = '' , $listRows = '', $table = '', $join = '', $fields = '')
+    {   
+        $condition = !empty($conditions) ? $conditions : '' ;
+        $pageCount = $this->dao->Where($condition)->Table($table)->Join($join)->Field($fields)->count();
+        $listRows = empty($listRows) ? 10 : $listRows;
+        $orderd = empty($orders) ? 'id DESC' : $orders;
+        $paged = new page($pageCount, $listRows);
+        $dataContentList = $this->dao->Table($table)->join($join)->field($fields)->Where($condition)->Order($orderd)->Limit($paged->firstRow.','.$paged->listRows)->select();
+					   
+					   
+				
+					  $pageContentBar = $paged->show();
+					  $this->assign('getList', $dataContentList);
+					  $this->assign('pageBar', $pageContentBar);
+					  $this->display();
+					 
+					 }  
+					   
+					   
+					   
 					   
 					   
 					  

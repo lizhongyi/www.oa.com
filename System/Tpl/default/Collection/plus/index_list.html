@@ -46,13 +46,13 @@
     
     
     
-    <if condition="$vo['c_status'] eq 1"><span style="color:#0C0">已到账<elseif condition ="$vo['c_status'] eq 0"/><span style=" color:#999">未到账</span>  <else/> 取消收款 </if>
+    <if condition="$vo['c_status'] eq 1"><span style="color:#060">已到账<elseif condition ="$vo['c_status'] eq 0"/><span style=" color:#999">未到账</span>  <else/> 取消收款 </if>
     
     
     
   </td>
   <td> 
-    <if condition="$vo['c_status'] eq 1"><span style="color:#0C0"><if condition="$vo['fen'] eq 1"><a  class="yeji_detail" data-toggle="modal" href="#yeji_detail" link="{:U('Commission/cid_list',array('cid'=>$vo['cid'],'did'=>$vo['id'],'ajax'=>1))}">已分配</a>
+    <if condition="$vo['c_status'] eq 1"><span style="color:#060"><if condition="$vo['fen'] eq 1"><a  class="yeji_detail" data-toggle="modal" href="#yeji_detail" link="{:U('Commission/cid_list',array('cid'=>$vo['cid'],'did'=>$vo['id'],'ajax'=>1))}">已分配</a>
     
     <else/><a href="javascript:;"  link="{:U('Collection/fenpei',array('ajax'=>1,'id'=>$vo['id']))}" class="fenpei-a">分配佣金</a>
     

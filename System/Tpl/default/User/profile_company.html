@@ -270,7 +270,9 @@ div.h-title a.close{ font-size:12px; line-height:30px; padding-right:10px; font-
         </section>
 
    <include file="Public:footer"/>
+   <div id="Upass" class="modal" style="width:400px; margin-left:-200px;">
    
+   </div>
    
    <script>
    
@@ -349,8 +351,18 @@ div.h-title a.close{ font-size:12px; line-height:30px; padding-right:10px; font-
 	   
         </script>
 
-
+ <script>
+     
+	 $("#upa").click(function(e) {
+		 
+		 //alert('nihao');
+         geta($("#Upass"),$(this).attr('link'),loadGif);
+		  
+    });
+   
+   </script>
    <include file="Public:js-tpl/area.inc"/>  
+   
    <include file="Public:js-tpl/hangye.inc"/>  
    </body>
    
