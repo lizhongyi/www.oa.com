@@ -60,21 +60,39 @@
 										
                                         <div class="box-body">
 													
-	        <table width="529" class="table"><tr>
+	        <table width="687" class="table"><tr>
 	          <td width="34">ID</td>
 	          <td width="247">简历标题</td>
 	          <td width="78">上传</td>
 	          <td width="150">日期</td>
+	          <td width="150">操作</td>
 	        </tr>
+            
+            
+            <present name="getList">
+            
             <volist name="getList" id="vo">
 	          <tr>
 	            <td>{$vo['id']}</td>
 	            <td><a href="/Talent/idtail/id/{$vo['id']}">{$vo['title']}</a></td>
 	            <td>{$vo['uid']|getTruename}</td>
 	            <td>{$vo['create_time']|date='Y-m-d',###}</td>
+	            <td><a href="/Talent/imp_edit/id/{$vo['id']}">编辑</a>　<a href="/Talent/imp_delete/id/{$vo['id']}">删除</a></td>
 	            </tr>
                 
                 </volist>
+                
+                <else/>
+                 
+                 <tr>
+                 
+                 <td colspan="5">
+                 <div class="alert">暂时没有简历！</div>
+                 </td>
+                 
+                 </tr>
+                
+                </present>
                 
 	        </table>
               

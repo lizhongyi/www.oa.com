@@ -66,42 +66,45 @@ class Talent_importAction extends GlAction {
 					
 				public function  do_import(){
 					
-					                 
-							 $data=$_POST;
-						       
-							/*  if(!$_FILES){
+					             
+							     $data=$_POST;
+						        include('./includes/files.class.php'); 
+								
+								
+								 
+							   if(!$_FILES){
 								  parent::_message('error','没有上传文件');
 								  }
 							  
 						     $run=new files();
 							 
-							$is= $run->upload('files',$_FILES['docs']);							 
-                           	
-							if($is['db_path']){
+							$is= $run->upload('files',$_FILES['docs']);	
+							
+							
+						
+							 
+							 
+							
+							
+							   if($is['db_path']){
 								 //开始上传操作
 								 $ty=$is['type'];
 								 $fl=$is['file_url'];
 								
 								              
 											  
-											   if (file_exists($fl)){*/
+											   if (file_exists($fl)){
 														 		
-														  
-													if($_POST['title']=='' || $_POST['phone'] ==''  || $_POST['last_company']==""){
-														 parent::_message('error','请填写完整');
-														
-														
-														}
-															  
+													
 															   //插入数据库
 															   $data['comid']=$this->comid;
 															   $data['department']=$this->department;
 															   $data['create_time']=time();
-															  // $data['url']=$fl;
+															   $data['url']=$fl;
 															   $data['uid']=$this->uid;
 															   $rs=D('Talent_import')->add($data);
 															   if($rs){
-															    parent::_message('success','上传成功');
+															    parent::_message('success','上传成功','/Talent/imp');
 															  }else{
 																  
 																   parent::_message('error','上传失败');
@@ -112,15 +115,16 @@ class Talent_importAction extends GlAction {
 														  
 														
 														  
-										/*	   }
+											   }else{
+												  echo "cuowu";
+												  
+												   
+												   }
 
 
 							     	
 								
-								} 					  
-												 */ 
-			                 
-				
+								}
 				}   
 				
 				

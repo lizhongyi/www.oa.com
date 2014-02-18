@@ -460,6 +460,7 @@ class WorksAction extends GlAction {
 				  $data['start_time'] = date(strtotime($data['start_time']));
                   $data['end_time']   = date(strtotime($data['end_time']));
 				  $data['create_time']=time();
+				  $data['up_time']=time();
 				  $data['uid']=$this->uid;
 				  //$data['department_id']=$this->department;
 				 // $data['group_id']=$this->group_id;

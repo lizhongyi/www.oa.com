@@ -555,64 +555,47 @@
 						   
 					    
 						
-						
-					public  function do_import(){
-						     
-							 $data=$_POST;
-						     include('./includes/files.class.php');   
-							  if(!$_FILES){
+					public function  do_import(){
+					
+					             
+							     $data=$_POST;
+						        include('./includes/files.class.php'); 
+								
+								
+								 
+							   if(!$_FILES){
 								  parent::_message('error','没有上传文件');
 								  }
 							  
 						     $run=new files();
 							 
-							$is= $run->upload('files',$_FILES['docs']);							 
-                           	
-							if($is['db_path']){
+							$is= $run->upload('files',$_FILES['docs']);	
+							
+							
+						
+							 
+							 
+							
+							
+							   if($is['db_path']){
 								 //开始上传操作
 								 $ty=$is['type'];
 								 $fl=$is['file_url'];
-								$pdfpath = '/home/wwwroot/app.jobme.cn/'; 
-								$pdfpath = '/home/wwwroot/app.jobme.cn/';
-								$swfpath = '/home/wwwroot/app.jobme.cn/';
 								
 								              
 											  
-											   if (file_exists($is['file_url'])){
-														  //执行转换
-														 
-														  if($ty=='pdf'){ //PDF 转SWF
-														  $pdf = $fl;
-														  $swf = str_replace('pdf','swf',$pdf);
-														  exec('pdf2swf -o '.$swfpath.$swf.' -T -z -t -f '.$pdfpath.$pdf.' -s languagedir=/usr/share/xpdf/xpdf-chinese-simplified -s flashversion=9');
-														  $path2 = $pdfpath.$pdf;
-														  $path3 = $swfpath.$swf;
-														  }else{ //DOC 转 PDF
-														  $doc = $fl;
-														  $format = explode('.',$fl);
-														  $formatName = $format[0].'.pdf';
-														  $command = 'java -jar /usr/local/wenku/jodconverter-2.2.2/lib/jodconverter-cli-2.2.2.jar '.$docpath.$doc.' '.$pdfpath.$formatName;
-														  exec($command);
-														  $path1 = $docpath.$doc;
-														  $path2 = $pdfpath.$formatName;
-														  
-														  if(file_exists( $pdfpath.$formatName)){
-														  $pdf = $formatName;
-														  $swf = str_replace('pdf','swf',$pdf);
-														  $swfcommand = 'pdf2swf -o '.$swfpath.$swf.' -T -z -t -f '.$pdfpath.$pdf.' -s languagedir=/usr/share/xpdf/xpdf-chinese-simplified -s flashversion=9';
-														  exec($swfcommand);
-														  $path3 = $swfpath.$swf;
-														  
-														  if($path3){
-															  
+											   if (file_exists($fl)){
+														 		
+													
 															   //插入数据库
 															   $data['comid']=$this->comid;
 															   $data['department']=$this->department;
 															   $data['create_time']=time();
-															   $data['url']=substr($path3,26,strlen($path3));
+															   $data['url']=$fl;
+															   $data['uid']=$this->uid;
 															   $rs=D('Talent_import')->add($data);
 															   if($rs){
-															    parent::_message('success','上传成功','/Talent/imp');
+															    parent::_message('success','上传成功');
 															  }else{
 																  
 																   parent::_message('error','上传失败');
@@ -620,19 +603,22 @@
 																  }
 														  
 														  
-														  }
-														  }
-														  }
-											   }
+														  
+														
+														  
+											   }else{
+												  echo "cuowu";
+												  
+												   
+												   }
 
 
 							     	
 								
-								} 					  
-												  
-			                 
-						   
-						}	   
+								}
+				}   
+				
+				
 					   
 					   
 					   
@@ -830,6 +816,116 @@
 					}		 
 					 
 					 
+					 
+					 
+					 
+					 
+					 
+					//删除文档简历
+					
+					public function imp_delete(){
+						
+						  parent::checkID($this->id);
+						      
+						   $rs=M('Talent_import')->where('id='.$this->id)->delete();
+						   if($rs){
+							     
+								 parent::_message('success','删除成功','/Talent/imp');
+							   
+							   }else{
+								  parent::_message('eroor','删除失败');  
+								   
+								   }
+						}
+						
+				 //编辑文档简历
+				 
+				 
+				 
+				 
+				 public function imp_edit(){
+					 
+					 
+					          
+					  parent::checkID();
+					  
+					  $dt=M('Talent_import')->where('id='.$this->id)->find();
+					
+						  
+						     $this->assign('dt',$dt);
+							 $this->display();
+						  
+					          echo  "niohap";
+					 }
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 
+				 //提交编辑文档简历
+				 
+				 public function do_imp_edit(){
+					 
+					 
+					 
+					                    parent::checkID();
+										  
+										   $data=$_POST;
+						     include('./includes/files.class.php');   
+							 
+							  
+							  
+							  
+							  
+							  if($_FILES['docs']){
+							  
+						     $run=new files();
+							 
+							$is= $run->upload('files',$_FILES['docs']);							 
+                           	
+						             	if($is['db_path']){
+								                  //开始上传操作
+												  $ty=$is['type'];
+												  $fl=$is['file_url'];
+												  if (file_exists($fl)){
+												      $data['url']=$fl;
+													}
+                                                             
+							} 	
+							  }                               $data['update_time']=time();
+							  
+							  
+							  
+							  
+							                                   if($this->uid == $this->comid){
+                                                               $rs=D('Talent_import')->where('id='.$this->id. ' and comid='.$this->comid)->save($data);                                                               }else{
+																   
+																   $rs=D('Talent_import')->where('id='.$this->id. ' and uid='.$this->uid)->save($data);
+																   }
+								               					if($rs){
+															    parent::_message('success','更新成功','/Talent/imp');
+															      }else{
+																//  exit(D('Talent_import')->getLastSql());	  
+																   parent::_message('error','更新失败');
+																  }
+							     	
+								
+								                  					  
+												  
+			                 
+					 
+					 
+					 
+					 
+					 
+					 
+					 }		
 					 
 					 
 					 

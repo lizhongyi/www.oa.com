@@ -60,28 +60,25 @@
 													
 	        <form id="" method="post" action="/Talent/do_import" enctype="multipart/form-data">
             
-              <table>
+              <table width="100%">
               <tr>
-              <td width="64">标题：</td>
-              <td width="383"><input type="text" name="title" id="title"/></td>
+              <td width="383" height="34"><input type="text" name="title" id="title"/>
+                <strong>  </strong>                简历标题</td>
                
                </tr>
                <tr>
-               <td>上传文件</td>
-               <td><input type="file"  name="docs" id="docs"/>
-（Doc or Pdf）</td>
+               <td height="63"><input type="file"  name="docs" id="docs"/>
+                 （Doc or Pdf）</td>
+               </tr>
+               <tr>
+                 <td>
+                   <textarea id="editor_id" name="content" class="text_area" rows="50" cols="80" style="height:600px; width:100%; overflow:auto">{$dt['content']}</textarea></td>
                </tr>
                <tr>
                  <td>&nbsp;</td>
-                 <td><textarea name="mark" cols="40" rows="4" id="mark"></textarea></td>
                </tr>
                <tr>
-                 <td>&nbsp;</td>
-                 <td>&nbsp;</td>
-               </tr>
-               <tr>
-                 <td>&nbsp;</td>
-                 <td>&nbsp;<button type="submit">上传</button></td>
+                 <td>&nbsp;<button type="submit" class="sb">上传</button></td>
                </tr>
                </table>
               </form>
@@ -190,17 +187,32 @@ tick();
       <include file="Public:js-tpl/hangye.inc"/>  
         <script src="/Static/skin/js/plus_tan.js"></script>
         
-        <script>
-		
-		  $(".show_c").click(function(e) {
-            // document.write(loadGif);
-	        geta($($(this).attr('href')),$(this).attr('link'),loadGif);
+        
+        <script charset="utf-8" src="/editor/kindeditor.js"></script>
+<script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
+<script>
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id');
+        });
+</script>
+
+
+<script>
+
+
+$(".sb").click(function(e) {
+     
+	 if($("#title").val()==""){
+		   
+		   alert("请填写标题");
+		   return false;
+		 }
 	
 });
 
+</script>
 
-		</script>
-        
+
 	</body>
 </html>
 
