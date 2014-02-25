@@ -591,11 +591,12 @@
 															   $data['comid']=$this->comid;
 															   $data['department']=$this->department;
 															   $data['create_time']=time();
+															   $data['content']=$_POST['content'];
 															   $data['url']=$fl;
 															   $data['uid']=$this->uid;
 															   $rs=D('Talent_import')->add($data);
 															   if($rs){
-															    parent::_message('success','上传成功');
+															    parent::_message('success','上传成功','/Talent/imp');
 															  }else{
 																  
 																   parent::_message('error','上传失败');
@@ -625,7 +626,7 @@
 					   public function imp(){
 						       
 							   
-							     $glist=M('Talent_import')->where('comid='.$this->comid)->select();
+							     $glist=M('Talent_import')->where('comid='.$this->comid)->order('ID desc')->select();
 								 
 								 $this->assign('getList',$glist);
 								 $this->display();
@@ -872,11 +873,9 @@
 				 
 				 public function do_imp_edit(){
 					 
-					 
-					 
-					                    parent::checkID();
+					         parent::checkID();
 										  
-										   $data=$_POST;
+										 
 						     include('./includes/files.class.php');   
 							 
 							  
@@ -899,14 +898,15 @@
                                                              
 							} 	
 							  }                               $data['update_time']=time();
-							  
+							                                  $data['title']=$_POST['title'];
+															  $data['content']=$_POST['content'];
 							  
 							  
 							  
 							                                   if($this->uid == $this->comid){
-                                                               $rs=D('Talent_import')->where('id='.$this->id. ' and comid='.$this->comid)->save($data);                                                               }else{
+                                                               $rs=M('Talent_import')->where('id='.$this->id. ' and comid='.$this->comid)->save($data);                                                               }else{
 																   
-																   $rs=D('Talent_import')->where('id='.$this->id. ' and uid='.$this->uid)->save($data);
+																   $rs=M('Talent_import')->where('id='.$this->id. ' and uid='.$this->uid)->save($data);
 																   }
 								               					if($rs){
 															    parent::_message('success','更新成功','/Talent/imp');

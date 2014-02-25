@@ -1031,6 +1031,32 @@ class WorksAction extends GlAction {
 									}
 			                    break;
 								
+								case 'update':
+							    $ids= implode(',',$_POST['id']);
+								$data1['up_time']=time();
+							   //$data['stage']=$operate;
+							   $rs=$this->dao->where("id in ($ids)")->save($data1);
+								
+								
+								
+								 if($rs){
+									    if($_PSOT['ajax']!=1){
+									      parent::_message('success', '刷新成功',$_SERVER['HTTP_REFERER']);
+										}else
+										{
+											echo "";
+										}
+									}else{ 
+									 
+										 parent::_message('error', '刷新失败'.$this->dao->getLastSql());
+									}
+								
+								
+								
+								break;
+								
+								
+								
 								case 'qk_delete':
 								//设置回收站
 								parent::_delete(0,0);
